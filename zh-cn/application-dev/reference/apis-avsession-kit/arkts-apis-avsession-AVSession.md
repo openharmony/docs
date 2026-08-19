@@ -2036,7 +2036,7 @@ on(type: 'play', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件为`'play'`，当播放命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件为'play'，当播放命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。         |
 
 **错误码：**
@@ -2108,7 +2108,7 @@ on(type: 'pause', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件为`'pause'`，当暂停命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件为'pause'，当暂停命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。     |
 
 **错误码：**
@@ -2145,7 +2145,7 @@ on(type:'stop', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'stop'`，当停止命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'stop'，当停止命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。          |
 
 **错误码：**
@@ -2182,7 +2182,7 @@ on(type:'playNext', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'playNext'`，当播放下一首命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'playNext'，当播放下一首命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。     |
 
 **错误码：**
@@ -2254,7 +2254,7 @@ on(type:'playPrevious', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'playPrevious'`，当播放上一首命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'playPrevious'，当播放上一首命令被发送到会话时，触发该事件回调。 |
 | callback | () => void | 是   | 回调函数。       |
 
 **错误码：**
@@ -2328,7 +2328,7 @@ on(type: 'fastForward', callback: (time?: number) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是 `'fastForward'`，当快进命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'fastForward'，当快进命令被发送到会话时，触发该事件回调。 |
 | callback | (time?: number) => void | 是   | 回调函数。参数time是快进的时间，单位为秒（s）。    |
 
 **错误码：**
@@ -2400,7 +2400,7 @@ on(type:'rewind', callback: (time?: number) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'rewind'`，当快退命令被发送到会话时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'rewind'，当快退命令被发送到会话时，触发该事件回调。 |
 | callback | (time?: number) => void | 是   | 回调函数。参数time是快退的时间，单位为秒（s）。      |
 
 **错误码：**
@@ -2472,7 +2472,7 @@ on(type:'playWithAssetId', callback: Callback\<string>): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'playWithAssetId'`，当指定资源id进行播放时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'playWithAssetId'，当指定资源id进行播放时，触发该事件回调。 |
 | callback | Callback\<string> | 是   | 回调函数。参数assetId是媒体ID。      |
 
 **错误码：**
@@ -2507,7 +2507,7 @@ off(type: 'playWithAssetId', callback?: Callback\<string>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playWithAssetId'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'playWithAssetId'。 |
 | callback | Callback\<string> | 否   | 回调函数，参数assetId是媒体ID。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -2541,7 +2541,7 @@ on(type: 'seek', callback: (time: number) => void): void
 
 | 参数名   | 类型                   | 必填 | 说明     |
 | -------- | ---------------------- | ---- | --------- |
-| type     | string                 | 是   | 事件回调类型，支持事件`'seek'`：当跳转节点命令被发送到会话时，触发该事件。 |
+| type     | string                 | 是   | 事件回调类型，支持事件'seek'：当跳转节点命令被发送到会话时，触发该事件。 |
 | callback | (time: number) => void | 是   | 回调函数。参数time是跳转的目标时间，单位为毫秒（ms）。                   |
 
 **错误码：**
@@ -2578,7 +2578,7 @@ on(type: 'setSpeed', callback: (speed: number) => void): void
 
 | 参数名   | 类型                    | 必填 | 说明     |
 | -------- | ----------------------- | ---- | --------- |
-| type     | string                  | 是   | 事件回调类型，支持事件`'setSpeed'`：当设置播放速率的命令被发送到会话时，触发该事件。 |
+| type     | string                  | 是   | 事件回调类型，支持事件'setSpeed'：当设置播放速率的命令被发送到会话时，触发该事件。 |
 | callback | (speed: number) => void | 是   | 回调函数。参数speed是播放倍速。                              |
 
 **错误码：**
@@ -2615,7 +2615,7 @@ on(type: 'setLoopMode', callback: (mode: LoopMode) => void): void
 
 | 参数名    | 类型                                   | 必填 | 说明  |
 | -------- | ------------------------------------- | ---- | ---- |
-| type     | string                                | 是   | 事件回调类型，支持事件`'setLoopMode'`：当设置循环模式的命令被发送到会话时，触发该事件。 |
+| type     | string                                | 是   | 事件回调类型，支持事件'setLoopMode'：当设置循环模式的命令被发送到会话时，触发该事件。 |
 | callback | (mode: [LoopMode](arkts-apis-avsession-e.md#loopmode10)) => void | 是   | 回调函数。参数mode是循环模式。                               |
 
 **错误码：**
@@ -2652,7 +2652,7 @@ on(type: 'setTargetLoopMode', callback: Callback\<LoopMode>): void
 
 | 参数名    | 类型                                   | 必填 | 说明  |
 | -------- | ------------------------------------- | ---- | ---- |
-| type     | string                                | 是   | 事件回调类型，支持事件`'setTargetLoopMode'`。<br>- `'setTargetLoopMode'`：当设置目标循环模式的命令被发送到会话时，触发该事件。 |
+| type     | string                                | 是   | 事件回调类型，支持事件'setTargetLoopMode'。<br>- 'setTargetLoopMode'：当设置目标循环模式的命令被发送到会话时，触发该事件。 |
 | callback | Callback<[LoopMode](arkts-apis-avsession-e.md#loopmode10)> | 是   | 回调函数。参数表示目标循环模式。                               |
 
 **错误码：**
@@ -2688,7 +2688,7 @@ on(type: 'toggleFavorite', callback: (assetId: string) => void): void
 
 | 参数名   | 类型                      | 必填 | 说明     |
 | -------- | ------------------------- | ---- | --------- |
-| type     | string                    | 是   | 事件回调类型，支持事件`'toggleFavorite'`：当是否收藏的命令被发送到会话时，触发该事件。 |
+| type     | string                    | 是   | 事件回调类型，支持事件'toggleFavorite'：当是否收藏的命令被发送到会话时，触发该事件。 |
 | callback | (assetId: string) => void | 是   | 回调函数。参数assetId是媒体ID，与AVMetadata中的assetId一致。                              |
 
 **错误码：**
@@ -2725,7 +2725,7 @@ on(type: 'skipToQueueItem', callback: (itemId: number) => void): void
 
 | 参数名   | 类型                      | 必填 | 说明                                   |
 | -------- | ------------------------ | ---- | ------------------------------------- |
-| type     | string                   | 是   | 事件回调类型，支持事件`'skipToQueueItem'`：当播放列表选中单项的命令被发送到会话时，触发该事件。 |
+| type     | string                   | 是   | 事件回调类型，支持事件'skipToQueueItem'：当播放列表选中单项的命令被发送到会话时，触发该事件。 |
 | callback | (itemId: number) => void | 是   | 回调函数。参数itemId是选中的播放列表项的ID，与setAVQueueItems设置的itemId对应。                                                |
 
 **错误码：**
@@ -2762,7 +2762,7 @@ on(type: 'handleKeyEvent', callback: (event: KeyEvent) => void): void
 
 | 参数名   | 类型    | 必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'handleKeyEvent'`：当按键事件被发送到会话时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'handleKeyEvent'：当按键事件被发送到会话时，触发该事件。 |
 | callback | (event: [KeyEvent](../apis-input-kit/js-apis-keyevent.md)) => void | 是   | 回调函数。参数event是按键事件。                              |
 
 **错误码：**
@@ -2802,7 +2802,7 @@ on(type: 'outputDeviceChange', callback: (state: ConnectionState, device: Output
 
 | 参数名   | 类型 | 必填 | 说明     |
 | -------- | ------------------------| ---- | --------- |
-| type     | string                                                  | 是   | 事件回调类型，支持事件`'outputDeviceChange'`：当播放设备变化时，触发该事件。 |
+| type     | string                                                  | 是   | 事件回调类型，支持事件'outputDeviceChange'：当播放设备变化时，触发该事件。 |
 | callback | (state: [ConnectionState](arkts-apis-avsession-e.md#connectionstate10), device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void | 是   | 回调函数。参数state是连接状态，参数device是设备相关信息。                         |
 
 **错误码：**
@@ -2839,7 +2839,7 @@ on(type: 'commonCommand', callback: (command :string, args:{[key: string]: Objec
 
 | 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'commonCommand'`：当自定义控制命令变化时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'commonCommand'：当自定义控制命令变化时，触发该事件。 |
 | callback | (command :string, args:{[key: string]: Object}) => void   | 是   | 回调函数，command为变化的自定义控制命令名，args为自定义控制命令的参数，参数内容与[sendCommonCommand](arkts-apis-avsession-AVSessionController.md#sendcommoncommand10)方法设置的参数内容完全一致。|
 
 **错误码：**
@@ -2874,7 +2874,7 @@ off(type: 'play', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'play'`。|
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'play'。|
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -2938,7 +2938,7 @@ off(type: 'pause', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'pause'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'pause'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -2971,7 +2971,7 @@ off(type: 'stop', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'stop'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'stop'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3004,7 +3004,7 @@ off(type: 'playNext', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是 `'playNext'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'playNext'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3068,7 +3068,7 @@ off(type: 'playPrevious', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playPrevious'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'playPrevious'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3132,7 +3132,7 @@ off(type: 'fastForward', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'fastForward'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'fastForward'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3196,7 +3196,7 @@ off(type: 'rewind', callback?: () => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'rewind'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'rewind'。 |
 | callback | () => void | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3229,7 +3229,7 @@ offRewind(callback?: TwoParamCallback\<number, CommandInfo>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| callback | TwoParamCallback\<number, [CommandInfo](arkts-apis-avsession-i.md#commandinfo22)> | 否   | 回调函数，用于处理'rewind'操作，参数number是快退的时间，单位为秒（s）。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
+| callback | TwoParamCallback\<number, [CommandInfo](arkts-apis-avsession-i.md#commandinfo22)> | 否   | 回调函数，参数number是快退的时间，单位为秒（s）。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
 
@@ -3260,7 +3260,7 @@ off(type: 'seek', callback?: (time: number) => void): void
 
 | 参数名   | 类型                   | 必填 | 说明                                          |
 | -------- | ---------------------- | ---- | ----------|
-| type     | string                 | 是   | 关闭对应的监听事件，支持关闭事件`'seek'`。       |
+| type     | string                 | 是   | 需要取消的监听事件类型，当前支持的事件类型为'seek'。       |
 | callback | (time: number) => void | 否   | 回调函数，参数time是时间节点，单位为毫秒（ms）。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3293,7 +3293,7 @@ off(type: 'setSpeed', callback?: (speed: number) => void): void
 
 | 参数名   | 类型                    | 必填 | 说明                                           |
 | -------- | ----------------------- | ---- | -------------------------------------------|
-| type     | string                  | 是   | 关闭对应的监听事件，支持关闭事件`'setSpeed'`。    |
+| type     | string                  | 是   | 需要取消的监听事件类型，当前支持的事件类型为'setSpeed'。    |
 | callback | (speed: number) => void | 否   | 回调函数，参数speed是播放倍速。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3326,7 +3326,7 @@ off(type: 'setLoopMode', callback?: (mode: LoopMode) => void): void
 
 | 参数名   | 类型                                  | 必填 | 说明     |
 | -------- | ------------------------------------- | ---- | ----- |
-| type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setLoopMode'`。|
+| type     | string | 是   | 需要取消的监听事件类型，当前支持的事件类型为'setLoopMode'。|
 | callback | (mode: [LoopMode](arkts-apis-avsession-e.md#loopmode10)) => void | 否   | 回调函数，参数mode是循环模式。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3359,7 +3359,7 @@ off(type: 'setTargetLoopMode', callback?: Callback\<LoopMode>): void
 
 | 参数名   | 类型                                  | 必填 | 说明     |
 | -------- | ------------------------------------- | ---- | ----- |
-| type     | string | 是   | 关闭对应的监听事件，支持关闭事件`'setTargetLoopMode'`。|
+| type     | string | 是   | 需要取消的监听事件类型，当前支持的事件类型为'setTargetLoopMode'。|
 | callback | Callback<[LoopMode](arkts-apis-avsession-e.md#loopmode10)> | 否   | 回调函数，参数表示目标循环模式。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3391,7 +3391,7 @@ off(type: 'toggleFavorite', callback?: (assetId: string) => void): void
 
 | 参数名   | 类型                      | 必填 | 说明     |
 | -------- | ------------------------- | ---- | -------------------------|
-| type     | string                    | 是   | 关闭对应的监听事件，支持关闭事件`'toggleFavorite'`。            |
+| type     | string                    | 是   | 需要取消的监听事件类型，当前支持的事件类型为'toggleFavorite'。            |
 | callback | (assetId: string) => void | 否   | 回调函数，参数assetId是媒体ID。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3424,7 +3424,7 @@ off(type: 'skipToQueueItem', callback?: (itemId: number) => void): void
 
 | 参数名   | 类型                      | 必填 | 说明    |
 | -------- | ------------------------ | ---- | ----------------------|
-| type     | string                   | 是   | 关闭对应的监听事件，支持关闭事件`'skipToQueueItem'`。    |
+| type     | string                   | 是   | 需要取消的监听事件类型，当前支持的事件类型为'skipToQueueItem'。    |
 | callback | (itemId: number) => void | 否   | 回调函数，参数itemId是播放列表单项ID。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3457,7 +3457,7 @@ off(type: 'handleKeyEvent', callback?: (event: KeyEvent) => void): void
 
 | 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 关闭对应的监听事件，支持关闭事件`'handleKeyEvent'`。             |
+| type     | string    | 是   | 需要取消的监听事件类型，当前支持的事件类型为'handleKeyEvent'。             |
 | callback | (event: [KeyEvent](../apis-input-kit/js-apis-keyevent.md)) => void | 否   | 回调函数，参数event是按键事件。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3490,7 +3490,7 @@ off(type: 'outputDeviceChange', callback?: (state: ConnectionState, device: Outp
 
 | 参数名   | 类型 | 必填 | 说明   |
 | -------- | ------------------------| ---- | -----------------------|
-| type     | string                                                  | 是   | 关闭对应的监听事件，支持关闭事件`'outputDeviceChange'`。     |
+| type     | string                                                  | 是   | 需要取消的监听事件类型，当前支持的事件类型为'outputDeviceChange'。     |
 | callback | (state: [ConnectionState](arkts-apis-avsession-e.md#connectionstate10), device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void | 否   | 回调函数，参数state是连接状态，参数device是设备相关信息。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3523,7 +3523,7 @@ off(type: 'commonCommand', callback?: (command: string, args:{[key: string]: Obj
 
 | 参数名   | 类型  |   必填 | 说明  |
 | -------- | --------- | ---- | ----------------------|
-| type     | string    | 是   | 取消对应的监听事件，支持事件`'commonCommand'`。    |
+| type     | string    | 是   | 需要取消的监听事件类型，当前支持的事件类型为'commonCommand'。    |
 | callback |(command: string, args:{[key: string]: Object}) => void | 否   | 回调函数，参数command是变化的自定义控制命令名，args为自定义控制命令的参数。<br>该参数为可选参数，若不填写该参数，则认为取消所有对command事件的监听。|
 
 **错误码：**
@@ -3558,7 +3558,7 @@ on(type: 'answer', callback: Callback\<void>): void
 
 | 参数名   | 类型   |  必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'answer'`：当通话接听时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'answer'：当通话接听时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                      |
 
 **错误码：**
@@ -3593,7 +3593,7 @@ off(type: 'answer', callback?: Callback\<void>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'answer'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'answer'。 |
 | callback | Callback\<void>     | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3628,7 +3628,7 @@ on(type: 'hangUp', callback: Callback\<void>): void
 
 | 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'hangUp'`：当通话挂断时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'hangUp'：当通话挂断时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                                             |
 
 **错误码：**
@@ -3663,7 +3663,7 @@ off(type: 'hangUp', callback?: Callback\<void>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'hangUp'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'hangUp'。 |
 | callback | Callback\<void>      | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3698,7 +3698,7 @@ on(type: 'toggleCallMute', callback: Callback\<void>): void
 
 | 参数名   | 类型  |   必填 | 说明     |
 | -------- | --------- | ---- | --------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'toggleCallMute'`：当通话静音或解除静音时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'toggleCallMute'：当通话静音或解除静音时，触发该事件。 |
 | callback | Callback\<void>                                               | 是   | 回调函数。                                             |
 
 **错误码：**
@@ -3733,7 +3733,7 @@ off(type: 'toggleCallMute', callback?: Callback\<void>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'toggleCallMute'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'toggleCallMute'。 |
 | callback | Callback\<void>    | 否   | 回调函数，需与on方法注册时的回调函数一致。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3768,7 +3768,7 @@ on(type: 'castDisplayChange', callback: Callback\<CastDisplayInfo>): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string    | 是   | 事件回调类型，支持事件`'castDisplayChange'`：当扩展屏投播显示设备变化时触发事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'castDisplayChange'：当扩展屏投播显示设备变化时触发事件。 |
 | callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>   | 是   | 回调函数。参数是扩展屏投播显示设备信息。                            |
 
 **错误码：**
@@ -3809,7 +3809,7 @@ currentAVSession.on('castDisplayChange', (display: avSession.CastDisplayInfo) =>
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string    | 是   | 关闭对应的监听事件，支持的事件是`'castDisplayChange'`。 |
+| type     | string    | 是   | 需要取消的监听事件类型，当前支持的事件类型为'castDisplayChange'。 |
 | callback | Callback\<[CastDisplayInfo](arkts-apis-avsession-i.md#castdisplayinfo12)\>  | 否   | 回调函数，参数是扩展屏投播显示设备信息。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -3975,7 +3975,7 @@ on(type:'playFromAssetId', callback: (assetId: number) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明     |
 | -------- | -------------------- | ---- | --------- |
-| type     | string               | 是   | 事件回调类型，支持的事件是`'playFromAssetId'`，当媒体ID播放时，触发该事件回调。 |
+| type     | string               | 是   | 事件回调类型，支持的事件是'playFromAssetId'，当媒体ID播放时，触发该事件回调。 |
 | callback | (assetId: number) => void | 是   | 回调函数。参数assetId是媒体ID。      |
 
 **错误码：**
@@ -4014,7 +4014,7 @@ off(type: 'playFromAssetId', callback?: (assetId: number) => void): void
 
 | 参数名    | 类型                  | 必填 | 说明                   |
 | -------- | -------------------- | ---- | ---------------------- |
-| type     | string               | 是   | 关闭对应的监听事件，支持的事件是`'playFromAssetId'`。 |
+| type     | string               | 是   | 需要取消的监听事件类型，当前支持的事件类型为'playFromAssetId'。 |
 | callback | (assetId: number) => void | 否   | 回调函数，参数assetId是媒体ID。该参数为可选参数，若不填写该参数，则认为取消所有相关会话的事件监听。 |
 
 **错误码：**
@@ -4081,7 +4081,7 @@ off(type: 'customDataChange', callback?: Callback\<Record\<string, Object>>): vo
 
 | 参数名   | 类型                             | 必填 | 说明                                                         |
 | -------- | -------------------------------- | ---- | ------------------------------------------------------------ |
-| type     | string                           | 是   | 取消对应的监听事件，支持的事件是'customDataChange'。         |
+| type     | string                           | 是   | 需要取消的监听事件类型，当前支持的事件类型为'customDataChange'。         |
 | callback | Callback\<Record\<string, Object>> | 否   | 注册监听事件时的回调函数。该参数为可选参数，若不填写该参数，则认为取消会话所有与此事件相关的监听。 |
 
 **错误码：**

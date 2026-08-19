@@ -175,7 +175,7 @@ on(type: 'pickerStateChange', callback: Callback<AVCastPickerState\>) : void
 
 | 参数名   | 类型       | 必填 | 说明      |
 | --------| -----------|-----|------------|
-| type     | string    | 是   | 事件回调类型，支持事件`'pickerStateChange'`：当半模态窗口变化时，触发该事件。 |
+| type     | string    | 是   | 事件回调类型，支持事件'pickerStateChange'：当半模态窗口变化时，触发该事件。 |
 | callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate)>       | 是   | 回调函数，参数state是变化后的半模态窗口状态。|
 
 **错误码：**
@@ -216,7 +216,7 @@ off(type: 'pickerStateChange', callback?: Callback<AVCastPickerState\>) : void
 
 | 参数名   | 类型                                               | 必填 | 说明                                                    |
 | -------- | ------------------------------------------------ | ---- | ------------------------------------------------------ |
-| type     | string                                           | 是   | 取消对应的监听事件，支持事件`'pickerStateChange'`。         |
+| type     | string                                           | 是   | 需要取消的监听事件类型，当前支持的事件类型为'pickerStateChange'。         |
 | callback | Callback\<[AVCastPickerState](js-apis-avCastPickerParam.md#avcastpickerstate)> | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。                           |
 
 **错误码：**

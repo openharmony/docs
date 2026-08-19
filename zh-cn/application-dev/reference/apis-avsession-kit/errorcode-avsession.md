@@ -955,7 +955,7 @@ The format of the content to decode exceeds the capabilities of the device.
 
 **错误描述**
 
-所需解码的内容格式超出设备能力而导致失败。
+所需解码的内容格式超出设备能力导致失败。
 
 **可能原因**
 

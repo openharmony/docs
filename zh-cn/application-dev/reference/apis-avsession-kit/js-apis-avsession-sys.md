@@ -388,7 +388,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 参数名        | 类型           | 必填 | 说明 |
 | ------------ | -------------- |------|------|
-| session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
+| session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串'all'指所有token。 |
 | audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\> | 是   | 媒体设备列表。  |
 
 **返回值：**
@@ -447,7 +447,7 @@ castAudio(session: SessionToken | 'all', audioDevices: Array<audio.AudioDeviceDe
 
 | 参数名       | 类型                                         | 必填 | 说明                                                         |
 | ------------ |--------------------------------------------| ---- | ------------------------------------------------------------ |
-| session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串`'all'`指所有token。 |
+| session      | [SessionToken](#sessiontoken) &#124; 'all' | 是   | 会话令牌。SessionToken表示单个token；字符串'all'指所有token。 |
 | audioDevices | Array\<[audio.AudioDeviceDescriptor](../apis-audio-kit/arkts-apis-audio-i.md#audiodevicedescriptor)\>   | 是   | 媒体设备列表。 |
 | callback     | AsyncCallback\<void>     | 是   | 回调函数。当投播成功，err为undefined，否则返回错误对象。      |
 
@@ -659,7 +659,7 @@ on(type: 'sessionDestroy', callback: (session: AVSessionDescriptor) => void): vo
 
 | 参数名   | 类型            | 必填 | 说明                                                         |
 | -------- | ---------------| ---- | ------------------------------------------------------------ |
-| type     | string         | 是   | 事件回调类型，支持的事件是`'sessionDestroy'`：会话销毁事件，检测到会话销毁时触发。|
+| type     | string         | 是   | 事件回调类型，支持的事件是'sessionDestroy'：会话销毁事件，检测到会话销毁时触发。|
 | callback | (session: [AVSessionDescriptor](arkts-apis-avsession-i.md#avsessiondescriptor23)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
  **错误码：** 
@@ -711,7 +711,7 @@ on(type: 'topSessionChange', callback: (session: AVSessionDescriptor) => void): 
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | --------------------| ---- | ------------------------------------------------------------ |
-| type     | string      | 是   | 事件回调类型，支持的事件是 `'topSessionChange'`：最新播放会话的变化事件，检测到最新的会话改变时触发。|
+| type     | string      | 是   | 事件回调类型，支持的事件是 'topSessionChange'：最新播放会话的变化事件，检测到最新的会话改变时触发。|
 | callback | (session: [AVSessionDescriptor](arkts-apis-avsession-i.md#avsessiondescriptor23)) => void | 是   | 回调函数。参数为会话相关描述。 |
 
 **错误码：** 
@@ -765,7 +765,7 @@ off(type: 'sessionCreate', callback?: (session: AVSessionDescriptor) => void): v
 
 | 参数名   | 类型       | 必填 | 说明       |
 | -------- | ----------| ---- | ----------|
-| type     | string    | 是   | 事件回调类型，支持的事件为：`'sessionCreate'`。|
+| type     | string    | 是   | 事件回调类型，支持的事件为：'sessionCreate'。|
 | callback | (session: [AVSessionDescriptor](arkts-apis-avsession-i.md#avsessiondescriptor23)) => void | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。                               |
 
 **错误码：** 
@@ -817,7 +817,7 @@ off(type: 'sessionDestroy', callback?: (session: AVSessionDescriptor) => void): 
 
 | 参数名   | 类型        | 必填 | 说明                      |
 | -------- | -----------| ---- | -------------------------|
-| type     | string     | 是   | 事件回调类型，支持的事件为`'sessionDestroy'`。|
+| type     | string     | 是   | 事件回调类型，支持的事件为'sessionDestroy'。|
 | callback | (session: [AVSessionDescriptor](arkts-apis-avsession-i.md#avsessiondescriptor23)) => void | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。|
 
 **错误码：** 
@@ -869,7 +869,7 @@ off(type: 'topSessionChange', callback?: (session: AVSessionDescriptor) => void)
 
 | 参数名   | 类型              | 必填 | 说明                        |
 | -------- | -----------------| ---- | ---------------------------- |
-| type     | string           | 是   | 事件回调类型，支持的事件为`'topSessionChange'`。|
+| type     | string           | 是   | 事件回调类型，支持的事件为'topSessionChange'。|
 | callback | (session: [AVSessionDescriptor](arkts-apis-avsession-i.md#avsessiondescriptor23)) => void | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。 |
 
 **错误码：** 
@@ -921,7 +921,7 @@ on(type: 'sessionServiceDie', callback: () => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持事件`'sessionServiceDie'`：会话服务死亡事件，检测到会话的服务死亡时触发。 |
+| type     | string               | 是   | 事件回调类型，支持事件'sessionServiceDie'：会话服务死亡事件，检测到会话的服务死亡时触发。 |
 | callback | callback: () => void | 是   | 回调函数，当会话服务死亡时触发回调。                                |
 
 **错误码：**
@@ -956,7 +956,7 @@ off(type: 'sessionServiceDie', callback?: () => void): void
 
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
-| type     | string                 | 是    | 事件回调类型，支持事件`'sessionServiceDie'`：会话服务死亡事件。|
+| type     | string                 | 是    | 事件回调类型，支持事件'sessionServiceDie'：会话服务死亡事件。|
 | callback | callback: () => void   | 否    | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。            |
 
 **错误码：**
@@ -992,7 +992,7 @@ on(type: 'distributedSessionChange', distributedSessionType: DistributedSessionT
 
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                                       |
 | -------- |-------------------------------------------------------------------------------------| ---- |--------------------------------------------------------------------------|
-| type     | string                                                                              | 是   | 事件回调类型，支持的事件为 `'distributedSessionChange'`：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
+| type     | string                                                                              | 是   | 事件回调类型，支持的事件为 'distributedSessionChange'：最新远端分布式会话的变化事件，检测到最新的会话改变时触发。 |
 | distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是   | 远端会话类型。                                                                  |
 | callback | Callback<Array<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\>> | 是   | 回调函数。参数为对应类型的会话控制器实例列表，可查看会话ID，并完成对会话发送命令及事件，获取元数据、播放状态信息等操作。            |
 
@@ -1030,7 +1030,7 @@ off(type: 'distributedSessionChange', distributedSessionType: DistributedSession
 
 | 参数名   | 类型                                                                                  | 必填 | 说明                                                            |
 | -------- |-------------------------------------------------------------------------------------|----|---------------------------------------------------------------|
-| type     | string                                                                              | 是  | 事件回调类型，支持的事件为`'distributedSessionChange'`。                    |
+| type     | string                                                                              | 是  | 事件回调类型，支持的事件为'distributedSessionChange'。                    |
 | distributedSessionType     | [DistributedSessionType](#distributedsessiontype18)             | 是  | 远端会话类型。                                                       |
 | callback | Callback<Array<[AVSessionController](arkts-apis-avsession-AVSessionController.md)\>> | 否  | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。 |
 
@@ -1552,7 +1552,7 @@ on(type: 'deviceAvailable', callback: (device: OutputDeviceInfo) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持事件`'deviceAvailable'`，有设备被发现时触发回调。 |
+| type     | string               | 是   | 事件回调类型，支持事件'deviceAvailable'，有设备被发现时触发回调。 |
 | callback | (device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void | 是   | 回调函数，参数device是可用设备信息。                                |
 
 **错误码：**
@@ -1588,7 +1588,7 @@ off(type: 'deviceAvailable', callback?: (device: OutputDeviceInfo) => void): voi
 
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
-| type     | string                 | 是    | 事件回调类型，支持事件`'deviceAvailable'`：设备发现回调。|
+| type     | string                 | 是    | 事件回调类型，支持事件'deviceAvailable'：设备发现回调。|
 | callback     | (device: [OutputDeviceInfo](arkts-apis-avsession-i.md#outputdeviceinfo10)) => void                 | 否    | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。|
 
 **错误码：**
@@ -1620,7 +1620,7 @@ on(type: 'deviceOffline', callback: (deviceId: string) => void): void
 
 | 参数名   | 类型                 | 必填 | 说明                                                         |
 | -------- | -------------------- | ---- | ------------------------------------------------------------ |
-| type     | string               | 是   | 事件回调类型，支持事件`'deviceOffline'`，有设备下线时触发回调。 |
+| type     | string               | 是   | 事件回调类型，支持事件'deviceOffline'，有设备下线时触发回调。 |
 | callback | (deviceId: string) => void | 是   | 回调函数，参数deviceId是设备的ID。  |
 
 **错误码：**
@@ -1656,7 +1656,7 @@ off(type: 'deviceOffline', callback?: (deviceId: string) => void): void
 
 | 参数名    | 类型                    | 必填  |      说明                                               |
 | ------   | ---------------------- | ---- | ------------------------------------------------------- |
-| type     | string                 | 是    | 事件回调类型，支持事件`'deviceOffline'`：设备下线回调。|
+| type     | string                 | 是    | 事件回调类型，支持事件'deviceOffline'：设备下线回调。|
 | callback | (deviceId: string) => void | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。其中参数deviceId是设备的ID。|
 
 **错误码：**
@@ -2108,7 +2108,7 @@ on(type: 'deviceLogEvent', callback: Callback\<DeviceLogEventCode>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- |------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'deviceLogEvent'`。 |
+| type     | string                                                       | 是   | 事件回调类型，支持事件'deviceLogEvent'。 |
 | callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 是   | 回调函数，参数DeviceLogEventCode是当前设备日志返回值。                      |
 
 **错误码：**
@@ -2144,7 +2144,7 @@ off(type: 'deviceLogEvent', callback?: Callback\<DeviceLogEventCode>): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- |------------------------------------------------------------ |
-| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'deviceLogEvent'`。 |
+| type     | string                                                       | 是   | 需要取消的监听事件类型，当前支持的事件类型为'deviceLogEvent'。 |
 | callback | (callback: [DeviceLogEventCode](#devicelogeventcode13)) => void        | 否  | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。            |
 
 **错误码：**
@@ -2195,7 +2195,7 @@ on(type: 'deviceStateChanged', callback: Callback\<DeviceState\>): void
 
 | 参数名   | 类型                                                          | 必填  | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- |------------------------------------------------------------ |
-| type     | string                                                       | 是   | 事件回调类型，支持事件`'deviceStateChanged'`，投播设备连接状态发生变化时触发回调。 |
+| type     | string                                                       | 是   | 事件回调类型，支持事件'deviceStateChanged'，投播设备连接状态发生变化时触发回调。 |
 | callback | (callback: [DeviceState](#devicestate20)) => void            | 是   | 回调函数，参数DeviceState包含投播设备ID、连接状态码、连接错误码和系统雷达错误码。|
 
 **错误码：**
@@ -2232,7 +2232,7 @@ off(type: 'deviceStateChanged', callback?: Callback\<DeviceState>): void
 
 | 参数名   | 类型                                                          | 必填  | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 取消对应的监听事件，支持事件`'deviceStateChanged'`，投播设备连接状态变化的回调。 |
+| type     | string                                                       | 是   | 需要取消的监听事件类型，当前支持的事件类型为'deviceStateChanged'，投播设备连接状态变化的回调。 |
 | callback | (callback: [DeviceState](#devicestate20)) => void            | 否   | 需要取消的回调函数，与on接口注册时的回调函数保持一致。如果不填写该参数，则取消所有已注册的回调。 |
 
 **错误码：**
@@ -2367,7 +2367,7 @@ on(type: 'videoSizeChange', callback: (width:number, height:number) => void): vo
 
 | 参数名   | 类型         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- |---- |
-| type     | string      | 是   | 事件回调类型，支持事件`'videoSizeChange'`：当video尺寸更改时，触发该事件。 |
+| type     | string      | 是   | 事件回调类型，支持事件'videoSizeChange'：当video尺寸更改时，触发该事件。 |
 | callback | (width:number, height:number) => void    | 是   | 回调函数，返回video的宽度和高度。     |
 
 **错误码：**
@@ -2403,7 +2403,7 @@ off(type: 'videoSizeChange'): void
 
 | 参数名   | 类型     | 必填 | 说明      |
 | -------- | ------------------------------------------------------------ | ---- |---- |
-| type     | string  | 是   | 取消对应的监听事件，支持事件`'videoSizeChange'`。    |
+| type     | string  | 是   | 需要取消的监听事件类型，当前支持的事件类型为'videoSizeChange'。    |
 
 **错误码：**
 
