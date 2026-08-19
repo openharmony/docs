@@ -15,8 +15,6 @@
 
 ## 约束限制
 
-- 当前仅支持2in1设备。
-
 - 仅支持entry模块的AbilityStage和UIAbility预加载。无论预加载到哪种阶段，entry模块必须配置入口UIAbility，详见[开发步骤](#开发步骤)中步骤2。
 
 - 应用配置预加载后，实际是否进行预加载以及具体的预加载时机，均由系统根据用户习惯等信息来综合决定。开发者无法对此进行干预。
@@ -60,6 +58,8 @@ export default class MyAbilityStage extends AbilityStage {
 ```
 
 除了在AbilityStage中判断进程级别的预加载类型外，若应用配置的预加载阶段为windowStageCreated，开发者还可以在UIAbility的[onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate)生命周期回调中进行判断。通过校验[launchParam.launchReason](../reference/apis-ability-kit/js-apis-app-ability-abilityConstant.md#launchreason)是否等于PRELOAD，即可识别当前UIAbility实例是否由预加载机制启动。具体实现请参考[开发步骤](#开发步骤)中的步骤3。
+
+<!--RP1--><!--RP1End-->
 
 ## 开发步骤
 
@@ -132,3 +132,5 @@ export default class MyAbilityStage extends AbilityStage {
       }
     }
     ```
+
+<!--RP2--><!--RP2End-->
