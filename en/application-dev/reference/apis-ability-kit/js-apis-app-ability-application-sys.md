@@ -1,11 +1,12 @@
-#  @ohos.app.ability.application (Application) (System API)
+# @ohos.app.ability.application (Application) (System API)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @zexin_c-->
 <!--Designer: @li-weifeng2024-->
-<!--Tester: @lixueqing513-->
-<!--Adviser: @huipeizi-->
+<!--Tester: @liangchengguang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=3eb7d58aa53b6fa741fb6f554967ffe195cc4992 translatedAt=2026-08-18T15:25:55.670Z pushedAt=2026-08-19T01:20:13.443Z -->
 
 You can use this module to create a [Context](../../application-models/application-context-stage.md).
 
@@ -19,7 +20,8 @@ You can use this module to create a [Context](../../application-models/applicati
 ```ts
 import { application } from '@kit.AbilityKit';
 ```
-## application.createModuleContext<sup>12+</sup>
+
+## application.createModuleContext
 
 createModuleContext(context: Context, bundleName: string, moduleName: string): Promise\<Context>
 
@@ -27,20 +29,22 @@ Creates the context for a module. This API uses a promise to return the result.
 
 > **NOTE**
 >
-> - Starting from API version 18, the context can obtain the [process name](js-apis-inner-application-context.md#context) of the current application. The **processName** property in the context created by **createModuleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
+> - Starting from API version 18, [Context](js-apis-inner-application-context.md#context) supports obtaining the process name (processName) of the current app. The **processName** property in the Context created by createModuleContext is the same as that in the input Context, and the other properties are obtained based on the input Context, bundleName, and moduleName.
 >
-> - Creating a module context involves resource querying and initialization, which can be time-consuming. In scenarios where application fluidity is critical, avoid frequently or repeatedly calling the **createModuleContext** API to create multiple context instances, as this may negatively impact user experience.
+> - Because creating a module context involves resource query and initialization, which takes a relatively long time, avoid calling createModuleContext frequently or multiple times to create multiple Context instances in scenarios with high requirements on app smoothness, so as not to affect user experience.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
 
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
+
 **Parameters**
 
 | Name       | Type                                      | Mandatory  | Description            |
 | --------- | ---------------------------------------- | ---- | -------------- |
-| context | [Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md) | Yes| Application context.| 
-| bundleName | string   | Yes   | Bundle name of the application. If an empty string is passed in, the current application is used by default.|
+| context | [Context](../../reference/apis-ability-kit/js-apis-inner-application-context.md) | Yes| Application context.|
+| bundleName | string   | Yes    | Bundle name of the app. If the value is an empty string, the bundle name of the current app is used by default.|
 | moduleName | string | Yes| Module name.|
 
 **Return value**
@@ -69,11 +73,11 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context, 'bundlename', 'entry').then((data: Context)=>{
+      application.createModuleContext(this.context, 'bundlename', 'entry').then((data: common.Context)=>{
         moduleContext = data;
         console.info('createModuleContext success!');
       }).catch((error : BusinessError)=>{
-        console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        console.error(`createModuleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
       })
     } catch (error) {
       console.error(`createModuleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
@@ -82,7 +86,7 @@ export default class EntryAbility extends UIAbility {
 }
 ```
 
-## application.createBundleContext<sup>12+</sup>
+## application.createBundleContext
 
 createBundleContext(context: Context, bundleName: string): Promise\<Context>
 
@@ -90,11 +94,13 @@ Creates the context for an application. This API uses a promise to return the re
 
 > **NOTE**
 >
-> Starting from API version 18, the context can obtain the [process name](js-apis-inner-application-context.md#context) of the current application. The **processName** property in the context created by **createBundleContext** is the same as the **processName** property in the input parameter **Context**. The values of other properties are obtained based on the input parameters **Context**, **bundleName**, and **moduleName**.
+> Starting from API version 18, [Context](js-apis-inner-application-context.md#context) supports obtaining the process name (processName) of the current app. The **processName** property in the Context created by createBundleContext is the same as that in the input Context, and the other properties are obtained based on the input Context and bundleName.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
 **System API**: This is a system API.
+
+**Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
 **Parameters**
 
@@ -119,7 +125,6 @@ For details about the error codes, see [Ability Error Codes](errorcode-ability.m
 | 202 | Permission denied, non-system app called system api.|
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified. 2.Incorrect parameter types. |
 
-
 **Example**
 
 ```ts
@@ -130,11 +135,11 @@ export default class EntryAbility extends UIAbility {
   onCreate() {
     let moduleContext: common.Context;
     try {
-      application.createBundleContext(this.context, 'bundlename').then((data: Context)=>{
+      application.createBundleContext(this.context, 'bundlename').then((data: common.Context)=>{
         moduleContext = data;
         console.info('createBundleContext success!');
       }).catch((error : BusinessError)=>{
-        console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
+        console.error(`createBundleContext failed, error.code: ${error.code}, error.message: ${error.message}`);
       })
     } catch (error) {
       console.error(`createBundleContext failed, error.code: ${(error as BusinessError).code}, error.message: ${(error as BusinessError).message}`);
@@ -143,11 +148,12 @@ export default class EntryAbility extends UIAbility {
 }
 
 ```
+
 ## application.createPluginModuleContextForHostBundle<sup>20+</sup>
 
 createPluginModuleContextForHostBundle(context: Context, pluginBundleName: string, pluginModuleName: string, hostBundleName: string): Promise\<Context>
 
-Creates the context for a plugin based on a given context, plugin bundle name, plugin module name, and application bundle name to obtain the basic information about the plugin. This API uses a promise to return the result.
+Creates the Context of the corresponding plugin based on the input Context, plugin bundle name, plugin module name, and the bundle name of the app that installs the plugin, to obtain the basic information of the plugin. This API uses a promise to return the result.
 
 **Required permissions**: ohos.permission.GET_BUNDLE_INFO_PRIVILEGED
 
@@ -190,19 +196,15 @@ export default class EntryAbility extends UIAbility {
     let moduleContext: common.Context;
     try {
       application.createPluginModuleContextForHostBundle(this.context, 'com.example.pluginBundleName', 'pluginModuleName', 'com.example.hostBundleName')
-        .then((data: Context) => {
+        .then((data: common.Context) => {
           moduleContext = data;
           console.info('createPluginModuleContextForHostBundle success!');
         })
         .catch((error: BusinessError) => {
-          let code: number = (error as BusinessError).code;
-          let message: string = (error as BusinessError).message;
-          console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+          console.error(`createPluginModuleContextForHostBundle failed, error.code: ${error.code}, error.message: ${error.message}`);
         });
-    } catch (error) {
-      let code: number = (error as BusinessError).code;
-      let message: string = (error as BusinessError).message;
-      console.error(`createPluginModuleContextForHostBundle failed, error.code: ${code}, error.message: ${message}`);
+    } catch (error: BusinessError) {
+      console.error(`createPluginModuleContextForHostBundle failed, error.code: ${error.code}, error.message: ${error.message}`);
     }
   }
 }

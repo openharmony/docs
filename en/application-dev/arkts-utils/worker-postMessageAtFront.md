@@ -12,11 +12,11 @@
 
 In Worker multithreaded development, when a Worker thread sends messages to the host thread (the main thread or another Worker thread) through [postMessage](../reference/apis-arkts/js-apis-worker.md#postmessage9-2), the messages are queued and processed in the order they are sent. When the host thread is busy, a large number of pending messages may accumulate in the message queue, causing some messages that need to be processed in a timely manner (such as user interaction responses and critical state updates) to fail to be executed promptly.
 
-To address the preceding scenario, starting from API version 26.0.0, ArkTS provides the [postMessageAtFront](../reference/apis-arkts/js-apis-worker.md#postmessageatfront) API, which allows a Worker thread to send a queue-jumping message to the host thread so that the message is inserted at the head of the message queue of the corresponding priority and is therefore processed earlier.
+To address the preceding scenario, starting from API version 26.0.0, ArkTS provides the [postMessageAtFront](../reference/apis-arkts/js-apis-worker.md) API, which allows a Worker thread to send a queue-jumping message to the host thread so that the message is inserted at the head of the message queue of the corresponding priority and is therefore processed earlier.
 
 ## Queue-Jumping Mechanism
 
-- When a Worker thread sends a message to the host thread, queue-jumping is supported, and the message can be sent by [Priority](../reference/apis-arkts/js-apis-worker.md#priority).
+- When a Worker thread sends a message to the host thread, queue-jumping is supported, and the message can be sent by [Priority](../reference/apis-arkts/js-apis-worker.md).
 
 - Queue-jumping is implemented by inserting the message at the head of the message queue of the corresponding priority.
 

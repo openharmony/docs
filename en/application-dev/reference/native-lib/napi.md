@@ -1,20 +1,16 @@
 # Node-API
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: ArkCompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=05e80b422c197d16c763041b53c92c6e9f303841 translatedAt=2026-08-18T15:26:16.884Z pushedAt=2026-08-19T02:34:43.132Z -->
 
 ## Introduction
 
 Node-API provides APIs to encapsulate JavaScript (JS) capabilities as native addons. It is independent of the underlying JS and is maintained as part of Node.js.
-
-## Supported Capabilities
-
-Node-API insulates addons from changes in the underlying JS engine and allows the modules compiled for one major version to run on later major versions without recompilation.
-
-The OpenHarmony Node-API component optimizes the Node-API implementation and provides interaction with underlying engines such as ArkJS. Currently, the OpenHarmony Node-API component does not support all Node-API APIs.
 
 ## Including Node-API Capabilities
 
@@ -30,9 +26,18 @@ Add the following dynamic link library to **CMakeLists.txt**:
 libace_napi.z.so
 ```
 
+## Supported Capabilities
+
+Node-API eliminates the differences between underlying JavaScript engines and provides a set of stable APIs.
+
+The Node-API component of OpenHarmony reimplements the Node-API interfaces and connects to engines such as ArkJS at the underlying layer. Currently, it supports some interfaces in the Node-API standard library and provides extended capabilities. For details, see [Node-API Component Extension APIs](#node-api-component-extension-apis).
+
 ## Symbols Exported from the Node-API Library
 
-The APIs exported from the native Node-API library feature usage and behaviors based on [Node.js](https://nodejs.org/docs/latest-v12.x/api/n-api.html) and have incorporated [extended capabilities](#node-api-extended-symbols).
+The usage and behavior of the APIs exported from the Node-API native library are based on [Node.js](https://nodejs.org/docs/latest-v18.x/api/n-api.html). Some APIs differ. For details, see [Differences Between the Exported Symbols and the Symbols in the Native Library](#differences-between-the-exported-symbols-and-the-symbols-in-the-native-library).
+
+> **NOTE**
+> When using NAPI APIs, ensure that the environment, objects, and values are valid and comply with the specifications. Invalid use or use across lifecycles may cause failures, crashes, or undefined behavior. For common issues during development, see [Node-API FAQ](../../napi/use-napi-faqs.md#node-api-faqs).
 
 |Symbol Type|Symbol|Description|Start API Version|
 | --- | --- | --- | --- |
@@ -66,7 +71,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_create_external_arraybuffer|Allocates a JS **ArrayBuffer** with external data.|10|
 |FUNC|napi_create_object|Creates a default JS object.|10|
 |FUNC|napi_create_symbol|Creates a JS symbol.|10|
-|FUNC|napi_create_typedarray|Creates a JS **TypeArray** from an existing **ArrayBuffer**.|10|
+|FUNC|napi_create_typedarray|Creates a js `TypedArray` from an existing `ArrayBuffer`.|10|
 |FUNC|napi_create_dataview|Creates a JS **DataView** from an existing **ArrayBuffer**.|10|
 |FUNC|napi_create_int32|Creates a JS number from C int32_t data.|10|
 |FUNC|napi_create_uint32|Creates a JS number from C uint32_t data.|10|
@@ -171,7 +176,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_get_all_property_names|Obtains an array containing the names of all the available properties of this object.|10|
 |FUNC|napi_detach_arraybuffer|Detaches the underlying data of the given ArrayBuffer.|10|
 |FUNC|napi_is_detached_arraybuffer|Checks whether the given ArrayBuffer has been detached.|10|
-|FUNC|napi_run_script|Runs an object as JS code. Currently, this API is an empty implementation. For security purposes, you are advised to use **napi_run_script_path**.|10|
+|FUNC|napi_run_script|Runs a given object as JS code. This API is currently an empty implementation. You can use the system extension API `napi_run_script_path` to improve security.|10|
 |FUNC|napi_set_instance_data|Associates data with the currently running environment.|11|
 |FUNC|napi_get_instance_data|Retrieves the data that was previously associated with the currently running environment.|11|
 |FUNC|napi_add_env_cleanup_hook|Registers a clean-up hook for releasing resources when the environment exits.|11|
@@ -182,7 +187,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 |FUNC|napi_add_finalizer|Adds a **napi_finalize** callback, which will be called when the JS object in **js_Object** is garbage-collected.|11|
 |FUNC|napi_fatal_exception|Throws **UncaughtException** to JS.|12|
 
-## Differences Between the Exported Symbols and the Symbols in the Native Library<br>For ease of description, the symbol exported to OpenHarmony is referred to as "exported symbol" and the symbol in the native library is referred to as "native symbol".
+## Differences Between the Exported Symbols and the Symbols in the Native Library
 
 ### napi_throw_error
 
@@ -435,6 +440,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 **Parameters**
 
 - **finalize_cb**: It can be empty in the native symbol. If this parameter is empty, the exported symbol returns **napi_invalid_arg**.
+
 - **result**: The native symbol returns a weak reference, whereas the exported symbol returns a strong reference if **result** is not empty.
 
 **Return value**
@@ -463,7 +469,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 
 - The exported symbol does not support **async_hooks**.
 
-- The exported symbol does not verify whether the input parameter **async_resource_name** is of the string type. A value of string type is recommended. If **async_resource_name** is of the string type, the trace information contains the string. Otherwise, the trace information does not contain it.
+- The exported interface does not verify the type of the **async_resource_name** parameter. It is recommended that you pass in a String object to describe the asynchronous work object. A parameter of the string type is displayed in the trace information, while null or undefined is not displayed. Other types will cause a crash.
 
 - The exported symbol does not process the input parameter **async_resource** because it does not support **async_hooks**.
 
@@ -685,56 +691,7 @@ The APIs exported from the native Node-API library feature usage and behaviors b
 | --- | --- | --- |
 |FUNC|napi_adjust_external_memory|Adjusts the external memory held by a JS object.|
 
-## Node-API Extended Symbols
-
-|Symbol Type|Symbol|Description|Start API Version|
-| --- | --- | --- | --- |
-|FUNC|napi_queue_async_work_with_qos|Adds an async work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.|10|
-|FUNC|napi_run_script_path|Runs an ABC file.|10|
-|FUNC|napi_load_module|Loads an .abc file as a module. This API returns the namespace of the module.|11|
-|FUNC|napi_create_object_with_properties|Creates a JS object using the given **napi_property_descriptor**. The key of the descriptor must be a string and cannot be converted into a number.|11|
-|FUNC|napi_create_object_with_named_properties|Creates a JS object using the given **napi_value** and key. The key must be a string and cannot be converted into a number.|11|
-|FUNC|napi_coerce_to_native_binding_object|Forcibly binds a JS object and a native object.|11|
-|FUNC|napi_create_ark_runtime|Creates an ArkTS runtime environment.|12|
-|FUNC|napi_destroy_ark_runtime|Destroys the ArkTS runtime environment.|12|
-|FUNC|napi_run_event_loop|Runs the underlying event loop.|12|
-|FUNC|napi_stop_event_loop|Stops the underlying event loop.|12|
-|FUNC|napi_load_module_with_info|Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.|12|
-|FUNC|napi_serialize|Converts an ArkTS object into native data.|12|
-|FUNC|napi_deserialize|Converts native data into an ArkTS object.|12|
-|FUNC|napi_delete_serialization_data|Deletes serialized data.|12|
-|FUNC|napi_call_threadsafe_function_with_priority|Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.|12|
-|FUNC|napi_is_sendable|Checks whether the given JS value is sendable.|12|
-|FUNC|napi_define_sendable_class|Creates a sendable class.|12|
-|FUNC|napi_create_sendable_object_with_properties | Creates a sendable object with the given **napi_property_descriptor**.|12|
-|FUNC|napi_create_sendable_array | Creates a sendable array.|12|
-|FUNC|napi_create_sendable_array_with_length | Creates a sendable array of the specified length.|12|
-|FUNC|napi_create_sendable_arraybuffer | Creates a sendable **ArrayBuffer**.|12|
-|FUNC|napi_create_sendable_typedarray | Creates a sendable **TypedArray**.|12|
-|FUNC|napi_wrap_sendable | Wraps a native instance into an ArkTS object.|12|
-|FUNC|napi_wrap_sendable_with_size | Wraps a native instance into an ArkTS object with the specified size.|12|
-|FUNC|napi_unwrap_sendable | Unwraps the native instance from an ArkTS object.|12|
-|FUNC|napi_remove_wrap_sendable | Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.|12|
-|FUNC|napi_wrap_enhance | Wraps a native instance of the specified size into an ArkTS object. During runtime, the instance size is counted and accumulated. When the accumulated size reaches the GC triggering threshold, the garbage collection process is started. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).|18|
-|FUNC|napi_create_ark_context|Creates a new runtime context environment.|20|
-|FUNC|napi_switch_ark_context|Switches to the specified runtime context environment.|20|
-|FUNC|napi_destroy_ark_context|Destroys a context environment created by **napi_create_ark_context**.|20|
-|FUNC|napi_open_critical_scope|Opens a critical scope.|21|
-|FUNC|napi_close_critical_scope|Closes a critical scope.|21|
-|FUNC|napi_get_buffer_string_utf16_in_critical_scope|Obtains the UTF-16 encoding memory buffer data of an ArkTS string.|21|
-|FUNC|napi_create_strong_reference|Creates a strong reference to an ArkTS object.|21|
-|FUNC|napi_delete_strong_reference|Deletes a strong reference.|21|
-|FUNC|napi_get_strong_reference_value|Obtains the ArkTS object value associated with a strong reference.|21|
-|FUNC|napi_create_external_string_utf16 | Creates an ArkTS string from an external UTF-16 encoded string buffer, without performing memory copy operations.|22|
-|FUNC|napi_create_external_string_ascii | Creates an ArkTS string from an external ASCII encoded string buffer, without performing memory copy operations.|22|
-|FUNC|napi_create_strong_sendable_reference|Creates a Sendable strong reference to a Sendable ArkTS object.|22|
-|FUNC|napi_delete_strong_sendable_reference|Deletes a Sendable strong reference.|22|
-|FUNC|napi_get_strong_sendable_reference_value|Obtains the ArkTS object value associated with a Sendable strong reference.|22|
-|FUNC|napi_throw_business_error|Throws an ArkTS error with the text information, where the code property of the error object is of the number type.|23|
-|FUNC|napi_create_callsite_info|Creates a handle to the call site information, which is used to cache property access information.|24|
-|FUNC|napi_delete_callsite_info|Deletes the handle to the call site information to release the associated cache resources.|24|
-|FUNC|napi_get_property_with_callsite_info|Quickly obtains the property value of an object using the call site information.|24|
-|FUNC|napi_set_property_with_callsite_info|Quickly sets the property value of an object using the call site information.|24|
+## Node-API Component Extension APIs
 
 > **NOTE**
 >
@@ -754,6 +711,8 @@ typedef enum {
 **Description**
 Enumerates the QoS levels, which determine the priority of thread scheduling.
 
+**Since:** 10
+
 ### napi_event_mode
 
 ```cpp
@@ -766,6 +725,8 @@ typedef enum {
 **Description**
 Enumerates the modes for running the underlying event loop.
 
+**Since**: 12
+
 ### napi_queue_async_work_with_qos
 
 ```cpp
@@ -777,6 +738,8 @@ napi_status napi_queue_async_work_with_qos(napi_env env,
 **Description**
 
 Adds an async work object to the queue so that it can be scheduled for execution based on the QoS priority passed in.
+
+**Since:** 10
 
 **Parameters**
 
@@ -802,6 +765,8 @@ napi_status napi_run_script_path(napi_env env,
 
 Runs an .abc file.
 
+**Since:** 10
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -825,6 +790,8 @@ napi_status napi_load_module(napi_env env,
 **Description**
 
 Loads a system module or a customized module. This API returns the namespace of the module loaded.
+
+**Since**: 11
 
 **Parameters**
 
@@ -853,6 +820,8 @@ Creates a JS object using the given **napi_property_descriptor**.<br>**napi_prop
 
  The key in **napi_property_descriptor** must be a string that cannot be converted into a number.
 
+**Since**: 11
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -880,6 +849,8 @@ napi_status napi_create_object_with_named_properties(napi_env env,
 **Description**
 
 Creates a JS object using the given **napi_value**s and keys. The key must be a string and cannot be converted into a number.
+
+**Since**: 11
 
 **Parameters**
 
@@ -912,6 +883,8 @@ napi_status napi_coerce_to_native_binding_object(napi_env env,
 
 Converts a JS object into an object carrying native information by forcibly binding callbacks and callback data to the JS object.
 
+**Since**: 11
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -920,7 +893,7 @@ Converts a JS object into an object carrying native information by forcibly bind
 
 - **detach_cb**: callback to be invoked to perform cleanup operations when the object is detached during serialization.
 
-- **attach_cb**: callback to be invoked when the object is attached during serialization.
+- [in] attach_cb: callback for binding, generally invoked during deserialization.
 
 - **native_object**: parameters to be passed to the callbacks. This object cannot be empty.
 
@@ -940,6 +913,8 @@ napi_status napi_create_ark_runtime(napi_env *env)
 
 Creates a runtime environment. A process allows up to 64 instances, and the total number of child threads, including those created by [Worker](../../arkts-utils/worker-introduction.md), cannot exceed 80.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -958,6 +933,8 @@ napi_status napi_destroy_ark_runtime(napi_env *env)
 
 Destroys an ArkTS runtime environment.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -975,6 +952,8 @@ napi_status napi_run_event_loop(napi_env env, napi_event_mode mode)
 **Description**
 
 Runs the underlying event loop.
+
+**Since**: 12
 
 **Parameters**
 
@@ -996,6 +975,8 @@ napi_status napi_stop_event_loop(napi_env env)
 
 Stops the underlying event loop.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1016,6 +997,8 @@ napi_status napi_load_module_with_info(napi_env env,
 **Description**
 
 Loads an .abc file as a module. This API returns the namespace of the module. It can be used in a newly created ArkTS runtime environment.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1045,6 +1028,8 @@ napi_status napi_serialize(napi_env env,
 
 Converts an ArkTS object into native data.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1071,6 +1056,8 @@ napi_status napi_deserialize(napi_env env, void* buffer, napi_value* object)
 
 Converts native data into an ArkTS object.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1092,6 +1079,8 @@ napi_status napi_delete_serialization_data(napi_env env, void* buffer)
 **Description**
 
 Deletes serialized data.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1115,6 +1104,8 @@ napi_status napi_call_threadsafe_function_with_priority(napi_threadsafe_function
 **Description**
 
 Calls a task with the specified priority and enqueuing mode into the ArkTS main thread.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1140,6 +1131,8 @@ napi_status napi_is_sendable(napi_env env, napi_value value, bool* result)
 
 Checks whether the given JS value is sendable.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1151,7 +1144,6 @@ Checks whether the given JS value is sendable.
 **Return value**
 
 **napi_ok** if the operation is successful.
-
 
 ### napi_define_sendable_class
 
@@ -1172,6 +1164,8 @@ napi_status napi_define_sendable_class(napi_env env,
 **Description**
 
 Creates a sendable class.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1210,6 +1204,8 @@ napi_status napi_create_sendable_object_with_properties(napi_env env,
 
 Creates a sendable object with the given **napi_property_descriptor**.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1234,6 +1230,8 @@ napi_status napi_create_sendable_array(napi_env env, napi_value* result)
 
 Creates a sendable array.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1253,6 +1251,8 @@ napi_status napi_create_sendable_array_with_length(napi_env env, size_t length, 
 **Description**
 
 Creates a sendable array of the specified length.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1275,6 +1275,8 @@ napi_status napi_create_sendable_arraybuffer(napi_env env, size_t byte_length, v
 **Description**
 
 Creates a sendable **ArrayBuffer**.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1304,6 +1306,8 @@ napi_status napi_create_sendable_typedarray(napi_env env,
 **Description**
 
 Creates a sendable **TypedArray**.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1337,6 +1341,8 @@ napi_status napi_wrap_sendable(napi_env env,
 
 Wraps a native instance into an ArkTS object.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1368,6 +1374,8 @@ napi_status napi_wrap_sendable_with_size(napi_env env,
 
 Wraps a native instance into an ArkTS object with the specified size.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1396,6 +1404,8 @@ napi_status napi_unwrap_sendable(napi_env env, napi_value js_object, void** resu
 
 Unwraps the native instance from an ArkTS object.
 
+**Since**: 12
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1416,7 +1426,9 @@ napi_status napi_remove_wrap_sendable(napi_env env, napi_value js_object, void**
 
 **Description**
 
-Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback will no longer be triggered and must be manually deleted to free memory.
+Removes and obtains the native instance wrapped by an ArkTS object. After removal, the callback is automatically triggered later. Avoid duplicate release.
+
+**Since**: 12
 
 **Parameters**
 
@@ -1446,6 +1458,8 @@ napi_status napi_wrap_enhance(napi_env env,
 **Description**
 
 Wraps a native instance of the specified size into an ArkTS object. During runtime, the instance size is counted and accumulated. When the accumulated size reaches the GC triggering threshold, the garbage collection process is started. You can specify whether to execute the registered callback asynchronously (if asynchronous, it must be thread-safe).
+
+**Since**: 18
 
 **Parameters**
 
@@ -1485,12 +1499,20 @@ napi_status napi_create_ark_context(napi_env env, napi_env* newEnv);
 
 Creates a new runtime context environment.
 Note the following when using this API:
+
 1. Only new context environments created through the initial context environment are supported. It is prohibited to create new context environments using the context environment created by this API.
+
 2. Currently, this API cannot be called on ArkTS threads that are not the main thread.
+
 3. Before calling this API, ensure that the current context environment is normal. Otherwise, the API call fails.
+
 4. The context environment created by this API can only load some native.so files of ArkUI. Loading application-specific native .so files and common basic library native so files is not supported.
+
 5. The multi-context runtime environment does not support the sendable feature.
+
 6. The runtime context environment created through **napi_create_ark_context** does not support module capabilities such as console and timer.
+
+**Since**: 20
 
 **Parameters**
 
@@ -1511,8 +1533,12 @@ napi_status napi_switch_ark_context(napi_env env)
 **Description**
 
 Switches to the specified runtime context environment. Note the following when using this API:
+
 1. Currently, this API cannot be called on ArkTS threads that are not the main thread.
+
 2. Before calling this API, ensure that the current context environment is normal. Otherwise, the API call fails.
+
+**Since**: 20
 
 **Parameters**
 
@@ -1531,9 +1557,14 @@ napi_status napi_destroy_ark_context(napi_env env)
 **Description**
 
 Destroys a context environment created by **napi_create_ark_context**. Note the following when using this API:
+
 1. Currently, this API cannot be called on ArkTS threads that are not the main thread.
+
 2. This API can only be used to destroy runtime context environments created by calling **napi_create_ark_context**.
+
 3. You cannot use this API to destroy a context environment that is currently in use.
+
+**Since**: 20
 
 **Parameters**
 
@@ -1552,8 +1583,12 @@ napi_status napi_open_critical_scope(napi_env env, napi_critical_scope* scope);
 **Description**
 
 Opens a critical scope. Note the following when using this API:
+
 1. A critical scope cannot be opened repeatedly. It can be opened again only after the current scope is closed.
+
 2. In the critical scope, non-critical APIs cannot be called.
+
+**Since**: 21
 
 **Parameters**
 
@@ -1574,8 +1609,12 @@ napi_status napi_close_critical_scope(napi_env env, napi_critical_scope scope);
 **Description**
 
 Closes a critical scope. Note the following when using this API:
+
 1. A critical scope cannot be closed repeatedly. Ensure that the scope has been opened and is not closed.
+
 2. After the critical scope is closed, do not use the critical API or its return result. Otherwise, the program may crash or data may be damaged.
+
+**Since**: 21
 
 **Parameters**
 
@@ -1599,7 +1638,10 @@ napi_status napi_get_buffer_string_utf16_in_critical_scope(napi_env env,
 **Description**
 
 Obtains the UTF-16 encoding memory buffer data of an ArkTS string. Note the following when using this API:
+
 1. To obtain the memory buffer of an ArkTS string stored in UTF-16-encoding format, use **napi_get_buffer_string_utf16_in_critical_scope**. Otherwise, an error will be returned.
+
+**Since**: 21
 
 **Parameters**
 
@@ -1625,6 +1667,8 @@ napi_status napi_create_strong_reference(napi_env env, napi_value value, napi_st
 
 Creates a strong reference to an ArkTS object.
 
+**Since**: 21
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1646,7 +1690,10 @@ napi_status napi_delete_strong_reference(napi_env env, napi_value value, napi_st
 **Description**
 
 Deletes a strong reference. Note the following when using this API:
+
 1. A strong reference cannot be deleted repeatedly.
+
+**Since**: 21
 
 **Parameters**
 
@@ -1655,7 +1702,6 @@ Deletes a strong reference. Note the following when using this API:
 - **value**: ArkTS object.
 
 - **ref**: strong reference to be deleted.
-
 
 **Return value**
 
@@ -1670,7 +1716,10 @@ napi_status napi_get_strong_reference_value(napi_env env, napi_strong_ref ref, n
 **Description**
 
 Obtains the ArkTS object value associated with a strong reference. Note the following when using this API:
+
 1. Do not use a deleted strong reference to obtain the ArkTS object value. Otherwise, unexpected errors may occur.
+
+**Since**: 21
 
 **Parameters**
 
@@ -1719,6 +1768,8 @@ typedef void (*napi_finalize_callback)(void* finalize_data,
 
 Called when the lifecycle of an ArkTS string object created by calling **napi_create_external_string_utf16** or **napi_create_external_string_ascii** ends.
 
+**Since**: 22
+
 **Parameters**
 
 - **finalize_data**: pointer to the user data to be cleared.
@@ -1743,10 +1794,16 @@ napi_status napi_create_external_string_utf16(napi_env env,
 **Description**
 
 Creates an ArkTS string from an external UTF-16-encoded string. Note the following when using this API:
+
 1. The input string must be in UTF-16 encoding format. Otherwise, the string content may be abnormal.
+
 2. The input string must remain valid throughout the lifetime of the ArkTS string object. Otherwise, unexpected behavior may occur.
+
 3. If the **finalize_callback callback** function is provided, it will be called when the ArkTS string object is destroyed. The **finalize_hint** parameter can be used to pass context information to the callback function.
+
 4. If the input **length** parameter is set to **NAPI_AUTO_LENGTH**, the API automatically locates the '\0' terminator internally to calculate the actual string length.
+
+**Since**: 22
 
 **Parameters**
 
@@ -1776,14 +1833,22 @@ napi_status napi_create_external_string_ascii(napi_env env,
                                               void* finalize_hint,
                                               napi_value* result);
 ```
+
 **Description**
 
 Creates an ArkTS string from ASCII-encoded external string. Note the following when using this API:
+
 1. The input string must be in ASCII encoding format. Otherwise, the string content may be abnormal.
+
 2. The input string must remain valid throughout the lifetime of the ArkTS string object. Otherwise, unexpected behavior may occur.
+
 3. If the **finalize_callback callback** function is provided, it will be called when the ArkTS string object is destroyed. The **finalize_hint** parameter can be used to pass context information to the callback function.
+
 4. If the input **length** parameter is set to **NAPI_AUTO_LENGTH**, the API automatically locates the '\0' terminator internally to calculate the actual string length.
+
 5. The input string must not contain the null character '\0' within the specified length range. Otherwise, unexpected behavior may occur.
+
+**Since**: 22
 
 **Parameters**
 
@@ -1803,7 +1868,6 @@ Creates an ArkTS string from ASCII-encoded external string. Note the following w
 
 **napi_ok** if the operation is successful.
 
-
 ### napi_create_strong_sendable_reference
 
 ```cpp
@@ -1815,10 +1879,16 @@ napi_status napi_create_strong_sendable_reference(napi_env env,
 **Description**
 
 Creates a Sendable strong reference to a Sendable ArkTS object. Note the following when using this API:
+
 1. **napi_sendable_ref** can be created only for [Sendable objects](../../arkts-utils/arkts-sendable.md#sendable-data-types).
+
 2. **napi_sendable_ref** can be used across ArkTS threads. When performing multithreaded operations, the caller must manage the release timing to avoid issues related to using after release.
+
 3. Within the same process, a maximum of 51200 **napi_sendable_ref** instances can coexist.
+
 4. The caller should ensure that the input **env** parameter is the ArkTS thread environment object of the current API. Otherwise, [multithreading safety issues](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ark-runtime-detection#section19357830121120) may occur.
+
+**Since**: 22
 
 **Parameters**
 
@@ -1841,8 +1911,12 @@ napi_status napi_delete_strong_sendable_reference(napi_env env, napi_sendable_re
 **Description**
 
 Deletes a Sendable strong reference. Note the following when using this API:
+
 1. Do not forcibly cast other reference types (such as **napi_ref** or **napi_strong_ref**) to **napi_sendable_ref** for use with this API. **napi_delete_strong_sendable_reference** accepts only **napi_sendable_ref** created by calling **napi_create_strong_sendable_reference**.
+
 2. The caller should ensure that the input **env** parameter is the ArkTS thread environment object of the current API. Otherwise, [multithreading safety issues](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ark-runtime-detection#section19357830121120) may occur.
+
+**Since**: 22
 
 **Parameters**
 
@@ -1865,8 +1939,12 @@ napi_status napi_get_strong_sendable_reference_value(napi_env env,
 **Description**
 
 Obtains the ArkTS object value associated with a Sendable strong reference. Note the following when using this API:
+
 1. Do not forcibly cast other reference types (such as **napi_ref** or **napi_strong_ref**) to **napi_sendable_ref** for use with this API. **napi_get_strong_sendable_reference_value** accepts only **napi_sendable_ref** created by calling **napi_create_strong_sendable_reference**.
+
 2. The caller should ensure that the input **env** parameter is the ArkTS thread environment object of the current API. Otherwise, [multithreading safety issues](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-stability-ark-runtime-detection#section19357830121120) may occur.
+
+**Since**: 22
 
 **Parameters**
 
@@ -1890,9 +1968,13 @@ napi_status napi_throw_business_error(napi_env env,
 
 **Description**
 
-Throws an ArkTS error with a text message. The error code is of the int32_t type, and the error message is of the string type. Note the following when using this API:
+Throws an ArkTS Error with text information, specifying the error code as int32_t and the error message as string. Note the following when using this API:
+
 1. The input parameters **env** and **msg** cannot be **nullptr**. Otherwise, **napi_invalid_arg** is returned.
+
 2. If an ArkTS error exists in the current context, **napi_pending_exception** is returned when the API is called.
+
+**Since**: 23
 
 **Parameters**
 
@@ -1916,6 +1998,8 @@ napi_status napi_create_callsite_info(napi_env env, napi_callsite_info* result);
 
 Creates a handle to the call site information, which is used to cache property access information. An independent handle must be created for each call site. A handle can be reused across multiple calls but cannot be used across threads. When the handle is no longer needed, call **napi_delete_callsite_info** to release it.
 
+**Since**: 24
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -1935,6 +2019,8 @@ napi_status napi_delete_callsite_info(napi_env env, napi_callsite_info info);
 **Description**
 
 Deletes the handle to the call site information to release the associated cache resources.
+
+**Since**: 24
 
 **Parameters**
 
@@ -1960,6 +2046,8 @@ napi_status napi_get_property_with_callsite_info(napi_env env,
 **Description**
 
 Quickly obtains the property value of an object using the call site information. The **info** parameter can be set to **NULL**. In this case, the behavior is the same as that of **napi_get_property**.
+
+**Since**: 24
 
 **Parameters**
 
@@ -1994,6 +2082,8 @@ napi_status napi_set_property_with_callsite_info(napi_env env,
 
 Quickly sets the property value of an object using the call site information. The **info** parameter can be set to **NULL**. In this case, the behavior is the same as that of **napi_set_property**.
 
+**Since**: 24
+
 **Parameters**
 
 - **env**: environment, in which the API is invoked.
@@ -2011,4 +2101,5 @@ Quickly sets the property value of an object using the call site information. Th
 **Return value**
 
 **napi_ok** if the operation is successful.
+
 <!--no_check-->

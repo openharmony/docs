@@ -1,11 +1,12 @@
-#  @ohos.app.ability.application (Application Utility Class)
+# @ohos.app.ability.application (App Utility Class)
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
 <!--Owner: @li-weifeng2024-->
 <!--Designer: @li-weifeng2024-->
-<!--Tester: @lixueqing513-->
-<!--Adviser: @huipeizi-->
+<!--Tester: @liangchengguang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=3eb7d58aa53b6fa741fb6f554967ffe195cc4992 translatedAt=2026-08-18T15:25:59.309Z pushedAt=2026-08-19T01:26:56.538Z -->
 
 You can use this module to manage and obtain the application [context](../../application-models/application-context-stage.md) and control the application process state.
 
@@ -34,11 +35,11 @@ Enumerates the preloading types of the current application process.
 | TYPE_CREATE_WINDOW_STAGE     | 3   |    Preloads the process up to the point of [WindowStage](../apis-arkui/arkts-apis-window-WindowStage.md) creation completion.          |
 | TYPE_CREATE_BACKGROUND_ABILITY <sup>23+</sup>          | 4   |    Preloads the process up to the point of [onBackground](./js-apis-app-ability-uiAbility.md#onbackground) execution completion.     |
 
-## application.createModuleContext<sup>12+</sup>
+## application.createModuleContext
 
 createModuleContext(context: Context, moduleName: string): Promise\<Context>
 
-Creates the context for a module. The [resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration) in the created module context inherits from the input context, making it convenient for you to access [application resources across HAP/HSP packages](../../quick-start/resource-categories-and-access.md#cross-haphsp-resources). This API uses a promise to return the result.
+Creates the context of a specified module. In the created module context, the [resourceManager.Configuration](../apis-localization-kit/js-apis-resource-manager.md#configuration) resources are inherited from the input context, making it easier for developers to obtain [cross-HAP/HSP package resources](../../quick-start/resource-categories-and-access.md#cross-haphsp-resources). This API uses a promise to return the result.
 
 > **NOTE**
 >
@@ -79,7 +80,7 @@ export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     let moduleContext: common.Context;
     try {
-      application.createModuleContext(this.context, 'entry').then((data: Context) => {
+      application.createModuleContext(this.context, 'entry').then((data: common.Context) => {
         moduleContext = data;
         console.info('createModuleContext success!');
       }).catch((error: BusinessError) => {
@@ -145,7 +146,7 @@ export default class EntryAbility extends UIAbility {
 
 getApplicationContextInstance(): ApplicationContext
 
-Obtains the application context. This API provides context access independent of the base class **Context**.
+Obtains the app context instance. When using this API, developers do not need to depend on the Context base class.
 
 Repeated calls to this API obtain the same ApplicationContext instance.
 
@@ -219,7 +220,7 @@ export default class EntryAbility extends UIAbility {
     let moduleContext: common.Context;
     try {
       application.createPluginModuleContext(this.context, 'com.example.pluginBundleName', 'pluginModuleName')
-        .then((data: Context) => {
+        .then((data: common.Context) => {
           moduleContext = data;
           console.info('createPluginModuleContext success!');
         })
@@ -246,8 +247,11 @@ Adds the current process into the [candidate master process](../../application-m
 When the [master process](../../application-models/ability-terminology.md#master-process) is destroyed and a UIAbility or UIExtensionAbility with **isolationProcess** set to **true** is restarted, the system takes corresponding actions based on whether there is a candidate master process.
 
 - If a candidate master process exists, the system sets the process at the head of the candidate master process list as the new master process and triggers the [onNewProcessRequest](js-apis-app-ability-abilityStage.md#onnewprocessrequest11) callback.
+
 - If no candidate master process exists, the system performs the following operations based on the component type:
+
   - For a UIAbility, the system creates an empty process as the master process.
+
   - For a UIExtensionAbility, the system first tries to reuse an existing UIExtensionAbility process as the new master process. If no available process exists, it creates an empty process as the master process.
 
 > **NOTE**
@@ -258,8 +262,8 @@ When the [master process](../../application-models/ability-terminology.md#master
 >
 > <!--Del-->
 > The **isolationProcess** field can be set to **true** in the [module.json5](../../quick-start/module-configuration-file.md) file, but only for the UIExtensionAbility of the sys/commonUI type.
-<!--DelEnd-->
 
+<!--DelEnd-->
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 
@@ -275,7 +279,7 @@ When the [master process](../../application-models/ability-terminology.md#master
 
 | Type              | Description               |
 | ------------------ | ------------------- |
-|Promise\<void> | Promise that returns no result.|
+|Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -285,7 +289,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | --------------- |
 | 801 | Capability not supported.|
 | 16000115 | The current process cannot be set as a candidate master process. |
-
 
 **Example**
 
@@ -326,7 +329,7 @@ Removes the current process from the candidate master process list. This API use
 
 | Type              | Description               |
 | ------------------ | ------------------- |
-|Promise\<void> | Promise that returns no result.|
+|Promise\<void> | Promise that returns no value. |
 
 **Error codes**
 
@@ -367,11 +370,11 @@ export default class EntryAbility extends UIAbility {
 
 exitMasterProcessRole(): Promise\<void>
 
-Relinquishes the [master-process](../../application-models/ability-terminology.md#master-process) role from the current process. This API uses a promise to return the result.
+Exits the [master process](../../application-models/ability-terminology.md#master-process) role of the current process. This API uses a promise to return the result.
 
-**System capability**: SystemCapability.Ability.AbilityRuntime.Core
+**System capability:** SystemCapability.Ability.AbilityRuntime.Core
 
-**Device behavior differences**: This API can be properly called only on 2-in-1 devices and tablets. If it is called on other device types, error code 801 is returned.
+**Device behavior differences:** This API is supported on 2-in-1 and tablet devices. On other device types, it returns error code 801.
 
 **Return value**
 

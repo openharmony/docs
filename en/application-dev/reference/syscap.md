@@ -2,202 +2,246 @@
 
 <!--Kit: Common-->
 <!--Subsystem: Common-->
-<!--Owner: @RayShih-->
-<!--Designer: @RayShih-->
-<!--Tester: @RayShih-->
+<!--Owner: @mgy917-->
+<!--Designer: @jiangwensai-->
+<!--Tester: @Lyuxin-->
 <!--Adviser: @RayShih-->
+<!-- md-trans-meta sourceCommit=49ccb69ba4ecc6a5565616c00b758158767a7282 translatedAt=2026-08-18T15:27:54.016Z pushedAt=2026-08-19T02:43:02.594Z -->
 
-## Overview
+This document systematically describes the definition and purpose of SystemCapability (SysCap), as well as the adaptation development strategies in single-device and multi-device app development scenarios.
 
-### System Capabilities and APIs
+## What Is SystemCapability (SysCap)
 
-SystemCapability (SysCap) refers to a standalone feature in the operating system, for example, Bluetooth, Wi-Fi, NFC, or camera. Each SysCap corresponds to a set of APIs, whose availability depends on the support of the target device. Such a set of APIs can be provided in DevEco Studio for association.
+SystemCapability, hereinafter referred to as SysCap, identifies a collection of APIs that implement a specific open capability, as shown in the following figure.
 
-![image-SysCap.png](figures/image-SysCap.png)
 
-<!--Del-->For details about the SysCap sets in OpenHarmony, see [SysCap List](phone-syscap-list.md).<!--DelEnd-->
+Take the Bluetooth SysCap named SystemCapability.Communication.Bluetooth.Core as an example. It represents a set of Bluetooth capability-related APIs, including:
 
-### Supported SysCap Set, Associated SysCap Set, and Required SysCap Set
+- Bluetooth device scanning APIs
 
-The supported SysCap set, associated SysCap set, and required SysCap set are collections of SysCaps.
+- Bluetooth device pairing and connection APIs
 
-The supported SysCap set covers the device capabilities, and the required SysCap set covers the application capabilities. If the SysCap set required by application A is a subset of the SysCap set supported by device N, application A can be distributed to device N for installation and running. Otherwise, application A cannot be distributed.
+- Data sending and receiving APIs
 
-The associated SysCap set covers the system capabilities of associated APIs that DevEco Studio offers during application development.
+- Bluetooth state management APIs, etc.
 
-![image-20220326064913834](figures/image-20220326064913834.png)
+## Purpose of SysCap
 
-### Devices and Supported SysCap Sets
+The purposes of SysCap are as follows:
 
-Each device provides a SysCap set that matches its hardware capability.
+1. Primary responsibility: isolate the open capability differences between device types.
 
-The SDK classifies devices into general devices and custom devices. The general devices' supported SysCap set is defined by OpenHarmony, and the custom devices' is defined by device vendors.
+   Still using Bluetooth as an example, different device types support Bluetooth differently. To help developers determine whether related APIs are available, the SysCap mechanism is introduced.
 
-![image-20220326064955505](figures/image-20220326064955505.png)
+   Developers can use the [canIUse](../reference/common/js-apis-syscap.md#caniuse) API to determine whether the open capability API collection represented by a specified SysCap can be called on the target device type.
 
-### Mapping Between Devices and SDK Capabilities
+2. Secondary responsibility: classify features.
 
-The SDK provides a full set of APIs for DevEco Studio. DevEco Studio identifies the supported SysCap set based on the devices selected for the project, filters the APIs contained in the SysCap set, and provides the supported APIs for association (to autocomplete input).
+   The open capability API collection represented by each SysCap corresponds to an independent functional feature in the operating system. For example, the API collection identified by the Bluetooth SysCap mentioned above logically belongs to "Bluetooth core communication capability".
 
-![image-20220326065043006](figures/image-20220326065043006.png)
+> **NOTE**
+> 
+> Different product models of the same device type may have inconsistent software and hardware specifications. Therefore, developers need to use canIUse and the capability query interface to determine availability before using an API. For example, some phones do not support the POI feature. Therefore, developers need to first use canIUse to determine whether SystemCapability.Location.Location.Core can be called on the phone, and then use [geoLocationManager.isPoiServiceSupported](apis-location-kit/js-apis-geoLocationManager.md#geolocationmanagerispoiservicesupported20) to query whether the system (that is, the software) supports the POI service. Only after all these are supported can developers use POI-related APIs normally. For details, see [SysCap Adaptation App Development](#syscap-adaptation-app-development).
 
-## How to Develop
+## Relationship Between SysCap, SDK, and Kit
 
-<!--Del-->
-### Obtaining the PCID
+SysCap, SDK, and Kit form a structured and hierarchical architecture, as shown in the following figure:
+ 
 
-The Product Compatibility ID (PCID) contains the SysCap information supported by the current device. For the moment, you can obtain the PCID of a device from the device vendor. In the future, you'll be able to obtain the PCIDs of all devices from the authentication center, which is in development.
+1. The SDK consists of multiple functionally independent Kits.
 
-### Importing the PCID
+2. Each Kit contains one or more SysCaps, and each SysCap belongs to only one Kit.
 
-DevEco Studio allows Product Compatibility ID (PCID) imports for projects. After the imported PCID file is decoded, the SysCap is output and written into the **syscap.json** file.
+3. Each SysCap identifies/represents one or more APIs.
 
-Right-click the project directory and choose **Import Product Compatibility ID** from the shortcut menu to upload the PCID file and import it to the **syscap.json** file.
+This structured design enables developers to precisely and efficiently locate and call the required APIs through the intelligent prompts and auto-completion of development tools (such as DevEco Studio) when writing code, significantly reducing the risk of misuse and improving development efficiency.
 
-![20220329-103626](figures/20220329-103626.gif)
+Take the Tablet device as an example. If a developer imports the specific content of a module starting with "a" in an .ets file (for example, interfaces, classes, functions, variables, objects, etc.), DevEco Studio auto-completes all the specific content of the module that is available on the Tablet, as shown in the following figure:
+ 
 
-### Configuring the Associated SysCap Set and Required SysCap Set
+## Relationship Between SysCap and Device Type
 
-DevEco Studio automatically configures the associated SysCap set and required SysCap set based on the settings supported by the created project. You can modify these SysCap sets when necessary.
-You can add APIs to the associated SysCap set in DevEco Studio by adding system capabilities. However, note that these APIs may not be supported on the device. Therefore, check whether these APIs are supported before using them.
-Exercise caution when modifying the required SysCap set. Incorrect modifications may result in the application being unable to be distributed to the target device.
+In the "device-define" folder of the SDK, JSON files define the SysCap collection supported by each device type. For example, the tablet.json file defines that the Tablet device supports SysCaps such as SystemCapability.ArkUI.ArkUI.Full and SystemCapability.Communication.NFC.Core, as shown in the following figure:
 
-```json
-// syscap.json
-{
-	"devices": {
-		"general": [            // General devices. Each general device supports a SysCap set. Multiple general devices can be configured.
-			"default",
-			"car"
-		],
-		"custom": [             // Custom devices.
-			{
-				"Custom device": [
-					"SystemCapability.Communication.SoftBus.Core"
-				]
-			}
-		]
-	},
-	"development": {             // The SysCap set in addedSysCaps and the SysCap set supported by each device configured in devices form the associated SysCap set.
-		"addedSysCaps": [
-			"SystemCapability.Location.Location.Lite"
-		]
-	},
-	"production": {              // Used to generate the RPCID. Exercise caution when adding this parameter. Under incorrect settings, applications may fail to be distributed to target devices.
-		"addedSysCaps": [],      // Intersection of SysCap sets supported by devices configured in devices. It is the required SysCap set with addedSysCaps set and removedSysCaps set.
-		"removedSysCaps": []     // When the required SysCap set is a capability subset of a device, the application can be distributed to the device.
-	}
+
+When creating a project in DevEco Studio, developers need to select the device type of the app:
+
+
+Alternatively, after creating a project, developers can specify the device types supported by the app by modifying [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) in the module.json5 file:
+
+
+DevEco Studio automatically identifies the device types in the project, locates the corresponding SysCap collection under "device-define" in the SDK, and then extracts the APIs supported by the device for intelligent prompts and auto-completion, helping developers precisely and efficiently call the required APIs.
+
+> **NOTE**
+>
+> When there are multiple device types, the SysCap collection identified by DevEco Studio is the union of these device types.
+
+## SysCap Adaptation App Development
+
+As described above, SysCap is a mechanism for isolating open capability differences between device types. However, in actual app development, after completing the isolation determination at the SysCap level, developers also need to pay attention to the following:
+
+1. Different device models of the same device type may cause some APIs under the same SysCap to be called abnormally due to factors such as hardware configuration differences.
+
+2. The same device model may cause some APIs under the same SysCap to be called abnormally due to dynamic hardware changes (such as pluggable devices).
+
+Therefore, in actual app development, developers need to perform related code adaptation development to ensure that the app provides a good and stable user experience on various devices.
+
+Adaptation development mainly includes the following four parts.
+
+### Using canIUse to Determine Whether a SysCap Can Be Called
+
+Use the [canIUse](../reference/common/js-apis-syscap.md#caniuse) API to determine whether the API collection corresponding to a SysCap can be called: true indicates that it can be called, and false indicates that it cannot be called (the SysCap is not included in the corresponding device type).
+
+**ArkTS API Usage Example**
+
+```js
+if (canIUse("SystemCapability.Location.Location.Core")) {
+ console.info("The device supports SystemCapability.Location.Location.Core");
+} else {
+ console.info("The device does not support SystemCapability.Location.Location.Core");
 }
 ```
-<!--DelEnd-->
 
-<!--RP1--><!--RP1End-->
+**Native API Usage Example**
 
-### Single-Device Application Development
+```c++
+#include <stdio.h>
+#include <stdlib.h>
+#include "syscap_ndk.h"
 
-By default, the associated SysCap set and required SysCap set of the application are the same as the supported SysCap set of the device. Exercise caution when modifying the required SysCap set.
+char syscap[] = "SystemCapability.ArkUI.ArkUI.Full";
+bool result = canIUse(syscap);
+if (result) {
+ printf("SysCap: %s is supported!\n", syscap);
+} else {
+ printf("SysCap: %s is not supported!\n", syscap);
+}
+```
 
-![image-20220326065124911](figures/image-20220326065124911.png)
+### Using the Capability Query Interface to Determine Whether an API Is Available
 
-### Cross-Device Application Development
+Use system-side APIs such as isXXXAvailable(), isXXXSupported(), and canMakeXXX() to determine whether an API is available.
 
-By default, the associated SysCap set of an application is the union of multiple devices' supported SysCap sets, while the required SysCap set is the intersection of the devices' supported SysCap sets.
+> **NOTE**
+>
+> Not all APIs have a capability query interface. If the API to be verified does not have a capability query interface, you can determine whether the API is available through proactive listening or error code exception handling.
 
-![image-20220326065201867](figures/image-20220326065201867.png)
+```javascript
+import { geoLocationManager } from '@kit.LocationKit';
 
-### Checking Whether an API Is Available
-
-You can use either the ArkTS or native API to determine whether an API is available.
-
-- ArkTS API
-
-  - Method 1: Use the **canIUse()** API to check whether a SysCap is supported.
-
-    ```ts
-    if (canIUse("SystemCapability.ArkUI.ArkUI.Full")) {
-	   console.info("This device supports SystemCapability.ArkUI.ArkUI.Full.");
-    } else {
-       console.info("This device does not support SystemCapability.ArkUI.ArkUI.Full.");
-    }
-    ```
-
-  - Method 2: Import a module using the **import** API. If the current device does not support the module, the import result is **undefined**. Before using an API, you must make sure the API is available.
-
-	```ts
-	import { geoLocationManager } from '@kit.LocationKit';
-
-	try {
-	geoLocationManager.getCurrentLocation((location) => {
-		console.info('current location: ' + JSON.stringify(location));
-	});
-	} catch(err) {
-	    console.error('This device does not support location information.' + err);
-	}
-	```
-- Native API
-
-	```c
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include "syscap_ndk.h"
-
-	char syscap[] = "SystemCapability.ArkUI.ArkUI.Full";
-	bool result = canIUse(syscap);
-	if (result) {
-		printf("SysCap: %s is supported!\n", syscap);
-	} else {
-		printf("SysCap: %s is not supported!\n", syscap);
-	}
-	```
-
-You can also find out the SysCap to which an API belongs by referring to the API reference document.
-
-### Checking the Differences Between Devices with a Specific SysCap
-
-The performance of a SysCap may vary by device type. For example, a tablet is superior to a wearable device in terms of the camera capability.
-
-The following code snippet uses the facial recognition capability as an example:
-
-```ts
-import { userAuth } from '@kit.UserAuthenticationKit';
-
-const authParam : userAuth.AuthParam = {
-  challenge: new Uint8Array(),
-  authType: [userAuth.UserAuthType.PIN],
-  authTrustLevel: userAuth.AuthTrustLevel.ATL1,
-};
-const widgetParam :userAuth.WidgetParam = {
-  title: 'Enter password',
-};
-
-// Use try...catch to capture exceptions when using the API. If the SysCap of the API is not compatible with the current device, error code 801 is returned.
+if (!canIUse("SystemCapability.Location.Location.Core")) { // First, determine whether the capability collection is available. This step applies only to multi-device application development and can be skipped in single-device application development.
+  return;
+}
 try {
-  let userAuthInstance = userAuth.getUserAuthInstance(authParam, widgetParam);
-  userAuthInstance.start();
-    console.info('Device authentication succeeded.');
+  if (geoLocationManager.isPoiServiceSupported()) { // Then, query the POI service capability.
+    geoLocationManager.getPoiInfo().then((poiInfo) => { // After confirming that the capability is supported, call the API to obtain location information.
+      if (poiInfo !== undefined) {
+        console.info("get PoiInfo:" + JSON.stringify(poiInfo));
+      }
+    })
+  }
 } catch (error) {
-    console.error('auth catch error: ' + JSON.stringify(error));
+  console.error("getPoiInfo errCode:" + error.code + ", errMessage:" + error.message);
 }
 ```
 
-### How Do SysCap Differences Arise Between Devices
+### Proactively Listening for Extended Capability Changes
 
-The device SysCaps in product solutions vary according to the component combination defined by the product solution vendor. The following figure shows the overall process.
+In hardware dynamic extension scenarios, plugging or unplugging some hardware causes capability changes. Developers can proactively listen for extended capability changes.
 
-![image-20220326072448840](figures/image-20220326072448840.png)
+For example, for a USB camera, there are dynamic plugging and unplugging scenarios. The system provides the on listening API to support developers in handling dynamic changes of the camera device.
 
-1. A set of operating system source code consists of optional and mandatory components. Different components represent different SysCaps.
+```javascript
+import { BusinessError } from '@kit.BasicServicesKit';
+import { camera } from '@kit.CameraKit';
 
-2. In a normalized released SDK, APIs are mapped to SysCap sets.
+callback(err: BusinessError, cameraStatusInfo: camera.CameraStatusInfo): void {
+  if (err !== undefined && err.code !== 0) {
+    console.error('cameraStatus with errorCode = ' + err.code);
+    return;
+  }
+  console.info(`camera : ${cameraStatusInfo.camera.cameraId}, status: ${cameraStatusInfo.status}`);
+}
+registerCameraStatus(cameraManager: camera.CameraManager): void {
+  cameraManager.on('cameraStatus', this.callback); // Listen for the camera status to handle dynamic hardware devices.
+}
+```
 
-3. Product solution vendors can assemble components based on hardware capabilities and product requirements.
+### Error Code Exception Handling
 
-4. The components configured for a product can be system components or proprietary components developed by a third party. Since there is mapping between components and SysCap, the SysCap set of the product can be obtained after all components are assembled.
+To handle exceptions that may occur when calling APIs, developers also need to perform error code exception handling.
 
-5. The SysCap set is encoded to generate the PCID. You can import the PCID to DevEco Studio and decode it into SysCaps. During development, compatibility processing is performed to mitigate the SysCap differences of devices.
+1. Synchronous APIs must use try...catch to handle exceptions to avoid app crashes. 
 
-6. System parameters deployed on devices contain the SysCap set. The system provides native interfaces and application interfaces for components and applications to check whether a specific SysCap is available.
+   ```javascript
+   import { omapi } from '@kit.ConnectivityKit';
+   import { hilog } from '@kit.PerformanceAnalysisKit';
+   let seService : omapi.SEService;
+   let seReaders : omapi.Reader[];
+   
+   // Initialize seService before using it.
+   function secureElementDemo() {
+     // Obtain the readers.
+     try {
+       seReaders = seService.getReaders();
+     } catch (error) {
+      if(error.code=== 801) {
+       console.error('This device does not support this capability');
+      }
+     }
+   }
+   ```
 
-7. During application development, the SysCap set required by the application is encoded into the Required Product Compatibility ID (RPCID) and written into the application installation package. During application installation, the package manager decodes the RPCID to obtain the SysCap set required by the application and compares it with the SysCap set supported by the device. If the SysCap set required by the application is met, the application can be installed on the device.
+2. Asynchronous APIs use .catch to capture asynchronous exceptions. Developers can also choose not to handle exceptions, and the app will not crash. 
 
-8. When an application is running on a device, the **canIUse** API can be used to query whether the device is compatible with a specific SysCap.
+   ```javascript
+   import { media } from '@kit.MediaKit';
+
+   let avScreenCaptureRecorder: media.AVScreenCaptureRecorder | undefined;
+   media.createAVScreenCaptureRecorder().then((captureRecorder: media.AVScreenCaptureRecorder) => {
+     // Execute normal business.
+     if (captureRecorder != null) {
+       avScreenCaptureRecorder = captureRecorder;
+       console.info('Succeeded in creating avScreenCaptureRecorder');
+     } else {
+       console.error('Failed to create avScreenCaptureRecorder');
+     }
+   }).catch((error: BusinessError) => {
+     // Handle business logic errors.
+     console.error(`createAVScreenCaptureRecorder catchCallback, error message:${error.message}`);
+   });
+   ```
+
+3. Use global capture to add an exception capture listener globally, which can capture exceptions not caught by try...catch. After adding it, the app will not exit proactively when an exception is thrown. For details, see [errorManager.on('error')](apis-ability-kit/js-apis-app-ability-errorManager.md#errormanageronerror).
+
+## Adaptation Development in Single-Device and Multi-Device App Development Scenarios
+
+App development can be divided into the following:
+
+1. Single-device app development: the Device type of the app project is configured with only one device type.
+
+2. Multi-device app development: the Device type of the app project is configured with multiple device types.
+
+### Adaptation Development in Single-Device App Development Scenarios
+
+In single-device app development, DevEco Studio identifies only one device type. The adaptation development process is shown in the following figure:
+
+
+1. If an API has inconsistent capabilities across different device models of the same device type, use the capability query interface to determine the API capability availability. (Note: The capability query mechanism here is not canIUse. For details, see [Using the Capability Query Interface to Determine Whether an API Is Available](#using-the-capability-query-interface-to-determine-whether-an-api-is-available).)
+
+2. To avoid exceptions when calling APIs, developers need to perform error code exception handling.
+
+### Adaptation Development in Multi-Device App Development Scenarios
+
+In multi-device app development, DevEco Studio needs to identify multiple device types simultaneously. The adaptation development process is shown in the following figure:
+
+
+1. Use canIUse to determine whether the SysCap collection within the union but outside the intersection is available. 
+
+   - canIUse applies only to multi-device app development. In single-device app development, you can directly query the API capability.
+
+   - In multi-device app development scenarios, when the device type to which a SysCap belongs is within the union of the [deviceTypes](../quick-start/module-configuration-file.md#devicetypes) selection range and the API support range but not within their intersection (for example, the device types selected are Phone/Tablet, but the API supports only Phone/2in1), you must use canIUse to verify availability.
+
+2. If an API has inconsistent capabilities across different device models of the same device type, use the capability query interface to determine the API capability availability. (Note: The capability query mechanism here is not canIUse.)
+
+3. To avoid exceptions when calling APIs, perform error code exception handling.
