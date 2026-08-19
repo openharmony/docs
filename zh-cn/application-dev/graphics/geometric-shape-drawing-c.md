@@ -30,22 +30,22 @@
 
 ## 接口说明
 
-几何形状绘制的常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)。
+几何形状绘制的常用接口如下表所示，详细的使用和参数说明请见[drawing_canvas.h](../reference/apis-arkgraphics2d/capi-drawing-canvas-h.md)、[drawing_point.h](../reference/apis-arkgraphics2d/capi-drawing-point-h.md)、[drawing_rect.h](../reference/apis-arkgraphics2d/capi-drawing-rect-h.md)、[drawing_path.h](../reference/apis-arkgraphics2d/capi-drawing-path-h.md)、[drawing_region.h](../reference/apis-arkgraphics2d/capi-drawing-region-h.md)和[drawing_round_rect.h](../reference/apis-arkgraphics2d/capi-drawing-round-rect-h.md)。
 
 | 接口 | 描述 |
 | -------- | -------- |
-| OH_Drawing_Point\* OH_Drawing_PointCreate (float x, float y) | 用于创建一个坐标点对象。 |
-| OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint (OH_Drawing_Canvas \*canvas, const OH_Drawing_Point2D \*point) | 用于画一个点。 |
-| OH_Drawing_Rect\* OH_Drawing_RectCreate (float left, float top, float right, float bottom) | 用于创建一个矩形对象。 |
-| void OH_Drawing_CanvasDrawArc (OH_Drawing_Canvas\*, const OH_Drawing_Rect\*, float startAngle, float sweepAngle) | 用于画一个弧。 |
-| void OH_Drawing_CanvasDrawCircle (OH_Drawing_Canvas\*, const OH_Drawing_Point\*, float radius) | 用于画一个圆形。 |
-| OH_Drawing_Path\* OH_Drawing_PathCreate (void) | 用于创建一个路径对象。 |
-| void OH_Drawing_CanvasDrawPath (OH_Drawing_Canvas\*, const OH_Drawing_Path\*) | 用于画一个自定义路径。 |
-| OH_Drawing_Region\* OH_Drawing_RegionCreate (void) | 用于创建一个区域对象。 |
-| void OH_Drawing_CanvasDrawRegion (OH_Drawing_Canvas\*, const OH_Drawing_Region\*) | 用于画一块区域。 |
-| void OH_Drawing_CanvasDrawRect (OH_Drawing_Canvas\*, const OH_Drawing_Rect\*) | 用于画一个矩形。 |
-| OH_Drawing_RoundRect\* OH_Drawing_RoundRectCreate (const OH_Drawing_Rect\*, float xRad, float yRad) | 用于创建一个圆角矩形对象。 |
-| void OH_Drawing_CanvasDrawRoundRect (OH_Drawing_Canvas\*, const OH_Drawing_RoundRect\*) | 用于画一个圆角矩形。 |
+| OH_Drawing_Point\* OH_Drawing_PointCreate(float x, float y) | 用于创建一个坐标点对象。 |
+| OH_Drawing_ErrorCode OH_Drawing_CanvasDrawPoint(OH_Drawing_Canvas \*canvas, const OH_Drawing_Point2D \*point) | 用于画一个点。 |
+| OH_Drawing_Rect\* OH_Drawing_RectCreate(float left, float top, float right, float bottom) | 用于创建一个矩形对象。 |
+| void OH_Drawing_CanvasDrawArc(OH_Drawing_Canvas \*canvas, const OH_Drawing_Rect \*rect, float startAngle, float sweepAngle) | 用于画一个弧。 |
+| void OH_Drawing_CanvasDrawCircle(OH_Drawing_Canvas \*canvas, const OH_Drawing_Point \*point, float radius) | 用于画一个圆形。 |
+| OH_Drawing_Path\* OH_Drawing_PathCreate(void) | 用于创建一个路径对象。 |
+| void OH_Drawing_CanvasDrawPath(OH_Drawing_Canvas \*canvas, const OH_Drawing_Path \*path) | 用于画一个自定义路径。 |
+| OH_Drawing_Region\* OH_Drawing_RegionCreate(void) | 用于创建一个区域对象。 |
+| void OH_Drawing_CanvasDrawRegion(OH_Drawing_Canvas \*canvas, const OH_Drawing_Region \*region) | 用于画一块区域。 |
+| void OH_Drawing_CanvasDrawRect(OH_Drawing_Canvas \*canvas, const OH_Drawing_Rect \*rect) | 用于画一个矩形。 |
+| OH_Drawing_RoundRect\* OH_Drawing_RoundRectCreate(const OH_Drawing_Rect \*rect, float xRad, float yRad) | 用于创建一个圆角矩形对象。 |
+| void OH_Drawing_CanvasDrawRoundRect(OH_Drawing_Canvas \*canvas, const OH_Drawing_RoundRect \*roundRect) | 用于画一个圆角矩形。 |
 
 
 ## 绘制点
