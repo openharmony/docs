@@ -1195,7 +1195,7 @@ type AssetMap = Map\<Tag, Value>
 
 ## BatchResult
 
-[batchAdd](#assetbatchadd)和[batchUpdate](#assetbatchupdate)批量操作的结果。
+[batchAdd](#assetbatchadd)、[batchUpdate](#assetbatchupdate)和[batchRemove](#assetbatchremove)批量操作的结果。
 
 **起始版本：** 26.0.0
 
