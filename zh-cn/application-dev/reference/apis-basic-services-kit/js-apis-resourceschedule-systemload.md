@@ -102,7 +102,7 @@ try {
 
 getLevel(): Promise&lt;SystemLoadLevel&gt;
 
-获取系统负载融合档位，使用promise异步回调。
+获取系统负载融合档位，使用Promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 
