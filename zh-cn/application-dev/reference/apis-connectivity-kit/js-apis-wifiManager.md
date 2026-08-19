@@ -3355,8 +3355,6 @@ off(type: 'p2pDeviceChange', callback?: Callback&lt;WifiP2pDevice&gt;): void
 
 取消注册P2P设备状态改变事件。使用callback异步回调。
 
-**需要权限：** ohos.permission.LOCATION 和 ohos.permission.APPROXIMATELY_LOCATION
-
 **系统能力：** SystemCapability.Communication.WiFi.P2P
 
 **参数：**
