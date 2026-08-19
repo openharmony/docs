@@ -73,7 +73,7 @@ Set the **type** attribute of the **\<button>** component to **circle**, **text*
 }
 ```
 
-![Button-Type](figures/Button-Type.png)
+![button-type](figures/button-type.png)
 
 > **NOTE**
 > 

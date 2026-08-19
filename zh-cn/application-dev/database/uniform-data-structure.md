@@ -9,9 +9,9 @@
 
 ## 场景介绍
 
-针对[UTD标准化数据类型](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中的部分常见类型，为了方便业务使用，我们按照不同的数据类型提供了标准化数据结构，例如系统定义的桌面图标类型（对应的标准化数据类型标识为'openharmony.app-item'），我们明确定义了该数据结构对应的相关描述信息。
+针对UTD标准化数据类型[uniformdatatype](../reference/apis-arkdata/js-apis-data-uniformTypeDescriptor.md#uniformdatatype)中的部分常见类型，为了方便业务使用，我们按照不同的数据类型提供了标准化数据结构，例如系统定义的桌面图标类型（对应的标准化数据类型标识为'openharmony.app-item'），我们明确定义了该数据结构对应的相关描述信息。
 
-某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入[拖拽事件](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
+某些业务场景下应用可以直接使用我们具体定义的UTD标准化数据结构，例如跨应用拖拽场景。拖出方应用可以按照标准化数据结构将拖拽数据写入拖拽事件[DragEvent](../reference/apis-arkui/arkui-ts/ts-universal-events-drag-drop.md#dragevent7)，拖入方应用从拖拽事件中读取拖拽数据并按照标准化数据结构进行数据的解析。这使得不同应用间的数据交互遵从相同的标准定义，有效减少了跨应用数据交互的开发工作量。
 
 ## 接口说明
 
@@ -36,25 +36,25 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
     <!-- @[import_module](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataStructure/entry/src/main/ets/pages/UdmfInterface.ets) -->
     
     ``` TypeScript
-    // 1. 导入unifiedDataChannel和uniformTypeDescriptor模块。
+    // 1. 导入uniformDataStruct、unifiedDataChannel和uniformTypeDescriptor模块。
     import { uniformDataStruct, uniformTypeDescriptor, unifiedDataChannel } from '@kit.ArkData';
     import { hilog } from '@kit.PerformanceAnalysisKit';
     ```
 
 2. 创建超链接数据记录。
 
-3. 创建数据记录并添加到统一数据对象中。
+3. 创建纯文本数据类型记录。
 
-4. 创建统一数据对象实例。
+4. 创建统一数据对象及记录。
 
-5. 添加plainText数据记录。
+5. 添加数据记录。
 
-6. 添加并获取当前UnifiedData对象内的所有数据记录。
+6. 获取当前UnifiedData对象内的所有数据记录。
 
 7. 遍历每条记录，判断该记录的数据类型，转换为子类对象并得到原数据记录。
 
     <!-- @[unified_data_structure](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataStructure/entry/src/main/ets/pages/UdmfInterface.ets) -->
-
+    
     ``` TypeScript
     // 2. 创建超链接数据记录。
     let hyperlinkDetails: Record<string, string> = {
@@ -67,14 +67,14 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
       description: 'This is the description of this hyperlink',
       details: hyperlinkDetails
     }
-
+    
     // 修改hyperlink属性description
     hyperlink.description = '...';
-
+    
     // 访问对象属性。
     hilog.info(0xFF00, '[Sample_Udmf]', `hyperlink.url = ${hyperlink.url}`);
-
-    // 3. 创建纯文本数据类型记录，将其添加到刚才创建的UnifiedData对象。
+    
+    // 3. 创建纯文本数据类型记录。
     let plainTextDetails: Record<string, string> = {
       'attr1': 'value1',
       'attr2': 'value2'
@@ -85,20 +85,20 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
       abstract: 'this is abstract',
       details: plainTextDetails
     }
-    // 4. 创建一个统一数据对象实例。
+    // 4. 创建统一数据对象及记录。
     let unifiedData = new unifiedDataChannel.UnifiedData();
     let hyperlinkRecord =
       new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.HYPERLINK, hyperlink);
     let plainTextRecord =
       new unifiedDataChannel.UnifiedRecord(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT, plainText);
-
-    // 5. 添加plainText数据记录。
+    
+    // 5. 添加数据记录。
     unifiedData.addRecord(hyperlinkRecord);
     unifiedData.addRecord(plainTextRecord);
-
+    
     // 6. 记录添加完成后，可获取当前UnifiedData对象内的所有数据记录。
     let records = unifiedData.getRecords();
-
+    
     // 7. 遍历每条记录，判断该记录的数据类型，转换为子类对象，得到原数据记录。
     for (let i = 0; i < records.length; i++) {
       let unifiedDataRecord = records[i] as unifiedDataChannel.UnifiedRecord;
@@ -109,12 +109,12 @@ UDMF针对部分标准化数据类型定义的标准化数据结构如下所示�
         switch (type) {
           case uniformTypeDescriptor.UniformDataType.HYPERLINK:
             Object.keys(record).forEach(key => {
-              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
             });
             break;
           case uniformTypeDescriptor.UniformDataType.PLAIN_TEXT:
             Object.keys(record).forEach(key => {
-              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key} + , value: ${record[key]}`);
+              hilog.info(0xFF00, '[Sample_Udmf]', `show records: ${key}, value: ${record[key]}`);
             });
             break;
           default:

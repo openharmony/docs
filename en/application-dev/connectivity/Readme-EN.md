@@ -6,7 +6,7 @@
 <!--Designer: @qq_43802146-->
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=68836b0c29b9c1d0b7d543a858c20c41f6022776 translatedAt=2026-07-25T11:34:39.261Z pushedAt=2026-07-27T08:03:10.428Z -->
+<!-- md-trans-meta sourceCommit=f0989334f83c164cc4c97a2318e2e1824bb96991 translatedAt=2026-08-18T11:00:38.980Z pushedAt=2026-08-18T11:19:37.401Z -->
 
 - [About This Kit](connectivity-kit-intro.md)
 
@@ -34,6 +34,10 @@
 
     - [2900099 Bluetooth API Call Error](bluetooth/bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
 
+    - [401 Invalid Parameter Reported When an Optional Property Is Explicitly Set to undefined](bluetooth/bluetooth-faq-401-invalid-parameter.md)
+
+  - [Bluetooth Glossary](bluetooth/terminology.md)
+
 - NFC<!--nfc-->
 
   - [NFC Development](nfc/nfc-overview.md)
@@ -60,4 +64,4 @@
 
   - [Interconnection Between Partner Devices and OpenHarmony Devices](fusion-connectivity/partneragent-life-application-guide.md)
 
-- [Glossary](terminology.md)
+  - [Converged Short-Range Glossary](fusion-connectivity/fusion-connectivity-terminology.md)

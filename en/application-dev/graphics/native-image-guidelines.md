@@ -6,7 +6,7 @@
 <!--Designer: @conan13234-->
 <!--Tester: @nobuggers-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=c9742d4d4a757fbb6f0510281af0e732af135c64 translatedAt=2026-08-03T11:21:26.218Z pushedAt=2026-08-04T07:00:06.417Z -->
+<!-- md-trans-meta sourceCommit=ccef03d6ee99dcba5b0a6890aa3d1cd03c3eb62f translatedAt=2026-08-15T01:51:33.958Z pushedAt=2026-08-15T08:27:28.220Z -->
 
 ## Overview
 
@@ -20,16 +20,16 @@ The following scenario is common for NativeImage development:
 
 | API                                                      | Description                                                        |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the specified OpenGL ES texture ID and target. This function must be used in pair with **OH_NativeImage_Destroy**. Otherwise, memory leak occurs.|
+| OH_NativeImage_Create (uint32_t textureId, uint32_t textureTarget) | Creates an **OH_NativeImage** instance to be associated with the specified OpenGL ES texture ID and target. This function must be used in pair with **OH_NativeImage_Destroy**. Otherwise, memory leak occurs. |
 | OH_NativeImage_AcquireNativeWindow (OH_NativeImage \*image)  | Obtains an **OHNativeWindow** instance associated with an **OH_NativeImage** instance. It is unnecessary to manually release this **OHNativeWindow** with **OH_NativeWindow_DestroyNativeWindow** as it will be automatically freed upon calling **OH_NativeImage_Destroy**. Failing to do so could result in memory access violations after the memory has been freed, which might cause the application to crash.|
 | OH_NativeImage_AttachContext (OH_NativeImage \*image, uint32_t textureId) | Attaches an **OH_NativeImage** instance to the current OpenGL ES context. The OpenGL ES texture will be bound to a **GL_TEXTURE_EXTERNAL_OES** instance and updated through the **OH_NativeImage** instance.|
 | OH_NativeImage_DetachContext (OH_NativeImage \*image)        | Detaches an **OH_NativeImage** instance from the current OpenGL ES context.             |
 | OH_NativeImage_UpdateSurfaceImage (OH_NativeImage \*image)   | Updates the OpenGL ES texture associated with the latest frame through an **OH_NativeImage** instance.     |
 | OH_NativeImage_GetTimestamp (OH_NativeImage \*image)         | Obtains the timestamp of the texture image for which **OH_NativeImage_UpdateSurfaceImage** was recently called.|
-| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | Obtains the transformation matrix of the texture image for which **OH_NativeImage_UpdateSurfaceImage** was recently called.|
+| OH_NativeImage_GetTransformMatrixV2 (OH_NativeImage \*image, float matrix[16]) | Obtains the transformation matrix of the texture image for which **OH_NativeImage_UpdateSurfaceImage** was recently called. |
 | OH_NativeImage_Destroy (OH_NativeImage \*\*image)            | Destroys an **OH_NativeImage** instance created by calling **OH_NativeImage_Create**. After the instance is destroyed, the pointer to it is assigned **NULL**.|
 
-For details about the APIs, see [native_image](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md).
+For details about the APIs, see [OH_NativeImage](../reference/apis-arkgraphics2d/capi-oh-nativeimage.md).
 
 ## How to Develop
 
@@ -366,21 +366,21 @@ libnative_buffer.so
    <!-- @[update_surfaceimage](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/NdkNativeImage/entry/src/main/cpp/render/render_engine.cpp) -->
 
    ``` C++
-    int32_t ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
-    if (ret != 0) {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                    "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
-                    ret, nativeImageTexId_);
-        return;
-    }
+       int32_t ret = OH_NativeImage_UpdateSurfaceImage(nativeImage_);
+       if (ret != 0) {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
+                        "OH_NativeImage_UpdateSurfaceImage failed, ret: %{public}d, texId: %{public}u",
+                        ret, nativeImageTexId_);
+           return;
+       }
 
-    UpdateTextureMatrix();
-    if (imageRender_) {
-        imageRender_->Render();
-    } else {
-        OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "ImageRender is null");
-    }
-    // ...
+       UpdateTextureMatrix();
+       if (imageRender_) {
+           imageRender_->Render();
+       } else {
+           OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine", "ImageRender is null");
+       }
+       // ...
 
    void RenderEngine::UpdateTextureMatrix()
    {
@@ -388,7 +388,7 @@ libnative_buffer.so
        int32_t ret = OH_NativeImage_GetTransformMatrixV2(nativeImage_, matrix);
        if (ret != 0) {
            OH_LOG_Print(LOG_APP, LOG_ERROR, LOG_PRINT_DOMAIN, "RenderEngine",
-                        "OH_NativeImage_GetTransformMatrix failed, ret: %{public}d", ret);
+                        "OH_NativeImage_GetTransformMatrixV2 failed, ret: %{public}d", ret);
            return;
        }
        imageRender_->SetTransformMatrix(matrix);

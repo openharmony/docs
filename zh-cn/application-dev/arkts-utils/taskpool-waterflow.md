@@ -251,10 +251,11 @@
                    Text($r('app.string.Image_loading')) // 加载资源，可根据项目实际资源自定义
                      .width('100%')
                      .layoutWeight(1);
+                 } else {
+                   Text(img[item % 33])
+                     .width('100%')
+                     .layoutWeight(1);
                  }
-                 Text(img[item % 33])
-                   .width('100%')
-                   .layoutWeight(1);
                }
              }
              .onAppear(() => {
@@ -267,8 +268,8 @@
              })
              .width('100%')
              .height(this.itemHeightArray[item % 100])
-             .backgroundColor(this.colors[item % 5])
-           }, (item: string) => item)
+             .backgroundColor(this.colors[item % 6])
+           }, (item: number) => item.toString())
          }
          .columnsTemplate('1fr 1fr')
          .columnsGap(10)

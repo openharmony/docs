@@ -6,13 +6,15 @@
 <!--Designer: @liumingxiang-->
 <!--Tester: @yhl0101-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=42f976b62471ab2445bc82b76c3d32c4239f6e74 translatedAt=2026-08-03T11:22:15.636Z pushedAt=2026-08-04T07:28:47.524Z -->
+<!-- md-trans-meta sourceCommit=8e9d3b746529fedba672cd46a96d4746984bcb6c translatedAt=2026-08-15T01:51:33.750Z pushedAt=2026-08-15T08:29:10.088Z -->
 
 ## Overview
 
 In a simple user interface, only a few lines of static text need to be displayed, such as the text on a label, button, menu item, or status bar. In this case, you only need to select a proper font, size, and color to complete the rendering.
 
 ## Available APIs
+
+The following table lists the APIs for simple text drawing. For details, see [drawing_text_typography.h](../reference/apis-arkgraphics2d/capi-drawing-text-typography-h.md).
 
 | API Definition| Description|
 | -------- | -------- |

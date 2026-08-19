@@ -126,7 +126,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
 
 4. 输入数据。
 
-    模型执行之前需要向输入的张量中填充数据。本例使用随机的数据对模型进行填充。
+    模型执行之前需要向输入的[张量](mindspore-lite-term.md#tensor张量)中填充数据。本例使用随机的数据对模型进行填充。
 
     ```c
     // Get Inputs
@@ -289,7 +289,7 @@ int GenerateInputDataWithRandom(OH_AI_TensorHandleArray inputs) {
   return OH_AI_STATUS_SUCCESS;
 }
 
-int ModelPredict(char* model_file) {
+int ModelPredict(const char* model_file) {
   // Create and init context, add CPU device info
   OH_AI_ContextHandle context = OH_AI_ContextCreate();
   if (context == NULL) {

@@ -336,7 +336,8 @@ Size        Rss         Pss         Clean       Dirty       Clean       Dirty   
 
 | 字段 | 说明 |
 | -------- | -------- |
-| Counts | 相同内存段出现的次数。 |
+| Name | 虚拟内存映射名称。 |
+| Counts | 相同Name内存段出现的次数。 |
 | Category | 内存所属类别。 |
 
 可使用hidumper --mem-smaps pid -v命令获取指定进程的详细内存使用情况，该命令会直接打印进程的所有内存信息，不会对相同内存信息做二次处理。

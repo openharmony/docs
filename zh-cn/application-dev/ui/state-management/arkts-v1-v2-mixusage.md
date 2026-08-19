@@ -187,7 +187,7 @@ class类被\@Observed修饰，从V1向V2传递使用enableV2Compatibility接口�
 
 - name是\@Track装饰的属性，其在V1和V2均是可观察的。
 
-- count是非\@Track装饰的属性，其在V1和V2的UI中使用均是非法的。
+- count是非\@Track装饰的属性，其在V1的UI中使用是非法的，在V2的UI中使用不会响应更新。
   - 在V1中，如果将非\@Track装饰的属性使用在UI中，是非法行为，会有运行时报错。
   - 在V2中，非\@Track装饰的属性使用在UI不会有运行时报错，但不会响应更新。
 

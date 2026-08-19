@@ -41,7 +41,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
   #include "CryptoArchitectureKit/crypto_asym_key.h"
   #include "file.h"
   
-  OH_Crypto_ErrCode doTestPemDataCovertAsymKey()
+  OH_Crypto_ErrCode doTestPemDataConvertAsymKey()
   {
       OH_CryptoAsymKeyGenerator *ctx = nullptr;
       OH_Crypto_ErrCode ret;

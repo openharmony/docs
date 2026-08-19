@@ -1,10 +1,12 @@
 # Using Image_NativeModule to Receive Images
+
 <!--Kit: Image Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @aulight02-->
-<!--Designer: @liyang_bryan-->
+<!--Designer: @XiaoYao555-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9329f19aa2995f079ff9cf109a20aad0033a91a3 translatedAt=2026-08-11T01:47:08.591Z pushedAt=2026-08-11T08:31:47.235Z -->
 
 You can use the **ImageReceiver** class to obtain the surface ID of a component, read the latest image or the next image, and release ImageReceiver instances. For details about the sample code of camera preview implemented with the use of the camera API, see [Secondary Processing of Preview Streams (C/C++)](../camera/native-camera-preview-imageReceiver.md).
 
@@ -35,7 +37,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
 1. Import the required header files.
 
    <!-- @[receiver_import](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->        
-   
+
    ``` C++
    #include <hilog/log.h>
    #include "napi/native_api.h"
@@ -52,13 +54,14 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    #include "ohcamera/camera_manager.h"
    
    #include <mutex>
+   #include &lt;shared_mutex&gt; // Use C++17 or later.
    #include <condition_variable>
    ```
 
 2. Define constants.
 
    <!-- @[receiver_defineConst](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-   
+
    ``` C++
    #undef LOG_DOMAIN
    #define LOG_DOMAIN 0x3200
@@ -74,20 +77,21 @@ The code below mainly shows how to initialize the receiver, create a camera prev
 3. Define global variables.
 
    <!-- @[define_receiverInstance](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->                
-   
+
    ``` C++
    static OH_ImageReceiverNative* g_receiver = nullptr;
    
    static std::mutex g_mutex;
+   static std::shared_mutex shared_receiver_mutex;
    static std::condition_variable g_condVar;
    static bool g_imageReady = false;
    static OH_ImageNative* g_imageInfoResult = nullptr;
    ```
 
 4. Define certain helper functions to manage the NAPI return value and parameter type conversion.
- 
+
    <!-- @[receiver_utility](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-   
+
    ``` C++
    // Process the NAPI return value.
    napi_value GetJsResultDemo(napi_env env, int result)
@@ -114,7 +118,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Create and set receiver options.
 
      <!-- @[set_receiverOptions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      static Image_ErrorCode CreateAndConfigOptions(OH_ImageReceiverOptions** options)
      {
@@ -143,7 +147,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the receiver options.
 
      <!-- @[get_receiverOptions](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      static Image_ErrorCode ValidateOptions(OH_ImageReceiverOptions* options)
      {
@@ -175,7 +179,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Create a receiver instance.
 
      <!-- @[create_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      static Image_ErrorCode CreateReceiver(OH_ImageReceiverOptions* options, OH_ImageReceiverNative** receiver)
      {
@@ -187,16 +191,18 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          return IMAGE_SUCCESS;
      }
      ```
-     
+
    - Define the callback for obtaining the next image.
 
      <!-- @[define_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->         
-     
+
      ``` C++
      static void OnCallback(OH_ImageReceiverNative* receiver)
      {
          OH_LOG_INFO(LOG_APP, "ImageReceiverNativeCTest buffer available.");
      
+         // Shared lock (read).
+         std::shared_lock<std::shared_mutex> lock(shared_receiver_mutex);
          OH_ImageNative* image = nullptr;
          Image_ErrorCode errCode = OH_ImageReceiverNative_ReadNextImage(receiver, &image);
          if (errCode != IMAGE_SUCCESS) {
@@ -216,7 +222,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Register the callback.
 
      <!-- @[register_callback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      static Image_ErrorCode RegisterCallbackAndQuery(OH_ImageReceiverNative* receiver)
      {
@@ -250,11 +256,11 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          return IMAGE_SUCCESS;
      }
      ```
- 
+
    - Initialize the receiver.
 
      <!-- @[init_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      static napi_value ImageReceiverNativeCTest(napi_env env, napi_callback_info info)
      {
@@ -301,7 +307,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Create a CameraManager instance.
 
      <!-- @[init_camera](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->     
-     
+
      ``` C++
      Camera_ErrorCode InitCameraManagerAndInput(Camera_Manager*& cameraManager,
                                                 Camera_Device*& cameras,
@@ -341,7 +347,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the camera output capability.
 
      <!-- @[get_cameraOutCapability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      Camera_ErrorCode GetCameraOutputCapability(Camera_Manager* cameraManager,
                                                 Camera_Device* cameras,
@@ -362,7 +368,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Create a camera capture session, which is used to capture photos taken using the camera.
 
      <!-- @[create_captureSession](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      Camera_CaptureSession* CreateAndStartSession(Camera_Manager* cameraManager, Camera_Input* cameraInput, int sessionMode)
      {
@@ -394,10 +400,11 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Start the capture session.
 
      <!-- @[start_captureSession](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
-     static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* input, Camera_PhotoOutput* photoOutput,
-         Camera_CaptureSession** sessionOut)
+     static Camera_ErrorCode StartCaptureSession(Camera_Manager* mgr, Camera_Input* input,
+                                                 Camera_PreviewOutput* previewOutput,
+                                                 Camera_CaptureSession** sessionOut)
      {
          *sessionOut = CreateAndStartSession(mgr, input, NORMAL_PHOTO);
          if (*sessionOut == nullptr) {
@@ -405,9 +412,9 @@ The code below mainly shows how to initialize the receiver, create a camera prev
              return CAMERA_INVALID_ARGUMENT;
          }
      
-         Camera_ErrorCode ret = OH_CaptureSession_AddPhotoOutput(*sessionOut, photoOutput);
+         Camera_ErrorCode ret = OH_CaptureSession_AddPreviewOutput(*sessionOut, previewOutput);
          if (ret != CAMERA_OK) {
-             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPhotoOutput failed.");
+             OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_AddPreviewOutput failed.");
              return ret;
          }
      
@@ -421,6 +428,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          if (ret != CAMERA_OK) {
              OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Start failed.");
          }
+         
          return ret;
      }
      ```
@@ -428,10 +436,11 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Create a camera photo stream.
 
      <!-- @[start_cameraSession](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      Camera_ErrorCode StartTakePhoto(char* str)
      {
+         char* photoSurfaceId = str;
          Camera_Manager* cameraManager = nullptr;
          Camera_Device* cameras = nullptr;
          uint32_t size = 0;
@@ -442,11 +451,12 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          Camera_OutputCapability* cameraOutputCapability = nullptr;
          ret = GetCameraOutputCapability(cameraManager, cameras, 0, cameraOutputCapability);
          if (ret != CAMERA_OK) return ret;
-         const Camera_Profile* photoProfile = cameraOutputCapability->photoProfiles[0];
-         Camera_PhotoOutput* photoOutput = nullptr;
-         ret = OH_CameraManager_CreatePhotoOutput(cameraManager, photoProfile, str, &photoOutput);
-         if (photoProfile == nullptr || photoOutput == nullptr || ret != CAMERA_OK) {
-             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePhotoOutput failed.");
+         
+         const Camera_Profile* photoProfile = cameraOutputCapability->previewProfiles[0];
+         Camera_PreviewOutput* previewOutput = nullptr;
+         ret = OH_CameraManager_CreatePreviewOutput(cameraManager, photoProfile, photoSurfaceId, &previewOutput);
+         if (photoProfile == nullptr || previewOutput == nullptr || ret != CAMERA_OK) {
+             OH_LOG_ERROR(LOG_APP, "OH_CameraManager_CreatePreviewOutput failed.");
              return ret;
          }
      
@@ -457,17 +467,12 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          }
      
          Camera_CaptureSession* captureSession = nullptr;
-         ret = StartCaptureSession(cameraManager, cameraInput, photoOutput, &captureSession);
+         ret = StartCaptureSession(cameraManager, cameraInput, previewOutput, &captureSession);
          if (ret != CAMERA_OK) {
              OH_LOG_ERROR(LOG_APP, "StartCaptureSession failed.");
              return ret;
          }
      
-         ret = OH_PhotoOutput_Capture(photoOutput);
-         if (ret != CAMERA_OK) {
-             OH_LOG_ERROR(LOG_APP, "OH_PhotoOutput_Capture failed.");
-             return ret;
-         }
          return CAMERA_OK;
      }
      ```
@@ -475,7 +480,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Call the camera to take a photo.
 
      <!-- @[load_cameraSession](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      static napi_value TakePhoto(napi_env env, napi_callback_info info)
      {
@@ -501,7 +506,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Wait for the OnCallback notification.
 
      <!-- @[wait_callBack](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      // Synchronous waiting.
      static OH_ImageNative* NotifyJsImageInfoSync()
@@ -526,7 +531,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the image size.
 
      <!-- @[get_imageSize](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->       
-     
+
      ``` C++
      // Obtain the image size.
      static napi_value GetImageSizeInfo(napi_env env, OH_ImageNative* image)
@@ -558,11 +563,11 @@ The code below mainly shows how to initialize the receiver, create a camera prev
          return nullptr;
      }
      ```
-     
+
    - Obtain the component type.
 
      <!-- @[get_componentType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      // Obtain the component type.
      static size_t GetComponentTypeSize(OH_ImageNative* image, size_t& componentTypeSize)
@@ -579,7 +584,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the component information.
 
      <!-- @[get_componentInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      // Obtain the component information.
      static napi_value GetComponentInfo(napi_env env, size_t componentTypeSize, OH_ImageNative* image, napi_value resultObj)
@@ -639,7 +644,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the image properties and encapsulate them into an NAPI object.
 
      <!-- @[get_imageInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      // Obtain the image properties and encapsulate them into an NAPI object.
      static napi_value GetImageInfoObject(napi_env env, OH_ImageNative* image)
@@ -673,7 +678,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
    - Obtain the ReceiverImageInfo.
 
      <!-- @[get_receiverImageInfo](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->      
-     
+
      ``` C++
      static napi_value GetReceiverImageInfo(napi_env env, napi_callback_info info)
      {
@@ -692,7 +697,7 @@ The code below mainly shows how to initialize the receiver, create a camera prev
 8. Release the receiver.
 
    <!-- @[release_receiver](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Image/ImageNativeSample/entry/src/main/cpp/loadReceiver.cpp) -->     
-   
+
    ``` C++
    static napi_value ReleaseImageReceiver(napi_env env, napi_callback_info info)
    {
@@ -700,16 +705,20 @@ The code below mainly shows how to initialize the receiver, create a camera prev
            OH_LOG_INFO(LOG_APP, "No image receiver to release.");
            return nullptr;
        }
+   
        Image_ErrorCode errCode = OH_ImageReceiverNative_Off(g_receiver);
        if (errCode != IMAGE_SUCCESS) {
            OH_LOG_ERROR(LOG_APP, "ImageReceiverNativeCTest image receiver off failed, errCode: %{public}d.", errCode);
        }
+   
+       // Exclusive lock (write).
+       std::unique_lock<std::shared_mutex> lock(shared_receiver_mutex);
        errCode = OH_ImageReceiverNative_Release(g_receiver);
        if (errCode != IMAGE_SUCCESS) {
            OH_LOG_ERROR(LOG_APP, "Release image receiver failed, errCode: %{public}d.", errCode);
        }
+       
        g_receiver = nullptr;
-   
        return GetJsResultDemo(env, errCode);
    }
    ```

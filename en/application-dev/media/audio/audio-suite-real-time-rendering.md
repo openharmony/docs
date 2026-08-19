@@ -6,7 +6,7 @@
 <!--Designer: @jay-liusong-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=4b8b43a88b44fcb4b54b0589eeb40da7c2fbb748 translatedAt=2026-08-06T01:48:53.334Z pushedAt=2026-08-06T08:27:58.025Z -->
+<!-- md-trans-meta sourceCommit=7916f8e417a52f266eb8609e7aa226ddb0132eda translatedAt=2026-08-15T01:56:21.661Z pushedAt=2026-08-15T09:00:04.358Z -->
 
 Starting from API version 22, [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md) provides the real-time preview capability for audio authoring (API version 22 supports only the equalizer effect, while API version 23 and later support other effects). For example, you can use the preset sound effects in the equalizer to change the style of music.
 
@@ -45,7 +45,7 @@ For details on the APIs, see [OHAudioSuite](../../reference/apis-audio-kit/capi-
 
    ![OHAudioSuite realtime play](figures/audiosuite-audio-separation-time.png)
 
-You can implement a simple equalizer effect node for real-time preview by following the steps below.
+You can implement a simple real-time preview feature for an equalizer effect node by following the steps below. This section uses the equalizer effect as an example to demonstrate the real-time preview process. For details about other effect nodes, see [Audio Effects (C/C++)](audio-suite-effects.md).
 
 1. Initialize and create an [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md) pipeline (including the input node, equalizer node, and output node).
 

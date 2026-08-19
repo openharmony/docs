@@ -80,7 +80,7 @@ Notification disabled.
 
 **处理步骤**
 
-通知设置里开启应用通知开关。
+[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)里开启应用通知开关。
 
 ## 1600005 通知渠道关闭
 
@@ -90,7 +90,7 @@ Notification slot disabled.
 
 **错误描述**
 
-当通知渠道关闭时，方法将返回该错误码。
+当[通知渠道](../../notification/notification-glossary.md#notification-slot通知渠道)关闭时，方法将返回该错误码。
 
 **可能原因**
 
@@ -98,7 +98,7 @@ Notification slot disabled.
 
 **处理步骤**
 
-1. 通知设置里查看应用是否有该类型渠道，没有需要新增。
+1. [通知设置](../../notification/notification-glossary.md#notification-setting通知设置)里查看应用是否有该类型渠道，没有需要新增。
 
 2. 通知设置里查看应用该类型渠道状态，要保持开启状态。
 
@@ -111,7 +111,7 @@ Notification deletion disabled.
 
 **错误描述**
 
-通知设置了禁止删除属性，方法将返回该错误码。
+[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)了禁止删除属性，方法将返回该错误码。
 
 **可能原因**
 
@@ -343,7 +343,7 @@ The notification settings window is already displayed.
 
 **错误描述**
 
-通知设置页面已经拉起，方法将返回该错误码。
+[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)页面已经拉起，方法将返回该错误码。
 
 **可能原因**
 
@@ -400,7 +400,7 @@ Distributed operation timed out.
 
 **错误描述**
 
-调用通知的跨设备协同接口（例如通知跨设备点击跳转、通知跨设备快捷回复等），跨设备通信超时，将返回该错误码。
+调用通知的[跨设备协同](../../notification/notification-glossary.md#cross-device-collaboration跨设备协同)接口（例如通知跨设备点击跳转、通知跨设备快捷回复等），跨设备通信超时，将返回该错误码。
 
 **可能原因**
 
@@ -458,7 +458,7 @@ The specified bundle has no custom ringtone information.
 
 **错误描述**
 
-指定的应用未配置自定义铃声信息，将返回该错误码。
+指定的应用未配置[自定义铃声](../../notification/notification-glossary.md#customized-ringtone自定义铃声)信息，将返回该错误码。
 
 **可能原因**
 
@@ -478,7 +478,7 @@ Geofencing disabled.
 
 **错误描述**
 
-当地理围栏开关为关闭状态时，方法将返回该错误码。
+当[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)开关为关闭状态时，方法将返回该错误码。
 
 **可能原因**
 
@@ -486,7 +486,7 @@ Geofencing disabled.
 
 **处理步骤**
 
-需要用户在通知设置里开启地理围栏开关。
+需要用户在[通知设置](../../notification/notification-glossary.md#notification-setting通知设置)里开启地理围栏开关。
 <!--DelEnd-->
 
 <!--Del-->
@@ -498,7 +498,7 @@ The location switch is off.
 
 **错误描述**
 
-位置功能的开关未开启导致注册地理围栏失败。
+位置功能的开关未开启导致注册[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)失败。
 
 **可能原因**
 
@@ -518,7 +518,7 @@ The "Awareness & suggestions" switch of the location-based service is off.
 
 **错误描述**
 
-位置系统服务的“感知与提醒”开关关闭，导致注册地理围栏失败。
+位置系统服务的“感知与提醒”开关关闭，导致注册[地理围栏](../../notification/notification-glossary.md#geofence地理围栏)失败。
 
 **可能原因**
 
@@ -542,7 +542,7 @@ This notification is not supported.
 
 **可能原因**
 
-设置稍后提醒时，该通知类型为三方实况、系统实况或者其他无法删除的类型。
+设置[稍后提醒](../../notification/notification-glossary.md#notification-snooze稍后提醒)时，该通知类型为三方实况、系统实况或者其他无法删除的类型。
 
 **处理步骤**
 

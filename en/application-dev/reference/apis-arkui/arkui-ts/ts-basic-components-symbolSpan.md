@@ -317,4 +317,5 @@ struct Index {
   }
 }
 ```
-![SymbolSpanModifier](figures/symbolSpanModifier.gif)
+<!--Del-->![SymbolSpanModifier] (figures/symbolSpanModifier.gif)
+<!--DelEnd-->

@@ -1,4 +1,4 @@
-# \@Reusable V2 Decorator: Reusing V2 Components
+# \@ReusableV2 Decorator: Reusing V2 Components
 
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->

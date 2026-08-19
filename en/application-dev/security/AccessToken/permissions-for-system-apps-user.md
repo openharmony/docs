@@ -285,6 +285,8 @@ Allows an application to enable or disable Wi-Fi via CLI commands.
 
 **Certificate-based authorization**: true
 
+**Supported devices**: phones | PCs/2-in-1 devices | tablets | TVs | wearables | cars
+
 **Since**: 26.0.0
 
 ## ohos.permission.cli.MANAGE_WIFI_SCAN
@@ -297,6 +299,8 @@ Allows an application to set Wi-Fi scanning via CLI commands.
 
 **Certificate-based authorization**: true
 
+**Supported devices**: phones | PCs/2-in-1 devices | tablets | TVs | wearables | cars
+
 **Since**: 26.0.0
 
 ## ohos.permission.cli.MANAGE_WIFI_CONNECT
@@ -308,5 +312,7 @@ Allows an application to set Wi-Fi connections via CLI commands.
 **Authorization mode**: user_grant
 
 **Certificate-based authorization**: true
+
+**Supported devices**: phones | PCs/2-in-1 devices | tablets | TVs | wearables | cars
 
 **Since**: 26.0.0

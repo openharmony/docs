@@ -1,10 +1,12 @@
 # camera.h
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=9bee8cbce88e74e911451ede628deb5598986bb1 translatedAt=2026-08-11T02:02:50.204Z pushedAt=2026-08-12T02:21:34.200Z -->
 
 ## Overview
 
@@ -39,7 +41,7 @@ Defines the basic APIs of the camera.
 | [Camera_PhotoCaptureSetting](capi-oh-camera-camera-photocapturesetting.md) | Camera_PhotoCaptureSetting | Describes the parameters related to photo capture.|
 | [Camera_FrameShutterInfo](capi-oh-camera-camera-frameshutterinfo.md) | Camera_FrameShutterInfo | Describes the frame shutter information.|
 | [Camera_CaptureEndInfo](capi-oh-camera-camera-captureendinfo.md) | Camera_CaptureEndInfo | Describes the capture end information.|
-| [Camera_Rect](capi-oh-camera-camera-rect.md) | Camera_Rect | Defines the rectangle.<br> The detection point must be in the coordinate system (0-1), where the top-left corner is (0, 0) and the bottom-right corner is (1, 1).<br> The coordinate system is based on the horizontal device direction with the device's charging port on the right.<br> If the layout of the preview screen of an application is based on the vertical direction with the charging port on the lower side, the layout width and height are {w, h}, and the returned point is {x, y}, then the coordinate point after conversion is (1-y, x).|
+| [Camera_Rect](capi-oh-camera-camera-rect.md) | Camera_Rect | Defines a camera rectangle. This method is used to draw rectangles for various detection objects.<br> The coordinate system for detection points is based on the landscape device orientation, with the charging port on the right.<br> The origin of the coordinate system is (0, 0) at the upper left corner, and the coordinates at the lower right corner are the resolution of the camera preview stream.<br> All parameters are integer pixel values. **topLeftX** and **topLeftY** indicate the coordinates of the upper left corner of the rectangle, and **width** and **height** indicate the width and height of the rectangle. |
 | [Camera_MetadataObject](capi-oh-camera-camera-metadataobject.md) | Camera_MetadataObject | Describes the camera metadata.|
 | [Camera_TorchStatusInfo](capi-oh-camera-camera-torchstatusinfo.md) | Camera_TorchStatusInfo | Describes the flashlight status information.|
 | [Camera_SmoothZoomInfo](capi-oh-camera-camera-smoothzoominfo.md) | Camera_SmoothZoomInfo | Describes the smooth zoom information.|
@@ -129,7 +131,9 @@ Enumerates the camera error codes.
 | CAMERA_DEVICE_DISABLED = 7400108 | The camera is disabled for security reasons.|
 | CAMERA_DEVICE_PREEMPTED = 7400109 | The camera is preempted.|
 | CAMERA_UNRESOLVED_CONFLICTS_WITH_CURRENT_CONFIGURATIONS = 7400110 | The configuration conflicts with the current configuration.<br>**Since**: 12|
+| CAMERA_ERROR_OPTIONAL_PROPERTY_NOT_EXIST = 7400113 | The optional attribute does not exist.<br>**Since:** 26.0.0 |
 | CAMERA_SERVICE_FATAL_ERROR = 7400201 | The camera service is abnormal,<br> for example, no camera permission, camera service restart, or abnormal cross-process invocation.|
+| CAMERA_ERROR_CAPABILITY_NOT_SUPPORTED = 7400114 | The device currently does not support this capability.<br>**Since:** 26.0.0 |
 
 ### Camera_Status
 
@@ -264,7 +268,7 @@ Enumerates the camera output formats.
 | CAMERA_FORMAT_JPEG = 2000 | JPEG.|
 | CAMERA_FORMAT_YCBCR_P010 = 2001 | YCBCR P010.<br>**Since**: 12|
 | CAMERA_FORMAT_YCRCB_P010 = 2002 | YCRCB P010.<br>**Since**: 12|
-| CAMERA_FORMAT_HEIC = 2003 | HEIC.<br>**Since**: 13|
+| CAMERA_FORMAT_HEIC = 2003 | HEIC.<br>**Since:** 23 |
 
 ### Camera_FlashMode
 
@@ -456,6 +460,13 @@ Enumerates the metadata object types.
 | FACE_DETECTION = 0 | Metadata object used for face detection.<br> Since API version 23, you are advised to use the new enum value [CAMERA_METADATA_OBJECT_TYPE_FACE_DETECTION](capi-camera-h.md#camera_metadataobjecttype) instead.|
 | CAMERA_METADATA_OBJECT_TYPE_FACE_DETECTION = 0 | Metadata object used for face detection.<br>**Since**: 23|
 | CAMERA_METADATA_OBJECT_TYPE_HUMAN_BODY = 1 | Metadata object used for body detection.<br>**Since**: 23|
+| CAMERA_METADATA_OBJECT_TYPE_CAT_FACE = 2 | Metadata object used for cat face detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_CAT_BODY = 3 | Metadata object used for cat body detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_DOG_FACE = 4 | Metadata object used for dog face detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_DOG_BODY = 5 | Metadata object used for dog body detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_SALIENT_DETECTION = 6 | Metadata object used for salient object detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_BAR_CODE_DETECTION = 7 | Metadata object used for QR code detection.<br>**Since:** 26.0.0 |
+| CAMERA_METADATA_OBJECT_TYPE_BASIC_FACE_DETECTION = 8 | Metadata object used for basic face detection.<br>**Since:** 26.0.0 |
 
 ### Camera_TorchMode
 
@@ -755,6 +766,35 @@ Enumerates the metadata object emotion types.
 | OH_CAMERA_METADATA_OBJECT_EMOTION_SMILE = 2 | Smile.<br>**Since**: 26.0.0|
 | OH_CAMERA_METADATA_OBJECT_EMOTION_SURPRISE = 3 | Surprise.<br>**Since**: 26.0.0|
 
+### OH_Camera_AutomotiveCameraPosition
+
+```c
+enum OH_Camera_AutomotiveCameraPosition
+```
+
+**Description**
+
+Enumerates the camera positions on a car.
+
+**Since**: 26.0.0
+
+| Value | Description |
+| -- | -- |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_OTHER = 0 | Camera at another position outside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_FRONT = 1 | Front camera outside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_REAR = 2 | Rear camera outside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_LEFT = 3 | Left camera outside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_EXTERIOR_RIGHT = 4 | Right camera outside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_OTHER = 5 | Camera at another position inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_LEFT = 6 | Left camera in the first row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_CENTER = 7 | Central camera in the first row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_1_RIGHT = 8 | Right camera in the first row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_LEFT = 9 | Left camera in the second row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_CENTER = 10 | Central camera in the second row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_2_RIGHT = 11 | Right camera in the second row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_LEFT = 12 | Left camera in the third row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_CENTER = 13 | Central camera in the third row inside the car.<br>**Since:** 26.0.0 |
+| OH_CAMERA_AUTOMOTIVE_CAMERA_POSITION_INTERIOR_ROW_3_RIGHT = 14 | Right camera in the third row inside the car.<br>**Since:** 26.0.0 |
 
 ## Function Description
 

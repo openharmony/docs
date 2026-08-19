@@ -36,21 +36,21 @@
 
 **NavBarPosition.Start**
 
-**图4** 系统语言为LTR时NavBarPosition.Start效果
+**图5** 系统语言为LTR时NavBarPosition.Start效果
 
 ![img](figures/LTR-NavBarPositionStart.png)
 
-**图5** 系统语言为RTL时NavBarPosition.Start效果
+**图6** 系统语言为RTL时NavBarPosition.Start效果
 
 ![img](figures/RTL-NavBarPositionStar.png)
 
 **NavBarPosition.End**
 
-**图6** 系统语言为LTR时NavBarPosition.End效果
+**图7** 系统语言为LTR时NavBarPosition.End效果
 
 ![img](figures/LTR-NavBarPositionEnd.png)
 
-**图7** 系统语言为RTL时NavBarPosition.End效果
+**图8** 系统语言为RTL时NavBarPosition.End效果
 
 ![img](figures/RTL-NavBarPositionEnd.png)
 
@@ -58,11 +58,11 @@
 
 [enableDragBar](../reference/apis-arkui/arkui-ts/ts-basic-components-navigation.md#enabledragbar14)用于控制是否显示分栏的拖动按钮。
 
-**图8** enableDragBar为false效果
+**图9** enableDragBar为false效果
 
 ![img](figures/enableDragBar-false.png)
 
-**图9** enableDragBar为true
+**图10** enableDragBar为true
 
 ![img](figures/enableDragBar-true.png)
 
@@ -233,6 +233,6 @@ struct Index {
 }
 ```
 
-**图10** 运行效果
+**图11** 运行效果
 
 ![img](figures/NavigationSplitModeExample.gif)

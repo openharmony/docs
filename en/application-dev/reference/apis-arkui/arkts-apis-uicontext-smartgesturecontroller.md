@@ -6,7 +6,7 @@
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=1679aa2b39603a323ce91f1907155d8cbd2b330b translatedAt=2026-08-11T01:54:14.191Z pushedAt=2026-08-11T06:05:03.590Z -->
+<!-- md-trans-meta sourceCommit=d71e41a89660c603a964e36c75fab177ddfc6f81 translatedAt=2026-08-19T02:11:26.418Z pushedAt=2026-08-19T03:06:52.132Z -->
 
 Provides the capabilities of smart gestures enabling, listening, selected state control, and dynamic smart gesture behaviors decision. It is suitable for scenarios where an app integrates smart gestures, listens for the system's default gesture handling intent, and customizes gesture response behaviors, helping the app flexibly control the smart gesture interaction process.
 
@@ -493,26 +493,36 @@ struct SmartGestureControllerExample {
       if (node) {
         resolution.selectedProposal = new ClickActionProposal(node);
       }
-    } else if (proposal.action === SmartGestureAction.SELECT) { // Override as the select action.
+    }
+    // Override as the select action.
+    else if (proposal.action === SmartGestureAction.SELECT) {
       const node = this.getUIContext().getFrameNodeById('target_text');
       if (node) {
         resolution.selectedProposal = new SelectActionProposal(node);
       }
-    } else if (proposal.action === SmartGestureAction.PAGE_FORWARD) { // Override as the page turning action.
+    }
+    // Override as the page-turn action.
+    else if (proposal.action === SmartGestureAction.PAGE_FORWARD) {
       const node = this.getUIContext().getFrameNodeById('scroll_area');
       if (node) {
         // pageCount: The value range is [0, +∞), in pages.
         resolution.selectedProposal = new PageSwitchActionProposal(node, 1);
       }
-    } else if (proposal.action === SmartGestureAction.SCROLL_FORWARD) { // Override as the scroll action.
+    }
+    // Override as the scroll action.
+    else if (proposal.action === SmartGestureAction.SCROLL_FORWARD) {
       const node = this.getUIContext().getFrameNodeById('scroll_area');
       if (node) {
         // distance: The value range is [0, +∞), in vp.
         resolution.selectedProposal = new ScrollActionProposal(node, 180);
       }
-    } else if (proposal.action === SmartGestureAction.NONE) { // Override as the empty action (no operation is performed).
+    }
+    // Override as an empty action (no operation is performed).
+    else if (proposal.action === SmartGestureAction.NONE) {
       resolution.selectedProposal = new NoneActionProposal();
-    } else if (proposal.action === SmartGestureAction.BACK_PRESS) { // Override as the back action.
+    }
+    // Override as the back action.
+    else if (proposal.action === SmartGestureAction.BACK_PRESS) {
       resolution.selectedProposal = new BackPressActionProposal();
     }
 
@@ -604,4 +614,3 @@ struct SmartGestureControllerExample {
 ```
 
 ![smartgesture_06](figures/smartgesture_06.PNG)
-<!--no_check-->

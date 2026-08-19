@@ -231,8 +231,8 @@ export default class EntryAbility extends UIAbility {
       console.info("CREATE VIRTUAL TABLE OK");
       await rdbStore.executeSql("INSERT INTO pages(keywords, title, body) VALUES('歌曲', 'xxx', '1234歌曲，像北哈升');");
       console.info("INSERT VIRTUAL TABLE OK, body is '1234歌曲，像北哈升'");
-      await rdbStore.executeSql("INSERT INTO pages(keywords, title, body) VALUES('歌曲', 'xxx', '我爱北京天安门, 天安门上太阳升');");
-      console.info("INSERT VIRTUAL TABLE OK, body is '我爱北京天安门, 天安门上太阳升'");
+      await rdbStore.executeSql("INSERT INTO pages(keywords, title, body) VALUES('歌曲', 'xxx', '我爱北京天安门，天安门上太阳升');");
+      console.info("INSERT VIRTUAL TABLE OK, body is '我爱北京天安门，天安门上太阳升'");
       let resultSet = await rdbStore.querySql("select * from pages where body match '天安门';");
       while (resultSet.goToNextRow()) {
         console.info(`query result success, match body:${resultSet.getString(resultSet.getColumnIndex("body"))}`);

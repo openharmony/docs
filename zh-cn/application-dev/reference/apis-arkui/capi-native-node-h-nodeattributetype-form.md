@@ -725,13 +725,13 @@ NODE_SLIDER_ENABLE_HAPTIC_FEEDBACK = 17013
 
 | 参数项 | 描述 |
 | -- | -- |
-| .value[0].f32 | 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。 |
+| .value[0].i32 | 是否开启触控反馈。默认值：true，true表示开启触控反馈，false则表示不开启触控反馈。 |
 
 **返回：**
 
 | 类型 | 说明 |
 | -- | -- |
-| .value[0].f32 | 是否开启触控反馈。 |
+| .value[0].i32 | 是否开启触控反馈。 |
 
 ## NODE_SLIDER_PREFIX
 

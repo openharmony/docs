@@ -1,10 +1,12 @@
 # Debugging and Profiling JS Code Using JSVM-API
-<!--Kit: NDK Development-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:35:40.688Z pushedAt=2026-08-12T11:03:08.320Z -->
 
 ## Introduction
 
@@ -13,6 +15,7 @@ JSVM-API provide APIs for retrieving JavaScript virtual machine (JSVM) instances
 ## Basic Concepts
 
 - JSVM: A JSVM is an environment for executing JavaScript (JS) code. It parses and executes JS code, manages memory, and provides interaction with other system resources. For example, you can use **OH_JSVM_GetVM** to retrieve JSVM instances in a specific environment. This is one of the basic JSVM management operations.
+
 - Debug: As an important activity in program development, debugging involves locating, analyzing, and rectifying code errors. For example, you can use **OH_JSVM_OpenInspector** to open inspector, a tool used to debug JS code, on a host and port and view the running status of an application on a real-time basis. You can use **OH_JSVM_CloseInspector** to close inspector.
 
 ## Available APIs
@@ -39,11 +42,13 @@ Retrieves VM instances in an environment.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_get_vm](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+#include "hilog/log.h"
+// ...
 
 // Define OH_JSVM_GetVM.
 static JSVM_Value GetVM(JSVM_Env env, JSVM_CallbackInfo info)
@@ -70,6 +75,8 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getVM", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+const char *SRC_CALL_NATIVE = R"JS(getVM())JS";
 ```
 
 JS example:
@@ -77,10 +84,10 @@ JS example:
 ```c++
 const char *srcCallNative = R"JS(getVM())JS";
 ```
-<!-- @[oh_jsvm_get_vm](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getvm/src/main/cpp/hello.cpp) -->
 
 Expected result:
-```
+
+```txt
 JSVM OH_JSVM_GetVM: success
 ```
 
@@ -90,11 +97,13 @@ Obtains heap statistics of a VM.
 
 CPP code:
 
-```cpp
-// hello.cpp
+<!-- @[oh_jsvm_get_heap_statistics](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
+
+``` C++
 #include "napi/native_api.h"
+#include "hilog/log.h"
 #include "ark_runtime/jsvm.h"
-#include <hilog/log.h>
+// ...
 
 // Define OH_JSVM_GetHeapStatistics.
 void PrintHeapStatistics(JSVM_HeapStatistics result)
@@ -138,6 +147,8 @@ static JSVM_CallbackStruct *method = param;
 static JSVM_PropertyDescriptor descriptor[] = {
     {"getHeapStatistics", nullptr, method++, nullptr, nullptr, nullptr, JSVM_DEFAULT},
 };
+
+const char *SRC_CALL_NATIVE = R"JS(getHeapStatistics())JS";
 ```
 
 JS example:
@@ -145,9 +156,10 @@ JS example:
 ```c++
 const char *srcCallNative = R"JS(getHeapStatistics())JS";
 ```
-<!-- @[oh_jsvm_get_heap_statistics](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/JSVMAPI/JsvmUsageGuide/UsageInstructionsTwo/getheapstatistics/src/main/cpp/hello.cpp) -->
-Expected result:
-```
+
+Expected output (virtual machine heap statistics, which change in real time):
+
+```txt
 JSVM API heap totalHeapSize: 1597440
 JSVM API heap totalHeapSizeExecutable: 0
 JSVM API heap totalPhysicalSize: 1323008
@@ -181,7 +193,7 @@ Obtains the current heap snapshot and outputs it to the stream.
 
 ### OH_JSVM_OpenInspector
 
-Opens an inspector instance on a specified host and port for debugging JS code.
+Activates the inspector on the specified host and port for debugging JS code.
 
 ### OH_JSVM_CloseInspector
 

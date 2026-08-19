@@ -87,7 +87,7 @@ pick(): Promise&lt;PickInfo&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**
@@ -150,7 +150,7 @@ capture(options?: CaptureOption): Promise&lt;image.PixelMap&gt;
 | ------- | -------------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Incorrect parameter types. 2. Parameter verification failed. |
-| 801 | Capability not supported on this device. |
+| 801 | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**

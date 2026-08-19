@@ -414,7 +414,7 @@ let publishFormCrossBundleControlCallback: formInfo.PublishFormCrossBundleContro
 
 ## GetWantParamsCallback
 
-type GetWantParamsCallback = (formInfo: Array&lt;FormInfo&gt;) => Array&lt;Record&lt;string, Object&gt;&gt;
+type GetWantParamsCallback = (formInfo: Array&lt;formInfo.FormInfo&gt;) => Array&lt;Record&lt;string, Object&gt;&gt;
 
 获取卡片参数回调。
 

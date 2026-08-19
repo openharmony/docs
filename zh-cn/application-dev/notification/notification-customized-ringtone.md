@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-自定义铃声可通过[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)携带sound字段来指定，不指定该字段默认为系统铃声。
+[自定义铃声](notification-glossary.md#customized-ringtone自定义铃声)可通过[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)携带sound字段来指定，不指定该字段默认为系统铃声。
 
 - 资源文件：应用预置的音频文件，资源文件必须放在resources/rawfile目录下，使用时直接传入文件名。
 - 沙箱文件：网络下载或者用户生成的音频文件，必须放在[沙箱文件目录](../file-management/app-sandbox-directory.md#应用文件目录与应用文件路径)EL1区域的files目录或者其子目录下，传入格式为uri::{fileUri}，其中fileUri是通过[getUriFromPath](../reference/apis-core-file-kit/js-apis-file-fileuri.md#fileurigeturifrompath)获取的路径。<br/>
@@ -102,7 +102,7 @@
     let sandboxFileUri: string = fileUri.getUriFromPath(sandboxFilePath)
     let soundFile: string = 'uri::' + sandboxFileUri; // 必须以uri::开头，且路径中不能包含'../'和'/..'
     ```
-3. 发布携带自定义铃声的通知。
+3. 发布携带[自定义铃声](notification-glossary.md#customized-ringtone自定义铃声)的通知。
 
     <!-- @[specified_customized_ringtone_publish_notification](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/SpecifiedCustomizedRingtone.ets) --> 
     

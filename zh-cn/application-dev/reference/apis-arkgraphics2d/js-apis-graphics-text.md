@@ -39,7 +39,7 @@ setTextHighContrast(action: TextHighContrast): void
 
 可调用此接口设置，也可通过系统设置界面中**高对比度文字配置开关**进行开启/关闭。使用此接口设置开启/关闭文字渲染高对比度配置的优先级高于系统开关设置。
 
-该接口针对应用的文字自绘制场景不生效。
+该接口针对应用通过Canvas等接口自行绘制文字的场景不生效，仅对使用系统文本组件渲染的场景生效。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -63,12 +63,12 @@ setTextUndefinedGlyphDisplay(noGlyphShow: TextUndefinedGlyphDisplay): void
 
 设置字符映射到.notdef（未定义）字形时要使用的字形类型。
 
-影响此调用后呈现的所有文本。
+调用此接口后，后续渲染的文本若包含未定义字形，均按此设置显示。
 
 此配置会影响显示字体中未定义字符的方式：
 
-- 默认行为遵循字体的内部.notdef字形设计。
-- 开启后将强制使缺失字形的字符以豆腐块形式显示。
+- 默认使用字体的.notdef字形设计。
+- 开启后，缺失字形的字符将以豆腐块形式显示。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -114,7 +114,7 @@ matchFontDescriptors(desc: FontDescriptor): Promise&lt;Array&lt;FontDescriptor&g
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -181,7 +181,7 @@ getSystemFontFullNamesByType(fontType: SystemFontType): Promise&lt;Array&lt;stri
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -251,7 +251,7 @@ getFontDescriptorByFullName(fullName: string, fontType: SystemFontType): Promise
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
 
 **示例：**
 
@@ -307,7 +307,7 @@ getFontDescriptorsFromPath(path: string | Resource): Promise&lt;Array&lt;FontDes
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | -----  | ------------------ | ---- | --------------------------------- |
-|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 $rawfile("工程中resources/rawfile目录下的文件名称")。 |
+|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径。支持两种格式：<br/>1. 以"file://"开头的字体文件绝对路径，如"file:///system/fonts/test.ttf"。<br/>2. 工程resources/rawfile目录下的文件，格式为$rawfile('文件名称')，如$rawfile('test.ttf')。 |
 
 **返回值：**
 
@@ -326,7 +326,7 @@ struct GetFontDescriptorsFromPathTest {
   build() {
     Column({ space: 10 }) {
       Button("get fontDescriptors")
-        .onClick(async () => {
+        .onClick(() => {
           let promise = text.getFontDescriptorsFromPath("file:///system/fonts/NotoSansCJK-Regular.ttc")
           promise.then((fontFullDescriptors) => {
             for (let index = 0; index < fontFullDescriptors.length; index++) {
@@ -365,8 +365,8 @@ getFontUnicodeSet(path: string | Resource, index: number): Promise&lt;Array&lt;n
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | -----  | ------------------ | ---- | --------------------------------- |
-|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 $rawfile("工程中resources/rawfile目录下的文件名称")。 |
-|  index  | number | 是 | 字体文件格式为ttc/otc时，指定加载的字体索引。非ttc/otc格式文件索引值只能指定为0。如果该参数为负数或超出字体文件实际索引范围，将返回空数组。 |
+|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 $rawfile('工程中resources/rawfile目录下的文件名称')。 |
+|  index  | number | 是 | 字体文件格式为ttc/otc时，指定加载的字体索引，取值范围为[0, count-1]，其中count为字体文件包含的字体数量。非ttc/otc格式文件索引值只能指定为0。如果该参数为负数或超出字体文件实际索引范围，将返回空数组。 |
 
 **返回值：**
 
@@ -385,7 +385,7 @@ struct GetFontUnicodeSetTest {
   build() {
     Column({ space: 10 }) {
       Button("get fontUnicode")
-        .onClick(async () => {
+        .onClick(() => {
           let promise = text.getFontUnicodeSet("file:///system/fonts/HMSymbolVF.ttf", 0)
           promise.then((unicodeSet) => {
             for (let index = 0; index < unicodeSet.length; index++) {
@@ -417,7 +417,7 @@ getFontCount(path: string | Resource): number
 
 | 参数名 | 类型               | 必填 | 说明                              |
 | -----  | ------------------ | ---- | --------------------------------- |
-|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 $rawfile("工程中resources/rawfile目录下的文件名称")。 |
+|  path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是 | 需要查询的字体文件的路径，应为 "file:// + 字体文件绝对路径" 或 $rawfile('工程中resources/rawfile目录下的文件名称')。 |
 
 **返回值：**
 
@@ -498,7 +498,7 @@ struct GetFontPathsByTypeTest {
 
 isFontSupported(fontURL: string | Resource): boolean
 
-检查系统是否支持指定的字体文件。
+检查系统是否支持指定的字体文件。可在加载自定义字体前预先验证字体文件的可用性，避免因字体不支持导致文本渲染异常。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -679,7 +679,7 @@ struct isFontSupportedTest {
 |-----------------------------| ---- | -------------------------------------------------------------------------------------------------------------------- |
 | NORMAL                      | 0    | 默认的换行规则。依据各自语言的规则，允许在字间发生换行。                                                                  |
 | BREAK_ALL                   | 1    | 对于Non-CJK（非中文，日文，韩文）文本允许在任意字符内发生换行。该值适合包含一些非亚洲文本的亚洲文本，比如使连续的英文字符断行。|
-| BREAK_WORD                  | 2    | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行破发点（如空白符）时，优先按破发点换行，保障单词优先完整显示。若整一行文本均无断行破发点时，则在任意2个字符间断行。对于CJK与NORMAL效果一致。|
+| BREAK_WORD                  | 2    | 对于Non-CJK的文本可在任意2个字符间断行，一行文本中有断行点（如空白符）时，优先按断行点换行，保障单词优先完整显示。若整一行文本均无断行点时，则在任意2个字符间断行。对于CJK文本，此策略与NORMAL效果一致。|
 | BREAK_HYPHEN<sup>18+</sup>  | 3    | 每行末尾单词尝试通过连字符“-”进行断行，若无法添加连字符“-”，则跟`BREAK_WORD`保持一致。<br/>使用此断词策略时，需与[TextStyle](#textstyle)中`locale`属性配合使用，通过locale定义语言环境共同作用影响断词效果。                        |
 
 ## Decoration
@@ -828,7 +828,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## TextShadow
 
-字体阴影。
+文本阴影。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -836,8 +836,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称          | 类型                                                 | 只读 | 可选 | 说明                               |
 | ------------- | ---------------------------------------------------- | --  | ---  | --------------------------------- |
-| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 否  |  是   | 字体阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
-| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | 否  |  是   | 字体阴影基于当前文本的偏移位置，横、纵坐标要大于等于零，单位为物理像素px。    |
+| color         | [common2D.Color](js-apis-graphics-common2D.md#color) | 否  |  是   | 文本阴影的颜色，默认为黑色Color(255, 0, 0, 0)。        |
+| point         | [common2D.Point](js-apis-graphics-common2D.md#point12) | 否  |  是   | 文本阴影基于当前文本的偏移位置，横、纵坐标要大于等于零，单位为物理像素px，默认为common2D.Point(0, 0)。 |
 | blurRadius    | number                                               | 否  |  是   | 模糊半径，浮点数，单位为物理像素px，默认为0.0。       |
 
 ## RectStyle
@@ -866,7 +866,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| name      | string                                               | 否  |  否   | 字体特征键值对中的关键字标识的字符串。       |
+| name      | string                                               | 否  |  否   | 字体特征键值对中的关键字标识，如'liga'（标准连字）、'kern'（字距调整）等。 |
 | value     | number                                               | 否  |  否   | 字体特征键值对的值。                        |
 
 ## FontVariation
@@ -877,7 +877,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 | 名称      | 类型                                                 | 只读 | 可选 | 说明                                       |
 | --------- | ---------------------------------------------------- | --  | ---  | ----------------------------------------- |
-| axis      | string                                               | 否  |  否   | 可变字体属性键值对中的关键字标识的字符串。<br>**原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。       |
+| axis      | string                                               | 否  |  否   | 可变字体属性键值对中的关键字标识，如'wght'（字重）、'wdth'（字宽）和'ital'（斜体）等。<br>**原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。 |
 | value     | number                                               | 否  |  否   | 可变字体属性键值对的值。<br>**原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。                        |
 | isNormalized<sup>24+</sup>     | boolean                         | 否  |  是   | 是否归一化。值为true时，value字段取值范围为-1~1，映射字体文件中配置的最小值到最大值范围，0表示字体文件中配置的默认值；值为false时，value字段取值范围为字体文件本身支持调节的范围；默认为false。<br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。  |
 
@@ -910,7 +910,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## TextStyle
 
-文本样式。
+文本样式，用于控制文本的视觉表现属性，包括字体、颜色、字号、间距、装饰线和阴影等。TextStyle通过[ParagraphBuilder](#paragraphbuilder)的[pushStyle](#pushstyle)方法应用到后续添加的文本内容，与[ParagraphStyle](#paragraphstyle)（控制段落级别属性）配合使用。同一段落中可通过多次pushStyle实现对不同文本片段应用不同样式。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -924,22 +924,22 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | fontWidth<sup>21+</sup>     | [FontWidth](#fontwidth)                              | 否 | 是 | 字体宽度，默认为NORMAL。                          |
 | fontStyle     | [FontStyle](#fontstyle)                              | 否 | 是 | 字体样式，默认为常规样式。                          |
 | baseline      | [TextBaseline](#textbaseline)                        | 否 | 是 | 文本基线类型，默认为ALPHABETIC。               |
-| fontFamilies  | Array\<string>                                       | 否 | 是 | 字体家族名称列表，默认为空，匹配系统字体。                    |
-| fontTypefaces | Array\<[drawing.Typeface](arkts-apis-graphics-drawing-Typeface.md)> | 否 | 是 | 指定排版字体对象数组，用于优先使用指定的字体对象进行文本塑形，跳过字体匹配流程。当数组中某个字体对象无法塑形部分文字时，未能塑形的文字将使用系统字体进行塑形。默认为空数组，表示不指定字体对象，使用默认字体匹配流程。<br/>当fontTypefaces与[fontFamilies](#textstyle)同时设置时，fontTypefaces优先级更高。<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| fontFamilies  | Array\<string>                                       | 否 | 是 | 字体家族名称列表，默认为空，匹配系统字体。使用自定义字体时，需将加载字体时指定的名称填入此列表中。当与fontTypefaces同时设置时，fontTypefaces优先级更高，fontFamilies不生效。                    |
+| fontTypefaces | Array\<[drawing.Typeface](arkts-apis-graphics-drawing-Typeface.md)> | 否 | 是 | 指定排版字体对象数组，用于优先使用指定的字体对象进行文本塑形，跳过字体匹配流程。当数组中某个字体对象无法塑形部分文字时，未能塑形的文字将使用系统字体进行塑形。默认为空数组，表示不指定字体对象，使用默认字体匹配流程。<br/>当fontTypefaces与[TextStyle](#textstyle).fontFamilies同时设置时，fontTypefaces优先级更高。<br>**起始版本：** 26.0.0<br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 | fontSize      | number                                               | 否 | 是 | 字体大小，浮点数，默认为14.0，单位为物理像素px。  |
 | letterSpacing | number                                               | 否 | 是 | 字符间距，正数拉开字符距离，如果为负数则拉近字符距离，浮点数，单位为物理像素px，默认为0.0。|
 | wordSpacing   | number                                               | 否 | 是 | 单词间距，浮点数，单位为物理像素px，默认为0.0。                 |
 | heightScale   | number                                               | 否 | 是 | 行高缩放倍数，浮点数，默认为1.0，heightOnly为true时生效。              |
-| heightOnly    | boolean                                              | 否 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距，默认为false。|
+| heightOnly    | boolean                                              | 否 | 是 | true表示根据字体大小和heightScale设置文本框的高度，false表示根据行高和行距设置文本框高度，默认为false。 |
 | halfLeading   | boolean                                              | 否 | 是 | true表示将行间距平分至行的顶部与底部，false则不平分，默认为false。|
-| ellipsis      | string                                               | 否 | 是 | 省略号文本，表示省略号生效后使用该字段值替换省略号部分。       |
+| ellipsis      | string                                               | 否 | 是 | 省略号文本，表示省略号生效后使用该字段值替换省略号部分，默认为空字符串，即使用系统默认省略号…（U+2026）。与ParagraphStyle的tab属性共同配置时，tab属性无效。 |
 | ellipsisMode  | [EllipsisMode](#ellipsismode)                        | 否 | 是 | 省略号类型，默认为END，行尾省略号。                       |
 | locale        | string                                               | 否 | 是 | 语言类型，例如'en-Latn'代表英文(拉丁文字)，'zh-Hans'代表简体中文，'zh-Hant'代表繁体中文。支持language-script格式的两段式语言标签，language遵循ISO 639-1规范，script遵循ISO 15924规范。未指定locale或者设置为空字符串或为undefined时，默认locale为'zh-Hans'。 |
-| baselineShift | number                                               | 否 | 是 | 文本下划线的偏移距离，浮点数，单位为物理像素px，默认为0.0。                 |
-| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 否 | 是 | 文本字体特征数组。|
-| fontVariations| Array\<[FontVariation](#fontvariation)>              | 否 | 是 | 可变字体属性数组。|
-| textShadows   | Array\<[TextShadow](#textshadow)>                    | 否 | 是 | 文本阴影数组。|
-| backgroundRect| [RectStyle](#rectstyle)                              | 否 | 是 | 文本矩形框样式。|
+| baselineShift | number                                               | 否 | 是 | 文本基线的垂直偏移距离，浮点数，单位为物理像素px，默认为0.0。 |
+| fontFeatures  | Array\<[FontFeature](#fontfeature)>                  | 否 | 是 | 文本字体特征数组。当需要启用或禁用特定字体特性（如连字、字距调整等）时传入。|
+| fontVariations| Array\<[FontVariation](#fontvariation)>              | 否 | 是 | 可变字体属性数组。当需要调整可变字体的可变轴参数（如字重轴、字宽轴等）时传入。|
+| textShadows   | Array\<[TextShadow](#textshadow)>                    | 否 | 是 | 文本阴影数组。当需要为文本添加阴影效果时传入。|
+| backgroundRect| [RectStyle](#rectstyle)                              | 否 | 是 | 文本矩形框样式。当需要为文本添加背景矩形框（如设置背景色、圆角等）时传入。|
 | badgeType<sup>20+</sup>   | [TextBadgeType](#textbadgetype20) | 否   | 是   | 设置文本排版时是否使能上标或下标。TEXT_SUPERSCRIPT表示使能上标，TEXT_SUBSCRIPT表示使能下标，默认值为TEXT_BADGE_NONE表示不使能。|
 | lineHeightMaximum<sup>21+</sup> | number | 否   | 是   | 行高上限，单位为物理像素px。若同时应用行高缩放，行高上限在[TextStyle](#textstyle).heightScale大于0时生效。取值为正数浮点数，默认值为Number.MAX_VALUE。 |
 | lineHeightMinimum<sup>21+</sup> | number | 否 | 是 | 行高下限，单位为物理像素px。若同时应用行高缩放，行高下限在[TextStyle](#textstyle).heightScale大于0时生效。取值范围为非负浮点数，默认值为0。 |
@@ -998,8 +998,8 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 | variationAxisRecords<sup>24+</sup> | Array<[FontVariationAxis](#fontvariationaxis24)> | 否 | 是 | 字体可变轴记录数组，用于描述字体支持的可变轴信息。非可变字体此字段为undefined。<br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。 |
 | variationInstanceRecords<sup>24+</sup> | Array<[FontVariationInstance](#fontvariationinstance24)> | 否 | 是 | 字体可变实例记录数组，用于描述字体支持的可变实例信息。非可变字体此字段为undefined。<br>**原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。 |
 | index<sup>23+</sup> | number | 否 | 是 | 字体索引，字体文件为ttc类型时有效，ttf类型统一为0。<br>**原子化服务API**：从API version 23开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| languages | Array\<string> | 否 | 是 | 字体语言，默认为undefined。<br>**起始版本：** 26.0.0<br>**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| fontFeatures | Array\<string> | 否 | 是 | 字体特性，默认为undefined。<br>**起始版本：** 26.0.0<br>**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| languages | Array\<string> | 否 | 是 | 字体支持的语言列表，默认为空数组。数组中每个元素为BCP 47格式的语言标签字符串（如'en'、'zh-Hans'），表示该字体支持的书写语言。<br>**起始版本：** 26.0.0<br>**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| fontFeatures | Array\<string> | 否 | 是 | 字体支持的OpenType特性标签数组，默认为空数组。数组中每个元素为特性标签字符串（如'liga'表示标准连字、'kern'表示字距调整），表示该字体支持的字体特性。<br>**起始版本：** 26.0.0<br>**原子化服务API**：从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 ## FontVariationAxis<sup>24+</sup>
 
@@ -1035,7 +1035,7 @@ EllipsisMode.START和EllipsisMode.MIDDLE仅在单行超长文本生效。
 
 ## FontCollection
 
-字体集。
+字体集，用于管理文本排版所需的字体资源。FontCollection为[ParagraphBuilder](#paragraphbuilder)提供字体匹配和字形查找能力，是文本排版管线的基础组件。提供全局实例（[getGlobalInstance](#getglobalinstance)）和本地实例（[getLocalInstance](#getlocalinstance22)），全局实例加载的字体在应用内共享，适用于普通应用场景；本地实例各实例独立，加载的字体仅对当前实例生效、实例间互不影响，推荐卡片场景使用。支持通过[loadFontSync](#loadfontsync)或[loadFont](#loadfont18)加载自定义字体。
 
 ### getGlobalInstance
 
@@ -1051,7 +1051,7 @@ static getGlobalInstance(): FontCollection
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| [FontCollection](#fontcollection) | FontCollection对象。|
+| [FontCollection](#fontcollection) | 应用全局FontCollection实例对象，可用于管理字体加载、卸载和排版等操作。 |
 
 **示例：**
 
@@ -1092,7 +1092,7 @@ static getLocalInstance(): FontCollection
 
 | 类型   | 说明                |
 | ------ | ------------------ |
-| [FontCollection](#fontcollection) | FontCollection对象。|
+| [FontCollection](#fontcollection) | 本地FontCollection实例对象，推荐卡片场景使用，可用于管理字体加载、卸载和排版等操作。 |
 
 **示例：**
 
@@ -1179,7 +1179,7 @@ loadFont(name: string, path: string | Resource): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1187,7 +1187,7 @@ loadFont(name: string, path: string | Resource): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types; 3. Parameter verification failed.|
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1202,8 +1202,8 @@ struct RenderTest {
   async loadFontPromise() {
     fontCollection.loadFont('testName', 'file:///system/fonts/a.ttf').then((data) => {
       console.info(`Succeeded in doing loadFont ${JSON.stringify(data)} `);
-    }).catch((error: Error) => {
-      console.error(`Failed to do loadFont, error: ${JSON.stringify(error)} message: ${error.message}`);
+    }).catch((error: BusinessError) => {
+      console.error(`Failed to do loadFont, error: ${error.code} message: ${error.message}`);
     });
   }
 
@@ -1233,7 +1233,7 @@ loadFontSyncWithCheck(name: string, path: string | Resource, index?: number): vo
 | 参数名 | 类型               | 必填 | 说明                              |
 | ----- | ------------------ | ---- | --------------------------------------------------------------------------------- |
 | name  | string             | 是   | 加载字体成功后，该字体对应的名称，可填写任意字符串，可使用该名称指定并使用该字体。 |
-| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 $rawfile("字体文件路径")。 |
+| path  | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 $rawfile('字体文件路径')。 |
 |   index  | number | 否   | 字体文件格式为ttc时，指定加载的字体索引。默认为0：表示加载ttc的第一个字体。<br>非ttc格式文件索引值无意义，若指定索引，只能为0。 |
 
 **错误码：**
@@ -1278,8 +1278,9 @@ struct Index {
           fc.loadFontSyncWithCheck(this.fontFamily, 'file:///system/fonts/NotoSansCJK-Regular.ttc', 1);
           try {
             fc.loadFontSyncWithCheck(this.fontFamily, '/system/fonts/NotoSansCJK-Regular.ttc', 1);
-          } catch (e) {
-            console.error(`Failed to do loadFontWithCheck, error: ${JSON.stringify(e)} message: ${e.message}`);
+          } catch (error) {
+            let err: BusinessError = error as BusinessError;
+            console.error(`Failed to do loadFontWithCheck, error: ${err.code} message: ${err.message}`);
           }
         })
     }
@@ -1306,7 +1307,7 @@ loadFontWithCheck(name: string, path: string | Resource, index?: number): Promis
 |   参数名 | 类型               | 必填 | 说明                              |
 |   -----  | ------------------ | ---- | --------------------------------------------------------------------------------- |
 |   name   | string             | 是   | 加载字体成功后，该字体对应的名称，可填写任意字符串，可使用该名称指定并使用该字体。 |
-|   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 $rawfile("字体文件路径")。 |
+|   path   | string \| [Resource](../apis-arkui/arkui-ts/ts-types.md#resource) | 是   | 需要加载的字体文件的路径，支持两种格式： "file:// + 字体文件绝对路径" 或 $rawfile('字体文件路径')。 |
 |   index  | number | 否   | 字体文件格式为ttc时，指定加载的字体索引。默认为0：表示加载ttc的第一个字体。<br>非ttc格式文件索引值无意义，若指定索引，只能为0。 |
 
 **返回值：**
@@ -1356,13 +1357,13 @@ struct Index {
         .onClick(() => {
           fc.loadFontWithCheck(this.fontFamily, 'file:///system/fonts/NotoSansCJK-Regular.ttc', 1).then((data) => {
             console.info(`Succeeded in doing loadFontWithCheck ${JSON.stringify(data)} `);
-          }).catch((error: Error) => {
-            console.error(`Failed to do loadFontWithCheck, error: ${JSON.stringify(error)} message: ${error.message}`);
+          }).catch((error: BusinessError) => {
+            console.error(`Failed to do loadFontWithCheck, error: ${error.code} message: ${error.message}`);
           });
           fc.loadFontWithCheck(this.fontFamily, '/system/fonts/NotoSansCJK-Regular.ttc', 1).then((data) => {
             console.info(`Succeeded in doing loadFontWithCheck ${JSON.stringify(data)} `);
-          }).catch((error: Error) => {
-            console.error(`Failed to do loadFontWithCheck, error: ${JSON.stringify(error)} message: ${error.message}`);
+          }).catch((error: BusinessError) => {
+            console.error(`Failed to do loadFontWithCheck, error: ${error.code} message: ${error.message}`);
           });
         })
     }
@@ -1458,7 +1459,7 @@ unloadFont(name: string): Promise\<void>
 
 | 类型           | 说明                      |
 | -------------- | ------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **示例：**
 
@@ -1496,7 +1497,7 @@ struct UnloadFontTest {
 
 clearCaches(): void
 
-清理字体排版缓存（字体排版缓存本身设有内存上限和清理机制，所占内存有限，如无内存要求，不建议清理）。
+清理字体排版缓存。字体排版缓存本身设有内存上限和自动清理机制，所占内存有限。如无特殊内存要求，不建议清理。
 
 **卡片能力：** 从API version 22开始，该接口支持在ArkTS卡片中使用。
 
@@ -1567,7 +1568,7 @@ struct Index {
 
 ## ParagraphStyle
 
-段落样式。
+段落样式，用于控制段落的整体布局行为，包括对齐方式、断行策略和最大行数等属性。ParagraphStyle作为[ParagraphBuilder](#paragraphbuilder)构造函数的必要参数，与[TextStyle](#textstyle)（控制文本级别样式）分工协作，共同决定段落的最终排版效果。
 
 **系统能力：** SystemCapability.Graphics.Drawing
 
@@ -1584,16 +1585,16 @@ struct Index {
 | tab<sup>18+</sup>   | [TextTab](#texttab18)  | 否   | 是   | 表示段落中文本制表符后的文本对齐方式及位置，默认将制表符替换为一个空格。此参数与文本对齐方式（align属性）或省略号样式（[TextStyle](#textstyle)中的ellipsis属性）共同配置时无效。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
 | trailingSpaceOptimized<sup>20+</sup>   | boolean | 否   | 是   | 表示文本排版时是否考虑行尾空格的对齐影响。true表示忽略行尾空格的对齐影响，false表示考虑行尾空格的对齐影响，默认值为false。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。|
 | autoSpace<sup>20+</sup>   | boolean | 否   | 是   | 设置文本排版时是否使能自动间距。true表示使能自动间距，则会在文本排版时自动调整CJK（中文字符、日文字符、韩文字符）与西文（拉丁字母、西里尔字母、希腊字母）、CJK与数字、CJK与版权符号、版权符号与数字、版权符号与西文之间的间距。false表示不使能自动间距，默认值为false。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。|
-| verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | 否   | 是   | 文本垂直对齐方式，开启行高缩放（即设置[TextStyle](#textstyle)的heightScale）或行内不同字号（即设置[TextStyle](#textstyle)的fontSize）文本混排时生效。若行内有上下标文本（即设置[TextStyle](#textstyle)的badgeType属性文本），上下标文本将与普通文本一样参与垂直对齐。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
-| lineSpacing<sup>21+</sup>   | number | 否   | 是   | 行间距，单位为物理像素px，默认值为0。lineSpacing不受[TextStyle](#textstyle)中lineHeightMaximum和lineHeightMinimum限制。尾行默认保留行间距，可通过设置[TextStyle](#textstyle).textHeightBehavior为DISABLE_ALL或DISABLE_LAST_ASCENT禁用尾行行间距。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
+| verticalAlign<sup>20+</sup>   | [TextVerticalAlign](#textverticalalign20) | 否   | 是   | 文本垂直对齐方式，默认为BASELINE，即文本基线对齐。开启行高缩放（即设置[TextStyle](#textstyle)的heightScale）或行内不同字号（即设置[TextStyle](#textstyle)的fontSize）文本混排时生效。若行内有上下标文本（即设置[TextStyle](#textstyle)的badgeType属性文本），上下标文本将与普通文本一样参与垂直对齐。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。|
+| lineSpacing<sup>21+</sup>   | number | 否   | 是   | 行间距，单位为物理像素px，默认值为0。lineSpacing不受[TextStyle](#textstyle)中lineHeightMaximum和lineHeightMinimum限制。尾行默认保留行间距，可通过设置[ParagraphStyle](#paragraphstyle)的textHeightBehavior为DISABLE_ALL或DISABLE_LAST_ASCENT禁用尾行行间距。<br>**原子化服务API：** 从API version 22开始，该接口支持在原子化服务中使用。 |
 | compressHeadPunctuation<sup>23+</sup>   | boolean | 否   | 是   | 设置文本排版时是否使能行首标点压缩。true表示使能行首标点压缩，false表示不使能行首标点压缩，默认值为false。<br/>**说明：**<br/>1. 需要字体文件支持[FontFeature](#fontfeature)中的"ss08"特性，否则无法压缩。<br/>2. 在行首标点压缩范围内的标点才在本特性作用范围内。<br>**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。 |
 | includeFontPadding<sup>23+</sup> | boolean | 否 | 是 | 设置文本排版时是否使能首尾行padding。true表示使能首尾行padding，false表示不使能首尾行padding，默认值为false。<br>**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。 |
 | fallbackLineSpacing<sup>23+</sup> | boolean | 否 | 是 | 设置文本排版时是否使能行高回退，当设置的行高小于实际行高时，将行高回退为实际行高。true表示使能行高回退，false表示不使能行高回退，默认值为false。<br>**原子化服务API：** 从API version 23开始，该接口支持在原子化服务中使用。 |
 | punctuationOverflow | boolean | 否   | 是   | 设置文本排版时是否使能行尾标点悬挂。true表示使能行尾标点悬挂，允许行尾单个标点超出排版宽度而不换行，false表示不使能行尾标点悬挂，默认值为false。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| orphanCharOptimization | boolean | 否 | 是 | 设置文本排版时是否使能孤字优化。孤字优化通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。使能后，它会调整换行点以尽可能避免孤立字符。孤字优化特性需在[wordBreak](#wordbreak)为非BREAK_ALL并且待排版文本首个[TextStyle](#textstyle)的[locale](#textstyle)为“zh-Hans”或“zh-Hant”时生效。true表示使能孤字优化，false表示不使能孤字优化，默认值为false。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| firstLineHeadIndent | number | 否 | 是 | 设置段落首行缩进，缩进值需大于等于0，默认值为0。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| tailIndents | Array\<number> | 否 | 是 | 设置行尾缩进数组，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值，缩进值需全大于等于0，默认为空数组。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
-| headIndents | Array\<number> | 否 | 是 | 设置行首缩进数组，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值，缩进值需全大于等于0，默认为空数组。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| orphanCharOptimization | boolean | 否 | 是 | 设置文本排版时是否使能孤字优化。孤字优化通过更高效地处理孤立字符（段落尾行首字符）来改善文本布局。使能后，它会调整换行点以尽可能避免孤立字符。孤字优化特性需在[wordBreak](#wordbreak)为非BREAK_ALL并且待排版文本首个[TextStyle](#textstyle)的locale为“zh-Hans”或“zh-Hant”时生效。true表示使能孤字优化，false表示不使能孤字优化，默认值为false。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| firstLineHeadIndent | number | 否 | 是 | 设置段落首行缩进，缩进值需大于等于0，单位为物理像素px，默认值为0。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| tailIndents | Array\<number> | 否 | 是 | 设置行尾缩进数组，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值，缩进值需全大于等于0，单位为物理像素px，默认为空数组。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
+| headIndents | Array\<number> | 否 | 是 | 设置行首缩进数组，数组中每个元素代表一行缩进值，当实际文本行数超过缩进数组个数时，超过行的缩进为数组最后一个值，缩进值需全大于等于0，单位为物理像素px，默认为空数组。<br>**起始版本：** 26.0.0 <br>**原子化服务API：** 从API版本26.0.0开始，该接口支持在原子化服务中使用。<br>**模型约束：** 此接口仅可在Stage模型下使用。 |
 
 行首压缩的标点范围:
 | 标点 | Unicode码位 | Unicode名称 |
@@ -1745,7 +1746,7 @@ layout(width: number): Promise\<void>
 
 | 类型           | 说明                          |
 | -------------- | ----------------------------- |
-| Promise\<void> | 无返回结果的Promise对象。 |
+| Promise\<void> | Promise对象，无返回结果。 |
 
 **错误码：**
 
@@ -1753,7 +1754,7 @@ layout(width: number): Promise\<void>
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified;2. Incorrect parameter types;3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -1793,13 +1794,14 @@ struct Index {
   @State pixelmap?: PixelMap = undefined;
   fun: Function = textFunc;
 
-  async prepareLayoutPromise() {
-    // 排版对象进行布局计算
-    paragraph.layout(200).then((data) => {
-      console.info(`Succeeded in doing layout,  ${JSON.stringify(data)}`);
-    }).catch((error: Error) => {
-      console.error(`Failed to do layout, error: ${JSON.stringify(error)} message: ${error.message}`);
-    });
+async prepareLayoutPromise() {
+    try {
+      await paragraph.layout(200);
+      console.info('Succeeded in doing layout');
+    } catch (error) {
+      let err: BusinessError = error as BusinessError;
+      console.error(`Failed to do layout, error: ${err.code} message: ${err.message}`);
+    }
   }
 
   aboutToAppear() {
@@ -1872,7 +1874,7 @@ for (let i = 0; i < result.fitStrRange.length; ++i) {
 
 paint(canvas: drawing.Canvas, x: number, y: number): void
 
-在画布上以 (x, y) 为左上角绘制文本。
+在画布上以 (x, y) 为左上角绘制文本。调用前必须先调用[layout()](#layout18)接口进行排版，否则无法正确显示文本内容。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -1900,7 +1902,7 @@ paragraph.paint(canvas, 0, 0);
 
 paintOnPath(canvas: drawing.Canvas, path: drawing.Path, hOffset: number, vOffset: number): void
 
-在画布上沿路径绘制文本。
+在画布上沿路径绘制文本。调用前必须先调用[layout()](#layout18)接口进行排版，否则无法正确显示文本内容。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2095,7 +2097,7 @@ getIdeographicBaseline(): number
 
 | 类型   | 说明                  |
 | ------ | -------------------- |
-| number | 获取表意字下的基线位置，浮点数，单位为物理像素px。|
+| number | 表意字下的基线位置，浮点数，单位为物理像素px。 |
 
 **示例：**
 
@@ -2249,7 +2251,7 @@ getLineHeight(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
+| line  | number | 是   | 文本行索引，整数，范围为0~[getLineCount](#getlinecount)-1。|
 
 **返回值：**
 
@@ -2277,7 +2279,7 @@ getLineWidth(line: number): number
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| line  | number | 是   | 文本行索引，整数，范围为0~getLineCount()-1。|
+| line  | number | 是   | 文本行索引，整数，范围为0~[getLineCount](#getlinecount)-1。|
 
 **返回值：**
 
@@ -2401,7 +2403,7 @@ getLineMetrics(lineNumber: number): LineMetrics | undefined
 
 | 参数名 | 类型   | 必填 | 说明      |
 | ----- | ------ | ---- | --------- |
-| lineNumber  | number | 是   | 要查询度量信息的行的编号，行号从0开始。|
+| lineNumber  | number | 是   | 要查询度量信息的行的编号，行号从0开始，最大行索引为文本行数量-1，文本行数量可通过[getLineCount](#getlinecount)接口获取。 |
 
 **返回值：**
 
@@ -2417,7 +2419,7 @@ let lineMetrics =  paragraph.getLineMetrics(0);
 
 ### updateColor<sup>20+</sup>
 
-updateColor(color: common2D.Color): void;
+updateColor(color: common2D.Color): void
 
 更新整个文本段落的颜色。如果当前装饰线未设置颜色，使用该接口也会同时更新装饰线的颜色。
 
@@ -2439,7 +2441,7 @@ paragraph.updateColor({ alpha: 255, red: 255, green: 0, blue: 0 });
 
 ### updateDecoration<sup>20+</sup>
 
-updateDecoration(decoration: Decoration): void;
+updateDecoration(decoration: Decoration): void
 
 更新整个文本段落的装饰线。
 
@@ -2890,7 +2892,9 @@ function numberToRGBA(colorNum: number): common2D.Color {
 
 forceReuseRasterResult(isForce: boolean): void
 
-设置是否强制复用光栅化结果。设置后，在下次调用[paint](#paint)绘制时生效。true表示强制复用光栅化结果，false表示允许更新光栅化结果，默认值为false。
+设置是否强制复用光栅化结果。不调用此接口时，系统默认允许更新光栅化结果。
+
+适用于文本内容未发生变化但需要多次调用[paint](#paint)绘制的场景，通过复用光栅化结果可避免重复光栅化计算以提升绘制性能。设置后，在下次调用[paint](#paint)绘制时生效。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -2955,7 +2959,7 @@ struct Index {
 
 ## LineTypeset<sup>18+</sup>
 
-保存着文本内容以及样式的载体，可以用于计算单行排版信息。
+保存文本内容及样式的载体，可用于计算单行排版信息。
 
 下列API示例中都需先使用[ParagraphBuilder](#paragraphbuilder)类的[buildLineTypeset()](#buildlinetypeset18)接口获取到LineTypeset对象实例，再通过此实例调用对应方法。
 
@@ -2988,7 +2992,7 @@ getLineBreak(startIndex: number, width: number): number
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3027,7 +3031,7 @@ createLine(startIndex: number, count: number): TextLine
 
 | 错误码ID | 错误信息 |
 | ------- | --------------------------------------------|
-| 401 | Parameter error.Possible causes:1.Mandatory parameters are left unspecified;2.Incorrect parameter types;3. Parameter verification failed. |
+| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 
 **示例：**
 
@@ -3144,7 +3148,7 @@ let line : text.TextLine = lineTypeset.createLine(startIndex, count);
 
 ## ParagraphBuilder
 
-段落生成器。
+段落生成器，采用建造者模式构建段落对象。开发者通过构造函数传入[ParagraphStyle](#paragraphstyle)和[FontCollection](#fontcollection)初始化ParagraphBuilder，然后通过[pushStyle](#pushstyle)设置文本样式、[addText](#addtext)添加文本内容，最终调用[build()](#build)接口生成[Paragraph](#paragraph)对象进行排版和绘制。
 
 ### constructor
 
@@ -3161,7 +3165,7 @@ ParagraphBuilder对象的构造函数。
 | 参数名         | 类型                               | 必填 | 说明        |
 | -------------- | --------------------------------- | ---- | ----------- |
 | paragraphStyle | [ParagraphStyle](#paragraphstyle) | 是   | 段落样式。   |
-| fontCollection | [FontCollection](#fontcollection) | 是   | 字体集。 |
+| fontCollection | [FontCollection](#fontcollection) | 是   | 字体集对象，提供文本排版所需的字体资源，用于在段落构建过程中进行字形匹配和文本渲染。 |
 
 **示例：**
 
@@ -3218,10 +3222,7 @@ struct Index {
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
 import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -3257,6 +3258,10 @@ popStyle(): void
 
 弹出当前文本样式。
 
+> **说明：**
+>
+> 必须在调用[pushStyle()](#pushstyle)之后才能调用此方法。调用后，后续添加的文本将使用弹出前的文本样式。如果样式栈为空，将使用[ParagraphStyle](#paragraphstyle)中的textStyle作为默认样式。
+
 **系统能力**：SystemCapability.Graphics.Drawing
 
 **原子化服务API**：从API version 22开始，该接口支持在原子化服务中使用。
@@ -3264,10 +3269,7 @@ popStyle(): void
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
 import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -3317,10 +3319,7 @@ addText(text: string): void
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
 import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -3354,7 +3353,7 @@ struct Index {
 
 addPlaceholder(placeholderSpan: PlaceholderSpan): void
 
-用于构建文本段落时插入占位符。
+用于构建文本段落时插入占位符。插入后，占位符将在段落排版中按照指定的宽度、高度和对齐方式占据相应空间，并影响文本的换行和布局。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3369,10 +3368,7 @@ addPlaceholder(placeholderSpan: PlaceholderSpan): void
 **示例：**
 
 ```ts
-import { drawing } from '@kit.ArkGraphics2D'
 import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
 
 function textFunc() {
   let myParagraphStyle: text.ParagraphStyle = {
@@ -3408,7 +3404,7 @@ struct Index {
 
 build(): Paragraph
 
-用于构建段落，生成可用于后续排版渲染的段落对象。
+用于构建段落，生成可用于后续排版渲染的段落对象。调用build()后，如需再次构建文本，必须创建新的ParagraphBuilder实例。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3423,8 +3419,7 @@ build(): Paragraph
 **示例：**
 
 ```ts
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
-import { image } from '@kit.ImageKit'
+import { text } from '@kit.ArkGraphics2D'
 
 function textFunc() {
   let myTextStyle: text.TextStyle = {
@@ -3459,7 +3454,7 @@ struct Index {
 
 buildLineTypeset(): LineTypeset
 
-构建行排版器。
+构建行排版器，生成可用于逐行排版计算的LineTypeset对象。
 
 **系统能力**：SystemCapability.Graphics.Drawing
 
@@ -3696,8 +3691,6 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 <!--code_no_check-->
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
-import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {
@@ -3754,7 +3747,7 @@ createTruncatedLine(width: number, ellipsisMode: EllipsisMode, ellipsis: string)
 
 <!--code_no_check-->
 ```ts
-import { drawing, text, common2D } from '@kit.ArkGraphics2D'
+import { drawing, text } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {
@@ -3886,7 +3879,7 @@ getStringIndexForPosition(point: common2D.Point): number
 
 | 参数名 | 类型 | 必填 | 说明 |
 | -| - | - | - |
-| point | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 要查找索引的位置。|
+| point | [common2D.Point](js-apis-graphics-common2D.md#point12) | 是 | 要查找字符索引的坐标位置，坐标相对于文本行的左上角原点，单位为物理像素px。其中x为水平坐标，y为垂直坐标。 |
 
 **返回值：**
 
@@ -3948,11 +3941,10 @@ enumerateCaretOffsets(callback: CaretOffsetsCallback): void
 **示例：**
 
 ```ts
-function callback(offset: number, index: number, leadingEdge: boolean): boolean {
+lines[0].enumerateCaretOffsets((offset: number, index: number, leadingEdge: boolean): boolean => {
   console.info('textLine: offset: ' + offset + ', index: ' + index + ', leadingEdge: ' + leadingEdge);
   return index > 50;
-}
-lines[0].enumerateCaretOffsets(callback);
+});
 ```
 
 ### getAlignmentOffset<sup>18+</sup>
@@ -3986,7 +3978,7 @@ let alignmentOffset = lines[0].getAlignmentOffset(0.5, 500);
 
 ## Run
 
-文本排版单元。
+文本排版单元，表示一段具有相同样式属性的连续文本片段。Run由[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取。
 
 下列API示例中都需先使用[TextLine](#textline)类的[getGlyphRuns()](#getglyphruns)接口获取Run对象实例，再通过此实例调用对应方法。
 
@@ -4225,7 +4217,6 @@ paint(canvas: drawing.Canvas, x: number, y: number): void
 ```ts
 import { drawing } from '@kit.ArkGraphics2D'
 import { text } from '@kit.ArkGraphics2D'
-import { common2D } from '@kit.ArkGraphics2D'
 import { image } from '@kit.ImageKit'
 
 function textFunc(pixelmap: PixelMap) {

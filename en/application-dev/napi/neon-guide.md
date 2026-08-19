@@ -1,20 +1,18 @@
 # Using Neon Instructions
+
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @liyiming13-->
 <!--Designer: @liyiming13-->
 <!--Tester: @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
-
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=12aac1929b88019dcd40c2acbe77012a74a55e31 translatedAt=2026-08-15T01:57:45.481Z pushedAt=2026-08-15T09:05:17.593Z -->
 
 Arm Neon is an advanced Single Instruction Multiple Data (SIMD) architecture extension for Arm processors. It supports parallel processing of multiple pieces of data by using one instruction. It is widely used in fields such as multimedia encoding/decoding and 2D/3D graphics to improve execution performance.
 
-
 The Neon extension is used since ARMv7. Currently, it is set as a default in Cortex-A7, Cortex-A12, and Cortex-A15 processors, but is optional in other ARMv7 Cortex-A series processors. For details, see [Introducing NEON Development Article](https://developer.arm.com/documentation/dht0002/a/Introducing-NEON/What-is-SIMD-/ARM-SIMD-instructions?lang=en).
 
-
 The ARMv8-A processors integrate the Neon extension by default, which is supported in both AArch64 and AArch32. For details, see [Learn the architecture - Introducing Neon](https://developer.arm.com/documentation/102474/0100/Fundamentals-of-Armv8-Neon-technology).
-
 
 ## Architecture Support in OpenHarmony
 
@@ -42,7 +40,6 @@ In the LLVM toolchain of the OpenHarmony SDK, the armeabi-v7a ABI supports preco
 
 **hard**, **soft**, and **softfp** are float-abi. If they are not specified, **softfp** is used by default. **neon-vfpv4** is the parameter type specified by **-mfpu**. The LLVM toolchain selects binary libraries that depend on different architecture configurations based on the compilation parameters.
 
-
 ## How to Use
 
 The Neon extension can be used in the following ways:
@@ -54,7 +51,6 @@ The Neon extension can be used in the following ways:
 - Write Neon assembly instructions.
 
 For details, see [Arm Neon](https://developer.arm.com/Architectures/Neon).
-
 
 ## Example
 
@@ -84,6 +80,7 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
    ```
 
 2. Call the corresponding implementation functions based on the CPU feature.
+
    ```c++
    void Compute(void) {
    #if defined (CPU_FEATURES_ARCH_ARM)
@@ -92,13 +89,14 @@ The following example describes how to use Neon intrinsics in an armeabi-v7a Ope
      if (features.neon) {
        // Run optimized code.
      } else {
-       // Call normal functions written in C.
+       // call normal function written in c
      }
    #endif
    }
    ```
 
 3. Add the corresponding options to the **CMakeLists.txt** file.
+
    ```makefile
    if (${OHOS_ARCH} STREQUAL "armeabi-v7a")
        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mfpu=neon -mfloat-abi=softfp")

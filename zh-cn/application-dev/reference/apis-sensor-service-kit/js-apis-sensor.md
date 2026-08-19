@@ -855,6 +855,10 @@ on(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;, option
 
 订阅计步器传感器数据。计步器传感器用于统计用户的步行步数，适用于运动追踪、健康管理等场景。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。调用后，系统会按设定频率通过callback持续上报步数数据。
 
+> **说明：**
+> 
+> 计步器传感器数据仅在设备重启时清零，不会每天清零，重启前上报的步数数据为累加值。
+
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 
 **系统能力**：SystemCapability.Sensors.Sensor 
@@ -1844,6 +1848,10 @@ try {
 once(type: SensorId.PEDOMETER, callback: Callback&lt;PedometerResponse&gt;): void
 
 获取一次计步器传感器数据。计步传感器数据上报有一定延迟，延迟时间由具体的实现产品决定。适用于仅需一次性获取当前步数的场景。调用后，callback仅触发一次，自动取消订阅。
+
+> **说明：**
+> 
+> 计步器传感器数据仅在设备重启时清零，不会每天清零，重启前上报的步数数据为累加值。
 
 **需要权限**：ohos.permission.ACTIVITY_MOTION 
 

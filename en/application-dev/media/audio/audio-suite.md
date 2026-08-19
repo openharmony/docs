@@ -6,7 +6,7 @@
 <!--Designer: @jay-liusong-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=f74c65425449044869180c2c7706f4329d5a4b6a translatedAt=2026-08-06T01:49:08.834Z pushedAt=2026-08-06T08:35:23.440Z -->
+<!-- md-trans-meta sourceCommit=e20fa5a9060b1f3b87f710a7d1f1c6626336492e translatedAt=2026-08-15T01:56:39.406Z pushedAt=2026-08-15T09:00:37.742Z -->
 
 Starting from API version 22, [OHAudioSuite](../../reference/apis-audio-kit/capi-ohaudiosuite.md) is provided for audio creation. OHAudioSuite is a professional audio effects processing interface designed to help you efficiently build audio creation applications. It offers high-quality, low-latency, intelligent audio processing capabilities, and integrates a variety of audio effects such as noise reduction, equalization, and vocal separation. You can easily integrate these features into your application based on specific use cases.
 
@@ -32,9 +32,9 @@ A node is the minimum unit of audio rendering. It provides the corresponding aud
 
 |Node Type  | Description   |
 |----------|----------|
-| INPUT_NODE  | Input node, which allows you to input PCM audio data in various formats. |
-| EFFECT_NODE | Effect node, which allows you to add audio effects. Both single-input single-output and multi-input single-output are supported.|
-| OUTPUT_NODE | Output node, which allows you to set the output format of PCM audio data. |
+| input node | Supports input of PCM audio data in various formats. |
+| effect node | Provides audio effect processing.<br>For details about the currently supported effect nodes, see [Audio Effects (C/C++)](audio-suite-effects.md). |
+| output node | Supports setting the PCM format of the output audio. |
 
   For details about the complete node types, see [OH_AudioNode_Type](../../reference/apis-audio-kit/capi-native-audio-suite-base-h.md#oh_audionode_type).
 

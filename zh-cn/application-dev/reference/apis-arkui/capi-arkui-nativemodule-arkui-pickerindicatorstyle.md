@@ -7,7 +7,7 @@
 <!--Adviser: @Brilliantry_Rui-->
 
 ```c
-typedef struct {...} ArkUI_PickerIndicatorStyle
+typedef struct ArkUI_PickerIndicatorStyle ArkUI_PickerIndicatorStyle
 ```
 
 ## 概述

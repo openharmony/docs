@@ -52,7 +52,7 @@ Sets how the final state of the component's content is rendered during its width
 
 | Name | Type                                      | Mandatory| Description                                                        |
 | ------- | ------------------------------------------ | ---- | ------------------------------------------------------------ |
-| fitMode | [Optional](ts-universal-attributes-custom-property.md#optionalt12)\<[RenderFit](ts-appendix-enums.md#renderfit10)> | Yes  | Sets how the final state of the component's content is rendered during its width and height animation process.<br>If **fitMode** is set to **undefined**, the default value is used, which is equivalent to **RenderFit.TOP_LEFT**.|
+| fitMode | [Optional](ts-universal-attributes-custom-property.md#optionalt)\<[RenderFit](ts-appendix-enums.md#renderfit10)> | Yes  | Sets how the final state of the component's content is rendered during its width and height animation process.<br>If **fitMode** is set to **undefined**, the default value is used, which is equivalent to **RenderFit.TOP_LEFT**.|
 
 **Return value**
 

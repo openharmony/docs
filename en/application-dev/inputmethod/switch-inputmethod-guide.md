@@ -6,7 +6,7 @@
 <!--Designer: @andeszhang-->
 <!--Tester: @murphy84-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=b8aa633cba260f62cfd1846a2d514205881380a2 translatedAt=2026-08-04T08:29:23.353Z pushedAt=2026-08-04T08:57:51.156Z -->
+<!-- md-trans-meta sourceCommit=8e856b06a34a819612cae112a81452d688b21bcf translatedAt=2026-08-15T01:52:28.625Z pushedAt=2026-08-15T08:40:27.867Z -->
 
 You can use the APIs of the input method framework service to easily switch between input methods and input method subtypes.
 
@@ -78,6 +78,7 @@ In the input method application in use, call [switchInputMethod](../reference/ap
 In the input method application in use, call [switchCurrentInputMethodAndSubtype](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodswitchcurrentinputmethodandsubtype9) with the target [InputMethodProperty](../reference/apis-ime-kit/js-apis-inputmethod.md#inputmethodproperty8) and [InputMethodSubtype](../reference/apis-ime-kit/js-apis-inputmethod-subtype.md#inputmethodsubtype) to switch to the specified subtype of another input method.
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
 import { inputMethod } from '@kit.IMEKit';
 
 export class KeyboardController {

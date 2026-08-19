@@ -174,7 +174,7 @@ napi_status napi_load_module(napi_env env, const char* path, napi_value* result)
     export {value, test};
     ```
 
-1. 需要当前模块的build-profile.json5文件中进行以下配置：
+1. 需要在当前模块的build-profile.json5文件中进行以下配置：
 
     ```json
     {

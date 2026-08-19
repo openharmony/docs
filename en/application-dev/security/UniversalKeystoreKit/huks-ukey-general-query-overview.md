@@ -6,13 +6,14 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=f7243bd9bbc19d6bb1c1a460201c8c6cbf7dc7b6 translatedAt=2026-08-13T08:25:48.181Z pushedAt=2026-08-13T10:20:24.754Z -->
 
-HUKS provides a property query API to support general query operations (such as querying Ukey device and PIN information) from external key management.
+HUKS provides a property query API to support general query operations from external key management, such as UKey device information and PIN information.
 
 > **NOTE**
 >
-> 1. **resourceId** of the [OH_Huks_GetProperty](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_getproperty) and [getProperty](../../reference/apis-universal-keystore-kit/js-apis-huksExternalCrypto.md#huksexternalcryptogetproperty) APIs indicates the resource ID of the provider, which is used to identify the remote resource to be queried. The value must contain 1 to 1,024 bytes. The API property ID is the SKF function name defined in the GMT 0016-2023 standard. The length must be 1 to 100 bytes.
-> 2. Output parameters are carried by [HUKS_EXT_CRYPTO_TAG_EXTRA_DATA](../../reference/apis-universal-keystore-kit/js-apis-huksExternalCrypto.md#huksexternalcryptotag). The application can extract the found property data and parse the data according to the agreement with the driver application (external key management extension provider).
+> 1. The **resourceId** of the [OH_Huks_GetProperty](../../reference/apis-universal-keystore-kit/capi-native-huks-external-crypto-api-h.md#oh_huks_getproperty) and [getProperty](../../reference/apis-universal-keystore-kit/js-apis-huksExternalCrypto.md#huksexternalcryptogetproperty) APIs is the resource ID of the provider, which identifies the remote resource to be queried. Its length must be between 1 and 1024 bytes. The property ID of the APIs uses the SKF function names defined in the GMT 0016-2023 standard, and its length must be between 1 and 100 bytes.
+> 2. The output parameter is carried by [HUKS_EXT_CRYPTO_TAG_EXTRA_DATA](../../reference/apis-universal-keystore-kit/js-apis-huksExternalCrypto.md#huksexternalcryptotag). The app can extract the queried property data and parse it according to the agreement with the driver app (the provider of the external key management extension capability).
 
 ## Supported Property Function Names (Example)
 
@@ -26,4 +27,5 @@ The following are examples of property function names for reference (for more de
 | SKF_EnumApplication | Enumerates applications.|
 
 > **NOTE**
-> The actual implementation must be the same as the function name specified in GMT 0016-2023. All parties (the caller and CryptoExtension implementation) must agree on the function name set and the parameter/return format.
+>
+> The actual implementation must be consistent with the function names specified in GMT 0016-2023. The parties (the caller and the CryptoExtension implementation) must agree on the set of function names to use and their parameter/return formats.

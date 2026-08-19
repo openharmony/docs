@@ -106,7 +106,7 @@ Defines the options of the **XComponent**.
 
 ## NativeXComponentParameters<sup>19+</sup>
 
-Defines the options of the **XComponent**. An XComponent created with such constructor parameters can pass its corresponding [FrameNode](../js-apis-arkui-frameNode.md) object to the Native side, enabling the use of NDK APIs for surface lifecycle–related settings and [component event listening](../../../ui/ndk-listen-to-component-events.md).
+Defines the options of the **XComponent**. An XComponent created with such constructor parameters can pass its corresponding [FrameNode](../js-apis-arkui-frameNode.md) object to the Native side, enabling the use of NDK APIs for surface lifecycle–related settings and component event listening.
 
 **Atomic service API**: This API can be used in atomic services since API version 19.
 

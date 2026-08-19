@@ -343,7 +343,7 @@ getUsbStorageDeviceAccessPolicy(admin: Want): UsbPolicy
 
 本接口通过传入Want查询对应企业设备管理应用设置的策略，如需查询实际生效的策略，请使用[usbManager.getUsbStorageDeviceAccessPolicy](#usbmanagergetusbstoragedeviceaccesspolicy-1)接口。
 
-**需要权限：
+**需要权限：**
  - API版本26.0.0之前：ohos.permission.ENTERPRISE_MANAGE_USB
  - API版本26.0.0开始：ohos.permission.ENTERPRISE_MANAGE_USB 或者 ohos.permission.PERSONAL_MANAGE_RESTRICTIONS（应用调用[adminManager.startAdminProvision](./js-apis-enterprise-adminManager.md#adminmanagerstartadminprovision15)接口激活为自带设备管理应用）。
 
@@ -884,6 +884,8 @@ USB设备ID信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称      | 类型   | 只读 | 可选 | 说明     |
 | --------- | ------ | ---- | ---- | -------- |
 | vendorId  | number | 否   | 否 | 厂商ID。 |
@@ -896,6 +898,8 @@ USB设备类型信息。
 可通过[getDevices](../apis-basic-services-kit/js-apis-usbManager.md#usbmanagergetdevices)接口获取已接入主设备的USB设备列表，并从返回值列表中查找当前设备的类型信息。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称       | 类型                        | 只读 | 可选 | 说明                                                         |
 | ---------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |
@@ -910,6 +914,8 @@ USB读写策略的枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 | 名称       | 值   | 说明       |
 | ---------- | ---- | ---------- |
 | READ_WRITE | 0    | 可读可写。 |
@@ -921,6 +927,8 @@ USB读写策略的枚举。
 USB存储设备访问策略的枚举。
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称      | 值   | 说明         |
 | --------- | ---- | ------------ |
@@ -942,6 +950,8 @@ USB设备类型信息，支持部分字段匹配。
 **起始版本：** 26.0.0
 
 **系统能力：** SystemCapability.Customization.EnterpriseDeviceManager
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称       | 类型                        | 只读 | 可选 | 说明                                                         |
 | ---------- | --------------------------- | ---- | ---- | ------------------------------------------------------------ |

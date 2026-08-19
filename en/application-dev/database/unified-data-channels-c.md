@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=05bb12367fee189c7aecbeb9ad82dabebbba21d0 translatedAt=2026-07-27T08:17:33.783Z pushedAt=2026-07-27T10:05:10.793Z -->
+<!-- md-trans-meta sourceCommit=4b90a346c35ae86f50b36d420ba72b66b13ac32f translatedAt=2026-08-18T11:02:16.724Z pushedAt=2026-08-18T11:26:46.377Z -->
 
 ## When to Use
 
@@ -40,7 +40,7 @@ The public data channel allows all applications to write data into it. When data
 
 For details about the APIs, see [udmf.h](../reference/apis-arkdata/capi-udmf-h.md).
 
-| API                                                                                   | Description                                         | 
+| API                                                                                   | Description                                         |
 |-----------------------------------------------------------------------------------------|---------------------------------------------|
 | OH_UdsHyperlink* OH_UdsHyperlink_Create()                                           | Creates a pointer to an **OH_UdsHyperlink** instance.|
 | int OH_UdsHyperlink_SetDescription(OH_UdsHyperlink* pThis, const char* description) | Sets the description parameter in an **OH_UdsHyperlink** instance.|
@@ -48,7 +48,7 @@ For details about the APIs, see [udmf.h](../reference/apis-arkdata/capi-udmf-h.m
 | int OH_UdmfRecord_AddHyperlink(OH_UdmfRecord* pThis, OH_UdsHyperlink* hyperlink) | Adds hyperlink data to an **OH_UdmfRecord** instance.            |
 | OH_UdmfData* OH_UdmfData_Create()                            | Creates a pointer to an **OH_UdmfData** instance.                |
 | int OH_UdmfData_AddRecord(OH_UdmfData* pThis, OH_UdmfRecord* record) | Adds an **OH_UdmfRecord** to an **OH_UdmfData** instance.     |
-| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData *unifiedData, char *key, unsigned int keyLen)        | Sets an **OH_UdmfData** instance in the UDMF database.                         |
+| int OH_Udmf_SetUnifiedDataByOptions(OH_UdmfOptions* options, OH_UdmfData* unifiedData, char* key, unsigned int keyLen)        | Writes an **OH_UdmfData** instance in the UDMF database.                          |
 | void OH_UdsHyperlink_Destroy(OH_UdsHyperlink* pThis)         | Destroys the pointer to an **OH_UdsHyperlink** instance.|
 | void OH_UdmfRecord_Destroy(OH_UdmfRecord* pThis)             | Destroys the pointer to an **OH_UdmfRecord** instance.                  |
 | void OH_UdmfData_Destroy(OH_UdmfData* pThis)                 | Destroys the pointer to an **OH_UdmfData** instance.                    |
@@ -114,7 +114,7 @@ To write the **OH_UdsHyperlink** data, perform the following steps:
 ``` C++
 int32_t SetHyperlinkData(OH_UdsHyperlink* hyperlink, OH_UdmfRecord* record, OH_UdmfData* data)
 {
-    // 2. Set the URL and description for the hyperlink.
+    // 2. Set the URL and description in the hyperlink.
     int ret = OH_UdsHyperlink_SetUrl(hyperlink, "www.demo.com");
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
         OH_LOG_ERROR(LOG_APP, "Hyperlink set url error!");
@@ -139,10 +139,9 @@ int32_t SetHyperlinkData(OH_UdsHyperlink* hyperlink, OH_UdmfRecord* record, OH_U
     }
     return UDMF_E_OK;
 }
-
 int32_t CreateDataTest()
 {
-    // 1. Create the UDS data struct, OH_UdmfRecord object, and OH_UdmfData object of the hyperlink.
+    // 1. Create the UDS data structure, OH_UdmfRecord object, and OH_UdmfData object for the hyperlink.
     OH_UdsHyperlink* hyperlink = OH_UdsHyperlink_Create();
     OH_UdmfRecord* record = OH_UdmfRecord_Create();
     OH_UdmfData* data = OH_UdmfData_Create();
@@ -154,7 +153,7 @@ int32_t CreateDataTest()
         OH_UdmfData_Destroy(data);
         return ret;
     }
-    // Construct an OH_UdmfOptions.
+    // 5. Construct the data operation options.
     OH_UdmfOptions* options = OH_UdmfOptions_Create();
     ret = OH_UdmfOptions_SetIntention(options, Udmf_Intention::UDMF_INTENTION_DATA_HUB);
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
@@ -213,6 +212,7 @@ int32_t ProcessHyperlinks(OH_UdmfRecord* record, unsigned int recordTypeIdCount,
             int32_t ret = OH_UdmfRecord_GetHyperlink(record, hyperlink);
             if (ret != Udmf_ErrCode::UDMF_E_OK) {
                 OH_LOG_ERROR(LOG_APP, "Fail get hyperlink from record!");
+                OH_UdsHyperlink_Destroy(hyperlink);
                 return ret;
             }
             // Read information in OH_UdsHyperlink.
@@ -288,6 +288,7 @@ int32_t GetDataTest()
     ret = HandleUdmfHyperlinkData(readData, dataSize, dataArray);
     if (ret != Udmf_ErrCode::UDMF_E_OK) {
         OH_LOG_ERROR(LOG_APP, "Get Data error!");
+        OH_Udmf_DestroyDataArray(dataArray, dataSize);
         return ret;
     }
     // 5. Destroy all the pointers created.
@@ -502,6 +503,7 @@ int32_t DeleteDataTest()
     OH_UdmfData** dataArray = &readData;
     ret = ProcessHyperlinkDataFromArray(readData, dataSize, dataArray);
     if (ret != UDMF_E_OK) {
+        OH_Udmf_DestroyDataArray(dataArray, dataSize);
         OH_LOG_ERROR(LOG_APP, "Process hyperlink data error!");
         return ret;
     }

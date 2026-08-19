@@ -28,7 +28,7 @@ foregroundEffect(options: ForegroundEffectOptions): T
 
 | 参数名 | 类型                                                         | 必填 | 说明                                                 |
 | ------ | ------------------------------------------------------------ | ---- | ---------------------------------------------------- |
-| options | [ForegroundEffectOptions](#foregroundeffectoptions12) | 是   | 设置组件前景效果，包括：模糊半径。效果仅在组件范围内生效，与backgroundEffect、blur等接口连用时超出组件范围的效果无法生效。 |
+| options | [ForegroundEffectOptions](#foregroundeffectoptions) | 是   | 设置组件前景效果，包括：模糊半径。效果仅在组件范围内生效，与backgroundEffect、blur等接口连用时超出组件范围的效果无法生效。 |
 
 **返回值：**
 
@@ -36,7 +36,7 @@ foregroundEffect(options: ForegroundEffectOptions): T
 | ------ | ------------------------ |
 | T | 返回当前组件，用于链式调用。 |
 
-## ForegroundEffectOptions<sup>12+</sup>
+## ForegroundEffectOptions
 
 前景效果参数，用于配置组件前景的模糊半径，控制前景内容的模糊程度。
 

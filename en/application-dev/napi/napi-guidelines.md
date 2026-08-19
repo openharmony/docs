@@ -1,10 +1,12 @@
 # Node-API Development Specifications
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=fa3fc214ef4b265f033bc3f0d0a2df54f511a497 translatedAt=2026-08-12T06:28:17.522Z pushedAt=2026-08-12T09:54:26.090Z -->
 
 ## Obtaining Arguments Passed by JS
 
@@ -96,7 +98,7 @@ An engine instance is an independent running environment. Operations such as cre
 **Example (incorrect)**
 
 ```cpp
-// Create a string object with value of "bar" in env1.
+// Thread 1 executes, creating a string object with the value "bar" in env1.
 napi_create_string_utf8(env1, "bar", NAPI_AUTO_LENGTH, &string);
 // Create an object in env2 and set the string object to this object.
 napi_status status = napi_create_object(env2, &object);
@@ -266,7 +268,7 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
     void* data = nullptr;
 
     napi_create_arraybuffer(env, arrSize * sizeof(int32_t), &data, &arrBuffer);
-    // data is a null pointer. Cancel the write of data.
+    // data is a null pointer; avoid writing to data.
     if (data == nullptr) {
         return arrBuffer;
     }
@@ -296,10 +298,12 @@ static napi_value ArrayBufferDemo(napi_env env, napi_callback_info info)
 
 ## Data Conversion
 
-**[Suggestion]** Minimize the number of data conversions and avoid unnecessary replication.
+**Recommendation**: Minimize data conversion operations and avoid unnecessary copying.
 
 - Frequent data conversion affects performance. You are advised to use batch data processing or optimize the data structs to improve performance.
+
 - During data conversion, use Node-API to access the original data instead of creating a copy.
+
 - For the data that may be used in multiple conversions, store it in a buffer to avoid repeated data conversions. In this way, unnecessary calculations can be reduced, leading to better performance.
 
 ## Module Registration and Naming
@@ -311,12 +315,20 @@ The module registration entry, that is, the name of the function decorated by **
 
 The **.nm_modname** field must completely match the name of the binary .so file and is case sensitive.
 
+A single .so file can register only one module, that is, the module registered through `napi_module_register`. Registering multiple different modules in the same .so file is prohibited. Otherwise, the framework may match an incorrect module when loading the .so file, causing unexpected behavior.
+
 **Example (incorrect)**
 The following is an incorrect example when the name of the binary .so file is **nativerender**.
 
 ```cpp
 EXTERN_C_START
 napi_value Init(napi_env env, napi_value exports)
+{
+    // ...
+    return exports;
+}
+
+static napi_value InitOther(napi_env env, napi_value exports)
 {
     // ...
     return exports;
@@ -335,12 +347,28 @@ static napi_module nativeModule = {
     .reserved = { 0 },
 };
 
+// A second, different napi_module is defined in the same .so.
+static napi_module otherModule = {
+    .nm_version = 1,
+    .nm_flags = 0,
+    .nm_filename = nullptr,
+    .nm_register_func = InitOther,
+    .nm_modname = "other",
+    .nm_priv = nullptr,
+    .reserved = { 0 },
+};
+
 // The name of the module registration entry function is RegisterModule, which is easy to be duplicate with that of other modules.
 extern "C" __attribute__((constructor)) void RegisterModule()
 {
     napi_module_register(&nativeModule);
+    // Two different modules are registered in the same .so. When the framework loads the .so, it may match the wrong module,
+    // Regardless of how napi_module_register is called multiple times (for example, through multiple constructors or global object construction),
+    // the framework may match the wrong module when loading the .so, causing unexpected behavior.
+    napi_module_register(&otherModule);
 }
 ```
+
 Figure 1
 
 ![demoModule](./figures/image.png)

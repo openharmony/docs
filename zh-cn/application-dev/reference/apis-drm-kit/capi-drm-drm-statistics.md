@@ -1,10 +1,11 @@
 # DRM_Statistics
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
 
 ```c
 typedef struct DRM_Statistics {...} DRM_Statistics
@@ -12,7 +13,7 @@ typedef struct DRM_Statistics {...} DRM_Statistics
 
 ## 概述
 
-MediaKeySystem（媒体密钥系统）的度量信息。
+MediaKeySystem的统计信息。
 
 **起始版本：** 11
 

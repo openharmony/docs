@@ -1,11 +1,15 @@
-# Working with Proxy Using JSVM-API
-<!--Kit: NDK Development-->
+# Using Proxy APIs Provided by JSVM-API
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
-<!--Owner: @yuanxiaogou; @string_sz-->
+<!--Owner: @yuanxiaogou-->
 <!--Designer: @knightaoko-->
 <!--Tester: @test_lzz-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:33:06.107Z pushedAt=2026-08-12T11:00:13.778Z -->
+
 ## Introduction
+
 This topic walks you through on how to use JSVM-API to create a proxy instance, check whether the given **JSVM_Value** is of the proxy type, and obtain the target object from the given proxy.
 
 ## Available APIs
@@ -17,10 +21,12 @@ This topic walks you through on how to use JSVM-API to create a proxy instance, 
 | OH_JSVM_ProxyGetTarget | Obtains the target object of the specified proxy.                               |
 
 ## Example
+
 If you are just starting out with JSVM-API, see [JSVM-API Development Process](use-jsvm-process.md). The following demonstrates only the C++ code involved in proxy-related APIs.
 
 CPP code:
-```
+
+```cpp
 // Define OH_JSVM_CreateProxy.
 static JSVM_Value CreateProxy(JSVM_Env env, JSVM_CallbackInfo info) {
     // Pass in two parameters: target and handler.
@@ -104,7 +110,8 @@ const char *srcCallNative = R"JS(
 ```
 
 Expected result:
-```
+
+```txt
 JSVM OH_JSVM_CreateProxy: success
 JSVM OH_JSVM_IsProxy: success: is a proxy
 JSVM OH_JSVM_ProxyGetTarget: success

@@ -6,7 +6,7 @@
 <!--Designer: @wh_qwe-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=740dcdea7b2e0f63c4b99baa0eb4f2e92e763430 translatedAt=2026-08-03T11:19:07.746Z pushedAt=2026-08-04T06:15:33.677Z -->
+<!-- md-trans-meta sourceCommit=8f812a91efb0a9b690cc20c14fb93aaf3f83366d translatedAt=2026-08-15T01:50:56.832Z pushedAt=2026-08-15T08:25:00.034Z -->
 
 When you use native APIs to develop an application based on the [XComponent](../ui/napi-xcomponent-guidelines.md), you can request an independent frame rate for custom content in scenarios such as gaming and custom UI framework interconnection.
 
@@ -14,9 +14,9 @@ When you use native APIs to develop an application based on the [XComponent](../
 
 | Name | Description    |
 |-----|--------|
-| OH_NativeXComponent_SetExpectedFrameRateRange (OH_NativeXComponent *component, OH_NativeXComponent_ExpectedRateRange *range) | Sets the expected frame rate range. |
-| OH_NativeXComponent_RegisterOnFrameCallback (OH_NativeXComponent *component, OH_NativeXComponent_OnFrameCallback *callback) | Registers the display update callback and enables the callback for each frame.|
-| OH_NativeXComponent_UnregisterOnFrameCallback (OH_NativeXComponent *component) | Unregisters the per-frame callback function and stops invoking the callback. |
+| OH_NativeXComponent_SetExpectedFrameRateRange(OH_NativeXComponent* component, OH_NativeXComponent_ExpectedRateRange* range) | Sets the expected frame rate range. |
+| OH_NativeXComponent_RegisterOnFrameCallback(OH_NativeXComponent* component, void (\*callback)(OH_NativeXComponent* component, uint64_t timestamp, uint64_t targetTimestamp)) | Sets the per-frame callback function and starts the per-frame callback. |
+| OH_NativeXComponent_UnregisterOnFrameCallback(OH_NativeXComponent* component) | Unregisters the per-frame callback function and stops invoking the callback. |
 
 For details about the APIs, see [OH_NativeXComponent Native XComponent](../reference/apis-arkui/capi-oh-nativexcomponent-native-xcomponent.md).
 

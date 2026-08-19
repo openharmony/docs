@@ -5,7 +5,8 @@
 <!--Owner: @oatuwwutao-->
 <!--Designer: @oatuwwutao; @cy917474985-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @zhang_yixin13-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=eaf9a3423e56fef11b14600736f6791af6ae7703 translatedAt=2026-08-13T09:02:21.750Z pushedAt=2026-08-13T13:44:10.187Z -->
 
 Building on the basic syntax of TypeScript (TS), ArkTS further strengthens static checks and analysis. This allows for the detection of more errors during development, thereby enhancing program stability and running performance. This topic explains why it makes sense to migrate from the standard TS to ArkTS.
 
@@ -14,7 +15,6 @@ Building on the basic syntax of TypeScript (TS), ArkTS further strengthens stati
 Dynamically typed languages like JavaScript (JS) can improve development efficiency, but they are prone to unexpected runtime errors. For example, an unchecked **undefined** value may cause program breakdown. If such issues can be detected during development, the program stability can be significantly improved. TS allows to annotate the code with types, which makes errors more detectable for the compiler. However, its non-forcible type system still has limitations. For example, variables without type annotations may hinder complete compilation check. ArkTS overcomes this drawback by forcibly using a static type system and implementing a stricter type check, thereby minimizing runtime errors.
 
 The following case demonstrates how we can improve stability and correctness of our code by enforcing stricter type checking in ArkTS.
-
 
 **Explicit Initialization of Fields for Better Stability**
 
@@ -29,8 +29,8 @@ class Person {
   }
   
   getName(): string {
-  // Return type "string" hides the fact that name can be "undefined".
-  // The most correct action would be to write the return type as "string | undefined". By doing so, we could tell the users of our API about the type of all possible return values.
+  // Developers use "string" as the return type, which hides the fact that name may be "undefined".
+  // A better approach is to annotate the return type as "string | undefined" to tell developers all possible return value types of this API.
     return this.name;
   }
 }
@@ -52,15 +52,15 @@ class Person {
     this.name = n;
   }
 
-  // The type is string in all cases; null and undefined are impossible.
+  // The type is "string", and it cannot be "null" or "undefined".
   getName(): string {
     return this.name;
   }
 }
 // ...
   let buddy = new Person()
-  // Assume that no value is assigned to name in the code. For example, buddy.setName("John") is not called.
-  let len = buddy.getName().length; // 0. No runtime error.
+  // Assume that name is not assigned in the code, for example, "buddy.setName('John')" is not called.
+  let len = buddy.getName().length; // 0, no runtime exception.
 ```
 
 If **name** can be **undefined**, its type must be accurately annotated in the code.
@@ -69,27 +69,26 @@ If **name** can be **undefined**, its type must be accurately annotated in the c
 
 ``` TypeScript
 class Person1 {
-  name?: string; // The field may be undefined.
+  name?: string; // May be undefined.
 
   setName(n: string): void {
     this.name = n;
   }
 
-  getName(): string | undefined { // Return type matches the type of name.
+  getName(): string | undefined { // The return type matches the type of name.
     return this.name;
   }
 }
 // ...
   let buddy = new Person1()
-  // Assume that no value is assigned to name in the code. For example, buddy.setName("John") is not called.
+  // Assume that name is not assigned in the code, for example, "buddy.setName('John')" is not called.
 
-  let len = buddy.getName()?.length; // Compilation succeeded. No runtime error.
+  let len = buddy.getName()?.length; // Compilation succeeds without runtime errors.
 ```
 
 ## Program Performance
 
 To ensure program correctness, dynamically typed languages have to check object types at runtime. In the context of our example, the **undefined** property cannot be read in JS. The only way to check if a value is **undefined** is to perform a runtime check, and all JS engines will perform as follows: If the value is not **undefined**, the property is read, otherwise an exception is thrown. Modern engines can optimize such checks greatly, but these checks cannot be eliminated completely, which slows down the program. Since the standard TS compiles to JS, the code written in TS has the same issues as described above. ArkTS addresses this problem. It enforces a static type check and compiles the program to Ark bytecode instead of JS, thus speeding up the execution and making it easier to optimize the code even further.
-
 
 **Null Safety**
 
@@ -135,7 +134,6 @@ notify(null, undefined); // Compile-time error
 
 In TS such behavior can be turned on by a special compiler flag called **strictNullChecks**. But since the standard TS is compiled to JS, which does not have such feature, strict null checks work only in compile-time, for better type checking. However, ArkTS considers null-safety a very important feature from both stability and performance points of view. That is why it enforces strict null check and the example above always produces compile-time errors. In exchange, such code provides ArkTS engine with more information and guarantees about possible types, optimizing performance.
 
-
 ## .ets Code Compatibility
 
 Prior to API version 10, ArkTS (.ets file) completely adopted the syntax of standard TS. Since API version 10, the ArkTS syntax rules are clearly defined. In addition, the SDK adds the ArkTS syntax validation for .ets files to the compilation process, and prompts you to adapt to the new ArkTS syntax through warnings or errors.
@@ -143,6 +141,7 @@ Prior to API version 10, ArkTS (.ets file) completely adopted the syntax of stan
 Syntax issues are classified as warning or error, depending on the **compatibleSdkVersion** of the project:
 
   - In standard mode, where the value of **compatibleSdkVersion** is greater than or equal to 10, syntax issues are reported as errors and will block the compilation process. The compilation can be successful only after the ArkTS syntax is fully adapted.
+
   - In compatible mode, where the value of **compatibleSdkVersion** is smaller than 10, syntax issues are reported as warnings and will not block the compilation process.
 
 ## Interaction with TS/JS
@@ -174,15 +173,19 @@ The OpenHarmony SDK of API version 11 uses TypeScript 4.9.5, with the **target**
 **Application Environment Restrictions**
 
 1. Force the use of strict mode (use strict).
+
 2. Prohibit the use of **eval()**.
+
 3. Prohibit the use of **with() {}**.
+
 4. Prohibit creating functions with strings as code.
+
 5. Prohibit circular dependency.
 
     Example of circular dependency:
-    
+
     <!-- @[import_v](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/ArkTSMigration/MigrationBackground/entry/src/main/ets/pages/bar.ets) -->  
-    
+
     ``` TypeScript
     // bar.ets
     import {v} from './foo'; // bar.ets depends on foo.ets.
@@ -191,7 +194,7 @@ The OpenHarmony SDK of API version 11 uses TypeScript 4.9.5, with the **target**
     ```
 
     <!-- @[import_u](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkTS/Start/LearningArkTS/ArkTSMigration/MigrationBackground/entry/src/main/ets/pages/foo.ets) -->  
-    
+
     ``` TypeScript
     // foo.ets
     import {u} from './bar'; // foo.ets depends on bar.ets reversely.

@@ -1427,7 +1427,7 @@ scale(x: number, y: number): void
 
 transform(scaleX: number, skewX: number, skewY: number, scaleY: number, translateX: number, translateY: number): void
 
-transform方法对应一个变换矩阵，想对一个图形进行变化的时候，只要设置此变换矩阵相应的参数，对图形的各个顶点的坐标分别乘以这个矩阵，就能得到新的顶点的坐标。矩阵变换效果可叠加。
+transform方法对应一个变换矩阵，当需要对一个图形进行变换的时候，只要设置此变换矩阵相应的参数，对图形的各个顶点的坐标分别乘以这个矩阵，就能得到新的顶点的坐标。矩阵变换效果可叠加。
 
 >  **说明：**
 >  变换后的坐标计算方式（x和y为变换前坐标，x'和y'为变换后坐标）：
@@ -1559,9 +1559,9 @@ translate(x: number, y: number): void
 
   ![translate](figures/translate.png)
 
-### createPath2D<sup>6+</sup>
+### createPath2D
 
-createPath2D(path: Path2D, cmds: string): Path2D
+createPath2D(path?: Path2D): Path2D
 
 创建一个Path2D对象。
 
@@ -1571,12 +1571,33 @@ createPath2D(path: Path2D, cmds: string): Path2D
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| path | Path2D | 是 | Path2D对象。      |
-| cmds | string | 是 | SVG的Path描述字符串。 |
+| path | Path2D | 否 | Path2D对象。<br>默认值：空的Path2D对象。      |
 
 **返回值：**
 
-  [Path2D对象](js-components-canvas-path2d.md)
+| 类型     | 说明                     |
+| ------ | ---------------------- |
+| Path2D | 返回创建的[Path2D对象](js-components-canvas-path2d.md)。 |
+
+### createPath2D
+
+createPath2D(cmds?: string): Path2D
+
+创建一个Path2D对象。
+
+**系统能力：** SystemCapability.ArkUI.ArkUI.Full
+
+**参数：** 
+
+| 参数名 | 类型    | 必填 | 说明                         |
+| ------ | ------- | ---- | ---------------------------- |
+| cmds | string | 否 | SVG的Path描述字符串。<br>默认值：""。 |
+
+**返回值：**
+
+| 类型     | 说明                     |
+| ------ | ---------------------- |
+| Path2D | 返回创建的[Path2D对象](js-components-canvas-path2d.md)。 |
 
 **示例：** 
   ```html
@@ -1710,9 +1731,9 @@ save(): void
 
 ### createLinearGradient<sup>6+</sup>
 
-createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
+createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGradient
 
-创建一个线性渐变色，返回CanvasGradient对象，请参考[CanvasGradient对象](js-components-canvas-canvasgradient.md)。
+创建一个线性渐变色，返回[CanvasGradient对象](js-components-canvas-canvasgradient.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1729,7 +1750,7 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
-| Object | 返回创建的CanvasGradient对象。 |
+| CanvasGradient | 返回创建的CanvasGradient对象。 |
 
 **示例：** 
   ```html
@@ -1763,9 +1784,9 @@ createLinearGradient(x0: number, y0: number, x1: number, y1: number): Object
 
 ### createRadialGradient<sup>6+</sup>
 
-createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): Object
+createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient
 
-创建一个径向渐变色，返回CanvasGradient对象，请参考CanvasGradient。
+创建一个径向渐变色，返回[CanvasGradient对象](js-components-canvas-canvasgradient.md)。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -1784,7 +1805,7 @@ createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number,
 
 | 类型     | 说明                     |
 | ------ | ---------------------- |
-| Object | 返回创建的CanvasGradient对象。 |
+| CanvasGradient | 返回创建的CanvasGradient对象。 |
 
 **示例：** 
   ```html
@@ -2074,7 +2095,7 @@ getPixelMap(sx: number, sy: number, sw: number, sh: number): PixelMap
 
 ### setLineDash
 
-setLineDash(segments: Array): void
+setLineDash(segments: Array\<number>): void
 
 设置画布的虚线样式。
 
@@ -2084,7 +2105,7 @@ setLineDash(segments: Array): void
 
 | 参数名 | 类型    | 必填 | 说明                         |
 | ------ | ------- | ---- | ---------------------------- |
-| segments | Array | 是 | 作为数组用来描述线段如何交替和间距长度。 |
+| segments | Array\<number> | 是 | 作为数组用来描述线段如何交替和间距长度。 |
 
 **示例：** 
   ```html
@@ -2111,7 +2132,7 @@ setLineDash(segments: Array): void
 
 ### getLineDash
 
-getLineDash(): Array
+getLineDash(): Array\<number>
 
 获得当前画布的虚线样式。
 
@@ -2121,7 +2142,7 @@ getLineDash(): Array
 
 | 类型    | 说明                       |
 | ----- | ------------------------ |
-| Array | 返回数组，该数组用来描述线段如何交替和间距长度。 |
+| Array\<number> | 返回数组，该数组用来描述线段如何交替和间距长度。 |
 
 **示例：** 
   ```html

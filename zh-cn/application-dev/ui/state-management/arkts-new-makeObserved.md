@@ -663,7 +663,7 @@ struct Page8 {
   // 当message.id发生变化时，触发该函数调用
   @Monitor('message.id')
   onStrChange(monitor: IMonitor) {
-    hilog.info(DOMAIN, TAG, `name change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
+    hilog.info(DOMAIN, TAG, `id change from ${monitor.value()?.before} to ${monitor.value()?.now}`);
   }
 
   // 当message.id和message.age发生变化，需要重新计算时，触发该函数调用

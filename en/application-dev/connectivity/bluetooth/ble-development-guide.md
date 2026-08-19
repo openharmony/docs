@@ -3,21 +3,25 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=dcae6f10c07044342acb5b2dc0416e100c5bcaa2 translatedAt=2026-06-17T06:37:21.922Z pushedAt=2026-06-17T12:33:07.060Z -->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-15T01:40:35.243Z pushedAt=2026-08-15T03:00:30.895Z -->
 
 ## Introduction
+
 This guide describes how to implement Bluetooth Low Energy (BLE) scanning and advertising. It supports scenarios such as discovering nearby BLE devices and enabling other devices to detect the local device.
 
 ## How to Develop
 
 ### Applying for Required Permissions
+
 Apply for the **ohos.permission.ACCESS_BLUETOOTH** permission. For details about how to configure and apply for permissions, see [Declaring Permissions](../../security/AccessToken/declare-permissions.md) and [Requesting User Authorization](../../security/AccessToken/request-user-authorization.md).
 
 ### Importing Required Modules
+
 Import the **ble** and **BusinessError** modules.
+
 ```ts
 import { ble } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -26,7 +30,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 ### BLE Scanning
 
 **1. Subscribing to Scan Result Reporting Events**<br>
+
 - You are advised to use the scan mode supported since API version 15, which allows an application to initiate and manage multiple scans. For details about the reporting events supported by this mode, see [on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onbledevicefind15).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(scanReport: ble.ScanReport) {
@@ -45,6 +51,7 @@ try {
 ```
 
 - The scan mode supported by API version 14 or earlier allows applications to initiate a single scan at a time. For details about the reporting events supported by this mode, see [ble.on('BLEDeviceFind')](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bleonbledevicefind).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<ble.ScanResult>) {
@@ -67,6 +74,7 @@ By scanning BLE advertisements from other nearby devices via BLE, you can discov
 If the local device detects a connectable BLE advertisement, it can establish a connection and perform data transmission with that device via the Generic Attribute Profile (GATT). In this case, the local device is also referred to as the GATT client. For details about specific operations, see [GATT-based Connection and Data Transmission](gatt-development-guide.md).
 
 - You are advised to use the scan mode supported since API version 15, which allows an application to initiate and manage multiple scans. You can create a [BleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blescanner15) instance using [createBleScanner](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blecreateblescanner15) and start a scan using [startScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15).
+
 ```ts
 // Create a bleScanner instance.
 let bleScanner: ble.BleScanner = ble.createBleScanner();
@@ -98,6 +106,7 @@ try {
 ```
 
 - The scan mode supported by API version 14 or earlier allows applications to initiate a single scan at a time. If you want to initiate another scan, you must stop the previous scan first. For details, see [ble.startBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartblescan).
+
 ```ts
 // Construct a ScanFilter instance for scanning BLE advertising packets. The target BLE advertising packets must meet the filter criteria.
 let manufactureId = 4567;
@@ -128,6 +137,7 @@ try {
 Scanning is a process that consumes a large amount of Bluetooth hardware resources and affects device power consumption. Stop the scan if it is no longer needed.
 
 - Since API version 15, the scan mode allows an application to initiate and manage multiple scans. To stop the scan, use [stopScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#stopscan15).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(scanReport: ble.ScanReport) {
@@ -148,6 +158,7 @@ try {
 ```
 
 - In API version 14 or earlier, the scan mode allows an application to initiate a single scan at a time. To stop the scan, use [ble.stopBLEScan](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopblescan).
+
 ```ts
 // Define the callback for scan result reporting events.
 function onReceiveEvent(data: Array<ble.ScanResult>) {
@@ -165,14 +176,16 @@ try {
 ```
 
 ### BLE Advertising
+
 A local device becomes discoverable to other devices by sending BLE advertisements.
 
-Specifically, if it sends a connectable BLE advertisement, it can establish a connection and transmit data with the scanning device via GATT. In this case, the local device is also referred to as the GATT client. For details about specific operations, see [GATT-based Connection and Data Transmission](gatt-development-guide.md).
+Specifically, if it sends a connectable BLE advertisement, it can establish a connection and transmit data with the scanning device via GATT. In this case, the local device is also referred to as the GATT server. For details about specific operations, see [GATT-based Connection and Data Transmission](gatt-development-guide.md).
 
 You are advised to use the BLE advertising mode supported since API version 11.
 
 **1. Subscribing to BLE Advertising Status Reporting Events**<br>
 For the BLE advertising mode supported since API version 11, use the following code:
+
 ```ts
 function onReceiveEvent(data: ble.AdvertisingStateChangeInfo) {
     console.info('bluetooth advertising state = ' + JSON.stringify(data));
@@ -186,9 +199,12 @@ try {
 ```
 
 **2. Starting BLE Advertising**<br>
+
 - You are advised to use the BLE advertising mode supported since API version 11. This mode supports starting or stopping advertising with a specified ID multiple times without releasing the relevant advertising resources, and setting the duration for continuous advertising.<br>
+
 For details about related APIs, see [ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11) and [ble.enableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bleenableadvertising11).<br>
 If [ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising11) is called for the first time, related resources are allocated while advertising is started. Since API version 15, you can call this API multiple times to establish multiple advertising channels, each being identified by a unique ID.
+
 ```ts
 // Set BLE advertising parameters.
 let setting: ble.AdvertiseSetting = {
@@ -271,7 +287,8 @@ try {
 }
 ```
 
-- The scan mode supported by API version 10 or earlier allows applications to initiate a single scan at a time. If you want to initiate another scan, you must stop the previous scan by using [ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising).
+- The advertising mode supported by API version 10 or earlier allows applications to initiate a single advertising at a time. If you want to initiate another advertising, you must stop the previous advertising. For details, see [ble.startAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestartadvertising).
+
 ```ts
 // Set BLE advertising parameters.
 let setting: ble.AdvertiseSetting = {
@@ -325,7 +342,9 @@ try {
 Advertising is a process that consumes a large amount of Bluetooth hardware resources and affects device power consumption. Stop the BLE advertising if it is no longer needed.
 
 - For the BLE advertising mode supported since API version 11, use [ble.disableAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#bledisableadvertising11) or [ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11).<br>
+
 After [ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising11) is called, advertising is disabled and the BLE advertising ID allocated during initial advertising becomes invalid.
+
 ```ts
 let advHandle = 1; // The value is the BLE advertising ID obtained during initial advertising. It is a pseudo code ID.
 
@@ -357,7 +376,8 @@ try {
 
 ```
 
-- For the BLE advertising mode supported by API version 10 or earlier, use [ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising).
+- For the BLE advertising mode supported by API version 11 or earlier, use [ble.stopAdvertising](../../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#blestopadvertising).
+
 ```ts
 try {
   // Stop BLE advertising.
@@ -370,6 +390,7 @@ try {
 ## Complete Sample Code
 
 ### BLE Scanning
+
 ```ts
 import { ble } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
@@ -605,6 +626,7 @@ export default bleScanManager as BleScanManager;
 ```
 
 ### BLE Advertising
+
 ```ts
 import { ble } from '@kit.ConnectivityKit';
 import { BusinessError } from '@kit.BasicServicesKit';

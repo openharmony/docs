@@ -290,11 +290,11 @@ zh-cn/application-dev/basic-services/common-event/native-common-event-publish.md
 zh-cn/application-dev/basic-services/common-event/native-common-event-subscription.md @HuYueRong @dongqingran @fang-jinxu
 zh-cn/application-dev/basic-services/common-event/native-common-event-unsubscription.md @HuYueRong @dongqingran @fang-jinxu
 zh-cn/application-dev/basic-services/compress/deflate-and-inflate.md @jsjzju @HelloCrease
-zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/basic-services/pasteboard/pasteboard-term.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/basic-services/pasteboard/use-pasteboard-to-copy-and-paste.md @yangxiaodong41 @guo867 @fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/get-pastedata-permission-guidelines.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/native-use-pasteboard.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/pasteboard-term.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/pasteboard-time-lapse-copy-and-paste.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/basic-services/pasteboard/use-pasteboard-to-copy-and-paste.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
 zh-cn/application-dev/basic-services/powermgr/runningLock/runningLock-dev.md @zhang-yinglie @volcano_wang @wangyantian0 @fang-jinxu
 zh-cn/application-dev/basic-services/print/native-print-file.md @guoshengbang @baozewei @fang-jinxu
 zh-cn/application-dev/basic-services/print/printExtensionAbilityGuide.md @guoshengbang @baozewei @fang-jinxu
@@ -3402,8 +3402,8 @@ zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-comm
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-h.md @HuYueRong @dongqingran @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent-support-h.md @HuYueRong @dongqingran @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-commonevent.md @HuYueRong @dongqingran @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md @yangxiaodong41 @guo867 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-err-code-h.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-pasteboard-h.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-print-print-defaultvalue.md @guoshengbang @baozewei @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-print-print-margin.md @guoshengbang @baozewei @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-oh-print-print-pagesize.md @guoshengbang @baozewei @fang-jinxu
@@ -3428,11 +3428,11 @@ zh-cn/application-dev/reference/apis-basic-services-kit/capi-ohscan-h.md @guoshe
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-os-account-common-h.md @steven-q @JiDong-CS1 @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-os-account-h.md @steven-q @JiDong-CS1 @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-osaccount.md 无
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md @yangxiaodong41 @guo867 @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md @yangxiaodong41 @guo867 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-getdataparams.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboard.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-oh-pasteboardobserver.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard-progressinfo.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/capi-pasteboard.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-time-service-h.md @huaxin05 @hu-kai45 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/capi-timeservice.md @huaxin05 @hu-kai45 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-account.md @steven-q @JiDong-CS1 @zengyawen
@@ -3445,7 +3445,7 @@ zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-device-info.md
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-deviceAttest.md 无
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-intelligentScene.md @chenzhe123 @wangchun @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-intelligentVoice.md @y00416036 @jinjunwen @fang-jinxu
-zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md @yangxiaodong41 @guo867 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-pasteboard.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-power.md @zhang-yinglie @volcano_wang @wangyantian0 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-print.md @guoshengbang @baozewei @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/errorcode-request.md @huaxin05 @hu-kai45 @fang-jinxu
@@ -3493,7 +3493,7 @@ zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentScene
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md @y00416036 @jinjunwen @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount-sys.md @steven-q @JiDong-CS1 @zengyawen
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-osAccount.md @steven-q @JiDong-CS1 @zengyawen
-zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md @yangxiaodong41 @guo867 @fang-jinxu
+zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-pasteboard.md @yangxiaodong41 @zhusiyuan2 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power-sys.md @zhang-yinglie @volcano_wang @wangyantian0 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-power.md @zhang-yinglie @volcano_wang @wangyantian0 @fang-jinxu
 zh-cn/application-dev/reference/apis-basic-services-kit/js-apis-print-sys.md @guoshengbang @gcw_4D6e0BBd @fang-jinxu

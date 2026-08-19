@@ -1,32 +1,30 @@
 # Opening Pages in a New Window
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
-<!--Owner: @weixin_41848015-->
-<!--Designer: @libing23232323-->
+<!--Owner: @csliutt-private-->
+<!--Designer: @ringking0-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-
+<!-- md-trans-meta sourceCommit=e1ff875f66e384f6b59920f2a400e509e2ca7898 translatedAt=2026-08-14T03:48:06.876Z pushedAt=2026-08-14T09:20:27.325Z -->
 
 The **Web** component provides the capability of opening pages in a new window. You can call [multiWindowAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#multiwindowaccess9) to specify whether to allow a web page to be opened in a new window. When a new window is opened, the application receives the new window event of the **Web** component through the [onWindowNew()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownew9) or [onWindowNewExt()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownewext23) API. You need to create a window for processing the window opening request in the event callback.
 
-
 > **NOTE**
 >
-> - Enhanced from the [onWindowNew()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownew9) API, the [onWindowNewExt()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownewext23) API has two new APIs: [NavigationPolicy](../reference/apis-arkweb/arkts-basic-components-web-e.md#navigationpolicy23) and [WindowFeatures](../reference/apis-arkweb/arkts-basic-components-web-i.md#windowfeatures23), which are used to notify applications of the opening mode and position of a new window. When both APIs are used on the same **Web** component, only the [onWindowNewExt()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownewext23) API is triggered.
+> - The [onWindowNewExt()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownewext23) API is an enhanced version of the [onWindowNew()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownew9) API. Compared with `OnWindowNewEvent`, `OnWindowNewExtEvent` adds [NavigationPolicy](../reference/apis-arkweb/arkts-basic-components-web-e.md#navigationpolicy23) and [WindowFeatures](../reference/apis-arkweb/arkts-basic-components-web-i.md#windowfeatures23), which are used to notify the app of how the new window is opened and its position and size information. When both APIs are used on the same Web component, only the [onWindowNewExt()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onwindownewext23) API is triggered.
 >
-> - If [allowWindowOpenMethod()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#allowwindowopenmethod10) is set to **true**, you can open a new window in the frontend page by invoking its JavaScript functions.
+> - When the [allowWindowOpenMethod()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#allowwindowopenmethod10) API is set to **true**, the frontend page opens a new window by calling a JavaScript function.
 >
-> - When a web page calls **window.open(url, name)** to open a new window, the ArkWeb kernel checks whether a bound **Web** component exists based on **name**. If yes, the **Web** component will receive a notification from the [onActivateContent()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onactivatecontent20) API so that the application can display it in the foreground. If no, the ArkWeb kernel will notify the application of creating a new window through the **onWindowNew()** API.
+> - When `window.open(url, name)` is called on a web page to open a new window, the ArkWeb kernel searches for a bound Web component based on `name`. If one exists, the Web component receives the [onActivateContent()](../reference/apis-arkweb/arkts-basic-components-web-events.md#onactivatecontent20) API notification so that the app can bring it to the foreground. If not, the ArkWeb kernel notifies the app to create a new window through the `onWindowNew()` API.
 >
-> - If a new window is created in the **onWindowNew()** notification and the parameter of the **ControllerHandler.setWebController()** API is set to the **WebviewController** of the new **Web** component, the ArkWeb kernel will bind the **name** with the new **Web** component.
+> - If a new window is created in the `onWindowNew()` API notification and the parameter of the [ControllerHandler.setWebController()](../reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md#setwebcontroller9) API is set to the `WebviewController` of the new Web component, the ArkWeb kernel binds `name` to the new Web component.
 >
-> - If you do not create a window in **onWindowNew()**, set the parameter of the **ControllerHandler.setWebController()** API to null.
+> - If no new window is created in the `onWindowNew()` API notification, set the parameter of the [ControllerHandler.setWebController()](../reference/apis-arkweb/arkts-basic-components-web-ControllerHandler.md#setwebcontroller9) API to `null`.
 
-
-In the following example, when a user clicks the **Open Page in New Window** button, the application receives a window opening event in the **onWindowNew()** callback.
+In the following local example, when a user clicks the **Open Page in New Window** button, the app receives the new window event of the Web component in the `onWindowNew()` API.
 > **NOTE**
-> - When a web page requires the user to create a window, the [OnWindowNewEvent()](../reference/apis-arkweb/arkts-basic-components-web-i.md#onwindownewevent12) callback is triggered. In this callback, the value **true** of the **isUserTrigger** parameter indicates that the window is triggered by the user, and **false** indicates the opposite.
-
+> - The [OnWindowNewEvent](../reference/apis-arkweb/arkts-basic-components-web-i.md#onwindownewevent12) callback is triggered when the web page requires the user to create a new window. In this callback, the `isUserTrigger` parameter returns **true** if the event is triggered by the user, and **false** otherwise.
 
 - Application code:
 
@@ -54,7 +52,7 @@ struct NewWebViewComp {
           }
         })
         .onActivateContent(() => {
-          // To display the web page to the foreground, the application should perform a tab or window switch.
+          // This Web needs to be displayed in the foreground. It is recommended that the app switch the tab or window here.
           console.info('NewWebViewComp onActivateContent')
         })
     }
@@ -79,16 +77,16 @@ struct WebComponent {
             this.dialogController.close()
           }
           let popController: webview.WebviewController = new webview.WebviewController();
+          // Return the WebviewController corresponding to the new window to the Web kernel.
+          // If event.handler.setWebController is not called, the rendering process will be blocked.
+          // If no new window is created, set the value to null when calling event.handler.setWebController to notify the Web that no new window has been created.
+          event.handler.setWebController(popController);
           this.dialogController = new CustomDialogController({
             builder: NewWebViewComp({ webviewController1: popController }),
             // Set isModal to false to prevent the new window from being destroyed, so that the onActivateContent callback can be triggered.
             isModal: false
           })
           this.dialogController.open();
-          // Return the WebviewController object corresponding to the new window to the <Web> kernel.
-          // If the event.handler.setWebController API is not called, the render process will be blocked.
-          // If no new window is created, set the value of event.handler.setWebController to null to notify the Web component that no new window is created.
-          event.handler.setWebController(popController);
         })
     }
   }
@@ -123,7 +121,6 @@ struct WebComponent {
 
 ![web-open-in-new-window](figures/web-open-in-new-window.png)
 
-  
 ## Samples
 
 The following samples are provided to help you better understand how to create a window:

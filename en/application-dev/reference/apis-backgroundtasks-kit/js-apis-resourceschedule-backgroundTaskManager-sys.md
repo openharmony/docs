@@ -6,6 +6,7 @@
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=f535fa3e6a7c6dc24401768a57ccb365b67fee65 translatedAt=2026-08-11T01:56:10.825Z pushedAt=2026-08-11T03:04:38.325Z -->
 
 The **backgroundTaskManager** module provides APIs to request background tasks. You can use the APIs to request transient tasks, continuous tasks, or efficiency resources to prevent the application process from being terminated or suspended when your application is switched to the background.
 
@@ -37,12 +38,11 @@ Requests efficiency resources.
 | ------- | ------- | ---- | ---------------------------------------- |
 | request | [EfficiencyResourcesRequest](#efficiencyresourcesrequest) | Yes   | Necessary information carried in the request, including the resource type and timeout interval.|
 
-
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -90,11 +90,11 @@ Releases all efficiency resources.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. |
+| 401 | Parameter error. Possible causes: 1. Parameter verification failed. |
 | 9800001 | Memory operation failed. |
 | 9800002 | Failed to write data into parcel. Possible reasons: 1. Invalid parameters; 2. Failed to apply for memory. |
 | 9800003 | Internal transaction failed. |
@@ -134,7 +134,7 @@ Obtains all information about the requested efficiency resources, including the 
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 202 | Not System App. |
 | 18700001 | Caller information verification failed for an energy resource request. |
@@ -182,7 +182,7 @@ Sets the authorization information of a continuous task.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -240,7 +240,7 @@ Obtains the authorization information of a continuous task.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code | Error Message            |
+| ID | Error Message            |
 | ---- | --------------------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -291,7 +291,7 @@ Obtains all continuous task information, including the task ID and type. This AP
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 | --------- | ------- |
 | 201 | Permission denied. |
 | 202 | Not System App. |
@@ -339,7 +339,7 @@ Registers a callback to listen for the continuous task change events.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 |---------| ------- |
 | 201     | Permission denied. |
 | 202     | Not System App. |
@@ -396,7 +396,7 @@ Unregisters the callback for continuous task changes.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [backgroundTaskManager Error Codes](errorcode-backgroundTaskMgr.md).
 
-| Error Code  | Error Message|
+| ID  | Error Message|
 |---------| ------- |
 | 201     | Permission denied. |
 | 202     | Not System App. |
@@ -475,7 +475,7 @@ Enumerates the efficiency resource types.
 | GPS                     | 32   | GPS resource. Such type of resource ensures that an application in the suspended state can be woken up by GPS-related events.|
 | AUDIO                   | 64   | Audio resource. Such type of resource prevents an application from being suspended when the application has an audio being played.|
 | RUNNING_LOCK<sup>10+</sup> | 128 | RUNNING_LOCK resources are not proxied when the application is suspended.|
-| SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted.|
+| SENSOR<sup>10+</sup> | 256 | Sensor callbacks are not intercepted. |
 
 ## EfficiencyResourcesInfo<sup>20+</sup>
 

@@ -1,10 +1,12 @@
 # Calculating and Adjusting Safe Area Insets
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
-<!--Owner: @KeeGitee-->
-<!--Designer: @LongLie-->
+<!--Owner: @sinat_22543221-->
+<!--Designer: @dzichou-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=8b5408a78b1779be5394664afc53fc3cab8e1cce translatedAt=2026-08-14T03:50:19.272Z pushedAt=2026-08-14T09:36:22.227Z -->
 
 In earlier versions, the screen of most devices is rectangular, and the application UI can be completely displayed. With the popularization of irregular screens such as bezel-less screen and notch screens, rounded corners, cameras, or system navigation bars may appear on the edge of the screen. As a result, some parts of the screen are obscured.
 

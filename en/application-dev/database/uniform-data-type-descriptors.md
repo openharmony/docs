@@ -6,7 +6,7 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=05bb12367fee189c7aecbeb9ad82dabebbba21d0 translatedAt=2026-07-27T08:17:28.463Z pushedAt=2026-07-27T10:11:16.877Z -->
+<!-- md-trans-meta sourceCommit=4b90a346c35ae86f50b36d420ba72b66b13ac32f translatedAt=2026-08-18T11:01:12.800Z pushedAt=2026-08-18T11:34:06.170Z -->
 
 ## When to Use
 
@@ -250,11 +250,11 @@ The following walks you through on how to obtain **belongingToTypes** of a media
         // 5. Check whether general.mp3 belongs to general.audio.
         if (typeObj1 != null) {
           let ret = typeObj1.belongsTo('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `belongsTo, ret: ${ret}`);
           let mediaTypeObj = uniformTypeDescriptor.getTypeDescriptor('general.media');
           // Check whether there is an ownership relationship.
           ret = mediaTypeObj.isHigherLevelType('general.audio');
-          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: + ${ret}`);
+          hilog.info(0xFF00, '[Sample_Udmf]', `isHigherLevelType, ret: ${ret}`);
         }
       } catch (err) {
         hilog.error(0xFF00, '[Sample_Udmf]', `err message: ${err.message}, err code: ${err.code}`);
@@ -314,7 +314,7 @@ The following walks you through on how to obtain the file name extensions based 
 
 2. Use **getUniformDataTypesByMIMEType()** to obtain the UTD type ID based on the MIME type **text/plain**.
 
-3. Use **getTypeDescriptor()** to obtain the MIME types based on the UTD type ID.
+3. Use **getTypeDescriptor()** to obtain the file extensions based on the UTD type.
 
     <!-- @[get_filename_extension_by_mimeType](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UniformDataTypeDescriptors/entry/src/main/ets/pages/Index.ets) -->
 

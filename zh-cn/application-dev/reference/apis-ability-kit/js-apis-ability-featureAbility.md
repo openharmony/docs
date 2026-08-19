@@ -7,7 +7,7 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接断连Service等。
+FeatureAbility模块提供与用户进行交互的Ability的能力，包括启动新的Ability、停止Ability、获取dataAbilityHelper对象、获取当前Ability对应的窗口，连接/断连ServiceAbility等。
 
 > **说明：**
 >
@@ -419,7 +419,7 @@ hasWindowFocus(callback: AsyncCallback\<boolean>): void
 
 | 参数名       | 类型                      | 必填   | 说明                                       |
 | -------- | ----------------------- | ---- | ---------------------------------------- |
-| callback | AsyncCallback\<boolean> | 是    |回调函数。<br>如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| callback | AsyncCallback\<boolean> | 是    |回调函数。<br>如果此Ability当前具有窗口焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -450,7 +450,7 @@ hasWindowFocus(): Promise\<boolean>
 
 | 类型                | 说明                                    |
 | ----------------- | ------------------------------------- |
-| Promise\<boolean> | Promise对象。如果此Ability当前具有视窗焦点，则返回true；否则返回false。 |
+| Promise\<boolean> | Promise对象。如果此Ability当前具有窗口焦点，则返回true；否则返回false。 |
 
 **示例：**
 
@@ -900,7 +900,7 @@ featureAbility.AbilityStartSetting.BOUNDS_KEY
 | ------------------------------ | ---- | ---------------------------------------- |
 | NO_ERROR         | 0    | 没有异常。   |
 | INVALID_PARAMETER | -1   | 无效的参数。 |
-| ABILITY_NOT_FOUND | -2   | 找不到ABILITY。 |
+| ABILITY_NOT_FOUND | -2   | 找不到Ability。 |
 | PERMISSION_DENY   | -3   | 权限拒绝。   |
 
 ## DataAbilityOperationType<sup>7+</sup>

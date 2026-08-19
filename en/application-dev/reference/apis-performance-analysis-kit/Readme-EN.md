@@ -15,7 +15,7 @@
   - [@ohos.hiTraceMeter (HiTraceMeter)](js-apis-hitracemeter.md)
   - [@ohos.hiviewdfx.FaultLogExtensionAbility (Delayed Fault Notification)](js-apis-hiviewdfx-FaultLogExtensionAbility.md)
   - [@ohos.hiviewdfx.FaultLogExtensionContext (Delayed Fault Notification Context)](js-apis-hiviewdfx-FaultLogExtensionContext.md)
-  - [@ohos.hiviewdfx.hiAppEvent (HiAppEvent)](js-apis-hiviewdfx-hiappevent.md)
+  - [@ohos.hiviewdfx.hiAppEvent (Application Event Logging)](js-apis-hiviewdfx-hiappevent.md)
   - [@ohos.hiviewdfx.hiRetrieval (Application Grayscale)](js-apis-hiretrieval.md)
   - [@ohos.hiviewdfx.jsLeakWatcher (JS Leak Watcher)](js-apis-jsleakwatcher.md)
   <!--Del-->

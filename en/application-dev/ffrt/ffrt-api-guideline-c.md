@@ -6,7 +6,7 @@
 <!--Designer: @zhanglu161-->
 <!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=a4bb221ea8dcccf781d5793faa6c8f62723e3e12 translatedAt=2026-08-03T08:17:34.356Z pushedAt=2026-08-03T08:49:04.447Z -->
+<!-- md-trans-meta sourceCommit=528f79113a49f66de1d5ef6860690f10b63b035e translatedAt=2026-08-15T01:48:43.668Z pushedAt=2026-08-15T07:32:35.713Z -->
 
 ## Task Management
 
@@ -1952,7 +1952,7 @@ int main()
 
 ### ffrt_cond_t
 
-- Implements the pthread semaphore function, but does not support initialization of `PTHREAD_COND_INITIALIZER`.
+- Implements the pthread condition variable function, but does not support initialization of `PTHREAD_COND_INITIALIZER`.
 
 **Declaration**
 
@@ -2000,7 +2000,7 @@ FFRT_C_API int ffrt_cond_init(ffrt_cond_t* cond, const ffrt_condattr_t* attr);
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 - `attr`: pointer to the attribute. A null pointer indicates that the default attribute is used.
 
@@ -2020,7 +2020,7 @@ FFRT_C_API int ffrt_cond_destroy(ffrt_cond_t* cond);
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 Return Values
 
@@ -2038,7 +2038,7 @@ FFRT_C_API int ffrt_cond_signal(ffrt_cond_t* cond);
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 Return Values
 
@@ -2056,7 +2056,7 @@ FFRT_C_API int ffrt_cond_broadcast(ffrt_cond_t* cond);
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 Return Values
 
@@ -2074,7 +2074,7 @@ FFRT_C_API int ffrt_cond_wait(ffrt_cond_t* cond, ffrt_mutex_t* mutex);
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 - `mutex`: pointer to the target mutex.
 
@@ -2096,7 +2096,7 @@ FFRT_C_API int ffrt_cond_timedwait(ffrt_cond_t* cond, ffrt_mutex_t* mutex, const
 
 Parameters
 
-- `cond`: pointer to the target semaphore.
+- `cond`: pointer to the target condition variable.
 
 - `mutex`: pointer to the target mutex.
 

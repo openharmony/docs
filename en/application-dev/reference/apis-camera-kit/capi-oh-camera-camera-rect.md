@@ -1,10 +1,12 @@
 # Camera_Rect
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=bad8bf8b64978e36c5bf2ec500361ab9a984e7f6 translatedAt=2026-08-11T02:02:24.591Z pushedAt=2026-08-12T03:43:27.607Z -->
 
 ```c
 typedef struct Camera_Rect {...} Camera_Rect
@@ -12,11 +14,7 @@ typedef struct Camera_Rect {...} Camera_Rect
 
 ## Overview
 
-The struct describes a rectangle. The coordinate system for the returned detection points is based on the landscape device orientation, with the charging port on the right. In this coordinate system, the top-left corner is (0, 0), and the bottom-right corner is (1, 1). Here, **topLeftX** and **topLeftY** represent the coordinates of the top-left corner of the rectangle, whereas **width** and **height** represent the width and height of the rectangle, respectively. When cropping or selecting a face region based on specific requirements, the x and y coordinates of the rectangle must be multiplied by the width and height of the actual camera preview output stream to obtain the cropped face region.
-
-The width and height of the actual preview stream refer to the resolution of the camera output stream. For details, see **size** in [profile](arkts-apis-camera-i.md#profile).
-
-For details about how to obtain the preview stream data, see [Secondary Processing of Preview Streams (C/C++)](../../media/camera/native-camera-preview-imageReceiver.md).
+Defines a camera rectangle. This method is used to draw rectangles for various detection objects.<br>The coordinate system for detection points is based on the landscape device orientation, with the charging port on the right.<br>The origin of the coordinate system is (0, 0) at the upper left corner, and the coordinates at the lower right corner are the resolution of the camera preview stream.<br>All parameters are integer pixel values. **topLeftX** and **topLeftY** indicate the coordinates of the upper left corner of the rectangle, and **width** and **height** indicate the width and height of the rectangle.
 
 **Since**: 11
 
@@ -28,9 +26,9 @@ For details about how to obtain the preview stream data, see [Secondary Processi
 
 ### Member Variables
 
-| Name| Description|
+| Name | Description |
 | -- | -- |
-| int32_t topLeftX | X coordinate of the top-left corner of the rectangle, in the range of [0, 1].|
-| int32_t topLeftY | Y coordinate of the top-left corner of the rectangle, in the range of [0, 1].|
-| int32_t width | Width of the rectangle, in the range of [0, 1].|
-| int32_t height | Height of the rectangle, in the range of [0, 1].|
+| int32_t topLeftX | X-axis coordinate of the upper left corner of the rectangle.<br>The value range is [0, preview stream width]. For example, for a 1920 × 1440 preview stream, the value range is [0, 1920]. |
+| int32_t topLeftY | Y-axis coordinate of the upper left corner of the rectangle.<br>The value range is [0, preview stream height]. For example, for a 1920 × 1440 preview stream, the value range is [0, 1440]. |
+| int32_t width | Rectangle width.<br>The value cannot exceed the upper limit of the X axis of the coordinate system, that is, the maximum value of **topLeftX**. |
+| int32_t height | Rectangle height.<br>The value cannot exceed the upper limit of the Y axis of the coordinate system, that is, the maximum value of **topLeftY**. |

@@ -63,7 +63,7 @@ Provides configuration options for the **GridObjectSortComponent** component.
 
 | Name          | Type                     | Read-Only| Optional| Description                                                         |
 | -------------- | ------------------------- |---|---|-------------------------------------------------------------|
-| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | No| Yes| Component display type: text only or|image with text.<br>Default value: **GridObjectSortComponentType.TEXT**|
+| type           | [GridObjectSortComponentType](#gridobjectsortcomponenttype) | No| Yes| Component display type: text only or\|image with text.<br>Default value: **GridObjectSortComponentType.TEXT**|
 | imageSize      | number \| [Resource](ts-types.md#resource) | No| Yes| Image size, in vp.<br>The value must be greater than or equal to 0.<br>Default value: **56vp**.                 |
 | normalTitle | [ResourceStr](ts-types.md#resourcestr)     | No| Yes| Title displayed in the non-editing state.<br>Default value: **Channel**                                  |
 | showAreaTitle | [ResourceStr](ts-types.md#resourcestr)     | No| Yes| First subtitle of the display area.<br>Default value: **Drag to sort**                            |

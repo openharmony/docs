@@ -457,7 +457,7 @@ getLuminanceSampler(target: TargetInfo): LuminanceSampler | undefined
 
 **示例：**
 
-参考[offBackgroundLuminanceChange](arkts-apis-uicontext-luminancesampler-sys.md#offbackgroundluminancechange23)接口的示例。
+参考[offBackgroundLuminanceChange](arkts-apis-uicontext-luminancesampler-sys.md#offbackgroundluminancechange)接口的示例。
 
 ### recycleInvisibleImageMemory<sup>23+</sup>
 
@@ -545,7 +545,7 @@ getWithRange(start: NodeIdentity, end: NodeIdentity, isStartRect: boolean, optio
 | ------ | ------- |
 | 202    | The caller is not a system application. |
 | 100001 | Invalid ID detected. |
-| 160003 | Unsupported color space or dynamic range mode in snapshot options. |
+| 160003 | Unsupported color space or dynamic range mode in snapshot options.<br>适用版本：23+ |
 
 **示例：** 
 

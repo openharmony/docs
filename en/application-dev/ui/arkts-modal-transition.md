@@ -446,7 +446,7 @@ struct BindMenuDemo {
 }
 ```
 
-<!--Del-->![image_0000001599643478]  (figures/Creating-Menu-bindMenu.gif)<!--DelEnd-->
+<!--Del-->  <!--DelEnd-->
 
 
 ## Creating a Context Menu with bindContextMenu

@@ -701,4 +701,4 @@ struct PopupExample {
 }
 ```
 
-![](figures/popup_07.gif)
+<!--Del--> <!--DelEnd-->

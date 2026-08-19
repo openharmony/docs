@@ -57,7 +57,7 @@ import { image } from '@kit.ImageKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 async function wrongPackingExample(pixelMap: image.PixelMap, fd: number): Promise<void> {
-  let imagePacker = image.ImagePacker | null = null;
+  let imagePacker: image.ImagePacker | null = null;
 
   try {
     imagePacker = image.createImagePacker();
@@ -88,7 +88,7 @@ async function wrongPackingExample(pixelMap: image.PixelMap, fd: number): Promis
 import { image } from '@kit.ImageKit';
 
 async function correctPackingExample(pixelMap: image.PixelMap, fd: number): Promise<void> {
-  let imagePacker = image.ImagePacker | null = null;
+  let imagePacker: image.ImagePacker | null = null;
 
   try {
     imagePacker = image.createImagePacker();

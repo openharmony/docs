@@ -2,10 +2,11 @@
 
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+<!-- md-trans-meta sourceCommit=6dec6b14cb206fe02a5ddd5033caa3930c0dd80f translatedAt=2026-08-18T11:02:44.221Z pushedAt=2026-08-18T11:38:45.618Z -->
 
 DRM Kit provides ArkTS APIs for comprehensive digital rights management, covering certificate management, license management, content authorization, and content decryption.
 
@@ -13,7 +14,7 @@ Its implementation is built around two core classes: MediaKeySystem and MediaKey
 
 ## How to Develop
 
-For details on the APIs, see [DRM API](../../reference/apis-drm-kit/arkts-apis-drm.md).
+For detailed API descriptions, refer to [@ohos.multimedia.drm](../../reference/apis-drm-kit/arkts-apis-drm.md).
 
 1. Import the DRM Kit module.
 

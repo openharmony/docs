@@ -1,10 +1,12 @@
 # Interface (PreviewOutput)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=e78a6cc17babc03b49d63c81464e0e9d7953f5bb translatedAt=2026-08-11T02:00:04.022Z pushedAt=2026-08-11T11:41:11.947Z -->
 
 PreviewOutput implements preview output. It inherits from [CameraOutput](arkts-apis-camera-CameraOutput.md).
 
@@ -257,7 +259,7 @@ which can be obtained by calling [getSupportedFrameRates](#getsupportedframerate
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code       | Error Message       |
+| ID       | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 | 7400110                |  Unresolved conflicts with current configurations.     |
@@ -317,7 +319,7 @@ Obtains the profile that takes effect currently.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                        |
+| ID  | Error Message                        |
 |---------|------------------------------|
 | 7400201 | Camera service fatal error.  |
 
@@ -346,7 +348,9 @@ getPreviewRotation(displayRotation?: number): ImageRotation
 Obtains the preview rotation angle.
 
 - Device' natural orientation: the default orientation for using a device. For example, the default orientation of the bar-type phone is in portrait mode, with the charging port facing downward.
+
 - Camera lens angle: equivalent to the angle at which the camera is rotated clockwise to match the device's natural orientation. For example, the rear camera sensor of a bar-type phone is installed in landscape mode. Therefore, it needs to be rotated by 90 degrees clockwise to match the device's natural orientation.
+
 - [Screen Rotation](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-multi-device-window-direction): indicates the clockwise rotation angle of the device screen.
 
 **Model restriction**: This API can be used only in the stage model.
@@ -371,7 +375,7 @@ Obtains the preview rotation angle.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                        |
+| ID  | Error Message                        |
 |---------|------------------------------|
 | 7400101 | Parameter missing or parameter type incorrect.<br>Applicable versions: 12-22 |
 | 7400201 | Camera service fatal error.  |
@@ -429,7 +433,7 @@ Sets the preview rotation angle.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                        |
+| ID  | Error Message                        |
 |---------|------------------------------|
 | 7400101 | Parameter missing or parameter type incorrect.  |
 | 7400201 | Camera service fatal error.  |
@@ -450,7 +454,6 @@ function testSetPreviewRotation(previewOutput: camera.PreviewOutput, previewRota
   return;
 }
 ```
-
 
 ## start<sup>(deprecated)</sup>
 
@@ -473,7 +476,7 @@ Starts to output preview streams. This API uses an asynchronous callback to retu
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
 
@@ -514,7 +517,7 @@ Starts to output preview streams. This API uses a promise to return the result.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400103                |  Session not config.                                   |
 
@@ -655,7 +658,7 @@ Before enabling this feature, you can call [isBandwidthCompressionSupported](#is
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code   | Error Message                                          |
+| ID   | Error Message                                          |
 | -------- |----------------------------------------------- |
 | 7400102  | Operation not allowed. |
 | 7400103  | Session not config. |
@@ -676,6 +679,7 @@ function enableBandwidthCompression(previewOutput: camera.PreviewOutput, enabled
   }
 }
 ```
+
 ## addDeferredSurface<sup>24+</sup>
 
 addDeferredSurface(surfaceId: string): void
@@ -696,7 +700,7 @@ Adds a surface for delayed preview. This API can run after [commitConfig](arkts-
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400101                |  Parameter missing or parameter type incorrect.        |
 
@@ -723,5 +727,98 @@ async function preview(cameraManager: camera.CameraManager, cameraInfo: camera.C
     console.error(`start session failed. error code: ${err.code}`);
   }
   previewOutput.addDeferredSurface(previewSurfaceId);
+}
+```
+
+## isLogViewAssistSupported
+
+isLogViewAssistSupported(): boolean
+
+Checks whether view assist is supported for LOG videos. After view assist is enabled, the preview image is restored to the original color gamut, and the recorded video is still in the LOG format.
+
+> **NOTE**
+>
+> View assist is supported for a resolution of 1080p or lower only.
+
+**Since**: 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Return value**
+
+| Type            | Description                     |
+| -------------- | ----------------------- |
+| boolean | Whether view assist is supported. The value **true** indicates it is supported, and **false** indicates otherwise. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function isLogViewAssistSupported(previewOutput: camera.PreviewOutput): boolean {
+  let supported: boolean = false;
+  try {
+      supported = previewOutput.isLogViewAssistSupported();
+  } catch (error) {
+      // If the operation fails, error.code is returned and processed.
+      let err = error as BusinessError;
+      console.error(`The previewOutput.isLogViewAssistSupported call failed. error code: ${err.code}`);
+  }
+  return supported;
+}
+```
+
+## setLogViewAssistEnable
+
+setLogViewAssistEnable(enable: boolean): void
+
+Before enabling view assist for LOG videos, you can call [isLogViewAssistSupported](#islogviewassistsupported) to check whether the device supports view assist for preview.
+
+> **NOTE**
+> 
+> - This API can be called only after [Session.commitConfig](arkts-apis-camera-Session.md#commitconfig11) is called.
+> - View assist for preview is supported for a resolution of 1080p or lower only.
+
+**Since**: 26.0.0
+
+**Model restriction:** This API can be used only in the stage model.
+
+**Atomic service API**: This API can be used in atomic services since API version 26.0.0.
+
+**System capability**: SystemCapability.Multimedia.Camera.Core
+
+**Parameters**
+
+| Name      | Type                    | Mandatory | Description                                       |
+| -------- | ---------------------- | ---- | ------------------------------------------ |
+| enable  | boolean | Yes  | Whether to enable view assist. The value **true** indicates that view assist is enabled, and the value **false** indicates otherwise. |
+
+**Error codes**
+
+For details about the error codes, see [Camera Error Codes](errorcode-camera.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID    | Error Message                                           |
+| -------- |----------------------------------------------- |
+| 801  | Capability not supported. |
+| 7400103  | Session not config. |
+| 7400201  | Camera service fatal error. |
+
+**Example**
+
+```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
+function setLogViewAssistEnable(previewOutput: camera.PreviewOutput, enable: boolean): void {
+  try {
+      previewOutput.setLogViewAssistEnable(enable);
+  } catch (error) {
+      // If the operation fails, error.code is returned and processed.
+      let err = error as BusinessError;
+      console.error(`The previewOutput.setLogViewAssistEnable call failed. error code: ${err.code}`);
+  }
 }
 ```

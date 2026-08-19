@@ -307,7 +307,7 @@ struct Index {
     // 构建提示弹出框，配置图片、内容、勾选状态和操作按钮
     TipsDialogV2({
       imageRes: $r('sys.media.ohos_ic_public_voice'),
-      content: '想要卸载这个APP嘛?',
+      content: '想要卸载这个APP吗?',
       title: 'TipsDialogV2',
       checkTips: '不再提示',
       checked: this.checked,
@@ -606,7 +606,7 @@ struct Index {
 使用WithTheme自定义主题的弹出框，通过WithTheme包装LoadingDialogV2实现主题风格定制。
 
 ```ts
-import { CustomColors, CustomTheme, LoadingDialogV2, UIContext, WithTheme  } from '@kit.ArkUI';
+import { CustomColors, CustomTheme, LoadingDialogV2, UIContext } from '@kit.ArkUI';
 
 class CustomThemeImpl implements CustomTheme {
   colors?: CustomColors;

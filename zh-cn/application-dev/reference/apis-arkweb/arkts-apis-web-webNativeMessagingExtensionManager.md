@@ -29,7 +29,7 @@ import { webNativeMessagingExtensionManager } from '@kit.ArkWeb';
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 |------|------|------|------|------|
-| connectionId | number | 否 | 否 | 连接ID。 |
+| connectionId | number | 否 | 否 | Web原生消息扩展连接的唯一标识，由connectNative方法返回，用于标识和管理连接。 |
 | bundleName | string | 否 | 否 | Web原生消息扩展应用的包名。 |
 | extensionOrigin | string | 否 | 否 | 浏览器扩展的源URL。 |
 | extensionPid | number | 否 | 否 | Web原生消息扩展的进程ID。 |
@@ -61,7 +61,7 @@ onConnect(connection: ConnectionNativeInfo): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| connection | [ConnectionNativeInfo](#connectionnativeinfo) | 是 | 连接信息。 |
+| connection | [ConnectionNativeInfo](#connectionnativeinfo) | 是 | 连接信息，包含连接ID、扩展应用包名、浏览器扩展源URL和扩展进程ID等信息。 |
 
 **示例:**
 ```ts
@@ -74,7 +74,7 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     try {
         let context: common.UIAbilityContext = this.context; // 获取UIAbilityContext
-        let want:Want = {
+        let want: Want = {
           bundleName: 'com.example.app',
           abilityName: 'MyWebNativeMessageExtAbility',
           parameters: {
@@ -120,7 +120,7 @@ onDisconnect(connection: ConnectionNativeInfo): void
 
 | 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| connection | [ConnectionNativeInfo](#connectionnativeinfo) | 是 | 连接信息。 |
+| connection | [ConnectionNativeInfo](#connectionnativeinfo) | 是 | 连接信息，包含连接ID、扩展应用包名、浏览器扩展源URL和扩展进程ID等信息。 |
 
 **示例:**
 ```ts
@@ -133,7 +133,7 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     try {
         let context: common.UIAbilityContext = this.context; // 获取UIAbilityContext
-        let want:Want = {
+        let want: Want = {
           bundleName: 'com.example.app',
           abilityName: 'MyWebNativeMessageExtAbility',
           parameters: {
@@ -193,7 +193,7 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     try {
         let context: common.UIAbilityContext = this.context; // 获取UIAbilityContext
-        let want:Want = {
+        let want: Want = {
           bundleName: 'com.example.app',
           abilityName: 'MyWebNativeMessageExtAbility',
           parameters: {
@@ -242,14 +242,14 @@ connectNative(context: UIAbilityContext, want: Want, callback: WebExtensionConne
 | 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
 | context | [UIAbilityContext](../apis-ability-kit/js-apis-inner-application-uiAbilityContext.md) | 是 | 调用方UIAbility的上下文。 |
-| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息。 |
+| want | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | 是 | 启动Ability的want信息，其parameters中需包含'ohos.arkweb.messageReadPipe'（读管道FD）、'ohos.arkweb.messageWritePipe'（写管道FD）和'ohos.arkweb.extensionOrigin'（插件URI）。 |
 | callback | [WebExtensionConnectionCallback](#webextensionconnectioncallback) | 是 | WebExtensionConnection状态的回调对象。 |
 
 **返回值:**
 
 | 类型 | 说明 |
 |------|------|
-| number | 连接标识ID。 |
+| number | 连接的标识ID，由[connectNative](#webnativemessagingextensionmanagerconnectnative)方法返回，用于唯一标识一次Web原生消息扩展连接。连接建立后需要通过disconnectNative释放。 |
 
 **错误码:**
 
@@ -270,7 +270,7 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     try {
         let context: common.UIAbilityContext = this.context; // 获取UIAbilityContext
-        let want:Want = {
+        let want: Want = {
           bundleName: 'com.example.app',
           abilityName: 'MyWebNativeMessageExtAbility',
           parameters: {
@@ -318,7 +318,7 @@ disconnectNative(connectionId: number): Promise&lt;void&gt;
 
 | 参数名 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| connectionId | number | 是 | 连接的标识ID，用于标识一次Web原生消息扩展连接，由[connectNative](#webnativemessagingextensionmanagerconnectnative)方法返回。建立连接后需要通过disconnectNative释放。 |
+| connectionId | number | 是 | 连接的标识ID，用于标识一次Web原生消息扩展连接，由[connectNative](#webnativemessagingextensionmanagerconnectnative)方法返回。建立连接后需要通过disconnectNative释放。需使用由connectNative返回的有效连接ID。 |
 
 **返回值:**
 

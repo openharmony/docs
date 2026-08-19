@@ -6,11 +6,11 @@
 <!--Designer: @leo_ysl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=df2388ac9ece670e2be6918a776640e250f776ef translatedAt=2026-06-25T02:36:32.303Z pushedAt=2026-06-25T06:57:19.551Z -->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-11T02:01:00.895Z pushedAt=2026-08-12T01:20:20.581Z -->
 
-VideoSession inherits from [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [WhiteBalance](arkts-apis-camera-WhiteBalance.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [Stabilization](arkts-apis-camera-Stabilization.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), [ControlCenter](arkts-apis-camera-ControlCenter.md), [ManualExposure](arkts-apis-camera-ManualExposure.md), [ManualFocus](arkts-apis-camera-ManualFocus.md), [ManualIso](arkts-apis-camera-ManualIso.md), [OIS](arkts-apis-camera-OIS.md), and [Aperture](arkts-apis-camera-Aperture.md).
+**VideoSession** inherits from [Session](arkts-apis-camera-Session.md), [Flash](arkts-apis-camera-Flash.md), [AutoExposure](arkts-apis-camera-AutoExposure.md), [WhiteBalance](arkts-apis-camera-WhiteBalance.md), [Focus](arkts-apis-camera-Focus.md), [Zoom](arkts-apis-camera-Zoom.md), [Stabilization](arkts-apis-camera-Stabilization.md), [ColorManagement](arkts-apis-camera-ColorManagement.md), [AutoDeviceSwitch](arkts-apis-camera-AutoDeviceSwitch.md), [Macro](arkts-apis-camera-Macro.md), [ControlCenter](arkts-apis-camera-ControlCenter.md), [ManualExposure](arkts-apis-camera-ManualExposure.md), [ManualFocus](arkts-apis-camera-ManualFocus.md), [ManualIso](arkts-apis-camera-ManualIso.md), [OIS](arkts-apis-camera-OIS.md), and [Aperture](arkts-apis-camera-Aperture.md).
 
-It implements a video session, which provides operations on the flash, exposure, white balance, focus, zoom, video stabilization, color space, macro mode and controller, manual exposure, manual focus, manual ISO, optical image stabilization, and aperture.
+It implements a video session, which provides operations on the flash, exposure, white balance, focus, zoom, video stabilization, color space, macro mode, controller, manual exposure, manual focus, manual ISO setting, optical image stabilization (OIS), and aperture.
 
 **VideoSession** is provided for the default video recording mode. It applies to common scenarios. It supports recording at various resolutions (such as 720p and 1080p) and frame rates (such as 30 fps and 60 fps).
 
@@ -52,7 +52,7 @@ Checks whether this session supports a preconfigured resolution.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                       |
+| ID  | Error Message                       |
 |---------|-----------------------------|
 | 7400201 | Camera service fatal error. |
 
@@ -94,7 +94,7 @@ Preconfigures this session.
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code  | Error Message                       |
+| ID  | Error Message                       |
 |---------|-----------------------------|
 | 7400201 | Camera service fatal error. |
 
@@ -391,7 +391,7 @@ Sets the priority level for video recording quality.
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Camera Error Codes](errorcode-camera.md).
 
-| Error Code| Error Message                                                                                                                                       |
+| ID | Error Message                                                                                                                                       |
 | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 7400103  | Session not config. The session has not been committed or configured.                                                                           |
@@ -466,7 +466,7 @@ Unsubscribes from system pressure level change events.
 | Name   | Type                          | Mandatory   | Description                                                            |
 |----------|--------------------------------|---------|------------------------------------------------------------------|
 | type     | string                         | Yes     | Event type. The value is fixed at **'systemPressureLevelChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | No| Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[SystemPressureLevel](arkts-apis-camera-e.md#systempressurelevel20)\> | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
 
 **Example**
 
@@ -530,7 +530,7 @@ Unsubscribes from events indicating that the camera controller effect status cha
 | Name   | Type| Mandatory| Description|
 |----------|-------|----|------------------------------------------------------------------------|
 | type     | string | Yes| Event type. The value is fixed at **'controlCenterEffectStatusChange'**. The event can be listened for when a session is created.|
-| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | No| Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled.|
+| callback | AsyncCallback\<[ControlCenterStatusInfo](arkts-apis-camera-i.md#controlcenterstatusinfo20)\> | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. |
 
 **Example**
 
@@ -590,7 +590,7 @@ Unsubscribes from macro state change events.
 | Name   | Type                    | Mandatory| Description                                                                    |
 | -------- | ------------------------ | ---- |------------------------------------------------------------------------|
 | type     | string                   | Yes  | Event type. The value is fixed at **'macroStatusChanged'**. The event can be listened for when a session is created.                     |
-| callback | AsyncCallback\<boolean\> | No  | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. If **true** is returned, the unsubscription is successful. If **false** is returned, the unsubscription fails.|
+| callback | AsyncCallback\<boolean\> | No | Callback used to return the result. If this parameter is specified, the subscription to the specified event with the specified callback is canceled. (The callback object cannot be an anonymous function.) Otherwise, the subscriptions to the specified event with all the callbacks are canceled. If **true** is returned, the unsubscription is successful. If **false** is returned, the unsubscription fails. |
 
 **Example**
 
@@ -700,7 +700,7 @@ function onExposureInfoChange(videoSession: camera.VideoSession): void {
 
 offExposureInfoChange(callback?: Callback\<ExposureInfo\>): void
 
-Unsubscribes from exposure information change events. If you have subscribed to exposure information, cancel the subscription before releasing the camera. This API uses an asynchronous callback to return the result.
+Unsubscribes from exposure information change events. If you have subscribed to exposure information change events, cancel the subscription before releasing the camera object. This API uses an asynchronous callback to return the result.
 
 **Since:** 26.0.0
 

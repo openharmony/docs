@@ -37,7 +37,7 @@ import notification from '@system.notification';
 | 名称          | 类型                                           | 必填 | 说明                        |
 | ------------- | ---------------------------------------------- | ---- | ------------------------- |
 | contentTitle  | string                                          | 否   | 通知标题。                  |
-| contentText   | string                                          | 否   | 通知内容。                  |
+| contentText   | string                                          | 否   | [通知内容](../../notification/notification-glossary.md#notification-content通知内容)。                  |
 | clickAction<sup>(deprecated)</sup>   | [ActionResult](#actionresult)                                    | 否   | 通知被点击后触发的行为。<br>从API version 7开始不再维护。     |
 
 

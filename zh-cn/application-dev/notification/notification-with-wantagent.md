@@ -113,7 +113,7 @@
    >
    > - 如果封装WantAgent至通知消息中，可以点击通知触发WantAgent。当通知消息存在actionButtons时，点击通知会先显示actionButtons，再次点击通知触发WantAgent。
    >
-   > - 如果封装WantAgent至通知按钮中，点击通知后，该通知下方会出现通知按钮，可以点击按钮触发WantAgent。
+   > - 如果封装WantAgent至[通知按钮](notification-glossary.md#notification-button通知按钮)中，点击通知后，该通知下方会出现通知按钮，可以点击按钮触发WantAgent。
 
    <!-- @[pub_want_agent_req_notify](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Notification-Kit/Notification/entry/src/main/ets/filemanager/AddWantAgent.ets) -->
    

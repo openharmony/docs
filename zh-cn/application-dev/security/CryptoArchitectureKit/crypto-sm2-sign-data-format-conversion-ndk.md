@@ -1,4 +1,4 @@
-# SM2签名数据格式转换 (C/C++)
+# SM2签名数据格式转换(C/C++)
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->

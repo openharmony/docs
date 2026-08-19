@@ -1,4 +1,4 @@
-# 查询和操作自定义节点
+# 查询和操作NDK节点
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->

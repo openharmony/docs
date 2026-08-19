@@ -6,7 +6,7 @@
 <!--Designer: @trytocalm-->
 <!--Tester: @Filger-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-06T01:55:13.695Z pushedAt=2026-08-06T10:01:51.272Z -->
+<!-- md-trans-meta sourceCommit=5e7686f23ef7a264ccc7e08d02658de5cf87ae0f translatedAt=2026-08-18T11:03:04.421Z pushedAt=2026-08-18T11:38:42.582Z -->
 
 ## Scenarios
 
@@ -36,7 +36,7 @@ With **OH_MIDI**, you can implement the following functions:
 
 ## Checking System Capabilities
 
-Before developing with MIDI, call the [canIUse](../../reference/common/init.md#caniuse) API to check whether the current device supports MIDI capabilities. When **canIUse("SystemCapability.Multimedia.Audio.MIDI")** returns **true**, it indicates that the MIDI capability is available.
+Before developing with MIDI, call the [canIUse](../../reference/common/syscap__ndk_8h.md#caniuse) API to check whether the current device supports MIDI capabilities. When **canIUse("SystemCapability.Multimedia.Audio.MIDI")** returns **true**, it indicates that the MIDI capability is available.
 
 ## Available APIs
 

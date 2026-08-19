@@ -27,7 +27,7 @@ Provides UI capabilities of ArkUI on the native side, such as UI component creat
 | [embedded_component.h](capi-embedded-component-h.md) | Defines the structs and APIs of the **EmbeddedComponent** component.|
 | [image.h](capi-image-h.md) | Defines **Image** node types for **NativeNode** APIs.|
 | [image_animator.h](capi-image-animator-h.md) | Defines **ImageAnimator** node types for **NativeNode** APIs.|
-| [node_attr_custom.h](capi-native-node-node-attributes-node-attr-custom-h.md) | Declares the custom node events for **NativeNode** APIs.|
+| node_attr_custom.h | Declares the custom node events for **NativeNode** APIs.|
 | [navigation_router.h](capi-navigation-router-h.md) | Defines the enumerations and APIs of the **Navigation** or **Router** component.|
 | [swiper.h](capi-swiper-h.md) | Defines the enumerations and APIs of the **Swiper** component.|
 | [drag_and_drop.h](capi-drag-and-drop-h.md) | Declares the APIs of **NativeDrag**.|

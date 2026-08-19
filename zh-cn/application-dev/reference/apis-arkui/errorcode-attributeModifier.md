@@ -26,5 +26,5 @@ attributeModifier 的动态属性设置机制当前未实现对部分接口的�
 
 **处理步骤**
 
-请停止使用不支持的接口，具体请参考[用attributeModifier设置组件动态属性出现JSCrash](../../ui/arkts-attribute-modifier-faq.md#使用attributemodifier设置组件动态属性出现jscrash)。
+请停止使用不支持的接口，具体请参考[使用AttributeModifier设置组件动态属性，出现JS Crash](../../ui/arkts-attribute-modifier-faq.md#使用attributemodifier设置组件动态属性出现js-crash)。
 

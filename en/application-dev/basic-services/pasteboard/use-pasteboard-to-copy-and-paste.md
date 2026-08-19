@@ -62,7 +62,7 @@ The ArkTS data type corresponds to the pasteboard type. For details, see [ohos.p
 
 ### Available APIs
 
-After obtaining URI data using the **getData** API, use the [fs.copy](../../reference/apis-core-file-kit/js-apis-file-fs.md#fscopy11) API of File Manager to obtain the file.
+After obtaining URI data using the **getData** API, use the [fileIo.copy](../../reference/apis-core-file-kit/js-apis-file-fs.md#fileiocopy11) API of File Manager to obtain the file.
 
 | Name| Description                                                                                                                                       |
 | -------- |----------------------------------------------------------------------------------------------------------------------------------------|

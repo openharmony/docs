@@ -62,7 +62,7 @@ font(value: Font)
 
 | 参数名 | 类型                     | 必填 | 说明                                                         |
 | ------ | ------------------------ | ---- | ------------------------------------------------------------ |
-| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的字体样式。<br/>默认值：<br/>{<br/>      size: 16,<br/>      family: 'HarmonyOS Sans',<br/>      weight: FontWeight.Medium,<br/>      style: FontStyle.Normal<br/>} |
+| value  | [Font](ts-types.md#font) | 是   | Menu中所有文本的字体样式。<br/>默认值：<br/>{<br/>      size: '16.0fp',<br/>      family: 'HarmonyOS Sans',<br/>      weight: FontWeight.Medium,<br/>      style: FontStyle.Normal<br/>} |
 ### fontColor<sup>10+</sup>
 
 fontColor(value: ResourceColor)
@@ -358,7 +358,7 @@ struct Index {
 该示例通过配置subMenuExpandSymbol实现对Menu子菜单展开符号配置颜色和大小。
 
 ```ts
-import { SymbolGlyphModifier, SubMenuExpandingMode } from '@kit.ArkUI';
+import { SymbolGlyphModifier } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -424,7 +424,7 @@ struct Index {
 该示例通过设置menuItemDivider和menuItemGroupDivider属性实现分割线样式。
 
 ```ts
-import { LengthMetrics, DividerMode } from '@kit.ArkUI'
+import { LengthMetrics } from '@kit.ArkUI'
 
 @Entry
 @Component

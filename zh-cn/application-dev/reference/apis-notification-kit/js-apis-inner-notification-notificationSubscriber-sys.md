@@ -108,7 +108,7 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 
 onUpdate?: (data: NotificationSortingMap) => void
 
-更新通知排序的回调函数。预留能力，暂未支持。
+更新[通知排序](../../notification/notification-glossary.md#notification-sorting通知排序)的回调函数。预留能力，暂未支持。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -279,7 +279,7 @@ onDoNotDisturbDateChange?: (mode: notification.DoNotDisturbDate) => void
 
 | 参数名 | 类型 | 必填 | 说明 |
 | ------------ | ------------------------ | ---- | -------------------------- |
-| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate8-deprecated)) => void | 否 | 回调返回免打扰时间选项变更。 |
+| onDoNotDisturbDateChange | (mode: notification.[DoNotDisturbDate](js-apis-notification-sys.md#donotdisturbdate8)) => void | 否 | 回调返回免打扰时间选项变更。 |
 
 **示例：**
 
@@ -534,7 +534,7 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 | 名称   | 类型    | 只读 | 可选 | 说明             |
 | ------ | ------- | ---- | --- | ---------------- |
 | onSystemUpdate | [SystemUpdateCallback](#systemupdatecallback23) | 否 | 是 | 返回携带系统属性值的通知信息。 |
-| onEnabledSilentReminderChanged | [EnabledSilentReminderChangedCallback](#enabledsilentreminderchangedcallback24) | 否 | 是 | 返回应用通知静默提醒的使能状态变化。 |
+| onEnabledSilentReminderChanged | [EnabledSilentReminderChangedCallback](#enabledsilentreminderchangedcallback24) | 否 | 是 | 返回应用通知[静默提醒](../../notification/notification-glossary.md#silent-reminder静默提醒)的使能状态变化。 |
 | onBadgeEnabledChanged | [BadgeEnabledChangedCallback](#badgeenabledchangedcallback12) | 否 | 是 | 返回应用角标的使能状态变化。 |
 | onNotificationSwitchChanged | [NotificationSwitchChangedCallback](#notificationswitchchangedcallback) | 否 | 是 | 返回由[notificationManager.setNotificationSwitch](js-apis-notificationManager-sys.md#notificationmanagersetnotificationswitch)接口设置的通知开关状态变化。<br> **起始版本：** 26.0.0<br> **模型约束：** 此接口仅可在Stage模型下使用。 |
 
@@ -548,8 +548,8 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 
 | 名称            | 类型                                                                 | 只读 | 可选 | 说明     |
 | --------------- |--------------------------------------------------------------------| ---- | --- | -------- |
-| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是  | 否  | 通知内容。 |
-| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | 是  | 是  | 通知排序信息。 |
+| request         | [NotificationRequest](js-apis-inner-notification-notificationRequest-sys.md#notificationrequest) | 是  | 否  | [通知内容](../../notification/notification-glossary.md#notification-content通知内容)。 |
+| sortingMap      | [NotificationSortingMap](js-apis-inner-notification-notificationSortingMap-sys.md) | 是  | 是  | [通知排序](../../notification/notification-glossary.md#notification-sorting通知排序)信息。 |
 | reason          | number                                                             | 是  | 是  | 删除原因（1:点击通知后删除通知，2:用户删除通知） 。|
 | sound           | string                                                             | 是  | 是  | 通知声音。 |
 | vibrationValues | Array\<number\>                                                    | 是  | 是  | 通知振动。 |
@@ -572,7 +572,7 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 
 ## EnabledSilentReminderCallbackData<sup>24+</sup>
 
-应用通知静默提醒开关状态的回调函数类型。
+应用通知[静默提醒](../../notification/notification-glossary.md#silent-reminder静默提醒)开关状态的回调函数类型。
 
 **系统能力**：SystemCapability.Notification.Notification
 
@@ -613,7 +613,7 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 
 | 名称        | 类型   | 只读 | 可选 | 说明         |
 | ----------- | ------ | ---- | ---- | ------------ |
-| enable | boolean | 是  | 否  | 所有通知的优先使能状态。<br> - true：允许设置为优先通知。<br> - false：禁止设置为优先通知。 |
+| enable | boolean | 是  | 否  | 所有通知的优先使能状态。<br> - true：允许设置为[优先通知](../../notification/notification-glossary.md#priority-notification优先通知)。<br> - false：禁止设置为优先通知。 |
 
 ## EnabledPriorityNotificationByBundleCallbackData<sup>23+</sup>
 
@@ -755,7 +755,7 @@ notificationSubscribe.subscribeNotification(subscriber).then(() => {
 
 type EnabledSilentReminderChangedCallback = (callbackData: EnabledSilentReminderCallbackData) => void
 
-注册应用通知静默提醒使能状态变化的回调函数类型。
+注册应用通知[静默提醒](../../notification/notification-glossary.md#silent-reminder静默提醒)使能状态变化的回调函数类型。
 
 **系统能力**：SystemCapability.Notification.Notification
 

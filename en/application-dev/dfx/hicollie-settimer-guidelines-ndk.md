@@ -6,7 +6,7 @@
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-31T01:29:34.782Z pushedAt=2026-07-31T07:05:33.734Z -->
+<!-- md-trans-meta sourceCommit=4b483f6ded13e509559a42efa5c91336f6a913b4 translatedAt=2026-08-15T01:47:30.914Z pushedAt=2026-08-15T07:19:21.383Z -->
 
 ## Overview
 
@@ -98,7 +98,7 @@ The following demonstrates how to add a button in the app and click the button t
        HiCollie_ErrorCode errorCode = OH_HiCollie_SetTimer(param, &id);  // Register a HiCollieTimer function to execute a one-off timeout detection task.
        if (errorCode == HICOLLIE_SUCCESS) {  // The HiCollieTimer task is successfully registered.
            OH_LOG_INFO(LogType::LOG_APP, "HiCollieTimer taskId: %{public}d", id); // Print the task ID.
-           sleep (2); // Simulate a time-consuming function to block the thread for 2s.
+           sleep(2);  // Simulate a time-consuming function by blocking the thread for 2s.
            OH_HiCollie_CancelTimer (id); // Cancel the registered timer based on the ID.
        }
        return nullptr;

@@ -1,10 +1,12 @@
 # Structure of the deviceConfig Tag
+
 <!--Kit: Ability Kit-->
 <!--Subsystem: BundleManager-->
 <!--Owner: @wanghang904-->
 <!--Designer: @hanfeng6-->
-<!--Tester: @kongjing2-->
-<!--Adviser: @Brilliantry_Rui-->
+<!--Tester: @memghaiyang-->
+<!--Adviser: @HelloCrease-->
+<!-- md-trans-meta sourceCommit=e614db0ed9ef9e65ff9f340640f4a0fd5317e78d translatedAt=2026-08-13T09:04:04.267Z pushedAt=2026-08-13T13:47:05.789Z -->
 
 The **deviceConfig** tag contains device-specific configuration of the application, including properties such as **default**, **tv**, **car**, and **wearable**.
 
@@ -13,6 +15,7 @@ The **deviceConfig** tag contains device-specific configuration of the applicati
 **Table 1** Internal structure of the deviceConfig tag
 
 <!--RP1-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | default | Default device type. For details, see [Standard-System Development Boards](../../device-dev/dev-board-on-the-master.md#standard-system-development-boards).| Object| Yes (initial value: left empty)|
@@ -21,8 +24,8 @@ The **deviceConfig** tag contains device-specific configuration of the applicati
 | car | Application configuration specific to telematics devices.| Object| Yes (initial value: left empty)|
 | wearable | Application configuration specific to wearables.| Object| Yes (initial value: left empty)|
 | 2in1 | Application configuration specific to PCs, mainly used for multi-window and multi-task interactions, and keyboard and mouse operations. It fully showcases the device productivity.| Object| Yes (initial value: left empty)|
-<!--RP1End-->
 
+<!--RP1End-->
 
 For details about the properties of the **deviceConfig** tag, see [Internal Structure of deviceConfig's Properties](#internal-structure-of-deviceconfigs-properties).
 
@@ -31,6 +34,7 @@ For details about the properties of the **deviceConfig** tag, see [Internal Stru
 **Table 2** Internal structure of deviceConfig's properties
 
 <!--Table: 10%; 60%; 15%; 15%-->
+
 | Name| Description| Data Type| Initial Value Allowed|
 | -------- | -------- | -------- | -------- |
 | process | Name of the process running the application or ability. If the **process** property is configured in the **deviceConfig** tag, all abilities of the application run in this process. You can set the **process** property for a specific ability in the **abilities** tag, so that the ability can run in the particular process. The value can contain a maximum of 31 characters.| String| Yes (initial value: left empty)|

@@ -6,7 +6,7 @@
 <!--Designer: @Maplestory91-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=2127b60c8b93aed6c0fbd46139186a0afec1bcc8 translatedAt=2026-07-29T10:50:59.126Z pushedAt=2026-07-29T12:43:47.670Z -->
+<!-- md-trans-meta sourceCommit=7bbcc599202befcfe74a4cee5e76b301a355d411 translatedAt=2026-08-15T01:46:30.096Z pushedAt=2026-08-15T10:29:14.474Z -->
 
 ## Overview
 
@@ -40,9 +40,9 @@ The following describes how to subscribe to the crash event triggered by a butto
     import { deviceInfo } from '@kit.BasicServicesKit';
     ```
 
-2. Edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project, and set the [custom crash event parameters](hiappevent-watcher-crash-events.md#customizing-crash-event-parameters) and crash log [custom specification settings](hiappevent-watcher-crash-events.md#customizing-crash-log-specifications) in the `onCreate` function. The sample code is as follows:
+2. Edit the **entry > src > main > ets > entryability > EntryAbility.ets** file in the project, and set the [custom crash event parameters](hiappevent-watcher-crash-events.md#customizing-crash-event-parameters) and crash log [custom specification settings](hiappevent-watcher-crash-events.md#customizing-specifications) in the `onCreate` function. The sample code is as follows:
 
-    <!-- @[Crash_ArkTS_Add_Event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->    
+    <!-- @[Crash_ArkTS_Add_Event](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/PerformanceAnalysisKit/HiAppEvent/EventSub/entry/src/main/ets/entryability/EntryAbility.ets) -->
 
     ``` TypeScript
     // Build custom parameters for the crash event.
@@ -71,11 +71,11 @@ The following describes how to subscribe to the crash event triggered by a butto
       });
     }
     
-    if (deviceInfo.sdkApiVersion >= 24) {  // API version 24 and later supports setting page switch logs.
+    if (deviceInfo.sdkApiVersion >= 24) {
       let crashEventPolicy : hiAppEvent.EventPolicy = {
         "appCrashPolicy": { // Crash event configuration policy.
-          "pageSwitchLogEnable": true, // Enable page switch logs.
-          "collectMinidump": true // Enable minidump in native crash scenarios.
+          "pageSwitchLogEnable": true, // Support enabling the page switch log from API version 24.
+          "collectMinidump": true // Support enabling minidump from API version 26.0.0.
         }
       };
       // You can set the crash event configuration policy.

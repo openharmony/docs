@@ -1011,7 +1011,7 @@ File类型数据，是[UnifiedRecord](#unifiedrecord)的子类，也是文件类
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { fileUri } from '@kit.CoreFileKit'
+import { fileUri } from '@kit.CoreFileKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -1050,7 +1050,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { fileUri } from '@kit.CoreFileKit'
+import { fileUri } from '@kit.CoreFileKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -1081,7 +1081,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { fileUri } from '@kit.CoreFileKit'
+import { fileUri } from '@kit.CoreFileKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -1112,7 +1112,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { fileUri } from '@kit.CoreFileKit'
+import { fileUri } from '@kit.CoreFileKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 
@@ -1143,7 +1143,7 @@ export default class EntryAbility extends UIAbility {
 
 ```ts
 import { unifiedDataChannel } from '@kit.ArkData';
-import { fileUri } from '@kit.CoreFileKit'
+import { fileUri } from '@kit.CoreFileKit';
 import { UIAbility } from '@kit.AbilityKit';
 import { window } from '@kit.ArkUI';
 

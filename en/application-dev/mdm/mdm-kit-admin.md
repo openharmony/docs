@@ -6,7 +6,7 @@
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=841ab55668f7b398f360ae4d9b2f28b8041d2ae5 translatedAt=2026-08-04T13:31:03.927Z pushedAt=2026-08-05T08:42:23.682Z -->
+<!-- md-trans-meta sourceCommit=987bc2d24fc9f13a2a6116f1535418b7c2a62d59 translatedAt=2026-08-15T01:54:26.182Z pushedAt=2026-08-15T08:43:20.399Z -->
 
 ## Introduction
 
@@ -37,7 +37,7 @@ Create an **ExtensionAbility** of the **EnterpriseAdmin** type, that is, an **En
 
 Open the **EnterpriseAdminAbility.ets** file, import the **EnterpriseAdminExtensionAbility** module, enable it to inherit from the **EnterpriseAdminExtensionAbility** module, and define callbacks, such as **onAdminEnabled()** and **onAdminDisabled()**. When the device administrator application is enabled or disabled, the callback will be invoked to receive notifications.
 
-<!-- @[enterprise_admin_extension_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseadminability/EnterpriseAdminAbility.ets) -->     
+<!-- @[enterprise_admin_extension_ability](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/EnterpriseAdminExtensionAbility/EnterpriseAdminExtensionAbility/entry/src/main/ets/enterpriseadminability/EnterpriseAdminAbility.ets) -->   
 
 ``` TypeScript
 import { EnterpriseAdminExtensionAbility } from '@kit.MDMKit';
@@ -65,7 +65,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
   // Callback to be invoked when an application is uninstalled. This callback can be used to report events.
   onBundleRemoved(bundleName: string) {
-    console.info('EnterpriseAdminAbility onBundleRemoved bundleName' + bundleName);
+    console.info('EnterpriseAdminAbility onBundleRemoved bundleName:' + bundleName);
   }
 
   // Callback for standard device management app activation. You can set initialization policies in this callback.
@@ -75,7 +75,7 @@ export default class EnterpriseAdminAbility extends EnterpriseAdminExtensionAbil
 
   // Callback for standard device management app deactivation. You can notify the enterprise administrator that the device is unmanaged in this callback.
   onDeviceAdminDisabled(bundleName: string) {
-    console.info('EnterpriseAdminAbility onDeviceAdminDisabled bundleName' + bundleName);
+    console.info('EnterpriseAdminAbility onDeviceAdminDisabled bundleName:' + bundleName);
   }
 };
 ```

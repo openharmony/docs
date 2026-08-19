@@ -1,10 +1,13 @@
 # DRM Playback with AVCodec (C/C++)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+<!-- md-trans-meta sourceCommit=6dec6b14cb206fe02a5ddd5033caa3930c0dd80f translatedAt=2026-08-18T11:02:50.545Z pushedAt=2026-08-18T11:38:47.753Z -->
+
 ## When to Use
 
 To play DRM-protected content using AVCodec, you can use the native APIs provided by DRM Kit.
@@ -19,6 +22,7 @@ Currently, the following decryption capabilities are supported:
 |----------|:------------|
 | ts       | AVC(H.264)  |
 | mp4      | AVC(H.264)  |
+
 <!--RP1--><!--RP1End-->
 
 **Usage Scenario**
@@ -27,7 +31,7 @@ Before setting up DRM, obtain the DRM information. For details, see step 4 in [M
 
 ## Development Guidelines
 
-For details on the APIs, see [DRM API](../../reference/apis-drm-kit/capi-drm.md).
+For detailed API descriptions, refer to [DRM](../../reference/apis-drm-kit/capi-drm.md).
 
 Follow the sample code below to implement the entire DRM workflow, including obtaining a name and ID list of the DRM solutions supported by the device, creating a MediaKeySystem, creating a MediaKeySession, generating a media key request, processing a media key response, checking for secure video decoding requirements, and cleaning up resources.
 
@@ -67,7 +71,7 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
     }
     ```
 
-    After obtaining the name and ID list of the DRM solutions supported by the device, match this list with the DRM information to create the appropriate DRM solution. You can obtain the DRM information by referring to step 4 in [Media Data Demultiplexing](../avcodec/audio-video-demuxer.md#how-to-develop).
+    After obtaining the list of names and unique identifiers of the DRM solutions supported by the device, match them with the DRM information and create the corresponding DRM solution. The DRM information can be obtained through step 4 of the development procedure in [Media Data Demultiplexing](../avcodec/audio-video-demuxer.md#how-to-develop).
 
     Alternatively, directly parse the media protocol or media data to extract the unique identifier of the DRM solution and the PSSH data to generate the DRM information.
 
@@ -132,9 +136,9 @@ target_link_libraries(sample PUBLIC libnative_drm.so)
         printf("OH_MediaKeySession_GenerateMediaKeyRequest failed.");
     }
     /*
-      The application requests the DRM service through the network, obtains a media key response, and sends the response to OH_MediaKeySession_ProcessMediaKeyResponse.
-      If the response is an offline media key response, the offline media key ID is returned. Set mediaKeyId based on the actual data and length.
-    */
+     The app requests the DRM service over the network to obtain mediaKeyResponse and passes it to OH_MediaKeySession_ProcessMediaKeyResponse.
+    When processing an offline media key response, the API returns the offline media key ID, mediaKeyId. Pass the actual data and data length as required.
+     */
     unsigned char mediaKeyId[128] = {0x00};
     int32_t mediaKeyIdLen = 128;
     // MAX_DRM_MEDIA_KEY_RESPONSE_BUF_SIZE specifies the maximum length of a media key response. Pass in the actual length.

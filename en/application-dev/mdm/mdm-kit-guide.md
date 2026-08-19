@@ -6,11 +6,11 @@
 <!--Designer: @hp_guo-->
 <!--Tester: @lpw_work-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=bd7049485643ff797adc995404297f802ed40a3a translatedAt=2026-08-04T13:31:27.181Z pushedAt=2026-08-05T09:01:33.915Z -->
+<!-- md-trans-meta sourceCommit=c477ff8259b331985cb9b2d88570444e2af4a044 translatedAt=2026-08-15T01:54:49.764Z pushedAt=2026-08-15T08:44:45.792Z -->
 
 ## Introduction
 
-MDM Kit provides capabilities for [MDM apps](./mdm-kit-term.md#mdm-app), including enterprise device management and event listening, application management, feature restriction management, security management, device settings, device control, device information acquisition, hardware peripheral management, system management, and network management. For details about the APIs, see <!--RP7-->[API Reference](https://developer.huawei.com/consumer/en/doc/harmonyos-references/mdm-api)<!--RP7End-->.
+MDM Kit provides device management capabilities for [MDM apps](./mdm-kit-term.md#mdm-app), including enterprise device management and event listening, app management, disable management, security management, device settings, device control, device information obtaining, hardware peripheral management, system management, and network communication management. For details about the specific APIs, see <!--RP7-->[@ohos.enterprise.accountManager (Account Management)](../reference/apis-mdm-kit/js-apis-enterprise-accountManager.md)<!--RP7End-->.
 
 A device administrator application is an application with the [EnterpriseAdminExtensionAbility](./mdm-kit-admin.md).
 
@@ -81,7 +81,7 @@ Before declaring the required permissions, ensure that the [basic principles for
      };
      // ...
        try {
-         restrictions.setDisallowedPolicy(this.wantTemp, 'wifi', isDisallow);
+         restrictions.setDisallowedPolicy(this.wantTemp, restrictions.FeatureForDevice.WIFI, isDisallow);
          console.info(isDisallow ? 'disable wifi success.' : 'enable wifi success.');
          // ...
        } catch (err) {

@@ -14,6 +14,8 @@
 
 ## IlluminatedType
 
+定义光照类型，用于指定组件是否可以被光源照亮以及被照亮的类型。
+
 **系统接口：** 此接口为系统接口。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full

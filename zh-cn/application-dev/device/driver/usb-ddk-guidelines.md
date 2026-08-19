@@ -123,7 +123,7 @@ libusb_ndk.z.so
        OH_LOG_ERROR(LOG_APP, "GetInterfaceAndEndpoint failed");
        return false;
    }
-   // 释放配置描述符，防止内存泄露
+   // 释放配置描述符，防止内存泄漏
    OH_Usb_FreeConfigDescriptor(config);
    g_dataEp = endpoint;
    g_maxPktSize = maxPktSize;

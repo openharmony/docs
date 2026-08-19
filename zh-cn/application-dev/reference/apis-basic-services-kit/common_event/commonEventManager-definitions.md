@@ -20,7 +20,7 @@
 
 表示用户重启应用包并终止其所有进程。
 
-在设备上指定用户重启应用包并终止其所有进程，将会触发事件通知服务发布该系统公共事件。
+在设备上指定用户重启应用包并终止其所有进程，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 > **说明：** 
 > 
@@ -251,7 +251,7 @@
 
 表示用户开启未成年人模式。
 
-在设备上开启未成年人模式，将会触发事件通知服务发布该系统公共事件。
+在设备上开启未成年人模式，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -285,7 +285,7 @@
 
 表示datashare服务可用。
 
-datashare服务启动完成后，将会触发事件通知服务发布该系统公共事件。
+datashare服务启动完成后，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -302,7 +302,7 @@ datashare服务启动完成后，将会触发事件通知服务发布该系统�
 
 表示分屏行为的公共事件。
 
-启动最近任务窗口、创建或销毁分屏条，都会触发通知服务发布这个系统公共事件。
+启动最近任务窗口、创建或销毁分屏条，都会触发通知服务发布这个[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -318,9 +318,9 @@ datashare服务启动完成后，将会触发事件通知服务发布该系统�
 
 ### COMMON_EVENT_SLOT_CHANGE
 
-  表示通知渠道或通知开关发生变化。
+  表示[通知渠道](../../../notification/notification-glossary.md#notification-slot通知渠道)或通知开关发生变化。
 
-  通知设置里修改应用的渠道参数、渠道开关，或者开启、关闭通知使能开关时，都会触发通知服务发布这个系统公共事件。
+  [通知设置](../../../notification/notification-glossary.md#notification-setting通知设置)里修改应用的渠道参数、渠道开关，或者开启、关闭通知使能开关时，都会触发通知服务发布这个[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -335,7 +335,7 @@ datashare服务启动完成后，将会触发事件通知服务发布该系统�
 ### COMMON_EVENT_DEVICE_IDLE_MODE_CHANGED
 表示设备上待机状态变化，触发公共事件发布动作。
 
-如果用户一段时间没有使用设备且屏幕已经关闭情况下，系统延迟后台应用程序CPU和网络访问，将会触发公共事件服务发布该系统公共事件。
+如果用户一段时间没有使用设备且屏幕已经关闭情况下，系统延迟后台应用程序CPU和网络访问，将会触发[公共事件服务](../../../basic-services/common-event/common-event-glossary.md#common-event-service-ces公共事件服务)发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -350,7 +350,7 @@ datashare服务启动完成后，将会触发事件通知服务发布该系统�
 
 表示USB设备状态发生变化。
 
-当USB断开或者连接时状态发生变化，将会触发事件通知服务发布该系统公共事件。
+当USB断开或者连接时状态发生变化，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -851,7 +851,7 @@ datashare服务启动完成后，将会触发事件通知服务发布该系统�
 
 表示蓝牙HFP AG连接状态变化的公共事件的操作。
 
-当蓝牙HFP AG连接状态变化时，将会触发事件通知服务发布该系统公共事件。
+当蓝牙HFP AG连接状态变化时，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1202,7 +1202,7 @@ Wi-Fi状态变化。
 
 表示浏览器托管策略已更改。
 
-当浏览器托管策略发生变化，将会触发事件通知服务发布该系统公共事件。
+当浏览器托管策略发生变化，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1216,7 +1216,7 @@ Wi-Fi状态变化。
 ### COMMON_EVENT_LOCALE_CHANGED
 
 设置系统语言的公共事件的动作。
-当设置系统语言时，将会触发事件通知服务发布该系统公共事件。
+当设置系统语言时，将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -1231,7 +1231,7 @@ Wi-Fi状态变化。
 
 表示网络连接状态变化。
 
-各类网络（以太网、Wi-Fi、蜂窝等）在连接状态变化时（断开、断开中、连接中、已连接等），将会触发事件通知服务发布该系统公共事件。
+各类网络（以太网、Wi-Fi、蜂窝等）在连接状态变化时（断开、断开中、连接中、已连接等），将会触发事件通知服务发布该[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 具体枚举值及其对应的连接状态如下表所示：
 
 | 枚举值  |  连接状态  |
@@ -1278,7 +1278,7 @@ Wi-Fi状态变化。
 
 ## Telephony Kit
 
-电话服务子系统面向应用发布如下系统公共事件。
+电话服务子系统面向应用发布如下[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 ### COMMON_EVENT_SIM_STATE_CHANGED<sup>10+</sup>
 
@@ -1333,7 +1333,7 @@ Wi-Fi状态变化。
 
 
 ## AppGallery Kit
-AppGallery Kit面向应用发布如下系统公共事件。
+AppGallery Kit面向应用发布如下[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 ### COMMON_EVENT_PRIVACY_STATE_CHANGED<sup>11+</sup>
 
@@ -1348,7 +1348,7 @@ AppGallery Kit面向应用发布如下系统公共事件。
 **取值：** "usual.event.PRIVACY_STATE_CHANGED"
 
 ## Multimodalinput Kit
-Multimodalinput Kit面向应用发布如下系统公共事件。
+Multimodalinput Kit面向应用发布如下[系统公共事件](../../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)。
 
 ### COMMON_EVENT_TABLET_MODE_CHANGED<sup>23+</sup>
 

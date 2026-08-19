@@ -1,14 +1,14 @@
 # Loading Web Pages
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @aohui-->
 <!--Designer: @yaomingliu-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
-
+<!-- md-trans-meta sourceCommit=6617dd21c0e898109823a4a2b5904c73eacee8db translatedAt=2026-08-14T03:49:20.248Z pushedAt=2026-08-14T09:21:14.084Z -->
 
 Page loading is a basic capability of the **Web** component. Depending on the data source, page loading falls into three types: loading of network pages, loading of local pages, and loading of HTML rich text data.
-
 
 To obtain network resources during page loading, configure the network access permission in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
@@ -22,8 +22,7 @@ To obtain network resources during page loading, configure the network access pe
 
 ## Loading Network Pages
 
-You can specify the default network page to be loaded when creating a **Web** component. After the default network page is loaded, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) if you want to change the network page displayed by the **Web** component. The value of the first parameter **src** of the [Web component](../reference/apis-arkweb/arkts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, @State). To change the value, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl).
-
+You can specify the default network page to load when creating a Web component. After the default page is loaded, to change the network page displayed by the Web component, call the [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) API to load the specified web page. The first parameter variable `src` of the [Web component](../reference/apis-arkweb/arkts-basic-components-web.md) cannot be dynamically changed through a state variable (for example, [@State](../ui/state-management/arkts-state.md)). To change the address, call [loadUrl()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loadurl) to reload the page.
 
 In the following example, after the **www.\example.com** page is loaded by the **Web** component, **loadUrl** is called to change the displayed page to **www\.example1.com**.
 
@@ -56,7 +55,6 @@ struct WebComponent {
 }
 ```
 
-
 ## Loading Local Pages
 
 To reduce user waiting time in scenarios such as startup, redirection, and weak network, and save time for dynamic content loading, you can load local pages to optimize user experience.
@@ -78,10 +76,10 @@ To reference a local CSS file when loading a local HTML file, perform the follow
 
     ![resource-path](figures/resource-path.png)
 
-
 - Application code:
+
   <!-- @[after_load_complete_call_to_change_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/LoadingLocalPages.ets) -->
-  
+
   ``` TypeScript
   import { webview } from '@kit.ArkWeb';
   import { BusinessError } from '@kit.BasicServicesKit';
@@ -108,7 +106,6 @@ To reference a local CSS file when loading a local HTML file, perform the follow
     }
   }
   ```
-
 
 - Code of the **local.html** page:
 
@@ -137,8 +134,9 @@ To reference a local CSS file when loading a local HTML file, perform the follow
 Example of loading local page files in the sandbox:
 
 1. Obtain the sandbox path through the constructed singleton object **GlobalContext**. You need to enable the [fileAccess](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#fileaccess) permission of the file system in the application.
+
    <!-- @[after_load_complete_call_to_change_page](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/GlobalContext.ets) -->
-   
+
    ``` TypeScript
    export class GlobalContext {
      private constructor() {}
@@ -161,10 +159,11 @@ Example of loading local page files in the sandbox:
      }
    }
    ```
+
    <!-- -->
-   
+
    <!-- @[load_local_page_file_in_sandbox_path](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/LoadLocalPageFileInSandboxPath_one.ets) -->
-   
+
    ``` TypeScript
    import { webview } from '@kit.ArkWeb';
    import { GlobalContext } from './GlobalContext';
@@ -218,10 +217,10 @@ Example of loading local page files in the sandbox:
    </html>
    ```
 
-
 ## Loading HTML Rich Text Data
 
 The **Web** component provides the [loadData()](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#loaddata) API for you to load HTML rich text data. If you need to display only some page fragments, you can use this feature to quickly load the page. To load a large number of HTML files, set **baseUrl** to **"data"**.
+
 <!-- @[devs_load_page_fragments_for_quick_loading](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/LoadingHTMLRichTextData.ets) -->
 
 ``` TypeScript
@@ -256,6 +255,7 @@ struct WebComponent {
 ```
 
 The **Web** component can load HTML strings using data urls.
+
 <!-- @[web_components_load_html_strings_by_data_url](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/LoadLocalPageFileInSandboxPath_two.ets) -->
 
 ``` TypeScript
@@ -280,6 +280,7 @@ struct WebComponent {
 ## Loading Local Resources Using the Resource Protocol
 
 The resource protocol allows access to files in the application resource directory.
+
 <!-- @[resource_loading](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ManageWebPageLoadBrowse/LoadPages/entry/src/main/ets/pages/ResourceLoadPage.ets) -->
 
 ``` TypeScript
@@ -310,6 +311,7 @@ struct ResourceWebComponent {
 ```
 
 Create the **index.html** file in **src/main/resources/rawfile**.
+
 ```html
 <!-- index.html -->
 <!DOCTYPE html>

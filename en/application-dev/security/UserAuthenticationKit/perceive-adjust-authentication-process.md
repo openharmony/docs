@@ -88,3 +88,8 @@ perceiveAndAdjustAuthentication() {
   }
 }
 ```
+
+
+## Sample Code
+
+  - [Perceiving and Adjusting the Authentication Process](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/UserAuthentication)

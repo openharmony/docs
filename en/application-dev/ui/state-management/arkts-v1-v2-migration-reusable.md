@@ -754,7 +754,7 @@ class DataSrc {
 
 ### Multiple Item Types
 
-For details about the \@Reusable usage example, see [Multiple Item Types](./arkts-reusable.md#scenarios-Involving-multiple-item-types).
+For details about the \@Reusable usage example, see [Multiple Item Types](./arkts-reusable.md#scenarios-involving-multiple-item-types).
 
 The sample code for using multiple item types of \@ReusableV2 is as follows:
 

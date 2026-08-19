@@ -1,11 +1,12 @@
 # Creating a Strong Reference to an ArkTS Object Using Node-API Extension APIs
 
-<!--Kit: NDK-->
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:41:18.733Z pushedAt=2026-08-12T11:15:44.283Z -->
 
 OpenHarmony provides the **napi_strong_ref** APIs to create strong references, which is more efficient than the **napi_ref** APIs.
 

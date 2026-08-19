@@ -309,7 +309,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。 |
 | keystorePwd | string | 是   | 表示密钥库文件的密码，长度限制32字节以内。 |
-| certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，长度建议32字节以内。 |
+| certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，最大长度32字节。 |
 | callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当安装私有凭据成功时，err为null，data为[CMResult](#cmresult)对象中的uri属性；否则为错误对象。 |
 
 **错误码：**
@@ -330,11 +330,11 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
-let keystorePwd: string = "123456";
+let keystorePwd: string = '123456';
 try {
-  certificateManager.installPrivateCertificate(keystore, keystorePwd, "test", (err, cmResult) => {
+  certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test', (err, cmResult) => {
     if (err != null) {
       console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -363,7 +363,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | keystore | Uint8Array                   | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。 |
 | keystorePwd | string | 是   | 表示密钥库文件的密码，长度限制32字节以内。 |
-| certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，长度建议32字节以内。 |
+| certAlias | string | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，最大长度32字节。 |
 
 **返回值**：
 
@@ -391,9 +391,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据 */
 let keystore: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
-let keystorePwd: string = "123456";
+let keystorePwd: string = '123456';
 try {
   certificateManager.installPrivateCertificate(keystore, keystorePwd, 'test').then((cmResult) => {
     let uri: string = cmResult?.uri ?? '';
@@ -401,7 +401,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -423,7 +423,7 @@ installPrivateCertificate(keystore: Uint8Array, keystorePwd: string, certAlias: 
 | ----------- | ---------- | ---- | ------------------------------------------------------------ |
 | keystore    | Uint8Array | 是   | 表示带有密钥对和证书的密钥库文件，最大长度为20480字节。                           |
 | keystorePwd | string     | 是   | 表示密钥库文件的密码。<br>长度限制：32字节以内。                   |
-| certAlias   | string     | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线。<br>长度建议：32字节以内。 |
+| certAlias   | string     | 是   | 表示用户输入的凭据别名，当前仅支持传入数字、字母或下划线，最大长度32字节。 |
 | level   | [AuthStorageLevel](#authstoragelevel18)   | 是   | 表示凭据的存储级别。 |
 
 **返回值：**
@@ -452,9 +452,9 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 安装的凭据数据需要业务赋值，本例数据非凭据数据。 */
 let keystore: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
-let keystorePwd: string = "123456";
+let keystorePwd: string = '123456';
 try {
   /* 安装凭据在首次解锁设备后可以使用。 */
   let level = certificateManager.AuthStorageLevel.EL2;
@@ -464,7 +464,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -571,7 +571,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -611,7 +611,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 let uri: string = 'test'; /* 业务删除私有凭据，需要使用凭据的唯一标识符，此处省略 */
 try {
-  certificateManager.uninstallPrivateCertificate(uri, (err, result) => {
+  certificateManager.uninstallPrivateCertificate(uri, (err) => {
     if (err != null) {
       console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -663,12 +663,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let uri: string = 'test'; /* 业务删除私有凭据，需要使用凭据的唯一标识符，此处省略 */
 try {
-  certificateManager.uninstallPrivateCertificate(uri).then((cmResult) => {
+  certificateManager.uninstallPrivateCertificate(uri).then(() => {
     console.info('Succeeded in uninstalling private certificate.');
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to uninstall private certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to uninstall private certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -721,7 +721,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 /* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
 let certData: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 try {
   let certBlob: certificateManager.CertBlob = {
@@ -735,7 +735,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to install user trusted certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -784,15 +784,16 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 
 /* 安装的CA证书数据需要业务赋值，本例数据非CA证书数据 */
 let certData: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 try {
-  let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData, certificateManager.CertScope.CURRENT_USER);
+  let result: certificateManager.CMResult = certificateManager.installUserTrustedCertificateSync(certData,
+    certificateManager.CertScope.CURRENT_USER);
   let certUri = result.uri;
   if (certUri === undefined) {
-    console.error("The result of install user trusted certificate is undefined.");
+    console.error('The result of install user trusted certificate is undefined.');
   } else {
-    console.info("Succeeded to install user trusted certificate.");
+    console.info('Succeeded in installing user trusted certificate.');
   }
 } catch (error) {
   console.error(`Failed to install user trusted certificate. Code: ${error.code}, message: ${error.message}`);
@@ -831,7 +832,7 @@ uninstallUserTrustedCertificateSync(certUri: string) : void
 ```ts
 import { certificateManager } from '@kit.DeviceCertificateKit';
 
-let certUri: string = "test"; /* 业务删除证书，需要使用证书的标识符，此处省略 */
+let certUri: string = 'test'; /* 业务删除证书，需要使用证书的标识符，此处省略 */
 try {
   certificateManager.uninstallUserTrustedCertificateSync(certUri);
 } catch (error) {
@@ -878,7 +879,7 @@ const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
   digest: certificateManager.CmKeyDigest.CM_DIGEST_SHA256
-}
+};
 try {
   certificateManager.init(uri, req, (err, cmHandle) => {
     if (err != null) {
@@ -886,7 +887,7 @@ try {
     } else {
       console.info('Succeeded in initiating.');
     }
-  })
+  });
 } catch (error) {
   console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
@@ -937,14 +938,14 @@ const req: certificateManager.CMSignatureSpec = {
   purpose: certificateManager.CmKeyPurpose.CM_KEY_PURPOSE_VERIFY,
   padding: certificateManager.CmKeyPadding.CM_PADDING_PSS,
   digest: certificateManager.CmKeyDigest.CM_DIGEST_MD5
-}
+};
 try {
   certificateManager.init(uri, req).then((handle) => {
     console.info('Succeeded in initiating.');
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to init. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to init. Code: ${error.code}, message: ${error.message}`);
 }
@@ -990,7 +991,7 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certificateManager.update(cmHandle, srcData, (err, result) => {
+  certificateManager.update(cmHandle, srcData, (err) => {
     if (err != null) {
       console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
     } else {
@@ -1048,12 +1049,12 @@ let srcData: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certificateManager.update(cmHandle, srcData).then((result) => {
+  certificateManager.update(cmHandle, srcData).then(() => {
     console.info('Succeeded in updating.');
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to update. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to update. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1107,7 +1108,7 @@ try {
       }
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1128,7 +1129,7 @@ finish(handle: Uint8Array, signature: Uint8Array, callback: AsyncCallback\<CMRes
 | -------- | ------------------------------------------------- | ---- | -------------------------- |
 | handle | Uint8Array                   | 是   | 表示操作句柄，需先调用[init](#certificatemanagerinit)方法获得。 |
 | signature | Uint8Array                   | 是   | 表示签名数据。 |
-| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null；否则为错误对象。 |
+| callback | AsyncCallback\<[CMResult](#cmresult)> | 是   | 回调函数。当验签成功时，err为null，data为[CMResult](#cmresult)对象中的outData属性，验签时outData属性为null；否则为错误对象。 |
 
 **错误码：**
 
@@ -1159,7 +1160,7 @@ try {
       console.info('Succeeded in finishing.');
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1218,7 +1219,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to finish signature. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 
   /* 签名的结果 */
   let signRes: Uint8Array = new Uint8Array([
@@ -1230,8 +1231,8 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to finish verification. Code: ${err.code}, message: ${err.message}`);
-  })
-} catch(error) {
+  });
+} catch (error) {
   console.error(`Failed to finish. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1272,14 +1273,14 @@ let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certificateManager.abort(cmHandle, (err, cmResult) => {
+  certificateManager.abort(cmHandle, (err) => {
     if (err != null) {
       console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info('Succeeded in aborting.');
     }
   });
-} catch(error) {
+} catch (error) {
   console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
 ```
@@ -1326,12 +1327,12 @@ let cmHandle: Uint8Array = new Uint8Array([
   0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08
 ]);
 try {
-  certificateManager.abort(cmHandle).then((result) => {
+  certificateManager.abort(cmHandle).then(() => {
     console.info('Succeeded in aborting.');
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to abort. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to abort. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1388,7 +1389,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get Public certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get Public certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1442,7 +1443,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to check if the application is authorized. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to check if the application is authorized. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1491,7 +1492,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get all user trusted certificates. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get all user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1536,7 +1537,7 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 
 try {
-  /* 获取当前用户下的用户根CA证书列表; 如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
+  /* 获取当前用户下的用户根CA证书列表，如果需要获取设备公共位置的用户根CA列表，则传入GLOBAL_USER */
   let scope: certificateManager.CertScope = certificateManager.CertScope.CURRENT_USER;
   certificateManager.getAllUserTrustedCertificates(scope).then((cmResult) => {
     if (cmResult === undefined) { // 用户根CA证书个数为0时，返回cmResult为undefined。
@@ -1550,7 +1551,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get current user trusted certificates. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get current user trusted certificates. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1606,7 +1607,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get user trusted certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get user trusted certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1653,10 +1654,12 @@ try {
     }
   }).catch((error: Error) => {
     let err = error as BusinessError;
-    console.error(`Failed to get all private certificates installed by the application. Code: ${err.code}, message: ${err.message}`);
-  })
+    console.error(`Failed to get all private certificates installed by the application. ` +
+      `Code: ${err.code}, message: ${err.message}`);
+  });
 } catch (error) {
-  console.error(`Failed to get all private certificates installed by the application. Code: ${error.code}, message: ${error.message}`);
+  console.error(`Failed to get all private certificates installed by the application. ` +
+    `Code: ${error.code}, message: ${error.message}`);
 }
 ```
 ## certificateManager.getCertificateStorePath<sup>18+</sup>
@@ -1696,34 +1699,34 @@ import { certificateManager } from '@kit.DeviceCertificateKit';
 try {
   /* 获取系统CA的存储位置 */
   let property1: certificateManager.CertStoreProperty = {
-    certType: certificateManager.CertType.CA_CERT_SYSTEM,
-  }
+    certType: certificateManager.CertType.CA_CERT_SYSTEM
+  };
   let systemCAPath = certificateManager.getCertificateStorePath(property1);
-  console.info(`Success to get system ca path: ${systemCAPath}`);
+  console.info(`Succeeded in getting system CA path: ${systemCAPath}`);
 
   /* 获取当前用户的用户CA存储位置 */
   let property2: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
-    certScope: certificateManager.CertScope.CURRENT_USER,
-  }
+    certScope: certificateManager.CertScope.CURRENT_USER
+  };
   let userCACurrentPath = certificateManager.getCertificateStorePath(property2);
-  console.info(`Success to get current user's user ca path: ${userCACurrentPath}`);
+  console.info(`Succeeded in getting current user's user CA path: ${userCACurrentPath}`);
 
   /* 获取设备公共的用户CA存储位置 */
   let property3: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_USER,
-    certScope: certificateManager.CertScope.GLOBAL_USER,
-  }
+    certScope: certificateManager.CertScope.GLOBAL_USER
+  };
   let globalCACurrentPath = certificateManager.getCertificateStorePath(property3);
-  console.info(`Success to get global user's user ca path: ${globalCACurrentPath}`);
+  console.info(`Succeeded in getting global user's user CA path: ${globalCACurrentPath}`);
 
   /* 获取SM算法系统CA的存储位置 */
   let property4: certificateManager.CertStoreProperty = {
     certType: certificateManager.CertType.CA_CERT_SYSTEM,
-    certAlg: certificateManager.CertAlgorithm.SM,
-  }
+    certAlg: certificateManager.CertAlgorithm.SM
+  };
   let smSystemCAPath = certificateManager.getCertificateStorePath(property4);
-  console.info(`Success to get SM system ca path: ${smSystemCAPath}`);
+  console.info(`Succeeded in getting SM system CA path: ${smSystemCAPath}`);
 } catch (error) {
   console.error(`Failed to get store path. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1775,16 +1778,20 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let keyUri: string = 'test'; /* USB凭据的唯一标识符，此处省略 */
 let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
-  certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT,
-}
+  certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT
+};
 try {
   certificateManager.getUkeyCertificate(keyUri, ukeyInfo).then((cmResult) => {
-    let list = cmResult.credentialDetailList;
-    console.info('Succeeded in getting detail of USB Key certificate.');
+    if (cmResult?.credentialDetailList === undefined) {
+      console.info('The result of getting detail of USB Key certificate is undefined.');
+    } else {
+      let list = cmResult.credentialDetailList;
+      console.info('Succeeded in getting detail of USB Key certificate.');
+    }
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get detail of USB Key certificate. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get detail of USB Key certificate. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1839,8 +1846,8 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 let ukeyProvider: string = 'testProvider'; /* USB凭据提供商，此处省略 */
 let ukeyInfo: certificateManager.UkeyInfo = { /* USB凭据的属性信息，此处省略 */
-  certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT,
-}
+  certPurpose: certificateManager.CertificatePurpose.PURPOSE_DEFAULT
+};
 try {
   certificateManager.getUkeyCertificateList(ukeyProvider, ukeyInfo).then((cmResult) => {
     let list: Array<certificateManager.Credential> = cmResult.credentialDetailList ?? [];
@@ -1848,7 +1855,7 @@ try {
   }).catch((error: Error) => {
     let err = error as BusinessError;
     console.error(`Failed to get USB Key certificate list. Code: ${err.code}, message: ${err.message}`);
-  })
+  });
 } catch (error) {
   console.error(`Failed to get USB Key certificate list. Code: ${error.code}, message: ${error.message}`);
 }
@@ -1906,10 +1913,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 /* keyUri和cert数据需要业务赋值，本例数据仅为示例 */
 let keyUri: string = 'test'; /* USB Key证书的uri，可通过getUkeyCertificateList获取 */
 let certData: Uint8Array = new Uint8Array([
-  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01,
+  0x30, 0x82, 0x0b, 0xc1, 0x02, 0x01
 ]);
 let ukeyInfo: certificateManager.UkeyInfo = {
-  certPurpose: certificateManager.CertificatePurpose.PURPOSE_SIGN,
+  certPurpose: certificateManager.CertificatePurpose.PURPOSE_SIGN
 };
 try {
   certificateManager.importUkeyCertificate(keyUri, certData, ukeyInfo).then(() => {

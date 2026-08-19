@@ -16,7 +16,7 @@ typedef struct InputMethod_InputMethodProxy InputMethod_InputMethodProxy
 
 **起始版本：** 12
 
-**相关模块：** [InputMethod（输入法模块）](capi-inputmethod.md)
+**相关模块：** [InputMethod](capi-inputmethod.md)
 
 **所在头文件：** [inputmethod_inputmethod_proxy_capi.h](capi-inputmethod-inputmethod-proxy-capi-h.md)
 
@@ -35,7 +35,7 @@ InputMethod_InputMethodProxy是应用端与输入法服务交互的核心代理�
 
 - 调用任何InputMethod_InputMethodProxy相关函数前，必须确保已通过[OH_InputMethodController_Attach](capi-inputmethod-controller-capi-h.md#oh_inputmethodcontroller_attach)成功获取该对象，且尚未调用Detach。
 - inputMethodProxy指针不可为NULL，传入NULL指针将导致IME_ERR_NULL_POINTER错误码。示例：调用前未判空即调用函数时触发，应在调用前判断指针是否为NULL，若为NULL则先通过Attach获取有效对象或终止调用。
-- Detach后不可再使用已获取的inputMethodProxy指针，所有操作将返回IME_ERR_DETACHED。Detach后不可再使用已获取的inputMethodProxy指针，所有操作将返回IME_ERR_DETACHED。示例：在Detach后调用任何接口时返回该码，应检查生命周期状态，仅在Attach与Detach之间使用该对象，否则重新Attach。此对象为不透明类型，不可直接访问内部成员或进行内存操作（如malloc/free）。
+- Detach后不可再使用已获取的inputMethodProxy指针，所有操作将返回IME_ERR_DETACHED。示例：在Detach后调用任何接口时返回该码，应检查生命周期状态，仅在Attach与Detach之间使用该对象，否则重新Attach。此对象为不透明类型，不可直接访问内部成员或进行内存操作（如malloc/free）。
 - 非线程安全，不建议在多线程环境下同时操作同一个inputMethodProxy对象，如需多线程访问请自行加锁保护。
 
 相关函数：

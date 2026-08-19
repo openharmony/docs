@@ -550,7 +550,7 @@ struct EditableTitleBarV2Demo01 {
 }
 ```
 
-![EditableTitleBarV2_01](figures/image-editabletitlebarv2-example-01.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Title Bar with Avatar and Blur Background
 
@@ -698,7 +698,7 @@ struct EditableTitleBarV2Demo02 {
 }
 ```
 
-![EditableTitleBarV2_02](figures/image-editabletitlebarv2-example-02.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 3: Custom Button Announcement on the Right
 
@@ -779,7 +779,7 @@ struct EditableTitleBarV2Demo03 {
 }
 ```
 
-![EditableTitleBarV2_03](figures/image-editabletitlebarv2-example-03.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 4: Setting the Left Icon as the Default Focus
 
@@ -816,7 +816,7 @@ struct EditableTitleBarV2Demo04 {
 }
 ```
 
-![EditableTitleBarV2_04](figures/image-editabletitlebarv2-example-04.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 5: Setting the Right Custom Icon as the Default Focus
 
@@ -876,7 +876,7 @@ struct EditableTitleBarV2Demo05 {
 }
 ```
 
-![EditableTitleBarV2_05](figures/image-editabletitlebarv2-example-05.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 6: Setting a Symbol Icon
 
@@ -965,5 +965,4 @@ struct Index {
 }
 ```
 
-![EditableTitleBarV2_06](figures/image-editabletitlebarv2-example-06.png)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

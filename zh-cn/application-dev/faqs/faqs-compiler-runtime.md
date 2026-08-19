@@ -27,7 +27,7 @@
 
 **问题场景**
 
-场景：napi_call_function调用ArkTs函数异常时，系统行为是pending exception而不是Crash。
+场景：napi_call_function调用ArkTS函数异常时，系统行为是pending exception而不是Crash。
 
 后果：导致pending时，如果开发者未作安全校验，则会在下一次使用napi方法时出错，且出错行为无法预期，这种情况下应该如何处理？
 

@@ -236,7 +236,7 @@ napi_value TriggerDFXDelRef(napi_env, napi_callback_info info)
         napi_value obj = nullptr;
         STRICT_NAPI_CALL(napi_create_object(localEnv, &obj));
         napi_ref ref = nullptr;
-        // 在使用完成后调用napi_delete_reference来释放引用，避免内存泄露
+        // 在使用完成后调用napi_delete_reference来释放引用，避免内存泄漏
         napi_create_reference(localEnv, obj, 1, &ref);
         if (!localEnv.RecreateSame()) {
             if (ref != nullptr) {

@@ -49,7 +49,7 @@
    import { common2D } from '@kit.ArkGraphics2D'
    ```
 
-2. 创建段落样式，并使用构造段落生成器ParagraphBuilder生成段落实例。
+2. 创建段落样式，并构造段落生成器ParagraphBuilder实例。
    <!-- @[arkts_independent_shaping_text_paragraph_builder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/ComplexTextDrawing/entry/src/main/ets/pages/shape/IndependentShaping.ets) -->
    
    ``` TypeScript
@@ -83,7 +83,7 @@
    let runs: text.Run[] = textLine.getGlyphRuns();
    ```
 
-5. 该步骤是文本塑形流程中的自定义绘制环节。通过调用getGlyphs()方法获取文本中每个字符对应的字形序号，再结合getFont()方法获取的字体对象，即可唯一确定每个字形的具体图形信息。从 API version 20 开始，新增的getAdvances()方法能够返回一个数组，其中包含了每个字形在绘制时建议占用的宽度和高度。依赖这些精确的测量数据，开发者可以自由地计算并定义每个字形的绘制位置，从而实现复杂的文本布局效果，如自定义字符间距、垂直偏移或特殊排版。
+5. 该步骤是文本塑形流程中的自定义绘制环节。通过调用getGlyphs()方法获取文本中每个字符对应的字形序号，再结合getFont()方法获取的字体对象，即可唯一确定每个字形的具体图形信息。从 API version 20 开始，新增的getAdvances()方法能够返回一个数组，包含范围内每个字形的字形宽度。依赖这些精确的测量数据，开发者可以自由地计算并定义每个字形的绘制位置，从而实现复杂的文本布局效果，如自定义字符间距、垂直偏移或特殊排版。
    <!-- @[arkts_independent_shaping_text_drawing](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkGraphics2D/TextEngine/ComplexTextDrawing/entry/src/main/ets/pages/shape/IndependentShaping.ets) -->
    
    ``` TypeScript

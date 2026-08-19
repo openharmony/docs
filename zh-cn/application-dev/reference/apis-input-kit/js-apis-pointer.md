@@ -7,7 +7,7 @@
 <!--Tester: @Lyuxin-->
 <!--Adviser: @zhang_yixin13-->
 
-本模块提供鼠标光标管理能力，包括查询、设置鼠标光标属性。
+鼠标光标管理模块，用于查询和设置鼠标光标相关属性。
 
 > **说明**：
 >
@@ -24,7 +24,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 
 setPointerVisible(visible: boolean, callback: AsyncCallback&lt;void&gt;): void
 
-设置当前窗口的鼠标光标是否显示，使用callback异步回调。
+设置光标显示/隐藏状态，此状态作用于当前进程的所有窗口。光标在屏幕上的实际显示/隐藏效果还受渲染服务进程影响。使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -79,7 +79,7 @@ struct Index {
 
 setPointerVisible(visible: boolean): Promise&lt;void&gt;
 
-设置当前窗口的鼠标光标是否显示，使用Promise异步回调。
+设置光标显示/隐藏状态，此状态作用于当前进程的所有窗口。光标在屏幕上的实际显示/隐藏效果还受渲染服务进程影响。使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -137,7 +137,7 @@ struct Index {
 
 setPointerVisibleSync(visible: boolean): void
 
-设置当前窗口鼠标光标的显示状态，使用同步方式。
+设置光标显示/隐藏状态，此状态作用于当前进程的所有窗口。光标在屏幕上的实际显示/隐藏效果还受渲染服务进程影响。函数调用方式为同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -185,7 +185,7 @@ struct Index {
 
 isPointerVisible(callback: AsyncCallback&lt;boolean&gt;): void
 
-获取鼠标光标显示状态，使用callback异步回调。
+获取当前窗口的显示/隐藏状态，此状态反映的是多模进程对此窗口所在进程的光标显示/隐藏状态，并非真实的光标显示/隐藏情况，光标是否正确显示/隐藏还受渲染服务进程影响，使用callback异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -238,7 +238,7 @@ struct Index {
 
 isPointerVisible(): Promise&lt;boolean&gt;
 
-获取鼠标光标显示状态，使用Promise异步回调。
+获取当前窗口的显示/隐藏状态，此状态反映的是多模进程对此窗口所在进程的光标显示/隐藏状态，并非真实的光标显示/隐藏情况，光标是否正确显示/隐藏还受渲染服务进程影响，使用Promise异步回调。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 
@@ -281,7 +281,7 @@ struct Index {
 
 isPointerVisibleSync(): boolean
 
-获取当前窗口鼠标光标的显示状态，使用同步方式。
+获取当前窗口的显示/隐藏状态，此状态反映的是多模进程对此窗口所在进程的光标显示/隐藏状态，并非真实的光标显示/隐藏情况，光标是否正确显示/隐藏还受渲染服务进程影响，函数调用使用同步方式。
 
 **系统能力**：SystemCapability.MultimodalInput.Input.Pointer
 

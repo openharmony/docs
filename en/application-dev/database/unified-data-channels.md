@@ -6,19 +6,19 @@
 <!--Designer: @junathuawei1; @zph000-->
 <!--Tester: @lj_liujing; @yippo; @logic42-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:38:51.689Z pushedAt=2026-06-25T09:32:26.617Z -->
+<!-- md-trans-meta sourceCommit=98721b0592f0d00391dc249e0b65c6685c8906af translatedAt=2026-08-15T01:43:46.234Z pushedAt=2026-08-15T06:27:48.012Z -->
 
 ## When to Use
 
-In many-to-many data sharing across applications, a data channel needs to be provided to write data of different applications and share the data with other applications.
+In many-to-many cross-application data sharing, a data channel needs to be provided to write data of different apps and share the data with other apps for querying.
 
-The Unified Data Management Framework (UDMF) provides unified data channels and standard data access interfaces for different service scenarios of many-to-many cross-application data sharing.
+The Unified Data Management Framework (UDMF) provides standardized data channels and standard data write and query interfaces for different service scenarios of many-to-many cross-application data sharing.
 
 ## Definition and Implementation of Unified Data Channels
 
-The unified data channel provides cross-application data access for various service scenarios. It can temporarily store the unified data objects to be shared by an application, and manage the data modification and deletion permissions and lifecycle of the data according to certain policies.
+The standardized data channel provides cross-application data write and query channels for various service scenarios. It can temporarily store the unified data objects that conform to the standardized data definition and are to be shared by an app, provide them to other apps for access, and manage the modification and deletion permissions and lifecycle of the temporarily stored data according to certain policies.
 
-The unified data channel is implemented by the system ability provided by UDMF. When an application (data provider) needs to share data, it calls the **insertData()** method provided by UDMF to write the data to the UDMF data channel, and calls UDMF **updateData()** or **deleteData()** to update or delete the data saved by the application. The target application (data consumer) can access the data by the APIs provided by UDMF.
+The standardized data channel is implemented by the system service provided by UDMF. When an app (data provider) needs to share public data, it can call the **insertData()** API provided by UDMF to write the data to the UDMF data channel, and call the **updateData()** or **deleteData()** API provided by UDMF to update or delete the data already stored by the app. The target app (data accessor) can access the data through the **queryData()** API provided by UDMF.
 
 Avoid using **unifiedDataChannel** APIs in multi-threaded calls.
 
@@ -34,7 +34,7 @@ The unified data object (**UnifiedData**) is uniquely identified by a URI in the
 
 Currently, UDMF provides the public data channel for cross-application data sharing.
 
-The public data channel allows all applications to write data into it. When data is written, a unique identifier is generated. Then, the unique identifier can be used to update, delete, query, and retrieve the specified data, and perform a full query. To read all data in the public data channel, set **Intention** to **DATA_HUB**. The public data channel is used only to transmit process data between applications and cannot be used to transmit permission-controlled data, such as files in sandbox directories. UDMF manages the data lifecycle in a unified manner and deletes the data that has been stored for more than one hour every hour.
+**Public data channel**: a public data sharing channel for apps. All apps can write data to the channel. The writer can use the unique data identifier generated when writing data to update, delete, query by the specified data identifier, and perform a full query. The data accessor can query the specified data by the unique identifier, or set the Intention enumeration to DATA_HUB to query all data in the current data channel. The public data channel is usually used only to transmit process data between apps, and cannot be used to transmit permission-controlled data such as files in sandbox directories. UDMF manages the data lifecycle in a unified manner and periodically cleans up data that has been stored for more than one hour every hour.
 
 ## Available APIs
 
@@ -73,7 +73,7 @@ The following example walks you through on how to implement many-to-many sharing
       import { image } from '@kit.ImageKit';
       ```
 
-   2. Create and inset data.
+   2. Create and insert data.
 
       <!-- @[unified_data_channels_insert_data](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkData/Udmf/UnifiedDataChannels/entry/src/main/ets/pages/UdmfInterface.ets) -->
 

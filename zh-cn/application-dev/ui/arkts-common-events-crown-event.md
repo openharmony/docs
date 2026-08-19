@@ -73,6 +73,7 @@
  
  ``` TypeScript
  // xxx.ets
+ import { hilog } from '@kit.PerformanceAnalysisKit';
  @Entry
  @Component
  struct Index {

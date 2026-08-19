@@ -821,7 +821,7 @@ struct TreeViewV2Demo {
 }
 ```
 
-![Example 1](figures/image-treeviewv2-demo-01.png)
+<!--Del--> <!--DelEnd-->
 
 ### Example 2: Setting a Symbol Icon
 
@@ -1036,5 +1036,4 @@ struct TreeViewV2Demo {
 }
 ```
 
-![Example 2](figures/image-treeviewv2-demo-02.png)
-<!--no_check-->
+<!--Del--> <!--DelEnd-->

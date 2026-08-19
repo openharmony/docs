@@ -1,10 +1,12 @@
 # Node-API Status Codes
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=5c6e465f4cb7e5e44777311b9850301a734295d4 translatedAt=2026-08-12T06:27:51.352Z pushedAt=2026-08-12T09:17:17.035Z -->
 
 ## Overview
 
@@ -146,7 +148,7 @@ Specifically, most Node-APIs return a status code enumeration of the **napi_stat
 | napi_get_prototype | Obtains the prototype of an ArkTS object.| napi_pending_exception | An uncaught ArkTS exception occurs before or during the API call.| Handle the exception based on the exception information (HiLog/crash stack).|
 | napi_get_typedarray_info | Obtains the properties of a TypedArray.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_typedarray_info | Obtains the properties of a TypedArray.| napi_invalid_arg | The input parameter **typedarray** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_get_typedarray_info | Obtains the properties of a TypedArray.| napi_invalid_arg | The input parameter **typedarray** is neither of the ArkTS TypedArray type nor of the ShareTypedArray type.| Ensure that the input parameter is correct.|
+| napi_get_typedarray_info | Obtains various properties of a given TypedArray. | napi_invalid_arg | The input parameter **typedarray** is neither an ArkTS TypedArray type nor a SharedTypedArray type. | Ensure that the input parameter is correct. |
 | napi_get_dataview_info | Obtains the properties of a DataView.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_dataview_info | Obtains the properties of a DataView.| napi_invalid_arg | The input parameter **dataview** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_dataview_info | Obtains the properties of a DataView.| napi_invalid_arg | The input parameter **dataview** is not of the ArkTS DataView type.| Ensure that the input parameter is correct.|
@@ -528,9 +530,9 @@ Specifically, most Node-APIs return a status code enumeration of the **napi_stat
 | napi_is_detached_arraybuffer | Checks whether the given ArrayBuffer has been detached.| napi_invalid_arg | The input parameter **arraybuffer** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_is_detached_arraybuffer | Checks whether the given ArrayBuffer has been detached.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_is_detached_arraybuffer | Checks whether the given ArrayBuffer has been detached.| napi_invalid_arg | The input parameter **arraybuffer** is not of the ArkTS ArrayBuffer type.| Ensure that the input parameter is correct.|
-| napi_run_script | Runs an object as ArkTS code. Currently, this API is an empty implementation. For security purposes, you are advised to use **napi_run_script_path**.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_run_script | Runs an object as ArkTS code. Currently, this API is an empty implementation. For security purposes, you are advised to use **napi_run_script_path**.| napi_invalid_arg | The input parameter **script** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_run_script | Runs an object as ArkTS code. Currently, this API is an empty implementation. For security purposes, you are advised to use **napi_run_script_path**.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
+| napi_run_script | Runs a given object as ArkTS code. This API is currently an empty implementation. Use the system extension API **napi_run_script_path** to improve security. | napi_invalid_arg | The input parameter env is nullptr. | Ensure that the input parameter is correct. |
+| napi_run_script | Runs a given object as ArkTS code. This API is currently an empty implementation. Use the system extension API **napi_run_script_path** to improve security. | napi_invalid_arg | The input parameter script is nullptr. | Ensure that the input parameter is correct. |
+| napi_run_script | Runs a given object as ArkTS code. This API is currently an empty implementation. Use the system extension API **napi_run_script_path** to improve security. | napi_invalid_arg | The input parameter result is nullptr. | Ensure that the input parameter is correct. |
 | napi_set_instance_data | Associates data with the currently running environment.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_instance_data | Retrieves the data that was previously associated with the currently running environment.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_instance_data | Retrieves the data that was previously associated with the currently running environment.| napi_invalid_arg | The input parameter **data** is **nullptr**.| Ensure that the input parameter is correct.|
@@ -682,11 +684,11 @@ Specifically, most Node-APIs return a status code enumeration of the **napi_stat
 | napi_create_external_string_utf16 | Creates an ArkTS string from an external UTF-16 encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_external_string_utf16 | Creates an ArkTS string from an external UTF-16 encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **str** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_external_string_utf16 | Creates an ArkTS string from an external UTF-16 encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_create_external_string_utf16 | Creates an ArkTS string from an external UTF-16 encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **length** is not **NAPI_AUTO_LENGTH** or its value is greater than **INT_MAX**.| Ensure that the input parameter **length** is **NAPI_AUTO_LENGTH** and its value is not greater than **INT_MAX**.|
+| napi_create_external_string_utf16 | Use this function when you need to create an ArkTS string value from an external UTF-16 encoded string buffer and avoid memory copy. | napi_invalid_arg | The input parameter **length** is not equal to **NAPI_AUTO_LENGTH** or length is greater than **INT_MAX**. | Ensure that the input parameter **length** is equal to **NAPI_AUTO_LENGTH** or **length** is not greater than **INT_MAX**. |
 | napi_create_external_string_ascii | Creates an ArkTS string from an external ASCII encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_external_string_ascii | Creates an ArkTS string from an external ASCII encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **str** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_external_string_ascii | Creates an ArkTS string from an external ASCII encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_create_external_string_ascii | Creates an ArkTS string from an external ASCII encoded string buffer, without performing memory copy operations.| napi_invalid_arg | The input parameter **length** is not **NAPI_AUTO_LENGTH** or its value is greater than **INT_MAX**.| Ensure that the input parameter **length** is **NAPI_AUTO_LENGTH** and its value is not greater than **INT_MAX**.|
+| napi_create_external_string_ascii | Use this function when you need to create an ArkTS string value from an external ASCII encoded string buffer and avoid memory copy. | napi_invalid_arg | The input parameter **length** is not equal to **NAPI_AUTO_LENGTH** or **length** is greater than **INT_MAX**. | Ensure that the input parameter **length** is equal to **NAPI_AUTO_LENGTH** or **length** is not greater than **INT_MAX**. |
 | napi_create_strong_sendable_reference | Creates a Sendable strong reference to a Sendable ArkTS object.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_strong_sendable_reference | Creates a Sendable strong reference to a Sendable ArkTS object.| napi_invalid_arg | The input parameter **value** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_create_strong_sendable_reference | Creates a Sendable strong reference to a Sendable ArkTS object.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
@@ -699,5 +701,5 @@ Specifically, most Node-APIs return a status code enumeration of the **napi_stat
 | napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_invalid_arg | The input parameter **env** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_invalid_arg | The input parameter **ref** is **nullptr**.| Ensure that the input parameter is correct.|
 | napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_invalid_arg | The input parameter **result** is **nullptr**.| Ensure that the input parameter is correct.|
-| napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_invalid_arg | The input parameter **env** is not the main context.| Ensure that the input parameter is correct.| 
+| napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_invalid_arg | The input parameter **env** is not the main context.| Ensure that the input parameter is correct.|
 | napi_get_strong_sendable_reference_value | Obtains the ArkTS object value associated with a Sendable strong reference.| napi_generic_failure | The **napi_value** obtained from **napi_sendable_ref** is not sendable.| Ensure that the input parameter is correct.|

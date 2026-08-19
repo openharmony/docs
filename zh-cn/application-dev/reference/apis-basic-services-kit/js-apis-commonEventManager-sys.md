@@ -6,7 +6,7 @@
 <!--Tester: @wanghong1997-->
 <!--Adviser: @fang-jinxu-->
 
-本模块提供了公共事件相关的系统接口能力，包括发布公共事件到指定用户、移除粘性公共事件以及设置静态订阅公共事件的使能状态。
+本模块提供了公共事件相关的系统接口能力，包括发布公共事件到指定用户、移除[粘性公共事件](../../basic-services/common-event/common-event-glossary.md#sticky-common-event粘性公共事件)以及设置[静态订阅](../../basic-services/common-event/common-event-glossary.md#static-subscription静态订阅)公共事件的使能状态。
 
 > **说明：**
 >
@@ -22,7 +22,7 @@ import { commonEventManager } from '@kit.BasicServicesKit';
 
 ## Support
 
-系统公共事件是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要特定的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
+[系统公共事件](../../basic-services/common-event/common-event-glossary.md#system-common-event系统公共事件)是指由系统服务或系统应用发布的事件，订阅这些系统公共事件需要特定的权限。发布或订阅这些事件需要使用如下链接中的枚举定义。
 
 全部系统公共事件枚举定义请参见[系统定义的公共事件](./common_event/commonEventManager-definitions-sys.md)。
 
@@ -144,7 +144,7 @@ try {
 
 removeStickyCommonEvent(event: string, callback: AsyncCallback\<void>): void
 
-移除粘性公共事件。使用callback异步回调。
+移除[粘性公共事件](../../basic-services/common-event/common-event-glossary.md#sticky-common-event粘性公共事件)。使用callback异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -190,7 +190,7 @@ commonEventManager.removeStickyCommonEvent('sticky_event', (err: BusinessError) 
 
 removeStickyCommonEvent(event: string): Promise\<void>
 
-移除已发布的粘性公共事件。使用Promise异步回调。
+移除已发布的[粘性公共事件](../../basic-services/common-event/common-event-glossary.md#sticky-common-event粘性公共事件)。使用Promise异步回调。
 
 **系统能力：** SystemCapability.Notification.CommonEvent
 
@@ -239,7 +239,7 @@ commonEventManager.removeStickyCommonEvent('sticky_event').then(() => {
 
 setStaticSubscriberState(enable: boolean, callback: AsyncCallback\<void>): void
 
-为当前应用设置静态订阅事件使能或去使能状态。使用callback异步回调。
+为当前应用设置[静态订阅](../../basic-services/common-event/common-event-glossary.md#static-subscription静态订阅)事件使能或去使能状态。使用callback异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -283,7 +283,7 @@ commonEventManager.setStaticSubscriberState(true, (err: BusinessError) => {
 
 setStaticSubscriberState(enable: boolean): Promise\<void>
 
-为当前应用设置静态订阅事件使能或去使能状态。使用Promise异步回调。
+为当前应用设置[静态订阅](../../basic-services/common-event/common-event-glossary.md#static-subscription静态订阅)事件使能或去使能状态。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 
@@ -331,7 +331,7 @@ commonEventManager.setStaticSubscriberState(false).then(() => {
 
 setStaticSubscriberState(enable: boolean, events?: Array\<string>): Promise\<void>
 
-设置当前应用的静态订阅公共事件的使能状态。使用Promise异步回调。
+设置当前应用的[静态订阅](../../basic-services/common-event/common-event-glossary.md#static-subscription静态订阅)公共事件的使能状态。使用Promise异步回调。
 
 **模型约束**：此接口仅可在Stage模型下使用。
 

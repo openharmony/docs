@@ -105,7 +105,7 @@
               // 匹配的abilities选项是否需要通过App Linking域名校验，匹配到唯一配置过的应用ability
               appLinkingOnly: true,
               // 同want中的parameter，用于传递的参数
-              parameters: {demo_key: 'demo_value'}
+              parameters: {demoKey: 'demoValue'}
             };
     
             try {
@@ -214,7 +214,7 @@
               // 匹配的abilities选项是否需要通过App Linking域名校验，匹配到唯一配置过的应用ability
               appLinkingOnly: true,
               // 同want中的parameter，用于传递的参数
-              parameters: {demo_key: 'demo_value'}
+              parameters: {demoKey: 'demoValue'}
             };
     
             try {

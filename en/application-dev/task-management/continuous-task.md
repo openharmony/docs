@@ -13,6 +13,10 @@
 
 If an application has a perceivable task that needs to run in an extended period of time in the background, it can request a continuous task to prevent itself from being suspended. Examples of continuous tasks include music playback and navigation in the background. Within a continuous task, the application can concurrently request multiple types of tasks and update the task types. When the application operates in the background, the system performs consistency check to ensure that the application is executing the corresponding continuous task. Upon successful request for a continuous task, the notification panel displays the message associated with the task. If the user deletes the message, the system automatically terminates the task.
 
+> **NOTE**
+> 
+> After an application is moved to the background, its lifecycle changes vary depending on the device type. For details, see [Differentiated Behavior of UIAbility Lifecycle on Different Devices](../windowmanager/window-lifecycle.md#differentiated-behavior-of-uiability-lifecycle-on-different-devices).
+
 ### Use Cases
 
 The table below lists the types of continuous tasks, which are used in various scenarios. You can select a task type suitable for your case based on the description.
@@ -21,20 +25,21 @@ The table below lists the types of continuous tasks, which are used in various s
 | Name| Description| Item| Example Scenario|
 | -------- | -------- | -------- | -------- |
 | DATA_TRANSFER | Data transfer.| dataTransfer | Non-hosting uploading and downloading operations, like those occurring in the background of a web browser for data transfer.|
-| AUDIO_PLAYBACK | Audio and video playback.| audioPlayback | Audio and video playback in the background; audio and video casting.<br> **Note**: It can be used in atomic services.|
+| AUDIO_PLAYBACK | Audio and video playback.<br> **Note:** Availble in atomic services since API version 12.| audioPlayback | Audio and video playback in the background; audio and video casting.|
 | AUDIO_RECORDING | Recording.| audioRecording | Recording and screen capture in the background.|
-| LOCATION | Positioning and navigation.| location | Positioning and navigation.|
+| LOCATION | Positioning and navigation.<br>**Note:** Availble in atomic services since API version 26.0.0.| location | Positioning and navigation.|
 | BLUETOOTH_INTERACTION | Bluetooth-related services.| bluetoothInteraction | An application transitions into the background during the process of file transfer using Bluetooth.|
-| MULTI_DEVICE_CONNECTION | Multi-device connection.| multiDeviceConnection | Distributed service connection and casting.<br> **Note**: It can be used in atomic services.|
+| MULTI_DEVICE_CONNECTION | Multi-device connection.<br> **Note:** Availble in atomic services since API version 12.| multiDeviceConnection | Distributed service connection and casting.|
 | <!--DelRow-->WIFI_INTERACTION | WLAN-related services (for system applications only).| wifiInteraction  | An application transitions into the background during the process of file transfer using WLAN.|
 | VOIP | Audio and video calls.<br>**Note**: It is supported since API version 13.| voip  | Chat applications (with audio and video services) transition into the background during audio and video calls.|
-| TASK_KEEPING | Computing tasks.<br>**Note**: Starting from API version 21, this capability is available for 2-in-1 devices, and non-2-in-1 devices that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system). In API version 20 and earlier versions, this task type is limited to PCs/2-in-1 devices only.| taskKeeping  | Antivirus software is running.|
-| MODE_AV_PLAYBACK_AND_RECORD | Multimedia services.<br>**Note**: It is supported since API version 22.| avPlaybackAndRecord  | When an application is in the background during audio/video playback, recording, or audio/video calls, you can select either this task type or the corresponding continuous task type for these three scenarios. For example, in the audio/video playback scenario, you can choose either **AUDIOPLAYBACK** or **MODE_AVPLAYBACK_AND_RECORD**.|
-| MODE_SPECIAL_SCENARIO_PROCESSING | Special scenarios (available only for smartphones, tablets, PCs/2-in-1 devices).<br>**Note**: It is supported since API version 22.| specialScenarioProcessing  | Exporting media files in the background, and using third-party casting components for background casting.|
+| TASK_KEEPING | Computing tasks.<br>**Note**: Starting from API version 21, this capability is made available to applications on non‑PC/2‑in‑1 devices that have obtained the ACL permission [ohos.permission.KEEP_BACKGROUND_RUNNING_SYSTEM](../security/AccessToken/restricted-permissions.md#ohospermissionkeep_background_running_system). For PC/2‑in‑1 devices, applications are not required to apply for the ACL permission. In API version 20 and earlier versions, this task type is limited to PCs/2-in-1 devices only.| taskKeeping  | Antivirus software is running.|
+| MODE_AV_PLAYBACK_AND_RECORD | Multimedia services.<br>**Note**: It is supported since API version 22.<br>It is availble in atomic services since API version 26.0.0.| avPlaybackAndRecord  | When an application is in the background during audio/video playback, recording, or audio/video calls, you can select either this task type or the corresponding continuous task type for these three scenarios. For example, in the audio/video playback scenario, you can choose either **AUDIOPLAYBACK** or **MODE_AVPLAYBACK_AND_RECORD**.|
+| MODE_SPECIAL_SCENARIO_PROCESSING | Special scenarios (available only for smartphones, tablets, PCs/2-in-1 devices).<br>**Note**: It is supported since API version 22.| specialScenarioProcessing  | Exporting media files in the background, using a third‑party casting component to cast in the background, and providing indoor sports scenarios when the application is running in the background|
+| MODE_NEARLINK | NearLink service.<br>**Since**: 26.0.0 | nearlink | An application transitions into the background during the process of file transfer using NearLink.|
 
 Description of **DATA_TRANSFER**:
 
-- During data transfer, if an application uses the [upload and download agent API](../reference/apis-basic-services-kit/js-apis-request.md) to hand over tasks to the system, the application will be suspended in the background even if it has requested the continuous task of the **DATA_TRANSFER** type.
+- During data transfer, if an application uses the [@ohos.request (Upload and Download)](../reference/apis-basic-services-kit/js-apis-request.md) to hand over tasks to the system, the application will be suspended in the background even if it has requested the continuous task of the **DATA_TRANSFER** type.
 
 - During data transfer, the application needs to update the progress. If the progress is not updated for a long time (more than 10 minutes after the first update), the continuous task of the **DATA_TRANSFER** type will be canceled. The notification type of the progress update must be live view. For details, see the example in [startBackgroundRunning()](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanagerstartbackgroundrunning12).
 
@@ -52,6 +57,8 @@ Description of **AUDIO_PLAYBACK**:
 
 - The system may freeze an application that requests a continuous task of the **AUDIO_PLAYBACK** type if no audio is playing while the application is in the background.
 
+- It is recommended that the application set up a listener for the audio pause event [on('pause')](../reference/apis-avsession-kit/arkts-apis-avsession-AVSession.md#onpause10). If the audio pause event is reported and audio playback is no longer required afterwards, it is advisable to cancel the previously requested continuous task for audio/video playback.
+
 Description of **BLUETOOTH_INTERACTION** (Bluetooth-related services):
 
 If an application applies only for a Bluetooth continuous task, it will be canceled upon Bluetooth disconnection caused by device distance. To ensure a seamless Bluetooth connection experience, the system allows applications that meet the following conditions to keep alive for a period of time (depending on the system load, up to 10 minutes) after the connection is restored, so that the applications can run in the background for a long time.
@@ -59,6 +66,19 @@ If an application applies only for a Bluetooth continuous task, it will be cance
 1. Register the event of suspending the listening of a continuous task so that the task is marked as suspended instead of being immediately canceled by the system. For details, see [on('continuousTaskSuspend')](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanageroncontinuoustasksuspend20).
 2. To enable timely reconnection after Bluetooth disconnection, subscribe to the Bluetooth connection state change event via [on('connectionStateChange')](../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onconnectionstatechange). After disconnection, initiate a BLE scan using [startScan](../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#startscan15), subscribe to the BLE device scan result reporting event via [on('BLEDeviceFind')](../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#onbledevicefind15), and check whether the device is back within the connectable range.
 3. After successfully scanning the device, the application needs to proactively restore the Bluetooth connection via [connect](../reference/apis-connectivity-kit/js-apis-bluetooth-ble.md#connect). The system then reactivates the suspended continuous task and keeps it alive.
+4. Starting from API version 26.0.0, within a certain period after a [BR](../connectivity/bluetooth/terminology.md#br) Bluetooth disconnection (the exact duration depends on system load and can be up to ten minutes), you can use the [onAclStateChange](../reference/apis-connectivity-kit/js-apis-bluetooth-connection.md#connectiononaclstatechange) API to listen for ACL connection state changes and re‑establish keep‑alive.
+
+Description of the MODE_NEARLINK (NearLink service):
+
+If an application applies only for a NearLink continuous task, it will be canceled upon NearLink disconnection caused by device distance. To ensure a seamless NearLink connection experience, within 1 to 10 minutes after disconnection (the exact duration depends on system load), the system allows applications that meet the following conditions to re‑establish keep‑alive upon reconnection, enabling them to run for an extended period in the background.
+ 
+1. Register the event of suspending the listening of a continuous task so that the task is marked as suspended instead of being immediately canceled by the system. For details, see [on('continuousTaskSuspend')](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanageroncontinuoustasksuspend20).
+2. To ensure timely connection recovery after a NearLink disconnection, the local device application subscribes to NearLink scan results after the connection is established. Upon disconnection, the local device actively initiates NearLink scanning, while the peer device sends NearLink advertisements.
+3. After successfully scanning for the peer device, the local device needs to initiate a connection request to the peer device. If there are no other service scanning requirements, the local device can stop NearLink scanning.
+
+Description of continuous task notifications:
+
+After an application successfully applies for a continuous task, the system displays a continuous task notification dialog in the notification panel. The dialog lifecycle is bound to the application period of the continuous task. When the continuous task is canceled, the notification is also canceled. It is recommended that applications request and release continuous tasks according to their specific business needs. If the application does not want the notification to appear while it is in the foreground, it is advisable to defer the request for the continuous task until the [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) lifecycle callback is triggered.
 
 ### Constraints
 
@@ -72,7 +92,9 @@ If an application applies only for a Bluetooth continuous task, it will be cance
 
 - If an application requests a continuous task but does not carry out the relevant service, the system imposes restrictions on the application. For example, if the system detects that an application has requested a continuous task of the AUDIO_PLAYBACK type but does not play audio, the application will be suspended when it returns to the background.
 
-- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. The application will be suspended when it returns to the background. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
+- If an application requests a continuous task but carries out a service that does not match the requested type, the system imposes restrictions on the application. The application will be suspended or terminated when it returns to the background. For example, if the system detects that an application requests a continuous task of the AUDIO_PLAYBACK type, but the application is playing audio (corresponding to the AUDIO_PLAYBACK type) and recording (corresponding to the AUDIO_RECORDING type), the system enforces management measures.
+
+- If an application does not request a continuous task for audio/video playback or recording but still performs such operations in the background, the system will take control measures and kill the application when it is moved to the background. It is recommended that an application request a continuous task for audio/video playback or recording in advance if it needs to perform such operations in the background.
 
 - When an application's operations are completed after a continuous task request, the system imposes restrictions on the application. The application will be suspended when it returns to the background.
 
@@ -80,11 +102,11 @@ If an application applies only for a Bluetooth continuous task, it will be cance
 
 > **NOTE**
 >
-> - An application must proactively cancel a continuous task once the task is completed. Otherwise, the application will be suspended when moved to the background. For example, when a user taps the UI to pause music playback, the application must cancel the continuous task in a timely manner. When the user taps the UI again to continue music playback, the application needs to request a continuous task.
+> An application must proactively cancel a continuous task once the task is completed. Otherwise, the application will be suspended when moved to the background. For example, when a user taps the UI to pause music playback, the application must cancel the continuous task in a timely manner. When the user taps the UI again to continue music playback, the application needs to request a continuous task.
 >
-> - If an application that plays an audio in the background is [interrupted](../media/audio/audio-playback-concurrency.md), the system automatically detects and stops the continuous task. The application must request a continuous task again to restart the playback.
+> If an application that plays an audio in the background is [interrupted](../media/audio/audio-playback-concurrency.md), the system automatically detects and stops the continuous task. The application must request a continuous task again to restart the playback.
 >
-> - When an application that plays audio in the background stops a continuous task, it must suspend or stop the audio stream. Otherwise, the application will be forcibly terminated by the system.
+> When an application that plays audio in the background stops a continuous task, it must suspend or stop the audio stream. Otherwise, the application will be forcibly terminated by the system.
 
 ## Available APIs
 
@@ -101,9 +123,9 @@ The table below uses promise as an example to describe the APIs used for develop
 
 ## How to Develop
 
-The following walks you through how to request a continuous task for recording to implement the following functionalities:
+The following walks you through how to request a continuous task for audio and video playback to implement the following functionalities:
 
-- When a user touches **Request Continuous Task**, the application requests a continuous task for recording, and a message is displayed in the notification bar, indicating that a recording task is running.
+- Click the **Request continuous task** button. The app successfully applies for a continuous task of the audio and video playback type, and the related notification is displayed in the notification bar.
 
 - When a user touches **Cancel Continuous Task**, the application cancels the continuous task, and the notification message is removed.
 
@@ -114,20 +136,25 @@ The following walks you through how to request a continuous task for recording t
 2. Declare the continuous task type.
 
    Declare the type of the continuous task for the target UIAbility under **abilities** in the [module.json5 file](../quick-start/module-configuration-file.md). Set the corresponding [configuration item](continuous-task.md#use-cases) in the configuration file.
+
+   <!-- @[continuous_task_configure](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/ContinuousTask/entry/src/main/module.json5) -->
    
-   ``` json5
+   ``` JSON5
    "module": {
-       "abilities": [
-           {
-              "backgroundModes": [
-              // Configuration item of the continuous task type
-              "audioRecording",
-              "bluetoothInteraction",
-              "audioPlayback"
-              ]
-           }
-       ],
-       // ...
+     // ...
+     "abilities": [
+       {
+         // ...
+         "backgroundModes": [
+           // Configuration item of the continuous task type
+           "audioRecording",
+           "bluetoothInteraction",
+           "audioPlayback"
+         ],
+         // ...
+       }
+     ],
+     // ...
    }
    ```
 
@@ -135,8 +162,10 @@ The following walks you through how to request a continuous task for recording t
    
    Import the modules related to continuous tasks: @ohos.resourceschedule.backgroundTaskManager and @ohos.app.ability.wantAgent. Import other modules based on the project requirements.
     <!--RP1-->
+
+    <!-- @[continuous_include](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/ContinuousTask/entry/src/main/ets/pages/audioPlayback/AudioPlaybackIndex.ets) -->
     
-    ```ts
+    ``` TypeScript
     import { backgroundTaskManager } from '@kit.BackgroundTasksKit';
     import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
     import { window } from '@kit.ArkUI';
@@ -150,9 +179,13 @@ The following walks you through how to request a continuous task for recording t
 4. Request and cancel a continuous task.
 
    The code snippet below shows how an application requests and cancels a continuous task for itself.
+   
+   Since API version 15, you can use [on('continuousTaskCancel')](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanageroncontinuoustaskcancel15) to listen for the cancellation of a continuous task.
+   
+   Since API version 16, you can use [BackgroundSubMode](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundsubmode16) to implement the Bluetooth car key function.
 
-   <!-- @[continuous_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/ContinuousTask/entry/src/main/ets/pages/Index.ets) -->
-
+   <!-- @[continuous_task](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/ContinuousTask/entry/src/main/ets/pages/audioPlayback/AudioPlaybackIndex.ets) -->
+   
    ``` TypeScript
    function callback(info: backgroundTaskManager.ContinuousTaskCancelInfo) {
      // ID of a continuous task.
@@ -160,33 +193,35 @@ The following walks you through how to request a continuous task for recording t
      // Reason for canceling the continuous task.
      console.info('OnContinuousTaskCancel callback reason ' + info.reason);
    }
-
+   
    @Entry
    @Component
-   struct Index {
+   struct AudioPlaybackIndex {
      @State message: string = 'ContinuousTask';
      // Obtain the UIAbility context of the page by calling getUIContext().getHostContext().
      private context: Context | undefined = this.getUIContext().getHostContext();
-
+   
+     // ...
+   
      OnContinuousTaskCancel() {
        try {
-          backgroundTaskManager.on('continuousTaskCancel', callback);
-          console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
+         backgroundTaskManager.on('continuousTaskCancel', callback);
+         console.info(`Succeeded in operationing OnContinuousTaskCancel.`);
        } catch (error) {
-          console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+         console.error(`Operation OnContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
        }
      }
-
+   
      OffContinuousTaskCancel() {
        try {
-          // If the callback parameter is not passed, all callbacks associated with the specified event are canceled.
-          backgroundTaskManager.off('continuousTaskCancel', callback);
-          console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
+         // If the callback parameter is not passed, all callbacks associated with the specified event are canceled.
+         backgroundTaskManager.off('continuousTaskCancel', callback);
+         console.info(`Succeeded in operationing OffContinuousTaskCancel.`);
        } catch (error) {
-          console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
+         console.error(`Operation OffContinuousTaskCancel failed. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
        }
      }
-
+   
      // Request a continuous task using .then().
      startContinuousTask() {
        let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -210,7 +245,7 @@ The following walks you through how to request a continuous task for recording t
            // [backgroundTaskManager.BackgroundModeType.SUB_MODE] :backgroundTaskManager.BackgroundSubMode.CAR_KEY
          // }
        };
-
+   
        try {
          // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
          // In atomic services, replace the following line of code with wantAgent.getWantAgent(wantAgentInfo).then((wantAgentObj: object) => {.
@@ -218,12 +253,12 @@ The following walks you through how to request a continuous task for recording t
            try {
              let list: string[] = ['audioPlayback'];
              // let list: string[] = ['bluetoothInteraction']; The bluetoothInteraction type is included in the continuous task, and the CAR_KEY subtype is valid.
-             // In atomic services, let list: Array<string> = ["audioPlayback"];
              backgroundTaskManager.startBackgroundRunning(this.context, list, wantAgentObj).
                then((res: backgroundTaskManager.ContinuousTaskNotification) => {
-               console.info("Operation startBackgroundRunning succeeded");
+               console.info('Operation startBackgroundRunning succeeded');
                // Execute the continuous task logic, for example, audio playback.
                // The system checks the authenticity of the service scenario. If the corresponding service is not executed, the system may cancel the continuous task and suspend the application.
+               // ...
              }).catch((error: BusinessError) => {
                console.error(`Failed to Operation startBackgroundRunning. code is ${error.code} message is ${error.message}`);
              });
@@ -235,16 +270,17 @@ The following walks you through how to request a continuous task for recording t
          console.error(`Failed to Operation getWantAgent. code is ${(error as BusinessError).code} message is ${(error as BusinessError).message}`);
        }
      }
-
+   
      // Cancel a continuous task using .then().
      stopContinuousTask() {
-        backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
-          console.info(`Succeeded in operationing stopBackgroundRunning.`);
-        }).catch((err: BusinessError) => {
-          console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
-        });
+       backgroundTaskManager.stopBackgroundRunning(this.context).then(() => {
+         console.info(`Succeeded in operationing stopBackgroundRunning.`);
+         // ...
+       }).catch((err: BusinessError) => {
+         console.error(`Failed to operation stopBackgroundRunning. Code is ${err.code}, message is ${err.message}`);
+       });
      }
-
+   
      build() {
        Row() {
          Column() {
@@ -253,33 +289,35 @@ The following walks you through how to request a continuous task for recording t
              .fontWeight(FontWeight.Bold)
    
            Button() {
-             Text('Request a continuous task').fontSize(25).fontWeight(FontWeight.Bold)
+             Text('Request continuous task').fontSize(25).fontWeight(FontWeight.Bold)
            }
            .type(ButtonType.Capsule)
            .margin({ top: 10 })
            .backgroundColor('#0D9FFB')
            .width(250)
            .height(40)
+           .id('applyContinuousTask')
            .onClick(() => {
              // Request a continuous task by clicking a button.
              this.startContinuousTask();
            })
    
            Button() {
-             Text('Cancel the continuous task').fontSize (25).fontWeight (FontWeight.Bold)
+             Text ('Cancel continuous task').fontSize (25).fontWeight (FontWeight.Bold)
            }
            .type(ButtonType.Capsule)
            .margin({ top: 10 })
            .backgroundColor('#0D9FFB')
            .width(250)
            .height(40)
+           .id('resetContinuousTask')
            .onClick(() => {
              // Stop the continuous task.
    
              // Cancel the continuous task through a button.
              this.stopContinuousTask();
            })
-
+   
            Button() {
              Text('Register a callback for canceling a continuous task').fontSize (25).fontWeight(FontWeight.Bold)
            }
@@ -292,7 +330,7 @@ The following walks you through how to request a continuous task for recording t
              // Use a button to register a callback for canceling a continuous task.
              this.OnContinuousTaskCancel();
            })
-
+   
            Button() {
              Text('Unregister a callback for canceling the continuous task').fontSize (25).fontWeight(FontWeight.Bold)
            }
@@ -305,6 +343,7 @@ The following walks you through how to request a continuous task for recording t
              // Use a button to unregister a callback for canceling a continuous task.
              this.OffContinuousTaskCancel();
            })
+           // ...
          }
          .width('100%')
        }
@@ -316,17 +355,23 @@ The following walks you through how to request a continuous task for recording t
 5. Request and cancel a continuous task using **async**/**await**.
 
    The code snippet below shows how an application requests and cancels a continuous task using **async**/**await** for itself.
+   
+   Since API version 15, you can use [on('continuousTaskCancel')](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundtaskmanageroncontinuoustaskcancel15) to listen for the cancellation of a continuous task.
+   
+   Since API version 16, you can use [BackgroundSubMode](../reference/apis-backgroundtasks-kit/js-apis-resourceschedule-backgroundTaskManager.md#backgroundsubmode16) to implement the Bluetooth car key function.
 
-   <!-- @[continuous_task_await](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/ContinuousTask/entry/src/main/ets/pages/IndexAsyncAndAwait.ets) -->
-
+   <!-- @[continuous_task_await](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/ContinuousTask/entry/src/main/ets/pages/audioPlayback/IndexAsyncAndAwait.ets) -->
+   
    ``` TypeScript
    @Entry
    @Component
-   struct Index {
+   struct IndexAsyncAndAwait {
      @State message: string = 'ContinuousTask';
      // Obtain the UIAbility context of the page by calling getUIContext().getHostContext().
      private context: Context | undefined = this.getUIContext().getHostContext();
-
+   
+     // ...
+   
      // Request a continuous task using async/await.
      async startContinuousTask() {
        let wantAgentInfo: wantAgent.WantAgentInfo = {
@@ -350,7 +395,7 @@ The following walks you through how to request a continuous task for recording t
            // [backgroundTaskManager.BackgroundModeType.SUB_MODE] :backgroundTaskManager.BackgroundSubMode.CAR_KEY
          // }
        };
-
+   
        try {
          // Obtain the WantAgent object by using the getWantAgent API of the wantAgent module.
          // In atomic services, replace the following line of code with const wantAgentObj: object = await wantAgent.getWantAgent(wantAgentInfo);.
@@ -363,6 +408,7 @@ The following walks you through how to request a continuous task for recording t
              await backgroundTaskManager.startBackgroundRunning(this.context as Context, list, wantAgentObj);
            console.info(`Operation startBackgroundRunning succeeded, notificationId: ${res.notificationId}`);
            // Execute the continuous task logic, for example, audio playback.
+           // ...
          } catch (error) {
            console.error(`Failed to Operation startBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
          }
@@ -370,17 +416,18 @@ The following walks you through how to request a continuous task for recording t
          console.error(`Failed to Operation getWantAgent. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`);
        }
      }
-
+   
      // Cancel a continuous task using async/await.
      async stopContinuousTask() {
        try {
          await backgroundTaskManager.stopBackgroundRunning(this.context);
          console.info(`Succeeded in operationing stopBackgroundRunning.`);
+         // ...
        } catch (error) {
          console.error(`Failed to operation stopBackgroundRunning. Code is ${(error as BusinessError).code}, message is ${(error as BusinessError).message}`)
        }
      }
-
+   
      build() {
        Row() {
          Column() {
@@ -388,33 +435,36 @@ The following walks you through how to request a continuous task for recording t
              .fontSize(50)
              .fontWeight(FontWeight.Bold)
    
-          Button() {
-             Text('Request a continuous task').fontSize(25).fontWeight(FontWeight.Bold)
+           Button() {
+             Text('Request continuous task').fontSize(25).fontWeight(FontWeight.Bold)
            }
            .type(ButtonType.Capsule)
            .margin({ top: 10 })
            .backgroundColor('#0D9FFB')
            .width(250)
            .height(40)
+           .id('applyContinuousTask')
            .onClick(() => {
-             // Request a continuous task through a button.
+             // Request a continuous task by clicking a button.
              this.startContinuousTask();
            })
    
            Button() {
-             Text('Cancel the continuous task').fontSize (25).fontWeight (FontWeight.Bold)
+             Text ('Cancel continuous task').fontSize (25).fontWeight (FontWeight.Bold)
            }
            .type(ButtonType.Capsule)
            .margin({ top: 10 })
            .backgroundColor('#0D9FFB')
            .width(250)
            .height(40)
+           .id('resetContinuousTask')
            .onClick(() => {
              // Stop the continuous task.
-
+   
              // Cancel the continuous task through a button.
              this.stopContinuousTask();
            })
+           // ...
          }
          .width('100%')
        }
@@ -426,7 +476,7 @@ The following walks you through how to request a continuous task for recording t
 
    The code snippet below shows how an application requests a continuous task across devices or applications. When executing a continuous task in the background across devices or applications, you can create and run a **UIAbility** in the background via the **Call** method. For details, see [Using Cross-Device Call](../application-models/hop-multi-device-collaboration.md#using-cross-device-call).
    
-   <!-- @[continuous_task_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/BasicFeature/TaskManagement/ContinuousTask/entry/src/main/ets/MainAbility/BgTaskAbility.ets) -->
+   <!-- @[continuous_task_call](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/BackGroundTasksKit/ContinuousTask/entry/src/main/ets/MainAbility/BgTaskAbility.ets) -->
    
    ``` TypeScript
    const MSG_SEND_METHOD: string = 'CallSendMsg';
@@ -701,3 +751,10 @@ The following walks you through how to request a continuous task for recording t
     ```
 <!--DelEnd-->
 
+## Samples
+
+The following sample is provided to help you better understand how to develop continuous tasks:
+
+- [Continuous Task (ArkTS, API version 9)](https://gitcode.com/openharmony/applications_app_samples/tree/master/code/DocsSample/BackGroundTasksKit/ContinuousTask)
+
+<!--no_check-->

@@ -6,8 +6,9 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=3780eaa820092ee975c32f64eb288f44d3471751 translatedAt=2026-08-13T08:26:14.284Z pushedAt=2026-08-13T10:20:24.758Z -->
 
-After Ukey PIN authentication, an application can use **resourceId** to perform the signing operation on the corresponding key. This capability is implemented using the three-segment API provided by HUKS. The application only needs to specify the algorithm parameters (including the algorithm type, purpose, padding, and digest).
+After UKey PIN authentication, an app can operate the corresponding key through `resourceId` to perform signing. This capability is implemented through the three-phase API provided by HUKS. The app only needs to specify the corresponding algorithm parameters (including the algorithm type, purpose, padding, and digest).
 
 > **NOTE**
 >

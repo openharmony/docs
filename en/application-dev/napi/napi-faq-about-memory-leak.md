@@ -1,16 +1,19 @@
 # FAQs About Memory Leaks
+
 <!--Kit: NDK-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @xliu-huanwei; @shilei123; @huanghello-->
 <!--Designer: @shilei123-->
 <!--Tester: @kirl75; @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=88fc26dbb0c9f93d86550b575acd5207366a25bd translatedAt=2026-08-12T06:27:35.938Z pushedAt=2026-08-12T09:52:45.937Z -->
 
 ## Is there any mechanism to check whether napi_ref leaks
 
 - Question: When **napi_create_reference** is used to create a reference to a JS object, **napi_delete_reference** needs to be used to release the JS object. If **napi_delete_reference** is not used, the JS object memory may leak. Is there any mechanism to check or test whether **napi_ref** leaks? 
+
 - Answer:
- 
+
 Use Allocation provided by DevEco Studio. 
 
 For details, see [Memory Analysis: Allocation](https://developer.huawei.com/consumer/en/doc/harmonyos-guides/ide-insight-session-allocations). 
@@ -28,6 +31,7 @@ You need to understand the Node-API lifecycle mechanism. The references are as f
 [Performing Lifecycle Management Using Node-API](use-napi-life-cycle.md) 
 
 Common causes of memory leaks during Node-API development: 
+
 1. **napi_value** is not managed by **napi_handle_scope**. As a result, the ArkTS object held by **napi_value** cannot be released. This problem often occurs in [direct use of uv_queue_work](napi-guidelines.md#asynchronous-tasks). To solve this problem, add the **napi_open_handle_scope** and **napi_close_handle_scope** APIs.
 
     You can analyze the snapshot to locate the cause of the leak. If the **distance** of the leaked ArkTS object is **1**, the object may be held by native (**napi_value** is a pointer to the native owner), and **napi_value** is not within the range of **napi_handle_scope**.  
@@ -40,7 +44,7 @@ Common causes of memory leaks during Node-API development:
 
 ## What should I do if memory leaks when napi_threadsafe_function is used
 
-When **napi_threadsafe_function** (tsfn for short) is used, **napi_acquire_threadsafe_function** is often called to change the reference count of tsfn to ensure that tsfn is not released unexpectedly. When all the tsfn calls are complete, **napi_release_threadsafe_function** should be called in **napi_tsfn_release** mode in a timely manner to ensure that the reference count returns to the value before **napi_acquire_threadsafe_function** is called. tsfn can be correctly released only when the reference count is **0**.
+When **napi_threadsafe_function** (hereinafter referred to as tsfn) is used, **napi_acquire_threadsafe_function** is often called to modify the reference count of tsfn, ensuring that tsfn is not accidentally released. However, after use, **napi_release_threadsafe_function** must be called in **napi_tsfn_release** mode in a timely manner to ensure that the reference count returns to the level before **napi_acquire_threadsafe_function** was called, after all callbacks have been executed. tsfn can be properly released only when its reference count reaches zero.
 
 When **env** is about to exit but the reference count of tsfn is not 0, **napi_release_threadsafe_function** should be called in **napi_tsfn_abort** mode to ensure that tsfn is not held or used by **env** after **env** is released. If **env** continues to hold tsfn after exiting, the application may crash.
 
@@ -60,10 +64,10 @@ The following code shows how to register **env_cleanup** to ensure that tsfn is 
 #define LOG_TAG "MY_TSFN_DEMO"
 
 /*
-  To construct a scenario in which the env lifecycle is shorter than the native lifecycle,
-  the following uses worker, taskpool, and napi_create_ark_runtime
-  to create an ArkTS running environment for a worker thread and manually stop the thread in advance.
-*/
+ * To construct a scenario where the lifetime of env is shorter than that of native resources,
+ * this example uses worker, taskpool, or napi_create_ark_runtime to
+ * create an ArkTS runtime environment on a non-main thread and terminates the thread early.
+ */
 
 
 // Define a struct to simulate the scenario where tsfn is stored.

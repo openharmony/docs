@@ -68,3 +68,4 @@
   - [相机预览画面旋转异常问题](camera-rotation-faq.md)
   - [白平衡相关问题](camera-whitebalance-faq.md)
   - [色彩空间配置异常问题](camera-colorspace-faq.md)
+- [Camera Kit术语](camera-glossary.md)

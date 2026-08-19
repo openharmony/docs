@@ -1,25 +1,25 @@
 # CPU Features
-<!--Kit: NDK-->
+
+<!--Kit: ArkTS-->
 <!--Subsystem: arkcompiler-->
 <!--Owner: @huang_huijin-->
 <!--Designer: @huang_huijin-->
 <!--Tester: @zsw_zhushiwei-->
-<!--Adviser: @fang-jinxu-->
-
+<!--Adviser: @k1ngqaquuu-->
+<!-- md-trans-meta sourceCommit=21434ce8d323ecbd7d67463989a2ef075be92cec translatedAt=2026-08-12T06:24:40.388Z pushedAt=2026-08-12T07:36:16.611Z -->
 
 CPU features are hardware extensions provided by CPUs. You can call instructions and set special registers to use the CPU features, such as VFP-v32d32, Neon, IDIV, and AES on the ARMv7-A architecture. Many CPU features are optional, and different CPU vendors provide different CPU features.
 
-
-During native library development in your OpenHarmony project,  you can follow this topic to use code related to the CPU features in your application.
-
+How can you use CPU features in OpenHarmony native library development? How can you handle CPU feature-related code? This section provides methods to help you develop apps that maintain compatibility while leveraging CPU feature capabilities.
 
 Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can import library functions of the existing open source community as described below. Alternatively, you can directly read **/proc/cpuinfo** or call **libc getauxval(AT_HWCAP)** to obtain the CPU features of a device.
-
 
 ## How to Use
 
 1. Introduce the open-source library to the OpenHarmony C++ project. Download the [cpu_features library](https://github.com/google/cpu_features), decompress it to the **cpp** directory of the project, and change the decompressed file name to **cpu_features**. The following shows a sample application of the DevEco Studio C++ template.
+
    - The directory structure after the decompression is as follows:
+
       ```txt
       MyApplication
         |-- entry
@@ -30,13 +30,16 @@ Currently, OpenHarmony does not provide APIs for obtaining CPU features. You can
                        |--CMakeLists.txt
                        |--hello.cpp
       ```
+
    - Add the path to the cpu_features library to the **CMakeLists.txt** file.
+
       ```makefile
       add_subdirectory(cpu_features) # Add a subdirectory to the project.
       target_link_libraries(entry PUBLIC cpu_features) # Add the library files that need to be linked.
       ```
 
 2. Add the statement for determining the support for the CPU features to the code. The following uses the ARM and AArch64 architectures as an example:
+
    ```c++
    // ...
    // Include the header file for CPU architecture target detection.

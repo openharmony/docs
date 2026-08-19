@@ -66,9 +66,9 @@ enum CryptoSymCipher_ParamsType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| CRYPTO_IV_DATABLOB = 100 | 初始化向量(IV)参数。 |
-| CRYPTO_AAD_DATABLOB = 101 | AEAD模式（如GCM、CCM）下的附加认证数据(AAD)。 |
-| CRYPTO_TAG_DATABLOB = 102 | AEAD模式（如GCM、CCM）中的认证标签(Tag)，用于数据完整性校验。 |
+| CRYPTO_IV_DATABLOB = 100 | 初始化向量（IV）参数。 |
+| CRYPTO_AAD_DATABLOB = 101 | AEAD模式（如GCM、CCM）下的附加认证数据（AAD）。 |
+| CRYPTO_TAG_DATABLOB = 102 | AEAD模式（如GCM、CCM）中的认证标签（Tag），用于数据完整性校验。 |
 
 
 ## 函数说明

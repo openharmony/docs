@@ -29,10 +29,6 @@
 |---|---|
 | InputMethodExtensionContext | 输入法扩展上下文类，继承自`ExtensionContext`，为`InputMethodExtensionAbility`提供上下文操作能力。关键方法包括：`destroy()`销毁输入法自身（支持callback和Promise两种异步方式）、`startAbility(want)`拉起目标应用（Promise方式，API 12+新增）。 |
 
-> **说明：**
-> 
-> 继承关系：`InputMethodExtensionContext`继承自`ExtensionContext`（来自`@ohos.app.ability`模块），泛化关系不在本模块内描述。
-
 本模块的`InputMethodExtensionContext`需通过`InputMethodExtensionAbility`子类实例获取，其API与InputMethodExtensionAbility生命周期回调组合使用。
 
 ```javascript
@@ -42,7 +38,7 @@
 class InputMethodExtAbility extends InputMethodExtensionAbility {
   onCreate(want) {
     // 获取上下文对象
-    let context = this.context;  // InputMethodExtensionContext实例
+    let context = this.context; // InputMethodExtensionContext实例
   }
 
   onDestroy() {
@@ -85,6 +81,12 @@ class InputMethodExtAbility extends InputMethodExtensionAbility {
 ```
 
 ## InputMethodExtensionContext
+
+InputMethodExtensionContext是InputMethodExtensionAbility的上下文环境，继承自ExtensionContext，为输入法扩展能力提供上下文级别的操作接口。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
+
+**系统能力：** SystemCapability.MiscServices.InputMethodFramework
 
 ### destroy
 
@@ -207,7 +209,7 @@ want参数使用建议：
 
 **错误码：**
 
-以下错误码的详细介绍请参见[输入法框架错误码](errorcode-inputmethod-framework.md)，[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)，[通用错误码说明文档](../errorcode-universal.md)。
+以下错误码的详细介绍请参见[通用错误码说明文档](../errorcode-universal.md)，[元能力子系统错误码](../apis-ability-kit/errorcode-ability.md)。
 
 | 错误码ID | 错误信息                                                |
 | -------- | ------------------------------------------------------- |

@@ -1,10 +1,12 @@
 # Interface (OISQuery)
+
 <!--Kit: Camera Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @qano-->
 <!--Designer: @leoqsl-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=b760a2cd044b1f4d1f1ca244edc82437a32735ff translatedAt=2026-08-11T01:59:32.391Z pushedAt=2026-08-11T11:00:50.557Z -->
 
 This module describes the optical image stabilization (OIS) query object.
 
@@ -41,13 +43,13 @@ Checks whether the specified OIS mode is supported.
 
 | Type       | Description                         |
 | ---------- | ----------------------------- |
-| boolean    | Whether the device supports the specified OIS mode. The value **true** indicates the specified OIS mode is supported, and the value **false** indicates the opposite.|
+| boolean    | Whether the device supports the specified OIS mode. The value **true** indicates that the device supports the specified OIS mode, and the value **false** indicates the opposite. |
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102 | Operation not allowed, the inputDevice or the session is abnormal. |
 | 7400103 | Session not config. |
@@ -93,11 +95,11 @@ Obtains the supported bias range on the specified OIS axis.
 | ---------- | ----------------------------- |
 | Array\<number\>    | Bias range.|
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102 | Operation not allowed, the inputDevice or the session is abnormal. |
 | 7400103 | Session not config. |
@@ -143,11 +145,11 @@ Obtains the bias step on the specified OIS axis.
 | ---------- | ----------------------------- |
 | number    | Bias step.|
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102 | Operation not allowed, the inputDevice or the session is abnormal. |
 | 7400103 | Session not config. |
@@ -187,11 +189,11 @@ Obtains the OIS mode.
 | ---------- | ----------------------------- |
 | [OISMode](arkts-apis-camera-e.md#oismode24)    | OIS mode.|
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102 | Operation not allowed, the inputDevice or the session is abnormal. |
 | 7400103 | Session not config. |
@@ -237,11 +239,11 @@ Obtains the custom bias on the specified OIS axis.
 | ---------- | ----------------------------- |
 | number    | Current bias.|
 
-**Error Codes**
+**Error codes**
 
 For details about the error codes, see [Camera Error Codes](errorcode-camera.md).
 
-| Error Code        | Error Message       |
+| ID        | Error Message       |
 | --------------- | --------------- |
 | 7400102 | Operation not allowed, the inputDevice or the session is abnormal. |
 | 7400103 | Session not config. |

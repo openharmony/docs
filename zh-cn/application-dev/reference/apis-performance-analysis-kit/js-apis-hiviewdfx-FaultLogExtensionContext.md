@@ -1,7 +1,7 @@
 # @ohos.hiviewdfx.FaultLogExtensionContext (故障延迟通知上下文)
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony-->
+<!--Owner: @chenshi51-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
@@ -32,5 +32,7 @@ export default class MyFaultLogExtension extends FaultLogExtensionAbility {
 ## FaultLogExtensionContext
 
 FaultLogExtensionContext是[FaultLogExtensionAbility](js-apis-hiviewdfx-FaultLogExtensionAbility.md)的上下文环境。
+
+**模型约束**：此接口仅可在Stage模型下使用。
 
 **系统能力**：SystemCapability.HiviewDFX.Hiview.FaultLogger

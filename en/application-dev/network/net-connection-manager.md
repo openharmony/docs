@@ -8,11 +8,11 @@
 
 ## Introduction
 
-The Network Connection Management module provides basic network management capabilities, including management of Wi-Fi/cellular/Ethernet connection priorities, network quality evaluation, subscription to network connection status changes, query of network connection information, and DNS resolution.
+The Network Connection Management module provides basic network management capabilities, including management of connection priorities among multiple networks such as Wi-Fi, cellular, and Ethernet, network quality evaluation, subscription to status changes of the default or specified network, query of network connection information, and DNS resolution.
 
 > **NOTE**
 >
-> To maximize the application running efficiency, most API calls are called asynchronously in callback or promise mode. The following code examples use the promise mode. For details about the APIs, see [API Reference](../reference/apis-network-kit/js-apis-net-connection.md).
+> To ensure efficient application running, most API calls are asynchronous. For asynchronous APIs, both callback and Promise modes are available. The following examples use Promise mode. For details, see [@ohos.net.connection (Network Connection Management)](../reference/apis-network-kit/js-apis-net-connection.md).
 
 ## Basic Concepts
 
@@ -20,7 +20,8 @@ The Network Connection Management module provides basic network management capab
 - Consumer: a user of data networks, for example, an application or a system service.
 - Network probe: a mechanism used to detect the network availability to prevent the switch from an available network to an unavailable network. The probe type can be binding network detection, DNS detection, HTTP detection, or HTTPS detection.
 - Network selection: a mechanism used to select the optimal network when multiple networks coexist. It is triggered when the network status, network information, or network quality evaluation score changes.
-- Default network: network where the default route is located.
+- Default network: the network used by the system by default. It is determined by the system and is independent of whether an application specifies a network. It is usually one of Wi-Fi, cellular, Ethernet, or Bluetooth.
+- Network handle: the unique identifier of a network.
 
 ## When to Use
 
@@ -139,10 +140,10 @@ The following describes the development procedure specific to each application s
 Depending on the current network status and network quality, the default network may change, for example:
 1. Switching the default network to the cellular network when the Wi-Fi signal is weak
 2. Switching the default network to the Wi-Fi network when the cellular network signal is weak
-3. Switching the default network to the cellular network when the Wi-Fi network is disabled
-4. Switching the default network to the Wi-Fi network when the cellular network is disabled
+3. Switching the default network to the cellular network when Wi-Fi is turned off
+4. Switching the default network to the Wi-Fi network when the cellular network is turned off
 5. Switching the default network to another Wi-Fi network when the Wi-Fi signal is weak (cross-network scenario)
-6. Switching the default network to cellular Wi-Fi network when the cellular signal is weak (cross-network scenario)
+6. Switching the default network to another cellular network when the cellular signal is weak (cross-network scenario)
 
 The following describes how to monitor changes of the default network and migrate application packets to the new default network.
 ### Importing the Connection Namespace

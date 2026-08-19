@@ -6,19 +6,26 @@
 <!--Designer: @lichangting518-->
 <!--Tester: @jane_lz-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=a3b29c6ccfc02596be8507ee86b77cb024745904 translatedAt=2026-08-14T06:45:07.886Z pushedAt=2026-08-14T07:59:38.470Z -->
 
 **userAuthIcon** provides built-in authentication icons for easy embedding with your application's UI. With **userAuthIcon**, you can:
 
 1. Easily integrate the facial authentication and fingerprint authentication icons into your applications.
+
 2. Customize the colors and sizes of the icons.
+
 3. Start the facial or fingerprint authentication pop-up component once the icon is tapped.
 
 **userAuthIcon** supports the following types of authentication:
 
 - Facial authentication
+
 - Fingerprint authentication
+
 - Facial + lock screen password authentication
+
 - Fingerprint + lock screen password authentication
+
 - Facial + fingerprint + lock screen password authentication
 
 The following figure shows the use of **userAuthIcon** for fingerprint authentication. When a user taps the fingerprint icon on the left (implemented by **userAuthIcon**), the system automatically launches the system authentication component shown on the right to complete user authentication. With **userAuthIcon**, you do not need to initiate an authentication request through an API, which simplifies the authentication process.
@@ -27,4 +34,4 @@ The following figure shows the use of **userAuthIcon** for fingerprint authentic
 
 ## Example
 
-For details, see [@ohos.userIAM.userAuthIcon](../../reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md).
+For details about the parameters and usage, see [@ohos.userIAM.userAuthIcon (Embedded User Authentication Icon)](../../reference/apis-user-authentication-kit/ohos-useriam-userauthicon.md).

@@ -10,7 +10,7 @@
 ## 场景介绍
 
 MindSpore Lite AI模型部署流程是：
-1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件。MindSpore Lite Kit所支持的ONNX算子，可查询[MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)，以确保模型转换成功。
+1. 开发者首先将原始模型（如：ONNX、CAFFE等）用MindSpore Lite模型转换工具，生成后缀为.ms的模型文件。MindSpore Lite Kit所支持的ONNX[算子](mindspore-lite-term.md#operator算子)，可查询[MindSpore Lite Kit算子支持列表](mindspore-lite-supported-operators.md)，以确保模型转换成功。
 2. 然后在代码中调用MindSpore Lite推理引擎接口，执行[模型推理](mindspore-lite-guidelines.md)。
 
 ## 获取模型转换工具
@@ -29,9 +29,9 @@ MindSpore Lite AI模型部署流程是：
 >
 > - 由于支持转换PyTorch模型的编译选项默认关闭，因此下载的安装包不支持转换PyTorch模型，只能通过源码编译方式获取。
 >
-> - 模型中有transpose与convolution算子融合，需要通过源码编译方式获取。否则可能会发生类似警告：node infer shape failed, node is Default/Conv2DFusion-xxx。
+> - 模型中有transpose与convolution[算子融合](mindspore-lite-term.md#operator-fusion算子融合)，需要通过源码编译方式获取。否则可能会发生类似警告：node infer shape failed, node is Default/Conv2DFusion-xxx。
 >
-> - 当指定NPU后端进行推理时，需要自定义[关闭clip算子融合](#关闭指定算子融合)，模型转换工具需要通过源码编译方式获取。否则可能会发生类似报错：BuildKirinNPUModel# Create full model kernel failed。
+> - 当指定[NPU](mindspore-lite-term.md#npu)后端进行推理时，需要自定义[关闭clip算子融合](#关闭指定算子融合)，模型转换工具需要通过源码编译方式获取。否则可能会发生类似报错：BuildKirinNPUModel# Create full model kernel failed。
 
 1. 编译环境要求如下：
 
@@ -74,13 +74,13 @@ MindSpore Lite模型转换工具提供了多种参数设置，用户可根据需
 |        参数        | 是否必选            | 参数说明                                                     | 取值范围                                         |
 | :----------------: | ------------------- | ------------------------------------------------------------ | ------------------------------------------------ |
 |       --help       | 否                  | 打印全部帮助信息。                                           | -                                                |
-|       --fmk        | 是                  | 输入模型的原始格式。只有在MS模型转换为Micro代码场景时，才支持设置为MSLITE。 | MINDIR、CAFFE、TFLITE、TF、ONNX、PYTORCH、MSLITE |
+|       --fmk        | 是                  | 输入模型的原始格式。只有在[MS模型](mindspore-lite-term.md#ms-modelms模型)转换为Micro代码场景时，才支持设置为MSLITE。 | MINDIR、CAFFE、TFLITE、TF、ONNX、PYTORCH、MSLITE |
 |    --modelFile     | 是                  | 输入模型的路径。                                             | -                                                |
 |    --outputFile    | 是                  | 输出模型的路径，不需加后缀，可自动生成`.ms`后缀。            | -                                                |
 |    --weightFile    | 转换CAFFE模型时必选 | 输入模型权重文件的路径。                                     | -                                                |
-|    --configFile    | 否                  | 1）可作为训练后量化配置文件路径；2）可作为扩展功能配置文件路径。 | -                                                |
+|    --configFile    | 否                  | 1）可作为[训练后量化](mindspore-lite-term.md#post-training-quantization训练后量化)配置文件路径；2）可作为扩展功能配置文件路径。 | -                                                |
 |       --fp16       | 否                  | 设定在模型序列化时是否需要将float32数据格式的权重存储为float16数据格式。<br>默认值为off。 | on、off                                          |
-|    --inputShape    | 否                  | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转化后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                                |
+|    --inputShape    | 否                  | 设定模型输入的维度，输入维度的顺序和原始模型保持一致。对某些特定的模型可以进一步优化模型结构，但是转换后的模型将可能失去动态shape的特性。输入名和shape之间用`:`分割，多个输入用`;`分割，同时加上双引号`""`。例如配置为"inTensorName_1: 1,32,32,4;inTensorName_2:1,64,64,4;"。 | -                                                |
 | --inputDataFormat  | 否                  | 设定导出模型的输入format，只对四维输入有效。<br>默认值为NHWC。 | NHWC、NCHW                                       |
 |  --inputDataType   | 否                  | 设定量化模型输入tensor的数据类型。仅当模型输入tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输入tensor的数据类型保持一致。<br>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
 |  --outputDataType  | 否                  | 设定量化模型输出tensor的数据类型。仅当模型输出tensor的量化参数（scale和zero point）配置时有效。默认与原始模型输出tensor的数据类型保持一致。<br>默认值为DEFAULT。 | FLOAT32、INT8、UINT8、DEFAULT                    |
@@ -104,11 +104,11 @@ MindSpore Lite模型转换工具提供了多种参数设置，用户可根据需
 ```bash
 CONVERT RESULT SUCCESS:0
 ```
-这表示已经成功将CAFFE模型转化为MindSpore Lite模型，获得新文件`lenet.ms`。
+这表示已经成功将CAFFE模型转换为MindSpore Lite模型，获得新文件`lenet.ms`。
 
 ## 离线模型转换（可选）
 
-当部署场景对加载时延要求严格时，开发者希望进一步降低加载时延，可采用另一种部署方案，即基于离线模型的推理。离线模型是使用硬件厂商的离线模型转换工具转换得到的模型，由硬件厂商负责解析和推理。
+当部署场景对加载时延要求严格时，开发者希望进一步降低加载时延，可采用另一种部署方案，即基于[离线模型](mindspore-lite-term.md#offline-model离线模型)的推理。离线模型是使用硬件厂商的离线模型转换工具转换得到的模型，由硬件厂商负责解析和推理。
 
 执行推理时，MindSpore Lite会直接将离线模型传给接入NNRt的 AI 硬件，无需在线构图即可加载，大幅降低模型加载时延，并且可携带额外的硬件特定信息，协助AI硬件推理。
 

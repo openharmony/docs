@@ -88,7 +88,7 @@ export struct RadioExample {
                   // 切换为响铃模式
                   await this.getUIContext().getPromptAction().openToast(this.rst);
                 } catch (err) {
-                  console.error('Failed to show toast: ${err.code}');
+                  console.error(`Failed to show toast: ${err.code}`);
                 }
               }
             })
@@ -105,7 +105,7 @@ export struct RadioExample {
                   // 切换为振动模式
                   await this.getUIContext().getPromptAction().openToast(this.vst);
                 } catch (err) {
-                  console.error('Failed to show toast: ${err.code}');
+                  console.error(`Failed to show toast: ${err.code}`);
                 }
               }
             })
@@ -122,7 +122,7 @@ export struct RadioExample {
                   // 切换为静音模式
                   await this.getUIContext().getPromptAction().openToast(this.sst);
                 } catch (err) {
-                  console.error('Failed to show toast: ${err.code}');
+                  console.error(`Failed to show toast: ${err.code}`);
                 }
               }
             })

@@ -161,17 +161,6 @@ Web组件预编译JavaScript生成字节码缓存的配置对象，用于控制�
 | type | [WebHitTestType](./arkts-apis-webview-e.md#webhittesttype) | 否 | 否 | 当前被点击区域的元素类型。|
 | extra | string        | 否 | 否 |点击区域的附加参数信息。若被点击区域为图片或链接，则附加参数信息为其url地址。 |
 
-## ControllerAttachState<sup>20+</sup>
-
-WebViewController与Web组件的绑定状态。
-
-**系统能力：** SystemCapability.Web.Webview.Core
-
-| 名称 | 值 | 说明 |
-| ------------------------------- | - | ---------- |
-| UNATTACHED | 0 | 未绑定状态。 |
-| ATTACHED   | 1 | 已绑定状态。 |
-
 ## BlanklessInfo<sup>20+</sup>
 
 页面首屏加载预测信息，主要包括首屏相似度预测值、首屏加载耗时预测值、预测错误码，应用需根据此信息来决策是否启用无白屏加载插帧方案。

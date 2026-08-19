@@ -1,4 +1,4 @@
-# Ukey PIN Authentication (ArkTS)
+# UKey PIN Authentication (ArkTS)
 
 <!--Kit: Universal Keystore Kit-->
 <!--Subsystem: Security-->
@@ -6,8 +6,9 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=f7243bd9bbc19d6bb1c1a460201c8c6cbf7dc7b6 translatedAt=2026-08-13T08:25:54.063Z pushedAt=2026-08-13T10:20:24.756Z -->
 
-From API version 22, **huksExternalCrypto** provides the PIN authentication API. An ecosystem app calls the certificate HAP UI to display a certificate list. After a user selects a certificate, the browser obtains **resourceId** based on the selected certificate, and then [open the resource](huks-open-close-resource-ndk.md) for PIN authentication. For details about the scenarios, see [Ukey PIN Authentication Overview and Specifications](huks-ukey-pin-authentication-management-overview.md).
+Starting from API 22, huksExternalCrypto provides PIN authentication APIs. An ecosystem app calls the certificate HAP API to display the certificate list. After the user selects a certificate, the browser obtains the **resourceId** based on the selected certificate, [opens the resource](huks-open-close-resource-ndk.md), and then proceeds to PIN authentication. For details about the scenarios, see [UKey PIN Authentication Introduction and Specifications](huks-ukey-pin-authentication-management-overview.md).
 
 ## How to Develop
 
@@ -61,12 +62,12 @@ async function authUkeyPin(): Promise<void> {
     /* 3. Verify the PIN. */
     await huksExternalCrypto.authUkeyPin(testResourceId, extProperties)
       .then(() => {
-        console.info(`promise: getUkeyPinAuthState success`);
+        console.info('promise: getUkeyPinAuthState success.');
       }).catch((error: BusinessError) => {
         console.error(`promise: getUkeyPinAuthState failed, errCode : ${error.code}, errMsg : ${error.message}`);
       });
   } catch (error) {
-    console.error(`promise: getUkeyPinAuthState input arg invalid`);
+    console.error('promise: getUkeyPinAuthState input arg invalid.');
   }
 }
 

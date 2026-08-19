@@ -6,6 +6,7 @@
 <!--Designer: @yangde_dy-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=189bef0788eb72ba82716a646be235e42ae0da29 translatedAt=2026-08-11T01:55:03.891Z pushedAt=2026-08-12T03:25:21.685Z -->
 
 Starting from API version 20, the low power player (LPP) can be used to implement the video path capability from the media source to rendering with low power consumption. This guide walks you through playing a local video file using the LPP APIs.
 
@@ -47,6 +48,7 @@ This topic describes only how to implement the playback of a media asset. In pra
 - Pay attention to the timing of API calls. Make reasonable calls according to the state diagram and detailed API documentation. After the program execution, call the corresponding `OH_***_Destroy` API to release resources.
 
 - When registering a callback, you can configure custom data in the last parameter `void *userData` to perform certain settings (such as state changes) in the callback functions.<br>
+
   Other callback functions:<br>
   [OH_LowPowerAudioSinkCallback_SetPositionUpdateListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_setpositionupdatelistener): called when the playback progress updates.<br>[OH_LowPowerAudioSinkCallback_SetEosListener](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_seteoslistener) or [OH_LowPowerVideoSinkCallback_SetEosListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_seteoslistener): called when the playback is completed.<br>
   [OH_LowPowerVideoSinkCallback_SetRenderStartListener](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_setrenderstartlistener): called when video rendering starts.<br>
@@ -96,11 +98,13 @@ target_link_libraries(sample PUBLIC ${BASE_LIBRARY})
 
 Include the [lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-lowpower-audio-sink-base-h.md), [lowpower_audio_sink.h](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md), [lowpower_video_sink.h](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md) and [lowpower_video_sink_base.h](../../reference/apis-media-kit/capi-lowpower-video-sink-base-h.md) header files to use audio and video playback APIs.
 
-1.  Creates a player.
+1.  Create a player.
 
      Based on actual service requirements, you can use a self-developed demuxer or create an [OH_AVSource](../../reference/apis-avcodec-kit/capi-avsource-oh-avsource.md) instance by calling [OH_AVSource_CreateWithDataSource()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithdatasource), [OH_AVSource_CreateWithFD()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithfd), or [OH_AVSource_CreateWithURI()](../../reference/apis-avcodec-kit/capi-native-avsource-h.md#oh_avsource_createwithuri). Then call [OH_AVDemuxer_CreateWithSource()](../../reference/apis-avcodec-kit/capi-native-avdemuxer-h.md#oh_avdemuxer_createwithsource) through the OH_AVSource instance to create a demuxer and obtain video metadata.
 
-    ```c++
+    <!-- @[OH_AVDemuxer_CreateWithSource](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/demuxer.cpp) -->
+
+    ``` C++
     source_ = OH_AVSource_CreateWithFD(info.inputFd, info.inputFileOffset, info.inputFileSize);
     demuxer_ = OH_AVDemuxer_CreateWithSource(source_);
     int32_t ret = GetTrackInfo(sourceFormat, info);
@@ -108,19 +112,30 @@ Include the [lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-low
 
 2.  Based on the video metadata, call [OH_LowPowerAudioSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_createbymime) or [OH_LowPowerVideoSink_CreateByMime](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_createbymime) to create a player.
 
-    ```c++
-    lppVideoStreamer_ = OH_LowPowerVideoSink_CreateByMime(codecMime.c_str());
-    lppAudioStreamer_ = OH_LowPowerAudioSink_CreateByMime(codecMime.c_str());
+    <!-- @[OH_LowPowerVideoSink_CreateByMime](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
+    lppVideoStreamer_ = OH_LowPowerVideoSink_CreateByMime(videoCodecMime.c_str());
+    ```
+
+    <!-- @[OH_LowPowerAudioSink_CreateByMime](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_audio_streamer.cpp) -->
+
+    ``` C++
+    lppAudioStreamer_ = OH_LowPowerAudioSink_CreateByMime(audioCodecMime.c_str());
     ```
 
 3.  Set callbacks.
 
      Call [OH_LowPowerAudioSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosinkcallback_create) or [OH_LowPowerVideoSinkCallback_Create](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosinkcallback_create) to create a callback for [OH_LowPowerAudioSinkCallback](../../reference/apis-media-kit/capi-lowpoweraudiosink-oh-lowpoweraudiosinkcallback.md) or [OH_LowPowerVideoSinkCallback](../../reference/apis-media-kit/capi-lowpowervideosink-oh-lowpowervideosinkcallback.md). Add the callbacks to the structure via the **setListener** API, and register them with **registerCallback**.
 
-    ```c++
+    <!-- @[OH_LowPowerAudioSinkCallback_Create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_audio_streamer.cpp) -->
+
+    ``` C++
     lppAudioStreamerCallback_ = OH_LowPowerAudioSinkCallback_Create();
-    OH_LowPowerAudioSinkCallback_SetDataNeededListener(lppAudioStreamerCallback_, LppCallback::OnDataNeeded, lppUserData);
-    OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(lppAudioStreamerCallback_, LppCallback::OnPositionUpdated, lppUserData);
+    OH_LowPowerAudioSinkCallback_SetDataNeededListener(lppAudioStreamerCallback_,
+        LppCallback::OnDataNeeded, lppUserData);
+    OH_LowPowerAudioSinkCallback_SetPositionUpdateListener(lppAudioStreamerCallback_,
+        LppCallback::OnPositionUpdated, lppUserData);
     ret = OH_LowPowerAudioSink_RegisterCallback(lppAudioStreamer_, lppAudioStreamerCallback_);
     ```
 
@@ -128,7 +143,9 @@ Include the [lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-low
 
      Based on the metadata obtained through demultiplexing, create and configure [OH_AVFormat](../../reference/apis-avcodec-kit/capi-core-oh-avformat.md). Configure the player by calling [OH_LowPowerAudioSink_Configure](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_configure) or [OH_LowPowerVideoSink_Configure](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_configure). For details about the parameters, see the sample code. For video streams, call [OH_LowPowerVideoSink_SetVideoSurface](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setvideosurface) to set the display window.
 
-    ```c++
+    <!-- @[OH_LowPowerVideoSink_Configure](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
     OH_AVFormat *format = OH_AVFormat_Create();
      
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_WIDTH, sampleInfo.videoWidth);
@@ -144,17 +161,38 @@ Include the [lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-low
 
      Call [OH_LowPowerVideoSink_SetSyncAudioSink](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_setsyncaudiosink) to set audio-video synchronization binding. Then, call [OH_LowPowerAudioSink_Prepare](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_prepare) or [OH_LowPowerVideoSink_Prepare](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_prepare). After a successful call, the player enters the ready state.
 
-    ```c++
-    OH_LowPowerVideoSink_Prepare(lppVideoStreamer_);
+    <!-- @[OH_LowPowerVideoSink_SetSyncAudioSink](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
+    auto ret = OH_LowPowerVideoSink_SetSyncAudioSink(lppVideoStreamer_, audioStreamer);
+    ```
+
+    <!-- @[OH_LowPowerVideoSink_Prepare](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
+    auto ret = OH_LowPowerVideoSink_Prepare(lppVideoStreamer_);
+    ```
+
+    <!-- @[OH_LowPowerAudioSink_Prepare](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_audio_streamer.cpp) -->
+
+    ``` C++
+    auto ret = OH_LowPowerAudioSink_Prepare(lppAudioStreamer_);
     ```
 
 6.  Start playback.
 
      Call [OH_LowPowerAudioSink_Start](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_start) or [OH_LowPowerVideoSink_StartRenderer](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_startrenderer) to start rendering. For video streams, before rendering, call [OH_LowPowerVideoSink_StartDecoder](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_startdecoder) to start decoding, or call [OH_LowPowerVideoSink_RenderFirstFrame](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_renderfirstframe) to start decoding and display the first frame, thereby entering the decoding state.
 
-    ```c++
-    OH_LowPowerVideoSink_StartDecoder(lppVideoStreamer_);
-    OH_LowPowerVideoSink_StartRenderer(lppVideoStreamer_);
+    <!-- @[OH_LowPowerVideoSink_StartDecoder](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
+    auto ret = OH_LowPowerVideoSink_StartDecoder(lppVideoStreamer_);
+    ```
+
+    <!-- @[OH_LowPowerVideoSink_StartRenderer](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/LowPowerAVSInk/lowPowerAVSinkSample/entry/src/main/cpp/capabilities/lpp_video_streamer.cpp) -->
+
+    ``` C++
+    auto ret = OH_LowPowerVideoSink_StartRenderer(lppVideoStreamer_);
     ```
 
 7.  (Optional) Control the playback.
@@ -173,56 +211,3 @@ Include the [lowpower_audio_sink_base.h](../../reference/apis-media-kit/capi-low
 9.  Exit the playback.
 
      Call [OH_LowPowerAudioSink_Destroy](../../reference/apis-media-kit/capi-lowpower-audio-sink-h.md#oh_lowpoweraudiosink_destroy) or [OH_LowPowerVideoSink_Destroy](../../reference/apis-media-kit/capi-lowpower-video-sink-h.md#oh_lowpowervideosink_destroy) to destroy the instance. The player enters the released state and exits the playback.
-
-## Running the Sample Project
-
-1. Create a project. Download the [sample project](https://gitcode.com/HarmonyOS_Samples/guide-snippets/tree/master/MediaKit/LowPowerAVSInk/lowPowerAVSinkSample), and copy its resources to the corresponding directories.
-
-   ```txt
-   lpp_demo-sample/entry/src/main/          
-   ├── cpp                                # Native layer
-   │   ├── capabilities                   # Capability interfaces and implementation
-   │   │   ├── include                    # Capability interfaces
-   │   │   ├── demuxer.cpp                # Demuxer implementation
-   │   │   ├── lpp_audio_streamer.cpp     # LPP audio stream implementation
-   │   │   └── lpp_video_streamer.cpp     # LPP video stream implementation
-   │   ├── common                         # Common modules
-   │   │   ├── dfx                        # Logs
-   │   │   ├── lpp_callback.cpp           # LPP audio and video callback implementation  
-   │   │   ├── lpp_callback.h             # LPP audio and video callback interfaces
-   │   │   └── sample_info.h              # Common classes for function implementation
-   │   ├── render                         # Render module interfaces and implementation* Window player settings
-   │   │   ├── include                    # Display module interfaces
-   │   │   ├── egl_core.cpp               # Display parameter settings
-   │   │   ├── plugin_manager.cpp         # Display module management implementation
-   │   │   └── plugin_render.cpp          # Display logic implementation
-   │   ├── sample                         # Native layer
-   │   │   ├── player                     # Player interfaces and implementation at the native layer
-   │   │   │   ├── Player.cpp             # Player implementation at the native layer
-   │   │   │   ├── Player.h               # Player interfaces at the native layer
-   │   │   │   ├── PlayerNative.cpp       # Player entry at the native layer
-   │   │   │   └── PlayerNative.h         # Interface exposed by the native layer
-   │   ├── types                          # 
-   │   │   └── libplayer                  # Interfaces exposed by the player to the UI layer
-   │   └── CMakeLists.txt                 # Compilation entry
-   ├── ets                                # UI layer
-   │   ├── common                         # Common modules
-   │   │   ├── utils                      # Common utility class
-   │   │   │   ├── DateTimeUtils.ets      # Used to obtain the current time
-   │   │   │   └── Logger.ts              # Log utility
-   │   |   └───CommonConstants.ets        # Common constants
-   │   ├── entryability                   # Application entry
-   │   │   └── EntryAbility.ts            # Implementation of the permission request dialog box
-   │   ├── pages                          # Pages contained in the EntryAbility
-   │   │   └── Index.ets                  # Home page/Playback page
-   ├── resources                          # Static resources
-   │   ├── base                           # Resource files in this directory are assigned unique IDs.
-   │   │   ├── element                    # Fonts and colors
-   │   │   ├── media                      # Images
-   │   │   └── profile                    # Home page of the app entry
-   │   ├── en_US                          # Resources in this directory are preferentially matched when the device language is English (US).
-   │   └── zh_CN                          # Resources in this directory are preferentially matched when the device language is simplified Chinese.
-   └── module.json5                       # Module configuration information
-   ```
-
-2. Compile and run the project.

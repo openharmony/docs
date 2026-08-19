@@ -33,6 +33,11 @@
 | void * | [OH_AI_ModelHandle](capi-mindspore-oh-ai-modelhandle.md)                                                | 指向模型对象的指针。                                |
 | void * |[OH_AI_TrainCfgHandle](capi-mindspore-oh-ai-traincfghandle.md)                                             | 指向训练配置对象的指针。                                |
 
+### 宏定义
+| 名称 | 描述 |
+| -- | -- |
+| OH_AI_MAX_SHAPE_NUM 32 | 张量最大维度数。<br>**起始版本：** 9 |
+
 ### 函数
 
 | 名称 | typedef关键字 | 描述                                                                                                                                                                                                                                                  |

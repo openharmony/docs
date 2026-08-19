@@ -60,7 +60,7 @@ Format: help [-ahu] [COMMAND]
 
 | Command| Description|
 | :- | :- |
-| ascii     | Displays the ASCII code table.<br>usage: ascii |
+| <!--DelRow-->ascii     | Displays the ASCII code table.<br>usage: ascii |
 | factor     | Factors an integer.<br>usage: factor [-hx] NUMBER... |
 | mcookie    | Generates a 128-bit strong random number.<br>usage: mcookie [-vV] |
 | mkpasswd | Encrypts a password.<br>usage: mkpasswd [-P FD] [-m TYPE] [-S SALT] [PASSWORD] [SALT] |
@@ -76,14 +76,14 @@ Format: help [-ahu] [COMMAND]
 | nohup  | Runs a command independent of the terminal.<br>usage: nohup COMMAND... |
 | tty    | Displays the name of the device connected to the standard input device.<br>usage: tty [-s] |
 | reset  | Resets the terminal.<br>usage: reset |
-| microcom | Runs a simple serial console.<br>usage: microcom [-s SPEED] [-X] DEVICE |
+| <!--DelRow-->microcom | Runs a simple serial console.<br>usage: microcom [-s SPEED] [-X] DEVICE |
 
 ### sh Logical Commands
 
 | Command| Description|
 | :- | :- |
 | false | Returns a non-zero value.<br>usage: false |
-| sh    | Starts the shell command interpreter.|
+| <!--DelRow-->sh    | Starts the shell command interpreter.|
 | test  | Performs a test and returns **true** or **false**. If no parameter is carried, **false** is returned.<br>usage: test [-bcdefghkLprSsuwx PATH] [-nz STRING] [-t FD] [X ?? Y] |
 | true  | Returns zero.<br>usage: true |
 | yes   | Outputs lines repeatedly until it is killed. If no parameter is carried, **y** is returned.<br>usage: yes [args...] |
@@ -92,30 +92,30 @@ Format: help [-ahu] [COMMAND]
 
 | Command| Description|
 | :- | :- |
-| acpi      | Obtains the power supply and temperature status.<br>usage: acpi [-abctV] |
-| arch      | Prints the system name.<br>usage: arch |
+| <!--DelRow-->acpi      | Obtains the power supply and temperature status.<br>usage: acpi [-abctV] |
+| <!--DelRow-->arch      | Prints the system name.<br>usage: arch |
 | dmesg     | Displays or controls the kernel ring buffer.<br>usage: dmesg [-Cc] [-r \| -t \| -T] [-n LEVEL] [-s SIZE] [-w \| -W] |
-| dnsdomainname | Displays the system name, which is the same as the value of **hostname -d**.<br>usage: dnsdomainname |
+| <!--DelRow-->dnsdomainname | Displays the system name, which is the same as the value of **hostname -d**.<br>usage: dnsdomainname |
 | getconf   | Obtains system configuration values. Some values require the **path** parameter.<br>usage: getconf -a [PATH] \| -l \| NAME [PATH] |
 | env       | Sets the environment for command execution or lists environment variables.<br>usage: env [-0i] [-e FILE] [-u NAME] [NAME=VALUE...] [COMMAND...] |
 | hostname  | Obtains the current host name.<br>usage: hostname [-bdsf] [-F FILENAME] [newname] |
 | insmod    | Loads a kernel module.<br>usage: insmod MODULE [OPTION...] |
-| logger    | Records system logs.<br>usage: logger [-s] [-t TAG] [-p [FACILITY.]PRIORITY] [MESSAGE...] |
+| <!--DelRow-->logger    | Records system logs.<br>usage: logger [-s] [-t TAG] [-p [FACILITY.]PRIORITY] [MESSAGE...] |
 | lsmod     | Displays the loaded modules, as well as their sizes and dependencies.<br>usage: lsmod |
-| mix       | Displays the OSS audio channel or sets the volume.<br>usage: mix [-d DEV] [-c CHANNEL] [-l VOL] [-r RIGHT] |
-| modinfo   | Displays the kernel module information.<br>usage: modinfo [-0] [-b basedir] [-k kernel] [-F field] [module \| file...] |
+| <!--DelRow-->mix       | Displays the OSS audio channel or sets the volume.<br>usage: mix [-d DEV] [-c CHANNEL] [-l VOL] [-r RIGHT] |
+| <!--DelRow-->modinfo   | Displays the kernel module information.<br>usage: modinfo [-0] [-b basedir] [-k kernel] [-F field] [module \| file...] |
 | nproc     | Prints the number of processors.<br>usage: nproc [--all] |
-| oneit     | Runs a simple initialization program.<br>usage: oneit [-prn3] [-c CONSOLE] [COMMAND...] |
-| partprobe | Notifies the kernel that the partitioned table has changed.<br>usage: partprobe DEVICE... |
-| pivot_root | Modifies the root directory.<br>usage: pivot_root OLD NEW |
+| <!--DelRow-->oneit     | Runs a simple initialization program.<br>usage: oneit [-prn3] [-c CONSOLE] [COMMAND...] |
+| <!--DelRow-->partprobe | Notifies the kernel that the partitioned table has changed.<br>usage: partprobe DEVICE... |
+| <!--DelRow-->pivot_root | Modifies the root directory.<br>usage: pivot_root OLD NEW |
 | printenv  | Prints environment variables.<br>usage: printenv [-0] [env_var...] |
-| reboot/halt/poweroff | Reboots, halts, or powers off a system.<br>usage: reboot/halt/poweroff [-fn] [-d DELAY] |
-| rfkill    | Enables or disables a wireless device.<br>usage: rfkill COMMAND [DEVICE] |
+| <!--DelRow-->reboot/halt/poweroff | Reboots, halts, or powers off a system.<br>usage: reboot/halt/poweroff [-fn] [-d DELAY] |
+| <!--DelRow-->rfkill    | Enables or disables a wireless device.<br>usage: rfkill COMMAND [DEVICE] |
 | rmmod     | Uninstalls a kernel module.<br>usage: rmmod [-wf] MODULE... |
-| sendevent | Sends a Linux input event.<br>usage: sendevent DEVICE TYPE CODE VALUE |
+| <!--DelRow-->sendevent | Sends a Linux input event.<br>usage: sendevent DEVICE TYPE CODE VALUE |
 | swapoff   | Deactivates a swap space.<br>usage: swapoff FILE |
 | swapon    | Activates a swap partition in a specified device or file.<br>usage: swapon [-d] [-p priority] filename |
-| switch_root | Switches to the root directory and runs a new init program.<br>usage: switch_root [-c /dev/console] NEW_ROOT NEW_INIT... |
+| <!--DelRow-->switch_root | Switches to the root directory and runs a new init program.<br>usage: switch_root [-c /dev/console] NEW_ROOT NEW_INIT... |
 | uname     | Prints system information.<br>usage: uname [-asnrvmo] |
 | vmstat    | Prints virtual memory information.<br>usage: vmstat [-n] [DELAY [COUNT]] |
 
@@ -125,7 +125,7 @@ Format: help [-ahu] [COMMAND]
 | :- | :- |
 | cal     | Prints a calendar.<br>usage: cal [-h] [[[DAY] MONTH] YEAR] |
 | date    | Sets or obtains the current date and time.<br>usage: date [-u] [-I RES] [-r FILE] [-d DATE] [+DISPLAY_FORMAT] [-D SET_FORMAT] [SET] |
-| hwclock | Obtains or sets the hardware clock.<br>usage: hwclock [-rswtlu] [-f FILE] |
+| <!--DelRow-->hwclock | Obtains or sets the hardware clock.<br>usage: hwclock [-rswtlu] [-f FILE] |
 | sleep   | Waits before exiting. The value can be a decimal. The optional suffix can be "m" (minute), "h" (hour), "d" (day), or "s" (second, default value).<br>usage: sleep DURATION... |
 | time    | Runs the command line and reports the real time, user time, and system time (in seconds). The real time is the wall clock time, the user time is the actual CPU time spend in user-mode, and the system time is the actual CPU time sped in the kernel.<br>usage: time [-pv] COMMAND... |
 | uptime  | Displays the current time, how long the system has been running, the number of users, and the average system load in the past 1, 5, and 15 minutes.<br>usage: uptime [-ps] |
@@ -137,9 +137,9 @@ Format: help [-ahu] [COMMAND]
 | :- | :- |
 | groups  | Prints the group to which the user belongs.<br>usage: groups [user] |
 | id      | Prints the user and group ID.<br>usage: id [-Ggnru] [USER...] |
-| login   | Logs in as a user.<br>usage: login [-p] [-h host] [-f USERNAME] [USERNAME] |
+| <!--DelRow-->login   | Logs in as a user.<br>usage: login [-p] [-h host] [-f USERNAME] [USERNAME] |
 | logname/whoami | Prints the current user name.<br>usage: logname/whoami |
-| passwd  | Updates the authentication token of a user.<br>usage: passwd [-a ALGO] [-dlu] [USER] |
+| <!--DelRow-->passwd  | Updates the authentication token of a user.<br>usage: passwd [-a ALGO] [-dlu] [USER] |
 | who     | Prints information about logged in users.<br>usage: who |
 | w       | Displays the user login information and login time.<br>usage: w |
 
@@ -147,16 +147,16 @@ Format: help [-ahu] [COMMAND]
 
 | Command| Description|
 | :- | :- |
-| chrt      | Obtains or sets the scheduling policy and priority of a process.<br>usage: chrt [-Rmofrbi] {-p PID [PRIORITY] \| [PRIORITY COMMAND...]} |
-| iorenice  | Displays or modifies the I/O priority of a process.<br>usage: iorenice PID [CLASS] [PRIORITY] |
+| <!--DelRow-->chrt      | Obtains or sets the scheduling policy and priority of a process.<br>usage: chrt [-Rmofrbi] {-p PID [PRIORITY] \| [PRIORITY COMMAND...]} |
+| <!--DelRow-->iorenice  | Displays or modifies the I/O priority of a process.<br>usage: iorenice PID [CLASS] [PRIORITY] |
 | iotop     | Sorts processes based on the I/O priority.<br>usage: iotop [-AaKObq] [-n NUMBER] [-d SECONDS] [-p PID,] [-u USER,] |
-| ionice    | Displays or modifies the I/O scheduling priority of a process.<br>usage: ionice [-t] [-c CLASS] [-n LEVEL] [COMMAND... \| -p PID] |
+| <!--DelRow-->ionice    | Displays or modifies the I/O scheduling priority of a process.<br>usage: ionice [-t] [-c CLASS] [-n LEVEL] [COMMAND... \| -p PID] |
 | kill      | Sends a signal to a process.<br>usage: kill [-l [SIGNAL] \| -s SIGNAL \| -SIGNAL] pid... |
 | killall   | Sends a signal (**SIGTERM** by default) to all processes with the given name.<br>usage: killall [-l] [-iqv] [-SIGNAL \| -s SIGNAL] PROCESS_NAME... |
-| killall5  | Sends signals to all processes except the current session.<br>usage: killall5 [-l [SIGNAL]] [-SIGNAL \| -s SIGNAL] [-o PID]... |
+| <!--DelRow-->killall5  | Sends signals to all processes except the current session.<br>usage: killall5 [-l [SIGNAL]] [-SIGNAL \| -s SIGNAL] [-o PID]... |
 | pidof   | Prints the PIDs of all processes with the given name.<br>usage: pidof [-s] [-o omitpid[,omitpid...]] [NAME...] |
 | pkill   | Kills a process by process name.<br>usage: pkill [-fnovx] [-SIGNAL \| -l SIGNAL] [PATTERN] [-G GID,] [-g PGRP,] [-P PPID,] [-s SID,] [-t TERM,] [-U UID,] [-u EUID,] |
-| pmap    | Obtains the memory mapping of a process.<br>usage: pmap [-xq] [pids...] |
+| <!--DelRow-->pmap    | Obtains the memory mapping of a process.<br>usage: pmap [-xq] [pids...] |
 | ps      | Displays information of a process.<br>usage: ps [-AadefLlnwZ] [-gG GROUP,] [-k FIELD,] [-o FIELD,] [-p PID,] [-t TTY,] [-uU USER,] |
 | pwdx    | Prints the working directory of a process.<br>usage: pwdx PID... |
 | renice  | Adjusts the priority of processes, process groups, and user-level processes.<br>usage: renice [-gpu] -n INCREMENT ID... |
@@ -167,7 +167,7 @@ Format: help [-ahu] [COMMAND]
 | nice    | Runs a command with a specified priority.<br>usage: nice [-n PRIORITY] COMMAND... |
 | nsenter | Runs a command in a specific namespace.<br>usage: nsenter [-t pid] [-F] [-i] [-m] [-n] [-p] [-u] [-U] COMMAND... |
 | ulimit/prlimit | Displays or sets the resource limit of a process.<br>usage: ulimit/prlimit [-P PID] [-SHRacdefilmnpqrstuv] [LIMIT] |
-| unshare | Creates a namespace for a process. Some attributes are not shared with the parent process.<br>usage: unshare [-imnpuUr] COMMAND... |
+| <!--DelRow-->unshare | Creates a namespace for a process. Some attributes are not shared with the parent process.<br>usage: unshare [-imnpuUr] COMMAND... |
 | watch   | Runs the specified commands at a given interval (specified by **-n**, in seconds) and displays the execution result. You can press **q** to exit the command execution.<br>usage: watch [-tebx] [-n SEC] COMMAND... |
 | xargs   | Runs the command line one or more times, carrying parameters from the standard input device.<br>usage: xargs [-0Pprt] [-snE STR] COMMAND... |
 
@@ -175,31 +175,31 @@ Format: help [-ahu] [COMMAND]
 
 | Command| Description|
 | :- | :- |
-| blkid       | Prints information of the file system, such as type, tag, and UUID.<br>usage: blkid [-o TYPE] [-s TAG] [-UL] DEV... |
-| blockdev    | Invokes ioctl for the block device in each command.<br>usage: blockdev --OPTION... BLOCKDEV... |
-| devmem      | Reads and writes the physical address using **/dev/mem**.<br>usage: devmem [-f FILE] ADDR [WIDTH [DATA...]] |
+| <!--DelRow-->blkid       | Prints information of the file system, such as type, tag, and UUID.<br>usage: blkid [-o TYPE] [-s TAG] [-UL] DEV... |
+| <!--DelRow-->blockdev    | Invokes ioctl for the block device in each command.<br>usage: blockdev --OPTION... BLOCKDEV... |
+| <!--DelRow-->devmem      | Reads and writes the physical address using **/dev/mem**.<br>usage: devmem [-f FILE] ADDR [WIDTH [DATA...]] |
 | df          | Displays the total, used, and free disk space of each file system passed in. If no parameter is carried, all loaded file systems are displayed.<br>usage: df [-aHhikP] [-t TYPE] [FILE...] |
 | du          | Displays the disk usage with files and directories.<br>usage: du [-d N] [-abcHKkLlmsx] [FILE...] |
-| eject       | Ejects a device, which is **/dev/cdrom** by default.<br>usage: eject [-stT] [DEVICE] |
+| <!--DelRow-->eject       | Ejects a device, which is **/dev/cdrom** by default.<br>usage: eject [-stT] [DEVICE] |
 | free        | Displays the total, available, and used amount of physical memory and swap space.<br>usage: free [-bkmgt] |
 | freeramdisk | Releases all memory of a specified RAM disk.<br>usage: freeramdisk [RAM device] |
-| fsfreeze    | Freezes or unfreezes a file system.<br>usage: fsfreeze {-f \| -u} MOUNTPOINT |
+| <!--DelRow-->fsfreeze    | Freezes or unfreezes a file system.<br>usage: fsfreeze {-f \| -u} MOUNTPOINT |
 | fstype      | Prints the type of a file system.<br>usage: fstype DEV... |
 | fsync       | Synchronizes the file status with the storage device.<br>usage: fsync [-d] [FILE...] |
-| i2cdetect   | Detects an I2C device.<br>usage: i2cdetect [-aqry] BUS [FIRST LAST] <br>usage: i2cdetect -F BUS<br>usage: i2cdetect -l |
-| i2cdump     | Dumps all I2C registers.<br>usage: i2cdump [-fy] BUS CHIP |
-| i2cget      | Reads an I2C register.<br>usage: i2cget [-fy] BUS CHIP [ADDR] |
-| i2cset      | Writes data to an I2C register.<br>usage: i2cset [-fy] BUS CHIP ADDR VALUE... MODE |
-| losetup     | Sets a loop device.<br>usage: losetup [-cdrs] [-o OFFSET] [-S SIZE] {-d DEVICE... \| -j FILE \| -af \| {DEVICE FILE}} |
+| <!--DelRow-->i2cdetect   | Detects an I2C device.<br>usage: i2cdetect [-aqry] BUS [FIRST LAST] <br>usage: i2cdetect -F BUS<br>usage: i2cdetect -l |
+| <!--DelRow-->i2cdump     | Dumps all I2C registers.<br>usage: i2cdump [-fy] BUS CHIP |
+| <!--DelRow-->i2cget      | Reads an I2C register.<br>usage: i2cget [-fy] BUS CHIP [ADDR] |
+| <!--DelRow-->i2cset      | Writes data to an I2C register.<br>usage: i2cset [-fy] BUS CHIP ADDR VALUE... MODE |
+| <!--DelRow-->losetup     | Sets a loop device.<br>usage: losetup [-cdrs] [-o OFFSET] [-S SIZE] {-d DEVICE... \| -j FILE \| -af \| {DEVICE FILE}} |
 | lspci       | Displays PCI device information.<br>usage: lspci [-ekmn] [-i FILE ] |
 | lsusb       | Displays USB device information.<br>usage: lsusb |
-| makedevs    | Creates a series of special files, including block device files and character device files.<br>usage: makedevs [-d device_table] rootdir |
+| <!--DelRow-->makedevs    | Creates a series of special files, including block device files and character device files.<br>usage: makedevs [-d device_table] rootdir |
 | mount       | Mounts a new file system to the directory. If no parameter is carried, the existing mounts are displayed.<br>usage: mount [-afFrsvw] [-t TYPE] [-o OPTION,] [[DEVICE] DIR] |
 | mountpoint  | Checks whether a directory or device is a mount point.<br>usage: mountpoint [-qd] DIR <br>&emsp;&emsp;&emsp;mountpoint [-qx] DEVICE |
 | sync        | Writes cached data to disks.<br>usage: sync |
 | sysctl      | Reads and writes the system control data in **/proc/sys.**<br>usage: sysctl [-aAeNnqw] [-p [FILE] \| KEY[=VALUE]...] |
-| tunctl      | Creates or deletes a TUN or TAP device.<br>usage: tunctl [-dtT] [-u USER] NAME |
-| vconfig     | Creates or deletes a virtual Ethernet device.<br>usage: vconfig COMMAND [OPTIONS] |
+| <!--DelRow-->tunctl      | Creates or deletes a TUN or TAP device.<br>usage: tunctl [-dtT] [-u USER] NAME |
+| <!--DelRow-->vconfig     | Creates or deletes a virtual Ethernet device.<br>usage: vconfig COMMAND [OPTIONS] |
 | umount      | Unmounts a file system.<br>usage: umount [-a [-t TYPE[,TYPE...]]] [-vrfD] [DIR...] |
 
 ### Network Operations
@@ -208,10 +208,10 @@ Format: help [-ahu] [COMMAND]
 | :- | :- |
 | ftpget/ftpput | Communicates with an FTP server and supports operations such as reading, writing, and listing files. The **ftpget** command contains the **-g** option. The **ftpput** command contains the **-s** option.<br>usage: ftpget/ftpput [-cvgslLmMdD] [-p PORT] [-P PASSWORD] [-u USER] HOST [LOCAL] REMOTE |
 | ifconfig      | Displays or configures a network interface.<br>usage: ifconfig [-aS] [INTERFACE [ACTION...]] |
-| nbd-client    | Creates an NBD client.<br>usage: nbd-client [-ns] [-b BLKSZ] HOST PORT DEVICE |
+| <!--DelRow-->nbd-client    | Creates an NBD client.<br>usage: nbd-client [-ns] [-b BLKSZ] HOST PORT DEVICE |
 | netstat   | Displays network information.<br>usage: netstat [-pWrxwutneal] |
 | ping/ping6    | Checks network connectivity. The **ping6** command contains the **-6** option.<br>usage: ping/ping6 [OPTIONS] HOST |
-| sntp    | Runs an SNTP client.<br>usage: sntp [-saSdDq] [-r SHIFT] [-mM[ADDRESS]] [-p PORT] [SERVER] |
+| <!--DelRow-->sntp    | Runs an SNTP client.<br>usage: sntp [-saSdDq] [-r SHIFT] [-mM[ADDRESS]] [-p PORT] [SERVER] |
 | telnet  | Connects to a Telnet server.<br>usage: telnet HOST [PORT] |
 | traceroute/traceroute6 | Traces the path that a message takes from your PC to a host. The **traceroute6** command contains the **-6** option.<br>usage: traceroute [-46FUIldnvr] [-f 1ST_TTL] [-m MAXTTL] [-p PORT] [-q PROBES]<br>[-s SRC_IP] [-t TOS] [-w WAIT_SEC] [-g GATEWAY] [-i IFACE] [-z PAUSE_MSEC] HOST [BYTES]<br>usage: traceroute6 [-dnrv] [-m MAXTTL] [-p PORT] [-q PROBES][-s SRC_IP] [-t TOS] [-w WAIT_SEC]<br>&emsp;[-i IFACE] HOST [BYTES] |
 | wget    | Downloads resources from the network.<br>usage: wget [OPTIONS]... [URL]<br>[OPTIONS] = --max-redirect x -d -O filename -p data |
@@ -223,10 +223,10 @@ Format: help [-ahu] [COMMAND]
 | awk       | Filters and analyzes document content.<br>usage: awk [-F sepstring] [-v assignment]... program [argument...]<br>&emsp;or:<br>&emsp;&emsp;&emsp;awk [-F sepstring] -f progfile [-f progfile]... [-v assignment]...<br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;[argument...] |
 | base64    | Uses the Base64 algorithm for encryption and decryption.<br>usage: base64 [-di] [-w COLUMNS] [FILE...] |
 | basename  | Returns the non-directory portion of a path name after removing its suffix.<br>usage: basename [-a] [-s SUFFIX] NAME... \| NAME [SUFFIX] |
-| bunzip2   | Decompresses a .bz file.<br>usage: bunzip2 [-cftkv] [FILE...] |
-| bzcat     | Decompresses a listed file to the standard output.<br>usage: bzcat [FILE...] |
+| <!--DelRow-->bunzip2   | Decompresses a .bz file.<br>usage: bunzip2 [-cftkv] [FILE...] |
+| <!--DelRow-->bzcat     | Decompresses a listed file to the standard output.<br>usage: bzcat [FILE...] |
 | cat       | Copies (Concatenates) a file to a standard output device. If no file is specified, the command reads from the standard input device. "-" indicates a standard input device.<br>usage: cat [-etuv] [FILE...] |
-| chattr    | Modifies the file attributes of a Linux Ext2 file system.<br>usage: chattr [-R] [-+=AacDdijsStTu] [-v version] [File...] |
+| <!--DelRow-->chattr    | Modifies the file attributes of a Linux Ext2 file system.<br>usage: chattr [-R] [-+=AacDdijsStTu] [-v version] [File...] |
 | chcon     | Modifies the SELinux security context of a file.<br>usage: chcon [-hRv] CONTEXT FILE... |
 | chgrp/chown | Modifies the group of a file.<br>usage: chgrp/chown [-RHLP] [-fvh] GROUP FILE... |
 | chmod     | Changes the access mode of a file (recursively with **-R**).<br>usage: chmod [-R] MODE FILE... |
@@ -260,7 +260,7 @@ Format: help [-ahu] [COMMAND]
 | link      | Creates a hard link for a file.<br>usage: link FILE NEWLINK |
 | ln        | Creates a soft or hard link between **FROM** and **TO**.<br>usage: ln [-fnrsTv] [-t DIR] [FROM...] TO |
 | ls        | Lists the files or folders in the current directory.<br>usage: ls [-1ACFHLNRSUXZabcdfghilmnopqrstuwx] [--color[=auto]] [FILE...] |
-| lsattr    | Lists the file attributes on the Linux file system. The flag letters are defined in the chattr help.<br>usage: lsattr [-Radlv] [Files...] |
+| lsattr    | Lists the file attributes on the Linux file system. <!--Del-->The flag letters are defined in the chattr help.<!--DelEnd--><br>usage: lsattr [-Radlv] [Files...] |
 | lsof      | Lists all open files that belong to the active processes, or lists the processes that use the listed file.<br>usage: lsof [-lt] [-p PID1,PID2,...] [FILE...] |
 | md5sum    | Calculates the hash of each input file. If no file is specified, the command reads from the standard input device. Each input file outputs a line of hash followed by a file name.<br>usage: ???sum [-bcs] [FILE]... |
 | mkdir     | Creates one or more directories.<br>usage: mkdir [-vp] [-m MODE] [DIR...] |

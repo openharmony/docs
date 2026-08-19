@@ -20,6 +20,12 @@
 
 静态指定进程适用于在编译期就能确定进程分配的场景，例如将某些功能组件隔离到独立进程中运行，提高应用的稳定性和安全性。当同一应用中的多个UIAbility或EmbeddedUIExtensionAbility需要运行在不同进程时，开发者可以通过配置[module.json5配置文件](../quick-start/module-configuration-file.md)中的[abilities标签](../quick-start/module-configuration-file.md#abilities标签)或[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)中的process字段静态指定所要运行的进程。系统在启动UIAbility或EmbeddedUIExtensionAbility时，会根据process字段分配进程。
 
+典型场景包括：
+
+- **隔离高风险功能模块**：适用于包含第三方渲染引擎、复杂编解码、JNI调用等稳定性风险较高的功能模块。
+- **复用关联组件进程**：适用于多个职责相近、需要稳定共存的UIAbility。通过为它们指定相同的process字段，使这些UIAbility运行在同一进程中共享资源。如设置、个人中心、帮助中心等页面。
+- **隔离嵌入式UI扩展**：适用于通过EmbeddedUIExtensionAbility向其他应用提供嵌入式UI组件的场景。
+
 ### 约束限制
 
 - 静态指定进程仅对UIAbility和EmbeddedUIExtensionAbility生效。
@@ -65,6 +71,12 @@
 <!--Del-->
 针对sys/commonUI类型的UIExtensionAbility，开发者需要将该UIExtensionAbility对应的[extensionAbilities标签](../quick-start/module-configuration-file.md#extensionabilities标签)中的isolationProcess字段配置为true；同样的，系统在启动该sys/commonUI类型的UIExtensionAbility实例时，[主控进程](ability-terminology.md#masterprocess主控进程)会触发[onNewProcessRequest](../reference/apis-ability-kit/js-apis-app-ability-abilityStage.md#onnewprocessrequest11)回调方法返回用于标识独立进程的字符串。
 <!--DelEnd-->
+
+典型场景包括：
+
+- **多账号/多租户隔离**：适用于同一应用同时服务多个账号、租户、工作空间等场景。
+- **多文档/多实例动态分配**：适用于文档编辑、多标签页浏览等需要按文档或会话维度管理实例的场景。
+- **基于运行时上下文的进程决策**：适用于根据数据安全等级、内容来源、用户配置等启动时信息决定进程归属的场景。
 
 ### 约束限制
 
@@ -125,7 +137,12 @@
 
 ### 场景介绍
 
-对于多HAP的应用，不同HAP可能承载不同的业务功能。当各HAP的业务相对独立、需要隔离运行时，开发者可以通过配置模块独立进程，使不同HAP的UIAbility运行在不同的进程中。这样可以实现业务隔离，避免一个模块的异常影响其他模块的运行。
+对于多HAP的应用，不同HAP可能承载不同的业务功能。当各HAP的业务相对独立、需要隔离运行时，开发者可以通过配置模块独立进程，使不同HAP的UIAbility运行在不同的进程中（进程名格式为"应用包名:模块名"），实现业务隔离，避免一个模块的异常影响其他模块的运行。
+
+典型场景包括：
+
+- **多HAP业务隔离**：适用于按业务域拆分为多个HAP的应用，如即时通讯、音视频会议、文档协作等业务模块。
+- **特性模块隔离**：适用于承载相对独立功能的动态特性模块，使特性模块与主应用解耦。
 
 ### 约束限制
 

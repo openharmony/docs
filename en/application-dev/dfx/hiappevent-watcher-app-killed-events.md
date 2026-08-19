@@ -2,11 +2,11 @@
 
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @xuxinao-->
+<!--Owner: @Chenyufan466765692-->
 <!--Designer: @peterhuangyu-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=f319e3e62d6356bf78f31e2e8f7ba3927caddf1e translatedAt=2026-07-29T10:49:30.521Z pushedAt=2026-07-29T12:36:01.566Z -->
+<!-- md-trans-meta sourceCommit=bbc8406212c76d396fc2036d1d8fe953b6305789 translatedAt=2026-08-15T01:46:36.757Z pushedAt=2026-08-15T07:13:09.409Z -->
 
 ## Overview
 
@@ -39,6 +39,7 @@ The **params** attribute in the application killed event is described as follows
 | foreground | boolean | Whether the application is in the foreground. The value **true** indicates that the application is in the foreground, and the value **false** indicates the opposite.|
 | app_running_unique_id | string | Unique ID associated with the app runtime.<br>**Note**: This parameter is supported since API version 24. |
 | bundle_version | string | App version information.<br>**Note**: This parameter is supported since API version 24. |
+| last_exit_detail_info | string | Detailed information before the app exits. For details, see [last_exit_detail_info](#last_exit_detail_info).<br>**Note:** This parameter is supported since API version 26.0.0. |
 
 ### reason
 
@@ -99,3 +100,17 @@ The **params** attribute in the application killed event is described as follows
 | DmaKiller                     | The system memory is low, and the DMA usage of a single process reaches the threshold.                      |
 | ThreadKiller                  | The threads of a single process exceed the limit.                           |
 | UninstallStorage              | The storage card is uninstalled.                          |
+
+### last_exit_detail_info
+
+| Name | Type | Description |
+| -------- | -------- | -------- |
+| exit_msg | string | App exit information. |
+| kill_reason | string | Reason for the app exit. |
+| pid | string | App process ID. |
+| process_name | string | App process name. |
+| process_state | string | App process state. |
+| pss | string | Physical memory actually used by the process, in KB. |
+| rss | string | Memory actually occupied by the process, in KB. |
+| timestamp | string | Timestamp when the fault occurred. |
+| uid | string | App user ID. |

@@ -363,7 +363,7 @@ getBrightnessInfo(displayId: number): BrightnessInfo
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Function getBrightnessInfo can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 | 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
@@ -667,7 +667,7 @@ onChangeWithAttribute(displayAttributeOption: Array&lt;string&gt;, callback: Cal
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Function onChangeWithAttribute can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. Possible causes: Internal IPC error. |   
 
 **示例：**
@@ -917,7 +917,7 @@ on(type: 'brightnessInfoChange', callback: BrightnessCallback&lt;number, Brightn
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Function on('brightnessInfoChange') can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 | 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
@@ -957,7 +957,7 @@ off(type: 'brightnessInfoChange', callback?: BrightnessCallback&lt;number, Brigh
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Function off('brightnessInfoChange') can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 | 1400004 | Parameter error. Possible cause: 1. Invalid parameter range. |
 
@@ -1327,7 +1327,7 @@ createVirtualScreen(config:VirtualScreenConfig): Promise&lt;number&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported. Function createVirtualScreen can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 
 **示例：**
@@ -1381,7 +1381,7 @@ destroyVirtualScreen(screenId:number): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. |
-| 801     | Capability not supported. Function destroyVirtualScreen can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1503,7 +1503,7 @@ makeUnique(screenId:number): Promise&lt;void&gt;
 | ------- | ----------------------- |
 | 201     | Permission verification failed. The application does not have the permission required to call the API. |
 | 401     | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed. |
-| 801     | Capability not supported. Function makeUnique can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1810,7 +1810,7 @@ getRoundedCorner(): Array&lt;RoundedCorner&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Function getRoundedCorner can not work correctly due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. |
 | 1400003 | This display manager service works abnormally. |
 
@@ -1936,7 +1936,7 @@ getAvailableArea(): Promise&lt;Rect&gt;
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400001 | Invalid display or screen. Possible cause: 1. This display is abnormal. 2. Internal task error. |
 
 **示例：**
@@ -2074,7 +2074,7 @@ getLiveCreaseRegion(): FoldCreaseRegion
 
 | 错误码ID | 错误信息 |
 | ------- | ----------------------- |
-| 801     | Capability not supported. Failed to call the API due to limited device capabilities. |
+| 801     | Capability not supported. |
 | 1400003 | This display manager service works abnormally. |
 
 **示例：**

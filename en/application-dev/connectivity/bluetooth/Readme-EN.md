@@ -3,10 +3,10 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=ec7fab66fa30d750fca536e273d689ddd59486a0 translatedAt=2026-07-25T11:34:37.789Z pushedAt=2026-07-27T08:00:44.206Z -->
+<!-- md-trans-meta sourceCommit=84e885c8ab2e56c891f2373c9fdd61d3027b85ad translatedAt=2026-08-18T11:00:31.294Z pushedAt=2026-08-18T11:19:22.286Z -->
 
 - [Bluetooth Overview](bluetooth-overview.md)
 
@@ -24,10 +24,12 @@
 
 - Bluetooth Low Energy
 
-  - [BLE Advertising and Scanning Development](ble-development-guide.md)
+  - [BLE Scanning and Advertising](ble-development-guide.md)
 
-  - [GATT-based BLE Connection and Data Transmission Development](gatt-development-guide.md)
+  - [GATT-based Connection and Data Transmission](gatt-development-guide.md)
 
 - Bluetooth FAQs<!--bluetooth-faq-->
 
   - [2900099 Bluetooth API Call Error](bluetooth-faq-2900099-errorcode.md)<!--RP1--><!--RP1End-->
+
+  - [401 Invalid Parameter Reported When an Optional Property Is Explicitly Set to undefined](bluetooth-faq-401-invalid-parameter.md)

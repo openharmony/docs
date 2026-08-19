@@ -1,4 +1,4 @@
-# 在NDK中保证多实例场景功能正常
+# NDK多实例场景开发
 <!--Kit: ArkUI-->
 <!--Subsystem: ArkUI-->
 <!--Owner: @wangyang2022-->

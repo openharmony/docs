@@ -19,7 +19,7 @@
 
 ## 接口说明
 
-详细的接口说明请参考[UTD接口文档](../reference/apis-arkdata/capi-utd-h.md)。
+详细的接口说明请参考UTD接口文档[utd.h](../reference/apis-arkdata/capi-utd-h.md)。
 
 | 接口名称                                                     | 描述                                                        |
 | ------------------------------------------------------------ | ----------------------------------------------------------- |
@@ -27,9 +27,9 @@
 | void OH_Utd_Destroy(OH_Utd* pThis)                           | 销毁指向统一数据类型描述符OH_Utd的指针。                    |
 | const char** OH_Utd_GetTypesByFilenameExtension(const char* extension, unsigned int* count) | 通过文件后缀名获取标准化数据类型ID。                        |
 | const char** OH_Utd_GetTypesByMimeType(const char* mimeType, unsigned int* count) | 通过MIME类型获取标准化数据类型ID。                          |
-| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | 判断两种标准化数据类型是否相等。                            |
+| bool OH_Utd_Equals(OH_Utd* utd1, OH_Utd* utd2)               | 判断两个标准化数据类型是否相等。                            |
 | void OH_Utd_DestroyStringList(const char** list, unsigned int count) | 销毁字符串列表数据。                                        |
-| bool OH_Utd_BelongsTo (const char *srcTypeId, const char *destTypeId) | 判断两个标准化数据描述类型是否存在归属关系。                  |
+| bool OH_Utd_BelongsTo (const char *srcTypeId, const char *destTypeId) | 判断两个标准化数据类型是否存在归属关系。                  |
 | bool OH_Utd_IsLower (const char* srcTypeId, const char* destTypeId ) | 判断原标准化数据类型是否是目标标准化数据类型的低层级类型。 例如TYPE_SCRIPT为SOURCE_CODE的低层级类型，TYPE_SCRIPT和SOURCE_CODE为PLAIN_TEXT的低层级类型。       |
 | bool OH_Utd_IsHigher (const char* srcTypeId, const char* destTypeId ) | 判断原标准化数据类型是否是目标标准化数据类型的高层级类型。 例如SOURCE_CODE为TYPE_SCRIPT的高层级类型，PLAIN_TEXT为SOURCE_CODE和TYPE_SCRIPT的高层级类型。       |
 

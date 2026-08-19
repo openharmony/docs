@@ -6,6 +6,7 @@
 <!--Designer: @ccllee1-->
 <!--Tester: @lixueqing513-->
 <!--Adviser: @huipeizi-->
+<!-- md-trans-meta sourceCommit=2845f22b3a6c7c573421bce7ff3e32f73246613d translatedAt=2026-07-20T10:51:34.078Z pushedAt=2026-07-21T08:51:22.436Z -->
 
 Ability Assistant (aa) is a tool used to start applications and test cases. It provides basic application debugging and testing capabilities, for example, starting application components, forcibly stopping processes, and printing application component information.
 
@@ -28,7 +29,7 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | Command| Description|
 |--------|--------|
 | -h/help |  Displays the help information of the aa tool.|
-| start |  Starts an application component. The target component can be the PageAbility and ServiceAbility components of the FA model or the UIAbility and ServiceExtensionAbility components of the Stage model. The **exported** tag in the configuration file of the target component cannot be set to **false**.|
+| start | Starts an application component. The target component can be the PageAbility and ServiceAbility components of the FA model or the UIAbility and ServiceExtensionAbility components of the Stage model. The **exported** tag in the configuration file of the target component cannot be set to **false**.|
 | stop-service | Stops the service. Stops an application component. The target component can be the **ServiceAbility** component of the FA model or the **ExtensionAbility** component of the Stage model.|
 | dump<sup>(deprecated)</sup> |  Prints information about an application component.|
 | force-stop |  Forcibly stops a process based on the bundle name.|
@@ -36,8 +37,9 @@ hdc shell "aa process -b com.example.myapplication -a EntryAbility -p perf-cmd"
 | attach |  Attaches an application to enable it to enter the debugging mode.|
 | detach |  Detaches an application to enable it to exit the debugging mode.|
 | appdebug |  Sets or cancels the waiting-for-debugging state of an application, and obtains the bundle name and persistence flag of an application in the waiting-for-debugging state. The waiting-for-debugging state takes effect only for debugging applications. The setting command of **appdebug** takes effect only for a single application. Once the command is executed repeatedly, the bundle name and persistence flag are replaced with the latest settings.|
-| process |  Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.|
-| send-memory-level |  Triggers the **onMemoryLevel** lifecycle callback of a process based on its PID and memory usage level.|
+| process | Debugs or optimizes an application. In DevEco Studio, this command is used to integrate debugging and optimization tools.|
+| send-memory-level | Triggers the **onMemoryLevel** lifecycle callback of a process based on its PID and memory usage level.  |
+| pre-start | Pre-starts an application. Pre-starts an application in the background to a specific lifecycle phase, to improve the startup speed when the user clicks the application.|
 
 ## help
 
@@ -53,10 +55,10 @@ Starts an application component. The target component can be the PageAbility and
 ```bash
 # Start an ability explicitly.
 # To enable an application clone, use [--pi ohos.extra.param.key.appCloneIndex <unsigned integer-value>] to specify the index of the application clone.
-aa start [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-c] [-E] [-D] [-R] [-S] [-W] [--pi <key> <unsigned integer-value>] [--pb <key> <bool-value: true/false/t/f is case-insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+ [-d <deviceId>] [-a <abilityName> -b <bundleName>] [-m <moduleName>] [-u <userId>] [-c] [-E] [-D] [-R] [-S] [-W] [--pi <key> <unsigned integer-value>] [--pb <key> <bool-value: true/false/t/f (case-insensitive)] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
 
 # Implicitly start an ability. If none of the parameters in the command is set, the startup fails.
-aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-c] [-D] [-E] [-R] [--pi <key> <unsigned integer-value>] [--pb <key> <bool-value: true/false/t/f is case insensitive] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>]
+aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-u <userId>] [-c] [-D] [-E] [-R] [--pi <key> <unsigned integer-value>] [--pb <key> <bool-value: true/false/t/f (case-insensitive)] [--ps <key> <value>] [--psn <key>] [--wl <windowLeft>] [--wt <windowTop>] [--wh <windowHeight>] [--ww <windowWidth>] [-p <perf-cmd>] 
 ```
 
   **Parameters**
@@ -71,6 +73,7 @@ aa start [-d <deviceId>] [-U <URI>] [-t <type>] [-A <action>] [-e <entity>] [-c]
   | -U | URI. This parameter is optional.<br>Note: Only strings can be passed.|
   | -A | Action. This parameter is optional.     |
   | -e | Entity. This parameter is optional.     |
+  | -u | User ID. This parameter is optional. In multi-user scenarios, this parameter is used to differentiate applications under different user accounts on the same device.<br>**Note**: This parameter is supported since API version 26.0.0.|
   | -t | Type. This parameter is optional.       |
   | --pi  | Key-value pair of the integer type. This parameter is optional.<br>Note: Only unsigned integer values are supported.    |
   | --pb  | Key-value pair of the Boolean type. This parameter is optional.    |
@@ -298,8 +301,8 @@ aa force-stop <bundle-name> [-p pid] [-r kill-reason]
 
   | Name| Description             |
   | -------- |-------------------|
-  | -p | PID. This parameter must be used together with **-r** to set the exit reason of the process with the specified PID.|
-  | -r | Exit reason of the process. This parameter must be used together with **-p** to set the exit reason of the process with the specified PID.|
+  | -p | Specifies the PID. This parameter must be used together with **-r** to set the exit reason of the process with the specified PID.|
+  | -r | Specifies the exit reason of the process. This parameter must be used together with **-p** to set the exit reason of the process with the specified PID.|
 
   **Return value**
 
@@ -566,6 +569,43 @@ aa send-memory-level -p <processId> -l <memoryLevel>
 aa send-memory-level -p 6066 -l 0
 ```
 
+## pre-start
+
+Since API version 26.0.0, you can use this command to prestart an application in the background to improve the startup speed when a user clicks the application. Currently, the system supports prestarting an application to a specific lifecycle stage. Specifically, the application is first pre‑started to the [onDidForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondidforeground20) stage (the foreground window is hidden). If the user does not manually click the application within 30 seconds by default, the system automatically pre‑starts the application to the [onDidBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondidbackground20) stage.
+
+```bash
+aa pre-start -m <MODE> -b <BUNDLE-NAME> -u <USER-ID>
+```
+
+**Parameters**
+
+| Name| Description|
+| -------- | -------- |
+| -h/--help | Help information. Displays help information about commands.|
+| -m | Prestart mode. This parameter is mandatory. Currently, only **1** is supported, indicating that the application is prestarted to a specific stage of the lifecycle. The parameter value must be set to **1**.|
+| -b | Bundle name. This parameter is mandatory. Bundle name of the application to be prestarted.|
+| -u | User ID. This parameter is mandatory. This ID specifies the user who prestarts the application.|
+
+**Return value**
+
+If the command is executed successfully, "prestart successfully." is returned. If the command fails to be executed, "error: failed to prestart." is returned. If an unknown parameter is entered, "fail: unknown option." is returned and the help information is displayed.
+
+**Error codes**
+
+| ID| Error Message|
+| ------- | -------- |
+| 10106003 | Currently, only mode 1 (Specific stage prelaunch) is supported. |
+
+**Example**
+
+```bash
+# Prestarts the application with the specified bundle name.
+aa pre-start -m 1 -b com.example.myapplication -u 100
+
+# View the help Information.
+aa pre-start -h
+```
+
 ## Error Codes
 
 ### 10103001 Failed to Verify the Visibility of the Target Ability
@@ -743,6 +783,24 @@ The target application is signed by the release certificate.
 
 Use the signing certificate of the **debug** type and install the newly signed HAP. Then, run the command again.
 
+### 10106003 Unsupported Prestart Mode
+
+**Error Message**
+
+Currently, only mode 1 (Specific stage prelaunch) is supported.
+
+**Symptom**
+
+If the prestart mode specified in the **aa pre-start** command is not supported, the system returns this error code.
+
+**Possible Causes**
+
+The value of the **-m** parameter in the **aa pre-start** command is not **1**. Currently, only **1** is supported, indicating to prestart the application to a specific lifecycle stage.
+
+**Solution**
+
+Check the value of the **-m** parameter and ensure that it is set to **1**.
+
 ### 10100101 Failed to Obtain Application Information
 
 **Error Message**
@@ -893,11 +951,17 @@ The application is controlled by the application market.
 
 - The target application is suspected to have malicious behavior and is not allowed to start due to application market control.
 - The target application is a pre-installed system application, and it is overwritten by a locally compiled version.
+- The development certificate of the target application has expired, and the application is intercepted by the system during startup. In this case, a message is displayed, indicating that the application has expired.
+- The target application has just been cloned and is in the data restoration state. In this case, a message is displayed, indicating that the data is being restored and asking you to try again later.
+- The 5‑day validity period of the [trial debug profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-apply-acl-0000002394212138#section1443958124819) has expired, causing the application to be blocked by system control when it is launched.
 
 **Solution**
 
 - For possible cause 1, you are advised to uninstall the application.
 - For possible cause 2, you need to uninstall the application and then install it using the locally compiled version.
+- For possible cause 3, you need to [replace the certificate](https://developer.huawei.com/consumer/en/doc/app/agc-help-cert-faq-0000002329508280#section11365113515519).
+- For possible cause 4, wait until the data restoration is complete and then try again.
+- For possible cause 5, you need to [create a trial debugging profile](https://developer.huawei.com/consumer/en/doc/app/agc-help-apply-acl-0000002394212138#section1443958124819).
 
 ### 10106106 The Target Application Is Managed by EDM
 

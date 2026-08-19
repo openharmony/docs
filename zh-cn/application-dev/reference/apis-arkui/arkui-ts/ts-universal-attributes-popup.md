@@ -250,7 +250,7 @@ bindPopup(show: boolean, popup: PopupOptions | CustomPopupOptions): T
 
 ## PopupStateChangeCallback<sup>18+</sup>
 
-type PopupStateChangeCallback = (event: PopupStateChangeParam) => void;
+type PopupStateChangeCallback = (event: PopupStateChangeParam) => void
 
 气泡状态变化事件回调。
 

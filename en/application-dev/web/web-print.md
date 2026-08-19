@@ -1,12 +1,14 @@
 # Printing Frontend Pages
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
 <!--Owner: @zhang-yinglie-->
 <!--Designer: @handyohos-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=cf6e08d457fcd80f689cfe0075f5b701ea71af2d translatedAt=2026-08-14T03:49:31.411Z pushedAt=2026-08-14T09:30:22.535Z -->
 
-With the **Web** component, you can print HTML pages through W3C standards-compliant APIs or application APIs.
+The **Web** component can print HTML pages in two ways: through the W3C standard protocol API and through the app-side API.
 
 Before using the print capability, declare related permissions in the **module.json5** file. For details, see [Declaring Permissions in the Configuration File](../security/AccessToken/declare-permissions.md#declaring-permissions-in-the-configuration-file).
 
@@ -19,9 +21,10 @@ Before using the print capability, declare related permissions in the **module.j
   ```
 
 ## Initiating a Print Task Through the W3C Standards-compliant API
-The printing process with W3C is as follows: A print adapter is created, the print application is started, the current web page content is rendered, and the PDF file generated after rendering is transferred to the print framework through the file descriptor (FD). Use the **window.print()** method to print the current document or open the print dialog box. This method does not have any parameter; simply call it in JavaScript.
 
-You can use the frontend CSS styles, for example, **@media print**, to control the printed content. Then load the HTML page in the **Web** component.
+A print adapter is created to start the print app and render the current web page content. The PDF file information generated after rendering is passed to the print framework through a file descriptor (fd). The W3C standard protocol API `window.print()` is used to print the current page or pop up a print dialog box. This method takes no parameters and only needs to be called in JavaScript.
+
+You can use frontend CSS styles to control whether to print, for example, **@media print**. Then load the HTML page in the **Web** component.
 
 - Sample code of the **print.html** page:
 
@@ -77,9 +80,8 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
       </div>
   </body>
   ```
-  
-  Example 2 (nesting a page in an iframe):
 
+  Example 2 (nesting a page in an iframe):
 
   ```html
   <!DOCTYPE html>
@@ -113,7 +115,7 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
 - Application code:
 
   <!-- @[w3c_print_html](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ProcessWebPageCont/entry/src/main/ets/pages/InitiatePrintW3CAPI.ets) -->
-  
+
   ``` TypeScript
   import { webview } from '@kit.ArkWeb';
   
@@ -136,7 +138,9 @@ You can use the frontend CSS styles, for example, **@media print**, to control t
   ```
 
 ## Initiating a Print Task Through the Application API
+
 On the application side, call [createWebPrintDocumentAdapter](../reference/apis-arkweb/arkts-apis-webview-WebviewController.md#createwebprintdocumentadapter11) to create a print adapter and pass the adapter to the **print** API to initiate printing.
+
 <!-- @[create_web_print_document](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/ProcessWebPageCont/entry/src/main/ets/pages/InitiatePrintAppAPI.ets) -->
 
 ``` TypeScript
@@ -153,8 +157,8 @@ struct WebComponent {
       Button('createWebPrintDocumentAdapter')
         .onClick(() => {
           try {
-            let webPrintDocadapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
-            print.print('example_job_id', webPrintDocadapter, null, this.getUIContext().getHostContext());
+            let webPrintDocAdapter = this.controller.createWebPrintDocumentAdapter('example.pdf');
+            print.print('example_job_id', webPrintDocAdapter, null, this.getUIContext().getHostContext());
           } catch (error) {
             console.error(`ErrorCode: ${(error as BusinessError).code},  Message: ${(error as BusinessError).message}`);
           }

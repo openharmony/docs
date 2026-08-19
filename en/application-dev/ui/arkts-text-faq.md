@@ -64,7 +64,7 @@ The sample code is as follows:
   }
   ```
 
-<!--Del-->![]  (figures/text_faq_Word_Break.gif)<!--DelEnd-->
+<!--Del--> <!--DelEnd-->
 
 ### How Do I Implement Text Expansion at the End of the Line?
 
@@ -457,7 +457,7 @@ Solution 1 truncates content. To display all text, place the **Text** component 
   }
   ```
 
-<!--Del-->![]  (figures/text_too_long_scroll.gif)<!--DelEnd-->
+<!--Del--> <!--DelEnd-->
 
 ### How Do I Trigger a Custom Menu via selection and Set Its Font Size?
 

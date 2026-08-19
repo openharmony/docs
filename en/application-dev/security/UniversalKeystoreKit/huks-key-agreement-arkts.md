@@ -6,6 +6,7 @@
 <!--Designer: @HighLowWorld-->
 <!--Tester: @wxy1234564846-->
 <!--Adviser: @zengyawen-->
+<!-- md-trans-meta sourceCommit=f01b22944cb3edd4be9413d1125ef0a9649c6d07 translatedAt=2026-08-13T08:23:37.282Z pushedAt=2026-08-13T10:20:24.705Z -->
 
 This topic uses X25519, DH, and ECDH as an example to demonstrate how to perform key agreement for HUKS-managed keys. For details about the scenarios and supported algorithm specifications, see [Supported Algorithms](huks-key-agreement-overview.md#supported-algorithms).
 
@@ -48,10 +49,13 @@ Note: The tag value set in key agreement should not conflict with the tag value 
 Delete the keys from device A and device B when the keys are not required. For details, see [Deleting a Key](huks-delete-key-arkts.md).
 
 ## Development Cases
+
 The following uses the X25519, DH, and ECDH keys as examples for key agreement. 
 
 ### X25519 asymmetric key agreement example
+
 Prepare the X25519 key agreement materials.
+
 <!-- @[prepare_X25519](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/X25519.ets) -->
 
 ``` TypeScript
@@ -164,8 +168,11 @@ let finishOptionsSecond: huks.HuksOptions = {
   inData: stringToUint8Array(agreeX25519InData)
 }
 ```
+
 <!-- -->
+
 Perform key agreement.
+
 <!-- @[key_agreement_X25519](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/X25519.ets) -->
 
 ``` TypeScript
@@ -289,10 +296,12 @@ async function testAgree() {
   await deleteKeyItem(srcKeyAliasSecond, huksOptions);
 }
 ```
+
 <!-- -->
 
 ### DH key agreement example
-<!-- @[key_agreement_dh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/DH.ets) -->
+
+<!-- @[key_agreement_dh](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/DH.ets) -->  
 
 ``` TypeScript
 
@@ -300,6 +309,7 @@ async function testAgree() {
  * Agree on a DH key using promise-based APIs.
  */
 import { huks } from '@kit.UniversalKeystoreKit';
+import { BusinessError } from '@kit.BasicServicesKit';
 
 function stringToUint8Array(str: string) {
   let arr: number[] = [];
@@ -321,6 +331,17 @@ function uint8ArrayToBigInt(arr: Uint8Array): bigint {
   return result;
 }
 
+function uint8ArrayToString(fileData: Uint8Array) {
+  let dataString = '';
+  for (let i = 0; i < fileData.length; i++) {
+    dataString += String.fromCharCode(fileData[i]);
+  }
+  return dataString;
+}
+
+let handle: number;
+let finishOutData: Uint8Array;
+let exportKey: Uint8Array;
 const dhAgree: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_DH,
@@ -342,34 +363,131 @@ const emptyOptions: huks.HuksOptions = {
   inData: new Uint8Array([])
 };
 
+/* Generate a key. */
+async function generateKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter generateKeyItem');
+  try {
+    await huks.generateKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: generateKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: generateKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: generateKeyItem input arg invalid`);
+  }
+}
+
+/* Initialize the key session API and obtain a handle (mandatory) and a challenge value (optional). */
+async function initSession(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter initSession');
+  try {
+    await huks.initSession(keyAlias, huksOptions)
+      .then((data) => {
+        handle = data.handle;
+        console.info(`promise: initSession success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: initSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: initSession input arg invalid`);
+  }
+}
+
+/* Add the key operation data in segments, perform the corresponding key operation, and output the processed data. */
+async function updateSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter updateSession');
+  try {
+    await huks.updateSession(handle, huksOptions)
+      .then((data) => {
+        console.info(`promise: updateSession success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: updateSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: updateSession input arg invalid`);
+  }
+}
+
+/* Check whether the key exists. */
+async function isKeyItemExist(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter isKeyItemExist');
+  try {
+    await huks.isKeyItemExist(keyAlias, huksOptions)
+      .then((data) => {
+        console.info(`isKeyItemExist success`);
+      }).catch((error: BusinessError) => {
+        console.error(`isKeyItemExist failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`isKeyItemExist input arg invalid`);
+  }
+}
+
+/* End the key session, perform the corresponding key operation, and output the processed data. */
+async function finishSession(handle: number, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter finishSession');
+  try {
+    await huks.finishSession(handle, huksOptions)
+      .then((data) => {
+        finishOutData = data.outData as Uint8Array;
+        console.info(`promise: finishSession success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: finishSession failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: finishSession input arg invalid`);
+  }
+}
+
+/* Export the key. */
+async function exportKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter exportKeyItem');
+  try {
+    await huks.exportKeyItem(keyAlias, huksOptions)
+      .then((data) => {
+        exportKey = data.outData as Uint8Array;
+        console.info(`promise: exportKey success, data is ` + uint8ArrayToString(data.outData as Uint8Array));
+      }).catch((error: BusinessError) => {
+        console.error(`promise: exportKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: exportKeyItem input arg invalid`);
+  }
+}
+
+/* Delete the key. */
+async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
+  console.info('promise: enter deleteKeyItem');
+  try {
+    await huks.deleteKeyItem(keyAlias, huksOptions)
+      .then(() => {
+        console.info(`promise: deleteKeyItem success`);
+      }).catch((error: BusinessError) => {
+        console.error(`promise: deleteKeyItem failed, errCode : ${error.code}, errMsg : ${error.message}`);
+      })
+  } catch (error) {
+    console.error(`promise: deleteKeyItem input arg invalid`);
+  }
+}
+
 async function huksDhAgreeExportKey(keyAlias: string,
-  peerPubKey: huks.HuksReturnResult): Promise<huks.HuksReturnResult> {
-  const initHandle = await huks.initSession(keyAlias, dhGenOptions);
+  peerPubKey: Uint8Array) {
+  await initSession(keyAlias, dhGenOptions);
   const dhAgreeUpdateBobPubKey: huks.HuksOptions = {
     properties: [
       ...dh2048Agree, {
       tag: huks.HuksTag.HUKS_TAG_DERIVED_AGREED_KEY_STORAGE_FLAG,
       value: huks.HuksKeyStorageType.HUKS_STORAGE_KEY_EXPORT_ALLOWED,
     }],
-    inData: peerPubKey.outData
+    inData: peerPubKey
   };
-  await huks.updateSession(initHandle.handle, dhAgreeUpdateBobPubKey);
-  return await huks.finishSession(initHandle.handle, emptyOptions);
+  await updateSession(handle, dhAgreeUpdateBobPubKey);
+  await finishSession(handle, emptyOptions);
 }
 
-async function huksDhAgreeExportTest(
-  aliasA: string, aliasB: string,
-  pubKeyA: huks.HuksReturnResult, pubKeyB: huks.HuksReturnResult) {
-
-  const agreedKeyFromAlice = await huksDhAgreeExportKey(aliasA, pubKeyB);
-  console.info(`ok! agreedKeyFromAlice export is 0x${uint8ArrayToBigInt(agreedKeyFromAlice.outData).toString(16)}`);
-
-  const agreedKeyFromBob = await huksDhAgreeExportKey(aliasB, pubKeyA);
-  console.info(`ok! agreedKeyFromBob export is 0x${uint8ArrayToBigInt(agreedKeyFromBob.outData).toString(16)}`);
-}
-
-async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnResult,
-  aliasAgreedKey: string): Promise<huks.HuksReturnResult> {
+async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: Uint8Array,
+  aliasAgreedKey: string) {
   const onlyUsedInHuks: huks.HuksParam[] = [{
     tag: huks.HuksTag.HUKS_TAG_KEY_STORAGE_FLAG,
     value: huks.HuksKeyStorageType.HUKS_STORAGE_ONLY_USED_IN_HUKS,
@@ -395,37 +513,35 @@ async function huksDhAgreeInHuks(keyAlias: string, peerPubKey: huks.HuksReturnRe
     }
   ];
 
-  const handle = await huks.initSession(keyAlias, dhAgreeInit);
+  await initSession(keyAlias, dhAgreeInit);
   const dhAgreeUpdatePubKey: huks.HuksOptions = {
     properties: [...dhAgree, ...onlyUsedInHuks],
-    inData: peerPubKey.outData
+    inData: peerPubKey
   };
-  await huks.updateSession(handle.handle, dhAgreeUpdatePubKey);
-  const dhAgreeAliceFinnish: huks.HuksOptions = {
+  await updateSession(handle, dhAgreeUpdatePubKey);
+  const dhAgreeAliceFinish: huks.HuksOptions = {
     properties: [...dhAgreeFinishParams, {
       tag: huks.HuksTag.HUKS_TAG_KEY_ALIAS, value: stringToUint8Array(aliasAgreedKey)
     }], inData: new Uint8Array([])
   };
-  return await huks.finishSession(handle.handle, dhAgreeAliceFinnish);
+  await finishSession(handle, dhAgreeAliceFinish);
 }
 
 async function huksDhAgreeInHuksTest(
   aliasA: string, aliasB: string,
-  pubKeyA: huks.HuksReturnResult, pubKeyB: huks.HuksReturnResult,
+  pubKeyA: Uint8Array, pubKeyB: Uint8Array,
   aliasAgreedKeyFromA: string, aliasAgreedKeyFromB: string) {
 
-  const finishAliceResult = await huksDhAgreeInHuks(aliasA, pubKeyB, aliasAgreedKeyFromA);
-  console.info(`ok! finishAliceResult in huks is 0x${uint8ArrayToBigInt(finishAliceResult.outData).toString(16)}`);
-  const aliceAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromA, emptyOptions);
+  await huksDhAgreeInHuks(aliasA, pubKeyB, aliasAgreedKeyFromA);
+  const aliceAgreedExist = await isKeyItemExist(aliasAgreedKeyFromA, emptyOptions);
   console.info(`ok! aliceAgreedExist in huks is ${aliceAgreedExist}`);
 
-  const finishBobResult = await huksDhAgreeInHuks(aliasB, pubKeyA, aliasAgreedKeyFromB);
-  console.info(`ok! finishBobResult in huks is 0x${uint8ArrayToBigInt(finishBobResult.outData).toString(16)}`);
-  const bobAgreedExist = await huks.isKeyItemExist(aliasAgreedKeyFromB, emptyOptions);
+  await huksDhAgreeInHuks(aliasB, pubKeyA, aliasAgreedKeyFromB);
+  const bobAgreedExist = await isKeyItemExist(aliasAgreedKeyFromB, emptyOptions);
   console.info(`ok! bobAgreedExist in huks is ${bobAgreedExist}`);
 
-  await huks.deleteKeyItem(aliasAgreedKeyFromA, emptyOptions);
-  await huks.deleteKeyItem(aliasAgreedKeyFromB, emptyOptions);
+  await deleteKeyItem(aliasAgreedKeyFromA, emptyOptions);
+  await deleteKeyItem(aliasAgreedKeyFromB, emptyOptions);
 }
 
 async function huksDhAgreeTest() {
@@ -433,27 +549,33 @@ async function huksDhAgreeTest() {
   const aliasBob = 'bob';
 
   /* Call generateKeyItem to generate a key with alias of alice and a key with alias of bob. */
-  await huks.generateKeyItem(aliasAlice, dhGenOptions);
-  await huks.generateKeyItem(aliasBob, dhGenOptions);
+  await generateKeyItem(aliasAlice, dhGenOptions);
+  await generateKeyItem(aliasBob, dhGenOptions);
 
   /* Export the public keys of asymmetric key pairs alice and bob. */
-  const pubKeyAlice = await huks.exportKeyItem(aliasAlice, emptyOptions);
-  const pubKeyBob = await huks.exportKeyItem(aliasBob, emptyOptions);
+  await exportKeyItem(aliasAlice, emptyOptions);
+  const pubKeyAlice = exportKey;
+  await exportKeyItem(aliasBob, emptyOptions);
+  const pubKeyBob = exportKey;
 
   /* Perform key agreement and return the shared secret generated to the caller for management. */
-  await huksDhAgreeExportTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob);
+  await huksDhAgreeExportKey(aliasAlice, pubKeyBob);
+  await huksDhAgreeExportKey(aliasBob, pubKeyAlice);
 
   /* Perform key agreement and let HUKS manage the shared secret generated. */
   await huksDhAgreeInHuksTest(aliasAlice, aliasBob, pubKeyAlice, pubKeyBob, 'agreedKeyFromAlice', 'agreedKeyFromBob');
-
-  await huks.deleteKeyItem(aliasAlice, emptyOptions);
-  await huks.deleteKeyItem(aliasBob, emptyOptions);
+  /* Devices A and B delete the key. */
+  await deleteKeyItem(aliasAlice, emptyOptions);
+  await deleteKeyItem(aliasBob, emptyOptions);
 }
 ```
+
 <!-- -->
 
 ### ECDH Key Agreement
+
 Prepare the ECDH key agreement materials.
+
 <!-- @[prepare_ECDH](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/ECDH.ets) -->
 
 ``` TypeScript
@@ -492,9 +614,34 @@ let exportKey: Uint8Array;
 let exportKeyFirst: Uint8Array;
 let exportKeySecond: Uint8Array;
 /* Set the parameter set used for generating the key. */
-let properties: huks.HuksParam[] = [{
+let genProperties: huks.HuksParam[] = [{
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
   value: huks.HuksKeyAlg.HUKS_ALG_ECC,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_PURPOSE,
+  value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
+  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_DIGEST,
+  value: huks.HuksKeyDigest.HUKS_DIGEST_NONE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_PADDING,
+  value: huks.HuksKeyPadding.HUKS_PADDING_NONE,
+}, {
+  tag: huks.HuksTag.HUKS_TAG_BLOCK_MODE,
+  value: huks.HuksCipherMode.HUKS_MODE_CBC,
+}
+]
+let genHuksOptions: huks.HuksOptions = {
+  properties: genProperties,
+  inData: new Uint8Array([])
+}
+
+let properties: huks.HuksParam[] = [{
+  tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
+  value: huks.HuksKeyAlg.HUKS_ALG_ECDH,
 }, {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
   value: huks.HuksKeyPurpose.HUKS_KEY_PURPOSE_AGREE,
@@ -528,10 +675,10 @@ const finishProperties: huks.HuksParam[] = [{
   value: true
 }, {
   tag: huks.HuksTag.HUKS_TAG_ALGORITHM,
-  value: huks.HuksKeyAlg.HUKS_ALG_ECDH,
+  value: huks.HuksKeyAlg.HUKS_ALG_AES,
 }, {
   tag: huks.HuksTag.HUKS_TAG_KEY_SIZE,
-  value: huks.HuksKeySize.HUKS_ECC_KEY_SIZE_256,
+  value: huks.HuksKeySize.HUKS_AES_KEY_SIZE_256,
 }, {
   tag: huks.HuksTag.HUKS_TAG_PURPOSE,
   value:
@@ -566,8 +713,11 @@ let finishOptionsSecond: huks.HuksOptions = {
   inData: stringToUint8Array(agreeECDHInData)
 }
 ```
+
 <!-- -->
+
 Perform key agreement.
+
 <!-- @[key_agreement_ECDH](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/UniversalKeystoreKit/KeyUsage/KeyExchange/entry/src/main/ets/pages/ECDH.ets) -->
 
 ``` TypeScript
@@ -667,13 +817,13 @@ async function deleteKeyItem(keyAlias: string, huksOptions: huks.HuksOptions) {
 async function testAgree() {
   /* 1. Set the key alias srcKeyAliasFirst for device A and srcKeyAliasSecond for device B, and parameters for generating the key pairs. */
   /* 2. Generate an asymmetric key pair for device A. */
-  await generateKeyItem(srcKeyAliasFirst, huksOptions);
+  await generateKeyItem(srcKeyAliasFirst, genHuksOptions);
   /* 3. Generate an asymmetric key pair for device B. */
-  await generateKeyItem(srcKeyAliasSecond, huksOptions);
+  await generateKeyItem(srcKeyAliasSecond, genHuksOptions);
   /* 4. Export the public keys of the key pairs of device A and device B. */
-  await exportKeyItem(srcKeyAliasFirst, huksOptions);
+  await exportKeyItem(srcKeyAliasFirst, genHuksOptions);
   exportKeyFirst = exportKey;
-  await exportKeyItem(srcKeyAliasSecond, huksOptions);
+  await exportKeyItem(srcKeyAliasSecond, genHuksOptions);
   exportKeySecond = exportKey;
   /* 5. Perform key agreement (Init-Update-Finish) for device A. */
   await initSession(srcKeyAliasFirst, huksOptions);

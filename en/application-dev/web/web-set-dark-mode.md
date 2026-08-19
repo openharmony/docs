@@ -1,16 +1,19 @@
 # Setting Dark Mode
+
 <!--Kit: ArkWeb-->
 <!--Subsystem: Web-->
-<!--Owner: @KeeGitee-->
-<!--Designer: @LongLie-->
+<!--Owner: @ohxianzhi-->
+<!--Designer: @dzichou-->
 <!--Tester: @ghiker-->
 <!--Adviser: @HelloShuo-->
+<!-- md-trans-meta sourceCommit=4248a04d1b026b87b7cace162036b2fac054f3a9 translatedAt=2026-08-14T03:51:19.474Z pushedAt=2026-08-14T09:46:30.916Z -->
 
 The system provides the light and dark theme modes for users. Dark mode reduces the screen brightness and visual stimulus in low-light environments, improving reading experience. The **Web** component is rendered based on the web page style. If the web page is not adapted to dark mode, it will be separated from the system theme. To ensure a consistent user experience, you need to consider users' theme preferences and adapt the web page to dark mode.
 
 ArkWeb allows you to flexibly set dark mode for **Web** components without affecting the system. In addition, ArkWeb can enforce dark mode on different web pages to ensure compatibility with various system themes.
 
 ## Adapting Web Pages to Dark Mode
+
 You can adapt web pages to dark mode using the **color-scheme** and **prefers-color-scheme** attributes.
 
 - **color-scheme** is a CSS attribute that indicates the color scheme supported by a web page. It can affect the form, scroll bar, and CSS system color. The CSS system color refers to the built-in color of the **Web** component, which is the default color used when the style of some elements is not defined.
@@ -48,7 +51,7 @@ You can adapt web pages to dark mode using the **color-scheme** and **prefers-co
     <h1>Example page</h1>
     <input name="input1" type="text" placeholder="please enter text">
     <br><br>
-    <input name="input2" type="text" placeholder="please enter text" style="background-color: Lightgray;">
+    <input name="input2" type="text" placeholder="please enter text" style="background-color: lightgray;">
     <br><br>
     <progress value="50" max="100"></progress>
     <br><br>
@@ -100,7 +103,6 @@ You can adapt web pages to dark mode using the **color-scheme** and **prefers-co
 
   ![web-prefers-color-scheme](figures/arkweb_prefers_color_scheme.png)
 
-
 ## Setting the Web Dark Mode
 
 You can use the [darkMode()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#darkmode9) API to configure the web dark mode, which is disabled by default. [WebDarkMode.Auto](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) can be set for applications to follow the system dark mode. You can also set [WebDarkMode.On](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) or [WebDarkMode.Off](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) to enable or disable dark mode.
@@ -122,7 +124,7 @@ In forcible dark mode, the high-brightness color value is converted to a color v
 | Disabled| No impact| - | The web page uses the color scheme supported by **color-scheme**.|
 | Enabled| Disabled| - | The web page uses the color scheme supported by **color-scheme** and the style defined in **@media (prefers-color-scheme: dark)**.|
 | Enabled| Enabled| Dark mode is supported| The web page uses the dark color scheme and the style defined in **@media (prefers-color-scheme: dark)**.|
-| Enabled| Enabled| Dark mode is not supported| The web page converts the color value of the hight-brightness elements based on the algorithm. If a style is defined in **@media (prefers-color-scheme: dark)**, the color value is converted based on the defined style.|
+| Enabled| Enabled| Dark mode is not supported| The web page converts the color value of the high-brightness elements based on the algorithm. If a style is defined in **@media (prefers-color-scheme: dark)**, the color value is converted based on the defined style.|
 
 The [forceDarkAccess()](../reference/apis-arkweb/arkts-basic-components-web-attributes.md#forcedarkaccess9) API takes effect only when the web dark mode is enabled. In the following example, the application sets the web dark mode to follow the system. When the system dark mode is enabled, the web page enters the forcible dark mode.
 
@@ -148,7 +150,7 @@ struct WebComponent {
 }
 ```
 
-The code for the **darkModePage** page is as follows:
+The code of the resources/rawfile/darkModePage.html page is as follows:
 
 ```html
 <!-- darkModePage.html -->
@@ -172,7 +174,7 @@ The code for the **darkModePage** page is as follows:
 </html>
 ```
 
-Figure 3 shows the style of the **darkModePage.html** page in three scenarios: dark mode disabled, dark mode enabled, and forcible dark mode enabled. When dark mode is disabled, the web page uses the default style. After dark mode is enabled, the color scheme of **input1** is switched to dark, and the gray background and brown text style defined in **@media (prefers-color-scheme: dark)** are used. When the forcible dark mode is enabled, the color scheme of **input1** is dark and is not converted by the web page. The web page background color, text color, and background color of **input2** are converted to those shown in (3) based on the color values in (2).
+The styles of the darkModePage.html page when dark mode is disabled, when dark mode is enabled, and when forced dark mode is enabled are shown in Figure 3. When dark mode is disabled, the web page adopts the default style. When dark mode is enabled, the color scheme of input1 switches to dark, and the web page applies the gray background and brown text styles defined in @media(prefers-color-scheme: dark). When forced dark mode is enabled, the color scheme of input1 is dark and is not converted by Web, while the web page background color, text color, and input2 background color are all converted from the color values in (2) to those shown in (3).
 
 **Figure 3** Effects of the dark color mode and forcible dark color mode on the web page
 
@@ -185,8 +187,9 @@ When the **Web** component is rotated or its size changes, the web page size cha
 You can use [backgroundColor()](../reference/apis-arkui/arkui-ts/ts-universal-attributes-background.md#backgroundcolor) to set the background color of **Web** components. If no background color is set, the default background color white is used. In forcible dark mode, the default background color is black. If forcible dark mode is not enabled, you can use the following methods for adaptation.
 
 - When [WebDarkMode.On](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) and [WebDarkMode.Off](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) are set on the application side to control dark mode, the background color of **Web** components changes accordingly.
+
   <!-- @[set_web_background_color](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/SetBasicAttrsEvts/SetBasicAttrsEvtsOne/entry/src/main/ets/pages/DarkMode_three.ets) -->
-  
+
   ``` TypeScript
   import { webview } from '@kit.ArkWeb';
   
@@ -207,9 +210,11 @@ You can use [backgroundColor()](../reference/apis-arkui/arkui-ts/ts-universal-at
   ```
 
 - When [WebDarkMode.Auto](../reference/apis-arkweb/arkts-basic-components-web-e.md#webdarkmode9) is set on the application side to follow the system dark mode, the background color of **Web** components changes with the system.
+
   <!-- @[set_web_darkmode_auto](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/SetBasicAttrsEvts/SetBasicAttrsEvtsOne/entry/src/main/ets/entryability/EntryAbility.ets) -->
-  
+
   ``` TypeScript
+  import { window } from '@kit.ArkUI';
   import { AbilityConstant, ConfigurationConstant, UIAbility, Want, Configuration } from '@kit.AbilityKit';
   import { hilog } from '@kit.PerformanceAnalysisKit';
   
@@ -229,9 +234,10 @@ You can use [backgroundColor()](../reference/apis-arkui/arkui-ts/ts-universal-at
     }
   }
   ```
+
   <!-- -->
   <!-- @[set_web_darkmode_auto](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkWeb/SetBasicAttrsEvts/SetBasicAttrsEvtsOne/entry/src/main/ets/pages/DarkMode_Four.ets) -->
-  
+
   ``` TypeScript
   import { webview } from '@kit.ArkWeb';
   import { ConfigurationConstant } from '@kit.AbilityKit';

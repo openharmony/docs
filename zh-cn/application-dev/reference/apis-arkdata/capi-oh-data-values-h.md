@@ -78,7 +78,7 @@ OH_Data_Values *OH_Values_Create(void)
 
 | 类型                                     | 说明                                                         |
 | ---------------------------------------- | ------------------------------------------------------------ |
-| [OH_Data_Values](capi-rdb-oh-data-values.md) | 执行成功时返回指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针，否则返回nullptr。<br>使用完成后，必须通过[OH_Values_Destroy](capi-oh-data-values-h.md#oh_values_destroy)接口释放内存。 |
+| [OH_Data_Values](capi-rdb-oh-data-values.md) * | 执行成功时返回指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针，否则返回nullptr。<br>使用完成后，必须通过[OH_Values_Destroy](#oh_values_destroy)接口释放内存。 |
 
 ### OH_Values_Destroy()
 
@@ -332,7 +332,7 @@ int OH_Values_PutFloatVector(OH_Data_Values *values, const float *val, size_t le
 | 参数项                                           | 描述                                                         |
 | ------------------------------------------------ | ------------------------------------------------------------ |
 | [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
-| const float *val                                 | 表示指向float数组对象的指针。                                |
+| const float *val                                 | 表示指向float数组的指针。                                |
 | size_t length                                    | 该参数为输入参数，表示开发者传入的float数组的长度。          |
 
 **返回：**
@@ -659,7 +659,7 @@ int OH_Values_GetAssets(OH_Data_Values *values, int index, Data_Asset **val, siz
 | [OH_Data_Values](capi-rdb-oh-data-values.md) *values | 表示指向[OH_Data_Values](capi-rdb-oh-data-values.md)实例的指针。 |
 | int index                                        | 表示values中目标数据的从零开始的索引。                       |
 | [Data_Asset](capi-rdb-data-asset.md) **val           | 表示指向[Data_Asset](capi-rdb-data-asset.md)对象的指针。<br>使用时需要申请数据内存。<br>此函数仅填充数据，否则执行失败。 |
-| size_t inLen                                     | 表示val的大小。可以通过[OH_Values_GetAssetsCount](capi-oh-data-values-h.md#oh_values_getassetscount)获取。 |
+| size_t inLen                                     | 表示val的大小。可以通过[OH_Values_GetAssetsCount](#oh_values_getassetscount)获取。 |
 | size_t *outLen                                   | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**
@@ -772,7 +772,7 @@ int OH_Values_GetUnlimitedInt(OH_Data_Values *values, int index, int *sign, uint
 | int index                                        | 表示values中目标数据的从零开始的索引。                       |
 | int *sign                                        | 一个输出参数，表示正负数，0表示正整数，1表示负整数。         |
 | uint64_t *trueForm                               | 表示指向整型数组的指针。<br>需要申请数据内存。<br>此函数仅填充数据，否则执行失败。 |
-| size_t inLen                                     | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](capi-oh-data-values-h.md#oh_values_getunlimitedintband)获取。 |
+| size_t inLen                                     | 表示trueForm的大小。可以通过[OH_Values_GetUnlimitedIntBand](#oh_values_getunlimitedintband)获取。 |
 | size_t *outLen                                   | 一个输出参数，表示实际获取的数据大小。                       |
 
 **返回：**

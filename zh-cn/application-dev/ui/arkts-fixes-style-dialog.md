@@ -438,13 +438,13 @@ export struct TextPickerCNDialogExample {
 
 ![image](figures/UIShowTextPickerDialog.gif)
 
-## 列表选择弹窗 (ActionSheet)
+## 列表选择弹出框 (ActionSheet)
 
-列表选择弹窗适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。
+列表选择弹出框适用于呈现多个操作选项，尤其当界面中仅需展示操作列表而无其他内容时。
 
-列表选择器弹窗通过UIContext中的[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)接口实现。
+列表选择弹出框通过UIContext中的[showActionSheet](../reference/apis-arkui/arkts-apis-uicontext-uicontext.md#showactionsheet)接口实现。
 
-列表选择弹窗中，title字段的字体最大放大倍数为2。
+列表选择弹出框中，title字段的字体最大放大倍数为2。
 
 该示例通过配置width、height、transition等接口，定义了弹窗的样式以及弹出动效。
 
@@ -516,7 +516,7 @@ export struct showActionSheetExample {
       .padding({ left: 12, right: 12 })
     }
     .backgroundColor('#f1f2f3')
-    // 请将$r('app.string.CustomDialog_ActionSheet')替换为实际资源文件，在本示例中该资源文件的value值为"列表选择弹窗"
+    // 请将$r('app.string.CustomDialog_ActionSheet')替换为实际资源文件，在本示例中该资源文件的value值为"列表选择弹出框"
     .title($r('app.string.CustomDialog_ActionSheet'))
   }
 }

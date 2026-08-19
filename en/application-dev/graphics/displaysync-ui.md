@@ -6,7 +6,7 @@
 <!--Designer: @wh_qwe-->
 <!--Tester: @zhaoxiaoguang2-->
 <!--Adviser: @ge-yafang-->
-<!-- md-trans-meta sourceCommit=8274e2d7a391483e6c7c9de842768baf61c0596c translatedAt=2026-08-03T11:18:57.778Z pushedAt=2026-08-04T03:55:05.131Z -->
+<!-- md-trans-meta sourceCommit=16524355bdde14dc65076cf14d0f9f697bcf747f translatedAt=2026-08-15T01:50:54.738Z pushedAt=2026-08-15T08:22:12.996Z -->
 
 If you need to draw and update UI content at an independent frame rate, you can use **DisplaySync**. The frame rate for drawing content in an app can be controlled by a **DisplaySync** instance. For details, see [@ohos.graphics.displaySync (Variable Frame Rate)](../reference/apis-arkgraphics2d/js-apis-graphics-displaySync.md).
 

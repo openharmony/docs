@@ -9,13 +9,22 @@
 
 Multi-device collaboration involves the following scenarios:
 
-- [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned)
-
-- [Starting UIAbility Across Devices (Data Returned)](#starting-uiability-across-devices-data-returned)
-
-- [Connecting to ServiceExtensionAbility Across Devices](#connecting-to-serviceextensionability-across-devices)
-
-- [Using Cross-Device Call](#using-cross-device-call)
+- [Multi-device Collaboration](#multi-device-collaboration)
+  - [When to Use](#when-to-use)
+  - [Multi-Device Collaboration Process](#multi-device-collaboration-process)
+  - [Constraints](#constraints)
+  - [Starting UIAbility or ServiceExtensionAbility Across Devices (No Data Returned)](#starting-uiability-or-serviceextensionability-across-devices-no-data-returned)
+    - [Available APIs](#available-apis)
+    - [How to Develop](#how-to-develop)
+  - [Starting UIAbility Across Devices (Data Returned)](#starting-uiability-across-devices-data-returned)
+    - [Available APIs](#available-apis-1)
+    - [How to Develop](#how-to-develop-1)
+  - [Connecting to ServiceExtensionAbility Across Devices](#connecting-to-serviceextensionability-across-devices)
+    - [Available APIs](#available-apis-2)
+    - [How to Develop](#how-to-develop-2)
+  - [Using Cross-Device Call](#using-cross-device-call)
+    - [Available APIs](#available-apis-3)
+    - [How to Develop](#how-to-develop-3)
 
 
 ## Multi-Device Collaboration Process
@@ -633,7 +642,7 @@ A system application can connect to a service on another device by calling [conn
 
 ## Using Cross-Device Call
 
-The basic principle of cross-device call is the same as that of intra-device call. For details, see [Using Call to Implement UIAbility Interaction (for System Applications Only)](uiability-intra-device-interaction.md#using-call-to-implement-uiability-interaction-for-system-applications-only).
+The basic principle of cross-device call is the same as that of intra-device call. For details, see [Using Call to Implement UIAbility Interaction (for System Applications Only)].
 
 The following describes how to implement multi-device collaboration through cross-device call.
 

@@ -4,9 +4,9 @@
 <!--Subsystem: Sensors-->
 <!--Owner: @dilligencer-->
 <!--Designer: @andeszhang-->
-<!--Tester: @liuhaonan2-->
+<!--Tester: @zhaofangyuan-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=170a00b0e372b90729da5ee919e1bd4343fab341 translatedAt=2026-07-28T02:36:05.631Z pushedAt=2026-07-28T03:29:58.017Z -->
+<!-- md-trans-meta sourceCommit=d6ee2f8e5e4a35a47ab1c536d1d3a668f575f4ef translatedAt=2026-08-15T01:44:41.477Z pushedAt=2026-08-15T06:51:02.074Z -->
 
 ## When to Use
 

@@ -6,7 +6,7 @@
 <!--Designer: @gcw_nDnzjzHO;@wei-guoning-->
 <!--Tester: @sd_yinjian-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:39:44.220Z pushedAt=2026-06-25T06:54:37.241Z -->
+<!-- md-trans-meta sourceCommit=62328ff7325313f4be3c9d7de3f9d7629828225d translatedAt=2026-08-18T11:00:38.245Z pushedAt=2026-08-18T11:23:25.608Z -->
 
 ## When to Use
 
@@ -16,8 +16,7 @@ An OE server application uses the APIs provided by [content_embed_extension.h](.
 
 ## Constraints
 
-Before using the APIs, check whether the device supports the `SystemCapability.ContentEmbed.ObjectEditor` system capability. For details about how to check system capabilities, see [canIUse()](../reference/common/init.md#caniuse). In addition, request the `ohos.permission.REGISTER_OBJECTEDITOR_EXTENSION` permission. For details about how to configure the permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
-
+Before using the APIs, check whether the device supports the `SystemCapability.ContentEmbed.ObjectEditor` system capability. For details about how to check system capabilities, see [canIUse()](../reference/common/syscap__ndk_8h.md#caniuse). In addition, request the `ohos.permission.REGISTER_OBJECTEDITOR_EXTENSION` permission. For details about how to configure the permission, see [Declaring Permissions](../security/AccessToken/declare-permissions.md).
 
 ## Available APIs
 
@@ -502,5 +501,3 @@ static void NativeOnWriteToDataStream(ContentEmbed_ObjectHandle object)
     }
 }
 ```
-
-<!--no_check-->

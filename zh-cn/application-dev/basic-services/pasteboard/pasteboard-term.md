@@ -1,8 +1,8 @@
-# 剪贴板术语表
+# 剪贴板术语
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: DistributedDataManager-->
 <!--Owner: @yangxiaodong41-->
-<!--Designer: @guo867-->
+<!--Designer: @zhusiyuan2-->
 <!--Tester: @maxiaorong-->
 <!--Adviser: @fang-jinxu-->
 

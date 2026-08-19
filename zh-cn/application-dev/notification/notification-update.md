@@ -10,7 +10,7 @@
 
 ## 接口说明
 
-通知发布更新接口说明详见下表，通知更新可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)携带updateOnly字段来指定，不指定该字段默认为false。
+通知发布更新接口说明详见下表，[通知更新](notification-glossary.md#notification-update通知更新)可通过入参[NotificationRequest](../reference/apis-notification-kit/js-apis-inner-notification-notificationRequest.md#notificationrequest-1)携带updateOnly字段来指定，不指定该字段默认为false。
 
 - 当updateOnly为true时，若相同ID通知存在，则更新通知；若相同ID通知不存在，则更新失败，并且不创建新的通知。
 

@@ -1,11 +1,12 @@
 # USB DDK Development
+
 <!--Kit: Driver Development Kit-->
 <!--Subsystem: Driver-->
 <!--Owner: @zgene94-->
 <!--Designer: @w00373942-->
 <!--Tester: @dong-dongzhen-->
 <!--Adviser: @hu-zhiqiong-->
-<!-- md-trans-meta sourceCommit=deff468b8adbfa4199da5cbe7b6cbc33f2bddb1e translatedAt=2026-06-24T07:40:33.659Z pushedAt=2026-06-25T06:57:21.036Z -->
+<!-- md-trans-meta sourceCommit=4e2e44136e02c57f70e721649f26e12ec63e7374 translatedAt=2026-08-15T01:44:20.722Z pushedAt=2026-08-15T06:45:57.647Z -->
 
 ## Overview
 
@@ -76,11 +77,13 @@ To develop a USB driver using the UsbDdk, perform the following steps:
 **Adding Dynamic Link Libraries**
 
 Add the following libraries to **CMakeLists.txt**.
+
 ```txt
 libusb_ndk.z.so
 ```
 
 **Including Header Files**
+
 ```c++
 #include <usb/usb_ddk_api.h>
 #include <usb/usb_ddk_types.h>
@@ -124,7 +127,7 @@ libusb_ndk.z.so
        OH_LOG_ERROR(LOG_APP, "GetInterfaceAndEndpoint failed");
        return false;
    }
-   // Release the configuration descriptor to prevent memory leakage.
+   // Release the configuration descriptor to prevent memory leaks.
    OH_Usb_FreeConfigDescriptor(config);
    g_dataEp = endpoint;
    g_maxPktSize = maxPktSize;
@@ -173,7 +176,6 @@ libusb_ndk.z.so
     auto ret = OH_Usb_SendControlReadRequest(g_interfaceHandle, &strDescSetup, UINT32_MAX, strDesc, &len);
     ```
 
-
     <!-- @[driver_usb_step4_1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/UsbDriverDemo/entry/src/main/cpp/hello.cpp) -->  
 
     ``` C++
@@ -201,7 +203,6 @@ libusb_ndk.z.so
     // Create a buffer for storing data.
     int32_t ret = OH_Usb_CreateDeviceMemMap(g_devHandle, bufferLen, &devMmap);
     ```
-
 
     <!-- @[driver_usb_step5_2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/DriverDevelopmentKit/UsbDriverDemo/entry/src/main/cpp/hello.cpp) -->  
 

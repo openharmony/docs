@@ -470,7 +470,7 @@ struct Page1 {
     type: Array<ClassA>,
     defaultCreator: () => UIUtils.makeObserved(new Array<ClassA>()),
     // 添加defaultSubCreator，通知状态管理框架如何创建数组项
-    // 另外持久化后的数据需要加上makeObserved，否则会持久化失败
+    // 另外持久化的数据需要加上makeObserved，否则会持久化失败
     defaultSubCreator: () => UIUtils.makeObserved(new ClassA())
   })!;
   
@@ -1234,7 +1234,7 @@ struct Index {
 
       // save接口
       // 未被@Trace装饰的变量需要借助状态变量refresh才能刷新
-      Text('save key connect3: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
+      Text('save key connectSample: ' + this.p.father.groupId.toString() + ' refresh:' + this.refresh)
         .onClick(() => {
           // 未被@Trace保存的对象无法自动存储，需要调用save存储
           this.p.father.groupId += 1;

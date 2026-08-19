@@ -863,7 +863,7 @@ struct ChildPage {
 
 ### @BuilderParam装饰器初始化的值必须为@Builder
 
-使用\@State装饰器装饰的变量，在初始化子组件的\@BuilderParam和`ChildBuilder`变量时，编译时会输出报错信息。
+使用\@State装饰器装饰的变量，在初始化子组件\@BuilderParam装饰的`childBuilder`变量时，编译时会输出报错信息。
 
 【反例】
 
@@ -880,25 +880,25 @@ struct CustomBuilderDemo {
 
   build() {
     Column() {
-      // @BuilderParam装饰的变量ChildBuilder接收@State装饰的变量，会出现编译和编辑报错
-      ChildPage({ ChildBuilder: this.message })
+      // @BuilderParam装饰的变量childBuilder接收@State装饰的变量，会出现编译和编辑报错
+      ChildPage({ childBuilder: this.message })
     }
   }
 }
 
 @Component
 struct ChildPage {
-  @BuilderParam ChildBuilder: () => void = globalBuilder;
+  @BuilderParam childBuilder: () => void = globalBuilder;
 
   build() {
     Column() {
-      this.ChildBuilder()
+      this.childBuilder()
     }
   }
 }
 ```
 
-使用全局\@Builder装饰的`globalBuilder()`方法为子组件\@BuilderParam装饰的`ChildBuilder`变量初始化，编译无报错，功能正常。
+使用全局\@Builder装饰的`globalBuilder()`方法为子组件\@BuilderParam装饰的`childBuilder`变量初始化，编译无报错，功能正常。
 
 【正例】
 

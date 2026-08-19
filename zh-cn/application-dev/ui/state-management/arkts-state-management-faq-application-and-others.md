@@ -12,7 +12,7 @@
 
 ### 懒加载包含装饰器的文件
 
-状态管理装饰器仅限于在UI线程使用，不允许在未加载ArkUI框架的[并发线程](../../arkts-utils/multi-thread-concurrency-overview.md)中使用。由于并发线程未加载完整的ArkUI框架逻辑，因此框架中定义的状态管理装饰器也不会被加载到并发线程中。若在并发线程中使用状态管理装饰器，将出现`ReferenceError: xxx is not defined`。在如下示例中，尽管并发线程并未实际使用[\@Observed](./arkts-observed-and-objectlink.md)装饰的类，但仍会打印`ReferenceError: Observed is not defined`的报错信息。这是因为并发线程在逐层解析文件依赖时，最终会加载到定义\@Observed装饰器的`Observed.ets`文件，从而触发该错误。
+状态管理装饰器仅限于在UI线程使用，不允许在未加载ArkUI框架的[并发线程](../../arkts-utils/multi-thread-concurrency-overview.md)中使用。由于并发线程未加载完整的ArkUI框架逻辑，因此框架中定义的状态管理装饰器也不会被加载到并发线程中。若在并发线程中使用状态管理装饰器，将出现`ReferenceError: xxx is not defined`。在如下示例中，尽管并发线程并未实际使用[\@Observed](./arkts-observed-and-objectlink.md)装饰的类，但仍会打印`ReferenceError: Observed is not defined`的报错信息。这是因为并发线程在逐层解析文件依赖时，最终会加载到使用\@Observed装饰器的`Observed.ets`文件，从而触发该错误。
 
 【反例】
 

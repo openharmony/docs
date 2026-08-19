@@ -1,10 +1,13 @@
 # DRM Playback with AVPlayer (ArkTS)
+
 <!--Kit: Drm Kit-->
 <!--Subsystem: Multimedia-->
-<!--Owner: @qin_wei_jie-->
+<!--Owner: @hanzhengshi-->
 <!--Designer: @chris2981-->
 <!--Tester: @xdlinc-->
-<!--Adviser: @w_Machine_cc-->
+<!--Adviser: @qin_wei_jie-->
+<!-- md-trans-meta sourceCommit=6dec6b14cb206fe02a5ddd5033caa3930c0dd80f translatedAt=2026-08-18T11:03:06.140Z pushedAt=2026-08-18T11:38:50.475Z -->
+
 To play DRM-protected content using AVPlayer, you can use the ArkTS APIs provided by DRM Kit and Media Kit.
 
 ## How to Develop
@@ -97,8 +100,6 @@ To play DRM-protected content using AVPlayer, you can use the ArkTS APIs provide
       if (state == 'released') {
          mediaKeySession.destroy();
          mediaKeySystem.destroy();
-      } else if (state == 'releasing') {  
-         await playerHandle.release();    
       }
    })
    

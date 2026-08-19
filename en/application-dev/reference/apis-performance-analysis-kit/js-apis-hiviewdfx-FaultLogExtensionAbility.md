@@ -1,10 +1,12 @@
 # @ohos.hiviewdfx.FaultLogExtensionAbility (Delayed Fault Notification)
+
 <!--Kit: Performance Analysis Kit-->
 <!--Subsystem: HiviewDFX-->
-<!--Owner: @hello_harmony-->
+<!--Owner: @chenshi51-->
 <!--Designer: @StevenLai1994-->
 <!--Tester: @gcw_KuLfPSbe-->
 <!--Adviser: @jinqiuheng-->
+<!-- md-trans-meta sourceCommit=69a937b04d5e1272421fd7f0f6bdacacd959a6ef translatedAt=2026-08-14T08:54:23.905Z pushedAt=2026-08-15T07:42:19.938Z -->
 
 This module implements the delayed fault notification feature.
 
@@ -18,7 +20,10 @@ You can subscribe to and process fault events through [onFaultReportReady](#onfa
 >
 > - The initial APIs of this module are supported since API version 21. Newly added APIs will be marked with a superscript to indicate their earliest API version.
 > - The APIs of this module can be used only in the stage model.
-> - Exceptions may occur if some APIs are called by this module. For details, see [Appendix](#appendix).
+
+## Constraints
+
+To ensure system security and stability and prevent **FaultLogExtensionAbility** from abusing system resources, the system manages and controls its capabilities. Some modules are not supported for reference. For details, see [Appendix](#appendix).
 
 ## Modules to Import
 
@@ -32,9 +37,9 @@ Implements the delayed fault notification. You can subscribe to and process faul
 
 > **NOTE**
 >
-> - After the FaultLogExtensionAbility is started, the fault handling can be completed only in a short period of time. It is recommended that the handling time be less than 10 seconds. If the handling is not complete within the timeout interval, you can save the status in [onDisconnect](#ondisconnect).
-> - The timer starts when the application triggers a crash or freeze event for the first time after the device is powered on or FaultLogExtensionAbility is started last time. When a crash or screen freeze event is repeatedly triggered before FaultLogExtensionAbility is started, the timer will not restart.
-> - If FaultLogExtensionAbility crashes, it will not be restarted by the system service.
+> - After **FaultLogExtensionAbility** is pulled up, there is only a short period of time to complete fault handling. It is recommended that the handling time not exceed 10 seconds. If the handling is not completed within the timeout period, you can save the state in [onDisconnect](#ondisconnect).
+> - The timing starts when the app triggers a crash or freeze for the first time after the device is powered on or after **FaultLogExtensionAbility** was last pulled up. Repeatedly triggering crash or freeze events before **FaultLogExtensionAbility** is pulled up does not restart the timing.
+> - If **FaultLogExtensionAbility** itself crashes, it will not be pulled up again by the system service.
 
 ### Properties
 
@@ -53,6 +58,7 @@ onConnect(): void
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **Example**
+
 ```ts
 export default class MyFaultLogExtension extends FaultLogExtensionAbility {
     onConnect() {
@@ -70,6 +76,7 @@ onDisconnect(): void
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **Example**
+
 ```ts
 export default class MyFaultLogExtension extends FaultLogExtensionAbility {
     onDisconnect() {
@@ -87,6 +94,7 @@ onFaultReportReady(): void
 **System capability**: SystemCapability.HiviewDFX.Hiview.FaultLogger
 
 **Example**
+
   ```ts
   import { hiAppEvent } from '@kit.PerformanceAnalysisKit';
 
@@ -109,7 +117,9 @@ onFaultReportReady(): void
   ```
 
 ## Appendix
-The following table lists the APIs that cannot be called by this module.
+
+**FaultLogExtensionAbility** does not support the reference to the following modules.
+
 | Kit| Module|
 | ------- | ------- |
 | AVSessionKit | [@ohos.multimedia.avsession (AVSession Management)](../apis-avsession-kit/arkts-apis-avsession.md)|

@@ -6,7 +6,7 @@
 <!--Designer: @zhanglu161-->
 <!--Tester: @lotsof-->
 <!--Adviser: @jinqiuheng-->
-<!-- md-trans-meta sourceCommit=246cbb87769d7ba2d4f71c6a8b417a57ec2cbfa6 translatedAt=2026-08-03T08:17:43.656Z pushedAt=2026-08-03T09:37:25.573Z -->
+<!-- md-trans-meta sourceCommit=b74b00cc5805225620b940e38531d901e6362478 translatedAt=2026-08-15T01:49:29.870Z pushedAt=2026-08-15T07:44:02.682Z -->
 
 ## Overview
 
@@ -106,7 +106,7 @@ The main FFRT APIs involved in the preceding example are as follows:
 > **NOTE**
 >
 > - For details about how to use FFRT C++ APIs, see [Using FFRT C++ APIs](ffrt-development-guideline.md#using-ffrt-c-api-1).
-> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file to include statements.
+> - When using FFRT C or C++ APIs, you can use the FFRT C++ API third-party library to simplify header file inclusion, that is, use the `#include "ffrt/ffrt.h"` header file inclusion statement.
 
 ## Constraints
 
