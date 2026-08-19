@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:30:29.801Z pushedAt=2026-08-14T08:03:20.109Z -->
+<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:50:49.790Z pushedAt=2026-08-19T01:21:14.143Z -->
 
-This module provides the NearLink scanning capability.
+This module provides the NearLink scanning capability, including starting and stopping scanning and subscribing to scanning results.
 
 **Since**: 26.0.0
 
@@ -22,7 +22,7 @@ import { scan } from '@kit.ConnectivityKit';
 
 startScan(filters: ScanFilters[] | null, options?: ScanOptions): Promise&lt;void&gt;
 
-Starts NearLink scanning. This API uses a promise to return the result.
+Starts NearLink scanning. This API uses a promise to return the result. You need to call [scan.onDeviceFound](#scanondevicefound) to subscribe to the scanning results. After this API initiates scanning, the scanned device information is reported through the [scan.onDeviceFound](#scanondevicefound) callback. After the scanning is complete, you can call [scan.stopScan](#scanstopscan) to stop scanning.
 
 **Since**: 26.0.0
 
@@ -36,7 +36,7 @@ Starts NearLink scanning. This API uses a promise to return the result.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| filters | [ScanFilters](#scanfilters)[] \| null | Yes | Filter criteria for NearLink advertising. Devices that meet the filter criteria will be reported. If the filter is not enabled, **null** is passed.<br/>If this parameter is set to **null**, all discoverable NearLink devices nearby will be scanned. However, this method is not recommended as it may pick up unexpected devices and increase power consumption. |
+| filters | [ScanFilters](#scanfilters)[] \| null | Yes | Filter criteria for NearLink advertising. Devices that meet the filter criteria will be reported. If the filter is not enabled, **null** is passed.<br>If this parameter is set to **null**, all discoverable NearLink devices nearby will be scanned. However, this method is not recommended as it may pick up unexpected devices and increase power consumption. |
 | options | [ScanOptions](#scanoptions) | No | Scan options. The low power consumption mode is used by default. |
 
 **Return value**
@@ -47,7 +47,7 @@ Starts NearLink scanning. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -69,7 +69,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   scan.startScan(null).then(() => {
     console.info('start scan without filter success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -84,7 +84,7 @@ let scanFilter: scan.ScanFilters = {
 try {
   scan.startScan([scanFilter]).then(() => {
     console.info('start scan with filter success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -114,7 +114,7 @@ Stops NearLink scanning. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -132,7 +132,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 try {
   scan.stopScan().then(() => {
     console.info('stop scan success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -158,7 +158,7 @@ The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive 
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&zwnj;\<&zwnj;&zwnj;[ScanResults](#scanresults)&zwnj;[]&zwnj;\> | Yes | Callback used to return a **ScanResults** object, which contains the random address of a remote device. |
+| callback | Callback&zwnj;\<&zwnj;&zwnj;[ScanResults](#scanresults)&zwnj;[]&zwnj;\> | Yes | Callback used to return a **ScanResults** object. By default, a random address is returned for the scanning result. If the app has the system permission **ohos.permission.GET_NEARLINK_PEER_MAC**, the actual device address is returned. |
 
 **Error codes**
 
@@ -200,7 +200,7 @@ Unsubscribes from NearLink scanning results. This API uses an asynchronous callb
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;&zwnj;[ScanResults](#scanresults)&zwnj;[]&gt; | No | Callback used to return a **ScanResults** object. If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;&zwnj;[ScanResults](#scanresults)&zwnj;[]&gt; | No | Callback used to return a **ScanResults** object. If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
@@ -240,7 +240,7 @@ Represents the scanning results.
 | data | ArrayBuffer | No | No | Advertising packet data. |
 | deviceName | string | No | No | Name of the device discovered. The value contains 0 to 30 characters. |
 | isConnectable | boolean | No | No | Whether the discovered device is connectable. The value **true** indicates that the discovered device is connectable, and the value **false** indicates the opposite. |
-| deviceClass | [nearlinkConstant.DeviceClass](js-apis-nearlink-constant.md#deviceclass) | No | Yes | Type of the device discovered. |
+| deviceClass | [nearlinkConstant.DeviceClass](js-apis-nearlink-constant.md#deviceclass) | No | Yes | Type of the device discovered. This field is not returned if the device advertising information does not carry the device type. |
 
 ## ScanFilters
 
@@ -258,8 +258,8 @@ Defines the scan filters
 | deviceName | string | No | Yes | Device name. The value contains 0 to 30 characters. By default, this field is not used if it is not set. |
 | manufacturerId | number | No | Yes | Manufacturer ID. The value range is [1, 65535]. By default, this field is not used if it is not set. |
 | manufacturerData | ArrayBuffer | No | Yes | Manufacturer data. By default, this field is not used if it is not set. **manufacturerId** must be set along with the field. |
-| manufacturerDataMask | ArrayBuffer | No | Yes | Manufacturer data mask. By default, this field is not used if it is not set. This field must be set along with **manufacturerData**, and the lengths of the two fields must be the same. |
-| rssi | number | No | Yes | RSSI threshold, in dBm. The value range is [–128, 127]. Broadcast packets whose RSSI is greater than or equal to this threshold will be filtered out. You are advised to set the threshold within the range of [–90, 20]. |
+| manufacturerDataMask | ArrayBuffer | No | Yes | Manufacturer data mask. By default, this field is not used if it is not set. This field must be set along with **manufacturerData**, and the lengths of the two fields must be the same. A bitwise AND operation is performed on the mask and manufacturer data to accurately match the specified bits in the manufacturer data. |
+| rssi | number | No | Yes | RSSI threshold, in dBm. The value range is [–128, 127]. Broadcast packets whose RSSI is greater than or equal to this threshold will be filtered out. You are advised to set the threshold within the range of [–90, 20]. By default, the signal strength is not filtered if this parameter is not set. |
 
 ## ScanOptions
 

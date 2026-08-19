@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=6610f64dcfdc39e7239dc52b313502bf3f4a9b0b translatedAt=2026-08-12T11:33:39.653Z pushedAt=2026-08-14T10:53:52.286Z -->
+<!-- md-trans-meta sourceCommit=4a43d865f6fb58df26898b1b598954a98775ae97 translatedAt=2026-08-17T08:53:43.106Z pushedAt=2026-08-19T02:03:57.907Z -->
 
-This module provides the SSAP (SparkLink Service Access Protocol) connection capability.
+This module provides the SSAP (SparkLink Service Access Protocol) connection capability, including creating a connection between the client and service, connection management, service discovery, property reading and writing, notifications, and MTU negotiation.
 
 **Model restriction**: This API can be used only in the stage model.
 
@@ -32,7 +32,7 @@ Enumerates the connection states with a remote device.
 
 | Type | Description |
 | -------- | -------- |
-| [nearlinkConstant.ConnectionState](js-apis-nearlink-constant.md#connectionstate) | Connection state with a remote device. |
+| [nearlinkConstant.ConnectionState](js-apis-nearlink-constant.md#connectionstate) | Connection status with a remote device. |
 
 ## ssap.createClient
 
@@ -62,7 +62,7 @@ Creates an SSAP client instance.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -110,7 +110,7 @@ Creates an SSAP server instance.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -136,9 +136,11 @@ try {
 
 ## Client
 
-Provides methods for SSAP data interaction with remote devices. Before use, you need to call the [ssap.createClient](#ssapcreateclient) method to create a [Client](#client) instance.
+Represents a SSAP client class, which provides APIs for connecting to and transmitting data with the server.
 
-An app only needs to create one instance per remote device.
+Before using the methods of this class, you need to call [ssap.createClient](#ssapcreateclient) to create an instance of this class.
+
+An app only needs to create one [Client](#client) instance for a remote device. Repeated creation will increase unnecessary resource overhead.
 
 **Since**: 26.0.0
 
@@ -168,7 +170,7 @@ Initiates a connection to the server. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -185,10 +187,10 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // An application needs to create only one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -218,7 +220,7 @@ Initiates a disconnection to the server, disconnecting an existing connection or
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -235,15 +237,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // An application needs to create only one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success'); // Establish the connection.
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   client.disconnect().then(() => {
     console.info('disconnect success'); // Disconnect.
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -255,7 +257,7 @@ try {
 
 close(): void
 
-Closes the client.
+Closes the client and disconnects from the remote server. To terminate the current connection while retaining the instance, use the [disconnect](#disconnect) method.
 
 **Since**: 26.0.0
 
@@ -267,7 +269,7 @@ Closes the client.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -284,7 +286,7 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning
 let client: ssap.Client;
 try { 
-  client = ssap.createClient(addr); // An application needs to create only one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.close();
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -313,7 +315,7 @@ Obtains the list of services supported by the server. This API uses a promise to
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -330,17 +332,17 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // Create only one client instance for the same remote device in the same app.
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // The connection takes a long time. Wait until the connection is complete before obtaining services. Adjust the timer duration based on the actual connection speed.
   setTimeout(() => {
     client.getServices().then((result: ssap.Service[]) => {
       console.info('getServices successfully:' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -377,7 +379,7 @@ Reads a server attribute. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -396,26 +398,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // Create the property. In actual development, obtain it from the server through the getServices API.
-  let arrayBufferC = new ArrayBuffer(8);
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let valueBuffer = new ArrayBuffer(8);
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // The connection takes a long time. Wait until the connection is complete before obtaining services. In actual development, adjust the timer duration based on the connection speed.
-  setTimeout(()=>{
+  setTimeout(() => {
     client.readProperty(property).then((result: ssap.Property) => {
       console.info('readProperty successfully:' + JSON.stringify(result));
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -428,7 +430,7 @@ try {
 
 writeProperty(property: Property, writeType: PropertyWriteType): Promise&lt;void&gt;
 
-Writes the server property value. This API uses a promise to return the result.
+Writes a property to the server. This API uses a promise to return the result.
 
 **Since**: 26.0.0
 
@@ -453,7 +455,7 @@ Writes the server property value. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -472,27 +474,27 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // Create the property. In actual development, obtain it from the server through the getServices API.
-  let arrayBufferC = new ArrayBuffer(8);
+  let valueBuffer = new ArrayBuffer(8);
   // Expected property value to write.
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // The connection takes a long time. Wait until the connection is complete before obtaining services. In actual development, adjust the timer duration based on the connection speed.
-  setTimeout(()=>{
+  setTimeout(() => {
     client.writeProperty(property, ssap.PropertyWriteType.WRITE_NO_RESPONSE).then(() => {
       console.info('writeProperty success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -505,7 +507,7 @@ try {
 
 setPropertyNotification(property: Property, enable: boolean): Promise&lt;void&gt;
 
-Sets Property change notification. This API uses a promise to return the result.
+Sets a [Property](#property) change notification. This method can only be used after a connection is successfully established by calling [connect](#connect).
 
 **Since**: 26.0.0
 
@@ -519,8 +521,8 @@ Sets Property change notification. This API uses a promise to return the result.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| property | [Property](#property) | Yes | Server attribute. |
-| enable | boolean | Yes | Whether to enable notification. The value **true** means to enable notification, and **false** means to disable notification. |
+| property | [Property](#property) | Yes | Property from the server. This property must support the **NOTIFY** operation. That is, **operation** contains **NOTIFY**. For details, see [Operation](#operation). |
+| enable | boolean | Yes | Whether to enable notification. **true**: enables notification. **false**: disables notification. |
 
 **Return value** 
 
@@ -530,7 +532,7 @@ Sets Property change notification. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -549,26 +551,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
   // Create the property. In actual development, obtain it from the server through the getServices API.
-  let arrayBufferC = new ArrayBuffer(8);
-  let properV = new Uint8Array(arrayBufferC);
-  properV[0] = 1;
+  let valueBuffer = new ArrayBuffer(8);
+  let propertyValue = new Uint8Array(valueBuffer);
+  propertyValue[0] = 1;
   let property: ssap.Property = {
     serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
     propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
-    value: arrayBufferC
+    value: valueBuffer
   };
   // The connection takes a long time. Wait until the connection is complete before obtaining services. In actual development, adjust the timer duration based on the connection speed.
-  setTimeout(()=>{
+  setTimeout(() => {
     client.setPropertyNotification(property, true).then(() => {
       console.info('setPropertyNotification success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -605,7 +607,7 @@ Initiates an MTU negotiation request. This API uses a promise to return the resu
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Code](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -622,15 +624,15 @@ import { BusinessError } from '@kit.BasicServicesKit';
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.connect().then(() => {
     console.info('connect success');
   });
   // The connection takes a long time. Wait until the connection is complete before obtaining services. In actual development, adjust the timer duration based on the connection speed.
-  setTimeout(()=>{
+  setTimeout(() => {
     client.requestMtuSize(128).then(() => {
       console.info('requestMtuSize success');
-    }).catch ((err: BusinessError) => {
+    }).catch((err: BusinessError) => {
       console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
     });
   }, 3000);
@@ -643,7 +645,7 @@ try {
 
 onPropertyChange(callback: Callback&lt;Property&gt;): void
 
-Subscribes to the Property change event. This API uses an asynchronous callback to return the result.
+Subscribes to the property change event. This API uses an asynchronous callback to return the result.
 
 The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive this event.
 
@@ -671,7 +673,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.onPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -694,7 +696,7 @@ Unsubscribes from the property change event. This API uses an asynchronous callb
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[Property](#property)&gt; | No | Callback for the property change event, which returns the Property of the service.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[Property](#property)&gt; | No | Callback used to return the property from the server.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -708,7 +710,7 @@ let onPropertyChange:(data: ssap.Property) => void = (data: ssap.Property) => {
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.offPropertyChange(onPropertyChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -747,7 +749,7 @@ let onConnectionStateChange:(data: ssap.ConnectionChangeState) => void = (data: 
 let addr: string = '00:11:22:33:AA:FF'; // Remote device address obtained through scanning.
 let client: ssap.Client;
 try {
-  client = ssap.createClient(addr); //An app only needs to create one instance for a remote device.
+  client = ssap.createClient(addr); // An app only needs to create one instance for a remote device.
   client.onConnectionStateChange(onConnectionStateChange);
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -770,7 +772,7 @@ Unsubscribes from the connection status change event. This API uses an asynchron
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | No | Callback used to return the connection status reporting parameters.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | No | Callback used to return the connection status reporting parameters.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -846,7 +848,7 @@ Unsubscribes from the MTU change event. This API uses an asynchronous callback t
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;number&gt; | No | Callback used to return the MTU after negotiation.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;number&gt; | No | Callback used to return the MTU after negotiation.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -869,9 +871,11 @@ try {
 
 ## Server
 
-Interacts with a remote device through SSAP. Before using this API, you need to call **createServer** to create a server instance.
+Represents a SSAP server class, which provides APIs for connecting to and exchanging data with the client.
 
-An app only needs to create one instance for a remote device.
+Before using the methods of this class, you need to call [ssap.createServer](#ssapcreateserver) to create an instance of this class.
+
+An app only needs to create one [Server](#server) instance. Repeated creation will increase unnecessary resource overhead.
 
 **Since**: 26.0.0
 
@@ -901,7 +905,7 @@ Adds a service on the server.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -934,8 +938,8 @@ descriptorsArray[0] = descriptor;
 // Construct properties.
 let propertiesArray: ssap.Property[] = [];
 let arrayBufferProperty = new ArrayBuffer(8);
-let properValue = new Uint8Array(arrayBufferProperty);
-properValue[0] = 1;
+let propertyValue = new Uint8Array(arrayBufferProperty);
+propertyValue[0] = 1;
 let property1: ssap.Property = {
   serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
   propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
@@ -983,11 +987,11 @@ Removes a service from the server.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| serviceUuid | string | Yes | NearLink service UUID, which is a string of 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| serviceUuid | string | Yes | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -1018,7 +1022,7 @@ try {
 
 close(): void
 
-Closes the server instance.
+Closes the server and unregisters the callback.
 
 **Since**: 26.0.0
 
@@ -1030,7 +1034,7 @@ Closes the server instance.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -1082,7 +1086,7 @@ Notifies the client of property value updates. This API uses a promise to return
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -1115,8 +1119,8 @@ let descriptor: ssap.PropertyDescriptor = {
 descriptorsArray[0] = descriptor;
 // Construct properties.
 let arrayBufferProperty = new ArrayBuffer(8);
-let properValue = new Uint8Array(arrayBufferProperty);
-properValue[0] = 123; // Value after the update
+let propertyValue = new Uint8Array(arrayBufferProperty);
+propertyValue[0] = 123; // Value after the update
 let property: ssap.Property = {
   serviceUuid:'FFFFFFFF-1234-5678-ABCD-000000004386',
   propertyUuid: 'FFFFFFFF-1234-5678-ABCD-000000001234',
@@ -1129,7 +1133,7 @@ try {
   // This address is that of the connected client device and is cached on the server.
   server.notifyPropertyChanged('00:11:22:33:AA:FF', property).then(() => {
     console.info('notifyPropertyChanged success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -1141,7 +1145,7 @@ try {
 
 sendResponse(response: ServerResponse): void
 
-Replies to read or write requests from the client.
+Responds to read or write requests from the client. After receiving a request reported by [ssap.onPropertyRead](#onpropertyread) or [ssap.onPropertyWrite](#onpropertywrite), call this API to send data to the corresponding client.
 
 **Since**: 26.0.0
 
@@ -1159,7 +1163,7 @@ Replies to read or write requests from the client.
 
 **Error codes**
 
-For details about the following error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -1248,7 +1252,7 @@ Unsubscribes from the connection status change event. This API uses an asynchron
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | No | Callback used to return the connection status reporting parameters.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[ConnectionChangeState](#connectionchangestate)&gt; | No | Callback used to return the connection status reporting parameters.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -1322,7 +1326,7 @@ Unsubscribes from the client property read request event. This API uses an async
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PropertyReadRequest](#propertyreadrequest)&gt; | No | Callback used to return the property read request parameters of the client.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[PropertyReadRequest](#propertyreadrequest)&gt; | No | Callback used to return the property read request parameters of the client.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -1396,7 +1400,7 @@ Unsubscribes from the client property write request event. This API uses an asyn
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[PropertyWriteRequest](#propertywriterequest)&gt; | No | Callback used to return the property write request parameters of the client. If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[PropertyWriteRequest](#propertywriterequest)&gt; | No | Callback used to return the property write request parameters of the client. If this parameter is specified, the current callback is unsubscribed. If this parameter is not specified, all callbacks corresponding to the event are unsubscribed. |
 
 **Example** 
 
@@ -1470,7 +1474,7 @@ Unsubscribes from the MTU change event. This API uses an asynchronous callback t
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;number&gt; | No | Callback used to return the MTU after negotiation.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;number&gt; | No | Callback used to return the MTU after negotiation.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Example** 
 
@@ -1502,7 +1506,7 @@ Represents the NearLink service.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit identifier. The value cannot be set to a standard NearLink UUID. |
 | properties | [Property](#property)[] | No | No | Properties of a service. |
 
 ## Property
@@ -1517,11 +1521,11 @@ Represents a service Property.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit identifier. Standard NearLink UUIDs are not allowed. |
 | propertyUuid | string | No | No | Property UUID, in the same format as **serviceUuid**. |
 | value | ArrayBuffer | No | No | Data value of a property. |
 | descriptors | [PropertyDescriptor](#propertydescriptor)[] | No | Yes | Descriptors of the current property. By default, this field is not used if not set. |
-| operation | number | No | Yes | Operation modes supported by the property. The default value is **READABLE\|WRITE_NO_RESPONSE**, indicating that the property is readable and writable and no response is required. To enable a property to support an operation, you need to assign a value to this field, for example, **READABLE\|WRITE_NO_RESPONSE\|NOTIFY**. The value range is [0, 15]. For details about the operation corresponding to each bit, please refer to [Operation](#operation). |
+| operation | number | No | Yes | Operation modes supported by the property. The default value is **READABLE\|WRITE_NO_RESPONSE**, indicating that the property is readable and writable and no response is required. To enable a property to support an operation, you need to assign a value to this field, for example, **READABLE \| WRITE_NO_RESPONSE \| NOTIFY**. The value range is [0, 15]. For details about the operation corresponding to each bit, see [Operation](#operation). |
 
 ## PropertyDescriptor
 
@@ -1535,11 +1539,11 @@ Defines the descriptor of a property.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | No | No | NearLink service UUID. The length must be 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, FFFFFFFF-1234-5678-ABCD-000000001234, representing a 128-bit identifier. Standard NearLink UUIDs are not allowed. |
-| propertyUuid | string | No | No | UUID of the property. The data format is the same as that of serviceUuid. |
-| value | ArrayBuffer | No | No | Data value of the descriptor. |
-| descriptorType | [PropertyDescriptorType](#propertydescriptortype) | No | No | Descriptor type of the property. |
-| isWriteable | boolean | No | Yes | Whether the descriptor is writable. The value true means writable, and false means not writable. The default value is true. |
+| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| propertyUuid | string | No | No | Property UUID, in the same format as **serviceUuid**. |
+| value | ArrayBuffer | No | No | Data value of a descriptor. |
+| descriptorType | [PropertyDescriptorType](#propertydescriptortype) | No | No | Descriptor type of a property. |
+| isWriteable | boolean | No | Yes | Whether a descriptor is writable. The value **true** indicates the descriptor is writable, and the value **false** indicates the opposite. The default value is **true**. |
 
 ## PropertyReadRequest
 
@@ -1554,9 +1558,9 @@ Represents the Property read request parameter of the client.
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | No | No | Client device address. The address format is **11:22:33:AA:BB:FF**. |
-| serviceUuid | string | No | No | NearLink service UUID. The length must be 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, FFFFFFFF-1234-5678-ABCD-000000001234, representing a 128-bit identifier. NearLink standard UUIDs are not allowed. |
-| propertyUuid | string | No | No | UUID of the property. The data format is the same as that of serviceUuid. |
-| requestId | number | No | No | Request ID. Value range: [0, 65535]. |
+| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| propertyUuid | string | No | No | Property UUID, in the same format as **serviceUuid**. |
+| requestId | number | No | No | Request ID. The value range is [0, 65535]. The response sent by the server must carry this ID so that the client can associate the request with the response. |
 
 ## PropertyWriteRequest
 
@@ -1571,7 +1575,7 @@ Define a client property write request.
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | No | No | Client device address. The address format is **11:22:33:AA:BB:FF**. |
-| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 bytes. The value consists of 36 hexadecimal digits and hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
+| serviceUuid | string | No | No | NearLink service UUID, which is a string of 36 characters. The value consists of 32 hexadecimal digits and four hyphens (-), for example, **FFFFFFFF-1234-5678-ABCD-000000001234**, which indicates a 128-bit ID. The value cannot be set to a standard NearLink UUID. |
 | propertyUuid | string | No | No | Property UUID, in the same format as **serviceUuid**. |
 | value | ArrayBuffer | No | No | Value written by the client. |
 | requestId | number | No | No | Write request ID of the client. This ID must be carried in the response returned by the server. The value range is [0, 65535]. |
@@ -1590,7 +1594,7 @@ Defines a response to a client request.
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
 | address | string | No | No | Client device address. The address format is **11:22:33:AA:BB:FF**. |
-| requestId | number | No | No | Request ID. The value range is [0, 65535]. |
+| requestId | number | No | No | Request ID. The value range is [0, 65535]. The ID must be the same as the value of **requestId** in the received [PropertyReadRequest](#propertyreadrequest) or [PropertyWriteRequest](#propertywriterequest), which is used to associate the request with the response.|
 | value | ArrayBuffer | No | No | Data value of the response. |
 
 ## ConnectionChangeState
