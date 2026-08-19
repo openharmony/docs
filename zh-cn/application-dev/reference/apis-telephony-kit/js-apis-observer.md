@@ -856,11 +856,11 @@ observer.off('cellularDataFlowChange');
 
 on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
-订阅sim状态更改事件，使用callback方式作为异步方法。
+订阅SIM卡状态更改事件，使用callback方式作为异步方法。
 
 >**说明：**
 >
-> 此接口不包含sim卡的激活状态，具体请参见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
+> 此接口不包含SIM卡的激活状态，具体请参见[sim.isSimActive](js-apis-sim.md#simissimactive7)接口。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -868,7 +868,7 @@ on\(type: 'simStateChange', callback: Callback\<SimStateData\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ----------------------------------------------------------- |
-| type     | string                                                       | 是   | sim状态更改事件，参数固定为'simStateChange'。                 |
+| type     | string                                                       | 是   | SIM卡状态更改事件，参数固定为"simStateChange"。                 |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 是   | 回调函数，返回卡状态数据对象。 |
 
 **错误码：**
@@ -896,7 +896,7 @@ observer.on('simStateChange', (data: observer.SimStateData) => {
 
 on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimStateData\>\): void
 
-订阅指定卡槽位的sim状态更改事件，使用callback方式作为异步方法。
+订阅指定卡槽位的SIM卡状态更改事件，使用callback方式作为异步方法。
 
 **系统能力**：SystemCapability.Telephony.StateRegistry
 
@@ -904,7 +904,7 @@ on\(type: 'simStateChange', options: ObserverOptions, callback: Callback\<SimSta
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | sim状态更改事件，参数固定为'simStateChange'。                 |
+| type     | string                                                       | 是   | SIM卡状态更改事件，参数固定为"simStateChange"。                 |
 | options   | [ObserverOptions](#observeroptions11)                       | 是   | 电话相关事件订阅参数可选项。                                  |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 是   | 回调函数，返回卡状态数据对象。 |
 
@@ -936,7 +936,7 @@ observer.on('simStateChange', options, (data: observer.SimStateData) => {
 
 off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void
 
-移除订阅sim状态更改事件，使用callback方式作为异步方法。
+移除订阅SIM卡状态更改事件，使用callback方式作为异步方法。
 
 > **说明：**
 >
@@ -948,7 +948,7 @@ off\(type: 'simStateChange', callback?: Callback\<SimStateData\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | sim状态更改事件，参数固定为'simStateChange'。                 |
+| type     | string                                                       | 是   | SIM卡状态更改事件，参数固定为"simStateChange"。                 |
 | callback | Callback\<[SimStateData](#simstatedata7)\> | 否   | 回调函数，返回卡状态数据对象。 |
 
 **错误码：**
@@ -987,8 +987,8 @@ on\(type: 'iccAccountInfoChange', callback: Callback\<void\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
-| callback | Callback\<void\> | 是   | 回调函数。当卡账户改变成功，err为undefined，否则为错误对象。 |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为"iccAccountInfoChange"。                 |
+| callback | Callback\<void\> | 是   | 回调函数。当卡账户变化时触发。 |
 
 **错误码：**
 
@@ -1027,8 +1027,8 @@ off\(type: 'iccAccountInfoChange', callback?: Callback\<void\>\): void
 
 | 参数名   | 类型                                                         | 必填 | 说明                                                         |
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
-| type     | string                                                       | 是   | 卡账户变化事件，参数固定为'iccAccountInfoChange'。                 |
-| callback | Callback\<void\> | 否   | 回调函数。当卡账户改变成功，err为undefined，否则为错误对象。 |
+| type     | string                                                       | 是   | 卡账户变化事件，参数固定为"iccAccountInfoChange"。                 |
+| callback | Callback\<void\> | 否   | 回调函数。当卡账户变化时触发。 |
 
 **错误码：**
 
@@ -1059,7 +1059,7 @@ observer.off('iccAccountInfoChange');
 
 onGetSimActiveState\(slotId: number, callback: Callback\<boolean\>\): void
 
-SIM卡激活状态变化的监听，使用callback方式作为异步方法。
+监听SIM卡激活状态变化，使用callback方式作为异步方法。
 
 **需要权限**：ohos.permission.GET_TELEPHONY_STATE
 
@@ -1078,7 +1078,7 @@ SIM卡激活状态变化的监听，使用callback方式作为异步方法。
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied                         |
+| 201      | Permission denied.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
@@ -1119,7 +1119,7 @@ offGetSimActiveState\(callback?: Callback\<boolean\>\): void
 
 | 错误码ID |                 错误信息                     |
 | -------- | -------------------------------------------- |
-| 201      | Permission denied                         |
+| 201      | Permission denied.                         |
 | 8300001  | Invalid parameter value.                     |
 | 8300002  | Service connection failed.                   |
 | 8300003  | System internal error.                       |
