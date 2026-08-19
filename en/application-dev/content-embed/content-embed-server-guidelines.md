@@ -160,7 +160,7 @@ static ContentEmbed_ExtensionInstanceHandle g_instance = nullptr;
 
 ### Registering Extension Callback Functions
 
-When the OE Extension of an OE server application is started by the system to respond to an OE client request, the [OH_AbilityRuntime_OnNativeExtensionCreate](../reference/apis-ability-kit/capi-extension-ability-h.md#oh_abilityruntime_onnativeextensioncreate) function is executed first. You need to register OE Extension callbacks in this function to respond to client requests.
+When the OE Extension of an OE server application is started by the system to respond to an OE client request, the OH_AbilityRuntime_OnNativeExtensionCreate function is executed first. You need to register OE Extension callbacks in this function to respond to client requests.
 
 ```cpp
 extern "C" void OH_AbilityRuntime_OnNativeExtensionCreate(AbilityRuntime_ExtensionInstance *instance, const char *abilityName) {

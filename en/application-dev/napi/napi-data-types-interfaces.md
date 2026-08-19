@@ -539,7 +539,7 @@ Node-API is extended based on the native modules provided by Node.js. The follow
 
 ### Extended Capabilities
 
-[Node-API Extended APIs](../reference/native-lib/napi.md#node-api-extended-apis)
+[Node-API Extended APIs](../reference/native-lib/napi.md#node-api-component-extension-apis)
 
 | API| Description|
 | -------- | -------- |
@@ -960,5 +960,3 @@ napi_status napi_set_property_with_callsite_info(napi_env env,
 | napi_get_version | Obtains the latest Node-API version supported by the node runtime.|
 | node_api_get_module_file_name | Obtains the absolute path of the module to be loaded.|
 | napi_strict_equals | Compares whether two values are strictly equal, that is, whether they are of the same type and have the same value.|
-
-<!--no_check-->
