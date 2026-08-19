@@ -84,7 +84,7 @@ When the app needs full-screen display in [freeform window](freeform-window-over
 
 > **NOTE**
 > 
-> - App subwindows support the **FULL_SCREEN** and **MAXIMIZE** modes only in the [freeform window](freeform-window-overview.md#freeform-window) state, and the **maximizeSupported** parameter must be set to **true** when creating the subwindow. Alternatively, you can configure support through [setSupportedWindowModes()](../reference/apis-arkui/arkts-apis-window-Window.md#setsupportedwindowmodes).
+> - App subwindows support the **FULL_SCREEN** and **MAXIMIZE** modes only in the [freeform window](freeform-window-overview.md#freeform-window) state, and the **maximizeSupported** parameter must be set to **true** when creating the subwindow. Alternatively, you can configure support through setSupportedWindowModes().
 > 
 > - Key differences between **FULL_SCREEN** and **MAXIMIZE**:
 >
@@ -255,7 +255,7 @@ An app can configure supported window modes in multiple ways to meet the require
 
 - By calling WindowStage.[setSupportedWindowModes()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes15) with supportedWindowModes, or calling WindowStage.[setSupportedWindowModes()](../reference/apis-arkui/arkts-apis-window-WindowStage.md#setsupportedwindowmodes20) with **supportedWindowModes** and **grayOutMaximizeButton**, you can dynamically modify the window modes supported by the current main window at runtime.
 
-- By calling **Window**.[setSupportedWindowModes()](../reference/apis-arkui/arkts-apis-window-Window.md#setsupportedwindowmodes) with **supportedWindowModes**, you can dynamically modify the window modes supported by the current main window and subwindow at runtime.
+- By calling **Window**.setSupportedWindowModes() with **supportedWindowModes**, you can dynamically modify the window modes supported by the current main window and subwindow at runtime.
 
 The supported window modes are as follows:
 

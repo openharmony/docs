@@ -26,7 +26,7 @@ You can customize the window appearance based on UI design and interaction requi
 
 A shaped window is a window with a non-rectangular shape, and a mask is used to describe the shape of the shaped window. Only app subwindows and global floating windows can be set as shaped windows.
 
-You can set the mask of a shaped window through the [setWindowMask()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmask12) or [setWindowMaskWithAlpha()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmaskwithalpha) API to define the visible region of the window.
+You can set the mask of a shaped window through the [setWindowMask()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmask12) or setWindowMaskWithAlpha() API to define the visible region of the window.
 
 After setting the mask, the window will be displayed according to the mask shape, the [window shadow](#window-shadow) will be disabled, and the corner radius of the window will become **0**.
 
@@ -36,7 +36,7 @@ After setting the mask, the window will be displayed according to the mask shape
 
   ![setWindowMask](figures/setWindowMask.png)
 
-- Starting from API version 26.0.0, the [setWindowMaskWithAlpha()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmaskwithalpha) API is supported for setting the mask of a shaped window.
+- Starting from API version 26.0.0, the setWindowMaskWithAlpha() API is supported for setting the mask of a shaped window.
 
 The mask supports array input with values in the range [0, 255], where the array length equals the window width multiplied by the window height. An integer value of **0** indicates that the corresponding pixel is transparent and non-interactive, **255** indicates that the corresponding pixel is opaque and interactive, and values between **0** and **255** indicate that the corresponding pixel is partially transparent and interactive. This API offers better performance than [setWindowMask()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmask12) and is recommended.
 
@@ -46,7 +46,7 @@ The following takes setting a shaped window for a subwindow as an example.
 
 1. Tap **Create Sub Window** to create a subwindow.
 
-2. After the subwindow is created, tap **setWindowMask for Sub Window** to set the subwindow mask using the [setWindowMaskWithAlpha()](../reference/apis-arkui/arkts-apis-window-Window.md#setwindowmaskwithalpha) API. The subwindow undergoes the following changes:
+2. After the subwindow is created, tap **setWindowMask for Sub Window** to set the subwindow mask using the setWindowMaskWithAlpha() API. The subwindow undergoes the following changes:
 
      - The subwindow becomes a triangle.
 
