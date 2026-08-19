@@ -75,7 +75,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_Create(OH_AVSession_AV
 
 **描述**
 
-调用本函数创建OH_AVSession_AVMediaDescriptionBuilder实例。当该实例不再被使用时，调用[OH_AVSession_AVMediaDescriptionBuilder_Destroy](#oh_avsession_avmediadescriptionbuilder_destroy)来释放构建器对象。
+创建OH_AVSession_AVMediaDescriptionBuilder实例。当该实例不再被使用时，调用[OH_AVSession_AVMediaDescriptionBuilder_Destroy](#oh_avsession_avmediadescriptionbuilder_destroy)来释放构建器对象。
 
 **起始版本：** 23
 

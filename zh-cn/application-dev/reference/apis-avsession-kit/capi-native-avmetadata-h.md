@@ -420,7 +420,7 @@ AVMetadata_Result OH_AVMetadataBuilder_SetSkipIntervals(OH_AVMetadataBuilder* bu
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVMetadataBuilder](capi-ohavsession-oh-avmetadatabuilderstruct.md)* builder | 指向元数据构造器的实例。 |
-| [AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals) intervals | 跳转的时间间隔，具体取值请参考[AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals)。 |
+| [AVMetadata_SkipIntervals](capi-native-avsession-base-h.md#avmetadata_skipintervals) intervals | 跳转的时间间隔。 |
 
 **返回：**
 
