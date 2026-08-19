@@ -773,7 +773,7 @@ AVQueueItem_Result OH_AVSession_AVMediaDescriptionBuilder_GenerateAVMediaDescrip
 
 **描述**
 
-调用本函数创建avMediaDescription对象。当该对象不再使用时，调用[OH_AVSession_AVMediaDescription_Destroy](#oh_avsession_avmediadescription_destroy)释放avMediaDescription对象。
+创建avMediaDescription对象。当该对象不再使用时，调用[OH_AVSession_AVMediaDescription_Destroy](#oh_avsession_avmediadescription_destroy)释放avMediaDescription对象。
 
 **起始版本：** 23
 
