@@ -109,7 +109,7 @@ Unregisters the listener for [NavDestination](arkui-ts/ts-basic-components-navde
 | Name  | Type                                                 | Mandatory| Description                                                        |
 | -------- | ----------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | type     | string                                                | Yes  | Event type. The value is fixed at **'navDestinationUpdate'**, which indicates [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes.|
-| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Listener callback to unregister. If this parameter is not passed, all listener callbacks for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes are unreigstered.                |
+| callback | Callback\<observer.[NavDestinationInfo](js-apis-arkui-observer.md#navdestinationinfo)\> | No  | Listener callback to unregister. If this parameter is not passed, all listener callbacks for [NavDestination](arkui-ts/ts-basic-components-navdestination.md) component state changes are unregistered.                |
 
 **Example**
 
