@@ -22,10 +22,10 @@ When the main thread transfers sendable data (data that complies with the [Senda
 - Conversion from Context to SendableContext for the main thread to transfer sendable data to the child thread.
 - Conversion from SendableContext to Context for the child thread to use the sendable data.
 
-The Context here is different from that created by [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12). The differences are as follows:
+The Context here is different from that created by [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext). The differences are as follows:
 - Context involved in the conversion: ArkTS concurrent instances hold different application-side Context instances that correspond to the same underlying Context object. When the Context properties and methods in an instance are modified, the Context properties and methods in the related instances are modified accordingly. The eventHub attribute in the Context instance is special. The eventHub objects in different instances are independent of each other and cannot be used across ArkTS instances. If you want to use [EventHub](./js-apis-inner-application-eventHub.md) to transfer data across instances, call [setEventHubMultithreadingEnabled](#sendablecontextmanagerseteventhubmultithreadingenabled20) to enable the cross-thread data transfer feature.
 
-- Context created using [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext12): ArkTS concurrent instances hold different application-side Context objects that correspond to different underlying Context objects.
+- Context created using [createModuleContext](./js-apis-app-ability-application.md#applicationcreatemodulecontext): ArkTS concurrent instances hold different application-side Context objects that correspond to different underlying Context objects.
 
 ## Constraints
 

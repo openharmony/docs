@@ -45,4 +45,4 @@ The system application that is not in the trust list calls the API.
 
 **Solution**
 
-Add the system application to the [trust list](../../ads-service/oaid/oaid-service-sys.md).
+Add the system application to the [trust list].

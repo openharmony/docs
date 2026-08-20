@@ -13,6 +13,7 @@
     - [@ohos.app.ability.abilityLifecycleCallback (UIAbility Lifecycle Callback Listener)](js-apis-app-ability-abilityLifecycleCallback.md)
     - [@ohos.app.ability.AbilityStage (AbilityStage Component Manager)](js-apis-app-ability-abilityStage.md)
     - [@ohos.app.ability.ActionExtensionAbility (ExtensionAbility for Custom Actions)](js-apis-app-ability-actionExtensionAbility.md)
+    - [@ohos.app.ability.AgentUIExtensionAbility (UI-Enabled Agent Extension Component)](js-apis-agent-agentUIExtensionAbility.md)
     - [@ohos.app.ability.application (Application Utility Class)](js-apis-app-ability-application.md)
     - [@ohos.app.ability.ApplicationStateChangeCallback (Application Foreground/Background State Change Listener)](js-apis-app-ability-applicationStateChangeCallback.md)
     - [@ohos.app.ability.AppServiceExtensionAbility (ExtensionAbility for Application Background Services)](js-apis-app-ability-appServiceExtensionAbility.md)
@@ -50,6 +51,7 @@
     - [@ohos.app.appstartup.StartupListener (AppStartup Task Listener)](js-apis-app-appstartup-startupListener.md)
     - [@ohos.app.appstartup.startupManager (AppStartup Management)](js-apis-app-appstartup-startupManager.md)
     - [@ohos.app.appstartup.StartupTask (AppStartup Task)](js-apis-app-appstartup-startupTask.md)
+    - [@ohos.app.agent.AgentExtensionAbility](js-apis-app-agent-agentExtensionAbility.md)
     - [@ohos.app.ability.autoStartupManager (Auto-Startup Management)](js-apis-app-ability-autoStartupManager.md)
     <!--Del-->
     - [@ohos.app.ability.AbilityConstant (Ability-related Constants) (System API)](js-apis-app-ability-abilityConstant-sys.md)
@@ -302,6 +304,7 @@
     - [want.h](capi-want-h.md)
     - [ability_resource_info.h](capi-ability-resource-info-h.md)
     - [bundle_manager_common.h](capi-bundle-manager-common-h.md)
+    - [modular_object_extension_ability.h](capi-modular-object-extension-ability-h.md)
   - Structs<!--ability-struct-->
     - [AbilityBase_Element](capi-abilitybase-element.md)
     - [AbilityBase_Want](capi-abilitybase-want.md)
