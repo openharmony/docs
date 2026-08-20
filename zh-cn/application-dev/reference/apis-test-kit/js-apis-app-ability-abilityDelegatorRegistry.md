@@ -23,10 +23,11 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 ## AbilityLifecycleState
 
-Ability生命周期状态，可配合[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)的[getAbilityState](js-apis-inner-application-abilityDelegator.md#getabilitystate9)方法返回对应Ability的生命周期状态。
+Ability生命周期状态，可配合[AbilityDelegator](js-apis-inner-application-abilityDelegator.md)的[getAbilityState](js-apis-inner-application-abilityDelegator.md#getabilitystate)方法返回对应Ability的生命周期状态。
+
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
-**系统能力**：以下各项对应的系统能力均为SystemCapability.Ability.AbilityRuntime.Core
+**系统能力：** SystemCapability.Ability.AbilityRuntime.Core
 
 | 名称          | 值   | 说明                        |
 | ------------- | ---- | --------------------------- |
@@ -139,7 +140,7 @@ type AbilityDelegatorArgs = _AbilityDelegatorArgs
 
 type AbilityMonitor = _AbilityMonitor
 
-作为[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参，用于监听指定UIAbility的生命周期变化。
+作为[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor)的入参，用于监听指定UIAbility的生命周期变化。
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -167,7 +168,7 @@ type ShellCmdResult = _ShellCmdResult
 
 type AbilityStageMonitor = _AbilityStageMonitor
 
-提供监听指定[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象的能力。开发者可以将AbilityStageMonitor作为[abilityDelegator.waitAbilityStageMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#waitabilitystagemonitor9)的入参来注册监听。
+提供监听指定[AbilityStage](../apis-ability-kit/js-apis-app-ability-abilityStage.md)对象的能力。开发者可以将AbilityStageMonitor作为[abilityDelegator.waitAbilityStageMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#waitabilitystagemonitor)的入参来注册监听。
 
 **原子化服务API：** 从API version 14开始，该接口支持在原子化服务中使用。
 

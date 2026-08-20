@@ -13,6 +13,12 @@
 > - 应用的ArkTS脚本需要绑定一个Ability，在[module.json5](../../quick-start/module-configuration-file.md)的[skillProfiles标签](../../quick-start/module-configuration-file.md#skillprofiles标签)中配置对应的Ability。
 > - 脚本通过export default class导出，其入口函数的第一个参数固定为[ArkTSScriptInfo](#arktsscriptinfo)，用于接收系统传递的脚本上下文信息，开发者可在第一个参数后添加自定义参数。
 
+## 导入模块
+
+```ts
+import { scriptManager } from '@kit.AbilityKit';
+```
+
 **起始版本：** 26.0.0
 
 ## ExecuteResult

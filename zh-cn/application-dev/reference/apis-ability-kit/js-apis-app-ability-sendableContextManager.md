@@ -456,11 +456,11 @@ workerPort.onmessage = (e: MessageEvents) => {
 }
 
 workerPort.onmessageerror = (e: MessageEvents) => {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'onmessageerror');
+  hilog.error(0x0000, 'testTag', '%{public}s', 'onmessageerror');
 }
 
 workerPort.onerror = (e: ErrorEvent) => {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'onerror');
+  hilog.error(0x0000, 'testTag', '%{public}s', 'onerror');
 }
 ```
 
@@ -570,11 +570,11 @@ workerPort.onmessage = (e: MessageEvents) => {
 }
 
 workerPort.onmessageerror = (e: MessageEvents) => {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'onmessageerror');
+  hilog.error(0x0000, 'testTag', '%{public}s', 'onmessageerror');
 }
 
 workerPort.onerror = (e: ErrorEvent) => {
-  hilog.info(0x0000, 'testTag', '%{public}s', 'onerror');
+  hilog.error(0x0000, 'testTag', '%{public}s', 'onerror');
 }
 ```
 ## sendableContextManager.setEventHubMultithreadingEnabled<sup>20+<sup>
