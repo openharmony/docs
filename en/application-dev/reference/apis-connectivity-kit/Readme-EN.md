@@ -20,7 +20,7 @@
 
   - [@ohos.bluetooth.connection (Bluetooth Connection Module)](js-apis-bluetooth-connection.md)
 
-  - [@ohos.bluetooth.constant (Bluetooth Constant Module)](js-apis-bluetooth-constant.md)
+  - [@ohos.bluetooth.constant (Bluetooth constant Module)](js-apis-bluetooth-constant.md)
 
   - [@ohos.bluetooth.common (Bluetooth Common Module)](js-apis-bluetooth-common.md)
 
@@ -86,7 +86,7 @@
 
   - [@ohos.bluetooth.connection (Bluetooth Connection Module) (System API)](js-apis-bluetooth-connection-sys.md)
 
-  - [@ohos.bluetooth.constant (Bluetooth Constant Module) (System API)](js-apis-bluetooth-constant-sys.md)
+  - [@ohos.bluetooth.constant (Bluetooth constant Module) (System API)](js-apis-bluetooth-constant-sys.md)
 
   - [@ohos.bluetooth.hfp (Bluetooth HFP Module) (System API)](js-apis-bluetooth-hfp-sys.md)
 
