@@ -145,7 +145,7 @@ The current authentication mode cannot meet the requested security level.
 2. If the parameter value is within the valid range, the current device may not support the authentication trust level. In this case, you are advised to reduce the authentication level.
 3. Call the **getAvailableStatus** API to check whether the device supports the specified authentication trust level.
 4. If a service requires a high security level, you can use an authentication mode that supports a higher level (for example, using PIN instead of face authentication).
-5. For details about the level range supported by each authentication mode, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md#principles-for-classifying-biometric-authentication-trust-levels).
+5. For details about the level range supported by each authentication mode, see [Principles for Classifying Biometric Authentication Trust Levels](../../security/UserAuthenticationKit/user-authentication-overview.md).
 
 ## 12500007 Authentication Service Is Busy
 

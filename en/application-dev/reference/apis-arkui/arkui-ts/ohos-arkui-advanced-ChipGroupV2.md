@@ -612,7 +612,7 @@ struct Index {
 }
 ```
 
-![](figures/chipgroupv2_1.png)
+![](figures/chipgroupv2_1.PNG)
 
 ### Example 2: Setting the Rightmost Custom Component of ChipGroupV2
 
@@ -710,7 +710,7 @@ struct Index {
 }
 ```
 
-![](figures/chipgroupv2_2.png)
+![](figures/chipgroupv2_2.PNG)
 
 ### Example 3: Setting Symbol Icons
 
@@ -812,7 +812,7 @@ struct Index {
 }
 ```
 
-![](figures/chipgroupv2_3.png)
+![](figures/chipgroupv2_3.PNG)
 
 ### Example 4: Listening for Internal Attribute Changes of Object-Type Attributes in ChipGroupV2
 
@@ -890,4 +890,3 @@ struct Index {
 ```
 
 ![chipgroupv2-sample4](figures/chipgroupv2-make-observed.gif)
-<!--no_check-->
