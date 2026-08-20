@@ -564,10 +564,10 @@ Indicates the type of the current ExtensionAbility component. The supported valu
 |workScheduler|The ExtensionAbility of a deferred task.|
 |inputMethod|The ExtensionAbility of an input method.|
 |share|The [ShareExtensionAbility](../reference/apis-ability-kit/js-apis-app-ability-shareExtensionAbility.md) that provides the content sharing processing capability.|
-|service|The service component running in the background. A third-party configuration cannot install the app, and the privilege <!--Del-->allowAppUsePrivilegeExtension<!--DelEnd--> must be requested. For details, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The privilege request is not open to third-party applications.|
+|service|The service component running in the background. A third-party configuration cannot install the app, and the privilege must be requested<!--Del--> (allowAppUsePrivilegeExtension). For details, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md)<!--DelEnd-->. The privilege request is not open to third-party applications.|
 |accessibility|The ExtensionAbility of accessibility capabilities.|
 |fileAccess|The ExtensionAbility for public data access, which allows an application to provide files and folders for display by file management applications. The configuration does not take effect for third-party applications, and it is valid only in system applications.|
-|dataShare|The ExtensionAbility for data sharing. A third-party configuration cannot install the app, and the privilege <!--Del-->allowAppUsePrivilegeExtension<!--DelEnd--> must be requested. For details, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md). The privilege request is not open to third-party applications.|
+|dataShare|The ExtensionAbility for data sharing. A third-party configuration cannot install the app, and the privilege must be requested<!--Del--> (allowAppUsePrivilegeExtension). For details, see [Application Privilege Configuration](../../device-dev/subsystems/subsys-app-privilege-config-guide.md).<!--DelEnd-->. The privilege request is not open to third-party applications.|
 |staticSubscriber|The ExtensionAbility of a static broadcast. The configuration does not take effect for third-party applications, and it is valid only in system applications.|
 |fileShare|The ExtensionAbility for file sharing.<!--Del-->|
 |sysPicker/camera|The ExtensionAbility that launches the camera picker.<!--DelEnd-->|
