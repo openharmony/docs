@@ -49,6 +49,7 @@ publishReminder(reminderReq: ReminderRequest, callback: AsyncCallback\<number>):
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 201      | Permission denied. |
 | 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
@@ -106,6 +107,7 @@ publishReminder(reminderReq: ReminderRequest): Promise\<number>
 
 | 错误码ID   | 错误信息 |
 | --------- | ------- |
+| 201      | Permission denied. |
 | 401 | If the input parameter is not valid parameter. |
 | 1700001    | Notification is not enabled. |
 | 1700002    | The number of reminders exceeds the limit. |
