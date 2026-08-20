@@ -77,10 +77,10 @@
     - [CloudDisk_SyncFolder](capi-clouddisk-clouddisk-syncfolder.md)
     - [OH_Archive_StreamInfo](capi-archive-oh-archive-streaminfo.md)
     - [OH_Archive_Stream_Config](capi-archive-oh-archive-stream-config.md)
-    - [ArchiveWriteCtx](capi-archive-archivewritectx.md)
-    - [ArchiveReadCtx](capi-archive-archivereadctx.md)
-    - [ArchiveStreamWriteCtx](capi-archive-archivestreamwritectx.md)
-    - [ArchiveStreamReadCtx](capi-archive-archivestreamreadctx.md)
+    - [ArchiveWriteCtx*](capi-archive-archivewritectx.md)
+    - [ArchiveReadCtx*](capi-archive-archivereadctx.md)
+    - [ArchiveStreamWriteCtx*](capi-archive-archivestreamwritectx.md)
+    - [ArchiveStreamReadCtx*](capi-archive-archivestreamreadctx.md)
 - 错误码<!--core-file-arkts-errcode-->
   - [文件管理错误码](errorcode-filemanagement.md)
   <!--Del-->
