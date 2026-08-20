@@ -158,6 +158,12 @@
 如果分组模式为CBC、CTR、OFB、CFB，需要参考如下设置加解密参数IV。ECB不需要设置加解密参数IV。
 
   ```ts
+  function generateRandom(len: number) {
+    let rand = cryptoFramework.createRandom();
+    let generateRandSync = rand.generateRandomSync(len);
+    return generateRandSync;
+  }
+
   function genIvParamsSpec() {
     let ivBlob = generateRandom(8); // 3DES的 CBC、CFB、OFB、CTR的iv长度为8字节。
     let ivParamsSpec: cryptoFramework.IvParamsSpec = {

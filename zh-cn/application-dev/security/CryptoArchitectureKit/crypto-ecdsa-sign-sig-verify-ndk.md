@@ -25,71 +25,80 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 5. 调用[OH_CryptoSign_Destroy](../../reference/apis-crypto-architecture-kit/capi-crypto-signature-h.md#oh_cryptosign_destroy)等释放内存。
 
-```c++
+<!-- @[signatures_with_ecdsa_keys_c](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/CryptoArchitectureKit/SignatureVerification/SigningSignatureVerification/entry/src/main/cpp/types/project/ecdsa_signature.cpp) -->
+
+``` C++
 #include "CryptoArchitectureKit/crypto_common.h"
 #include "CryptoArchitectureKit/crypto_signature.h"
 #include "CryptoArchitectureKit/crypto_asym_key.h"
 
-static OH_Crypto_ErrCode doTestEcdsaSign() {
-   OH_CryptoAsymKeyGenerator *keyCtx = nullptr;
-   OH_CryptoKeyPair *keyPair = nullptr;
-   OH_CryptoSign *sign = nullptr;
-   Crypto_DataBlob signData = {.data = nullptr, .len = 0};
+static void CleanupEcdsaResources(OH_CryptoAsymKeyGenerator *keyCtx, OH_CryptoKeyPair *keyPair,
+    OH_CryptoSign *sign, Crypto_DataBlob *signData)
+{
+    if (sign != nullptr) {
+        OH_CryptoSign_Destroy(sign);
+    }
+    if (keyPair != nullptr) {
+        OH_CryptoKeyPair_Destroy(keyPair);
+    }
+    if (keyCtx != nullptr) {
+        OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
+    }
+    if (signData != nullptr && signData->data != nullptr) {
+        OH_Crypto_FreeDataBlob(signData);
+    }
+}
 
-   uint8_t plainText[] = {
-      0xe4, 0x2b, 0xcc, 0x08, 0x11, 0x79, 0x16, 0x1b, 0x35, 0x7f, 0xb3, 0xaf, 0x40, 0x3b, 0x3f, 0x7c
-   }; // 待签名数据，仅供参考。
-   Crypto_DataBlob msgBlob = {
-      .data = reinterpret_cast<uint8_t *>(plainText),
-      .len = sizeof(plainText)
-   };
+bool DoTestEcdsaSign()
+{
+    OH_CryptoAsymKeyGenerator *keyCtx = nullptr;
+    OH_CryptoKeyPair *keyPair = nullptr;
+    OH_CryptoSign *sign = nullptr;
+    Crypto_DataBlob signData = {.data = nullptr, .len = 0};
+    uint8_t plainText[] = {
+        0xe4, 0x2b, 0xcc, 0x08, 0x11, 0x79, 0x16, 0x1b, 0x35, 0x7f, 0xb3, 0xaf, 0x40, 0x3b, 0x3f, 0x7c
+    };
+    Crypto_DataBlob msgBlob = {.data = reinterpret_cast<uint8_t *>(plainText), .len = sizeof(plainText)};
 
-   OH_Crypto_ErrCode ret = OH_CryptoAsymKeyGenerator_Create((const char *)"ECC256", &keyCtx);
-   if (ret != CRYPTO_SUCCESS) {
-      return ret;
-   }
-   ret = OH_CryptoAsymKeyGenerator_Generate(keyCtx, &keyPair);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-      return ret;
-   }
+    OH_Crypto_ErrCode ret = OH_CryptoAsymKeyGenerator_Create((const char *)"ECC256", &keyCtx);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
+    ret = OH_CryptoAsymKeyGenerator_Generate(keyCtx, &keyPair);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
 
-   OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
-   ret = OH_CryptoSign_Create((const char *)"ECC256|SHA256", &sign);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      return ret;
-   }
+    OH_CryptoPrivKey *privKey = OH_CryptoKeyPair_GetPrivKey(keyPair);
+    ret = OH_CryptoSign_Create((const char *)"ECC256|SHA256", &sign);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
 
-   ret = OH_CryptoSign_Init(sign, privKey);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoSign_Destroy(sign);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-      return ret;
-   }
-   ret = OH_CryptoSign_Update(sign, &msgBlob);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoSign_Destroy(sign);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-      return ret;
-   }
-   ret = OH_CryptoSign_Final(sign, nullptr, &signData);
-   if (ret != CRYPTO_SUCCESS) {
-      OH_CryptoSign_Destroy(sign);
-      OH_CryptoKeyPair_Destroy(keyPair);
-      OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-      return ret;
-   }
+    ret = OH_CryptoSign_Init(sign, privKey);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
+    ret = OH_CryptoSign_Update(sign, &msgBlob);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
+    ret = OH_CryptoSign_Final(sign, nullptr, &signData);
+    if (ret != CRYPTO_SUCCESS) {
+        CleanupEcdsaResources(keyCtx, keyPair, sign, nullptr);
+        return false;
+    }
 
-   OH_CryptoSign_Destroy(sign);
-   OH_CryptoAsymKeyGenerator_Destroy(keyCtx);
-   OH_CryptoKeyPair_Destroy(keyPair);
-   return CRYPTO_SUCCESS;
+    CleanupEcdsaResources(keyCtx, keyPair, sign, &signData);
+    return true;
 }
 ```
+
 
 ## 验签开发步骤
 
