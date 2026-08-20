@@ -302,10 +302,10 @@ let getFormRectInfoCallback: formInfo.GetFormRectInfoCallback =
 | moduleName | string | 否 | 否  | 卡片所属模块的名称。 |
 | abilityName | string | 否 | 否  | 卡片所属的Ability名称。 |
 | formName | string | 否 | 否  | 卡片名称。 |
-| dimension | FormDimension | 否 | 否  | 卡片规格 |
-| detailId | string | 否 | 否  | 卡片信息id |
-| displayName | string | 否 | 否  | 卡片展示名称 |
-| description | string | 否 | 否  | 卡片描述 |
+| dimension | [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension) | 否 | 否  | 卡片规格。 |
+| detailId | string | 否 | 否  | 卡片信息id。 |
+| displayName | string | 否 | 否  | 卡片展示名称。 |
+| description | string | 否 | 否  | 卡片描述。 |
 
 ## TemplateFormDetailInfoCallback<sup>23+</sup>
 
