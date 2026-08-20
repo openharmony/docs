@@ -44,10 +44,6 @@ If the user selects **Allow**, the asynchronous callback returns a successful st
 
 The start API is a non-blocking API. While waiting for the user to operate the dialog box and for the system to return the asynchronous callback, the app must not block the current thread through loop waiting, synchronous lock waiting, or other means. The C API start API returning `AUDIOSTREAM_SUCCESS` only indicates that the start request has been submitted successfully, and cannot be used as the final authorization result.
 
-**System dialog box example:**
-
-<img src="figures/playback-capture-authorization.jpg" width="320" alt="Audio internal recording authorization dialog">
-
 ### Development Steps and Precautions for AudioCapturer (ArkTS API)
 
 The following ArkTS example contains code snippets. Based on your actual service requirements, you can write the captured PCM data to a file, feed it to an encoder, or pass it to a custom audio processing module.
