@@ -62,7 +62,7 @@ abstract makeNode(uiContext : UIContext): FrameNode | null
 
 aboutToAppear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载显示后触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载至主节点树时触发此回调。该回调为异步回调，实际执行时机晚于挂载动作。
 
 > **说明：**
 >
@@ -76,7 +76,7 @@ aboutToAppear?(): void
 
 aboutToDisappear?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)销毁时触发此回调。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)从主节点树卸载时触发此回调。该回调为同步回调。
 
 > **说明：**
 >
@@ -90,7 +90,7 @@ aboutToDisappear?(): void
 
 onAttach?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载至主节点树时触发此回调。与[aboutToAppear](#abouttoappear)不同，aboutToAppear在NodeContainer挂载显示后触发，onAttach在NodeContainer挂载至主节点树时触发，两者触发时机可能不同。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)挂载至主节点树时触发此回调。与[aboutToAppear](#abouttoappear)在同一时机触发（均为NodeContainer挂载至主节点树时），区别在于onAttach为同步回调，aboutToAppear为异步回调，因此onAttach会先于aboutToAppear执行。
 
 > **说明：**
 >
@@ -104,7 +104,7 @@ onAttach?(): void
 
 onDetach?(): void
 
-当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)从主节点树卸载时触发此回调。与[aboutToDisappear](#abouttodisappear)不同，aboutToDisappear在NodeContainer销毁时触发，onDetach在NodeContainer从主节点树卸载时触发，两者触发时机可能不同。
+当NodeController绑定的[NodeContainer](arkui-ts/ts-basic-components-nodecontainer.md)从主节点树卸载时触发此回调。与[aboutToDisappear](#abouttodisappear)在同一时机触发（均为NodeContainer从主节点树卸载时），两者均为同步回调，框架在卸载流程中先触发onDetach、再触发aboutToDisappear，因此onDetach会先于aboutToDisappear执行。
 
 > **说明：**
 >
@@ -228,11 +228,11 @@ rebuild(): void
 
 ## 示例
 
-### 示例1（添加节点布局、Touch、挂载和销毁时的生命周期回调）
+### 示例1（添加节点布局、Touch、挂载和卸载时的生命周期回调）
 
 该示例通过aboutToResize、onTouchEvent，实现了NodeContainer节点布局、收到Touch事件时的生命周期回调功能。
 
-并通过aboutToAppear、aboutToDisappear接口，实现了NodeContainer节点挂载、销毁时的生命周期回调功能。
+并通过aboutToAppear、aboutToDisappear接口，实现了NodeContainer节点挂载至主节点树、从主节点树卸载时的生命周期回调功能。
 
 该示例还通过NodeController挂载BuilderNode节点。
 
