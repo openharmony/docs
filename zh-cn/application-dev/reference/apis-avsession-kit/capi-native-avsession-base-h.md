@@ -58,7 +58,7 @@ enum AVSession_Type
 | -- | -- |
 | SESSION_TYPE_AUDIO = 0 | 音频会话类型（指媒体类音频，如音乐）。 |
 | SESSION_TYPE_VIDEO = 1 | 视频会话类型（指媒体类投屏视频）。 |
-| SESSION_TYPE_VOICE_CALL = 2 | 音频通话会话类型（指人机交互相关的音频，如语音助手）。 |
+| SESSION_TYPE_VOICE_CALL = 2 | 音频通话会话类型（指语音通话）。 |
 | SESSION_TYPE_VIDEO_CALL = 3 | 视频通话会话类型（指视频电话）。 |
 | SESSION_TYPE_PHOTO = 4 | 相片会话类型。 |
 
@@ -106,7 +106,7 @@ enum AVSession_LoopMode
 | -- | -- |
 | LOOP_MODE_SEQUENCE = 0 | 按顺序播放。 |
 | LOOP_MODE_SINGLE = 1 | 单曲循环。 |
-| LOOP_MODE_LIST = 2 | 按表单循环。 |
+| LOOP_MODE_LIST = 2 | 列表循环。 |
 | LOOP_MODE_SHUFFLE = 3 | 随机播放。 |
 | LOOP_MODE_CUSTOM = 4 | 自定义播放。 |
 
@@ -181,7 +181,7 @@ enum AVSession_ConnectionState
 | -- | -- |
 | STATE_CONNECTING = 0 | 表示设备正处于连接状态。 |
 | STATE_CONNECTED = 1 | 表示设备处于已连接状态。 |
-| STATE_DISCONNECTED = 6 | 表示设备已处于断开默认连接的状态。 |
+| STATE_DISCONNECTED = 6 | 表示设备已断开连接。 |
 
 ### AVSession_AVCastCategory
 
@@ -214,10 +214,10 @@ enum AVSession_DeviceType
 
 | 枚举项 | 描述 |
 | -- | -- |
-| DEVICE_TYPE_LOCAL = 0 | 一种设备类型，标识音频路由为设备自身的内置扬声器或音频插孔。 |
-| DEVICE_TYPE_TV = 2 | 一种设备类型，标识音频路由为电视端。 |
-| DEVICE_TYPE_SMART_SPEAKER = 3 | 一种设备类型，标识音频路由为智能音箱端。 |
-| DEVICE_TYPE_BLUETOOTH = 10 | 一种设备类型，标识音频路由为蓝牙设备端。 |
+| DEVICE_TYPE_LOCAL = 0 | 标识音频路由为设备自身的内置扬声器或音频插孔。 |
+| DEVICE_TYPE_TV = 2 | 标识音频路由为电视端。 |
+| DEVICE_TYPE_SMART_SPEAKER = 3 | 标识音频路由为智能音箱端。 |
+| DEVICE_TYPE_BLUETOOTH = 10 | 标识音频路由为蓝牙设备端。 |
 
 ### AVSession_ProtocolType
 
@@ -234,8 +234,8 @@ enum AVSession_ProtocolType
 | 枚举项 | 描述 |
 | -- | -- |
 | TYPE_LOCAL = 0 | 默认为本地设备。包括设备本身的内置扬声器或音频插孔，A2DP（Advanced Audio Distribution Profile）设备。 |
-| TYPE_CAST_PLUS_STREAM = 2 | Cast+的Stream模式。表示媒体正在其他设备上展示，应用需要一个AVCastController来控制远程播放。 |
-| TYPE_DLNA = 4 | DLNA（DIGITAL LIVING NETWORK ALLIANCE）协议。表示设备支持DLNA协议，应用需要一个AVCastController来控制远程播放。 |
+| TYPE_CAST_PLUS_STREAM = 2 | Cast+的Stream模式。表示媒体正在其他设备上展示，应用需要一个[OH_AVCastController](capi-ohavsession-oh-avcastcontroller.md)来控制远程播放。 |
+| TYPE_DLNA = 4 | DLNA（DIGITAL LIVING NETWORK ALLIANCE）协议。表示设备支持DLNA协议，应用需要一个[OH_AVCastController](capi-ohavsession-oh-avcastcontroller.md)来控制远程播放。 |
 | TYPE_CAST_PLUS_AUDIO = 8 | 表示该设备支持高清晰度的音频投播，以获得更好的音质。 |
 
 ### AVSession_AVCastControlCommandType

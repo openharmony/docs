@@ -34,9 +34,9 @@
 | 名称 | 描述 |
 | -- | -- |
 | [AVSession_ErrCode OH_AVSession_GetPlaybackState(OH_AVSession_AVPlaybackState* playbackState, AVSession_PlaybackState* state)](#oh_avsession_getplaybackstate) | 获取播放的状态。 |
-| [AVSession_ErrCode OH_AVSession_GetPlaybackPosition(OH_AVSession_AVPlaybackState* playbackState, AVSession_PlaybackPosition* position)](#oh_avsession_getplaybackposition) | 获取播放状态的位置。 |
-| [AVSession_ErrCode OH_AVSession_GetPlaybackSpeed(OH_AVSession_AVPlaybackState* playbackState, int32_t* speed)](#oh_avsession_getplaybackspeed) | 获取播放状态的倍速。 |
-| [AVSession_ErrCode OH_AVSession_GetPlaybackVolume(OH_AVSession_AVPlaybackState* playbackState, int32_t* volume)](#oh_avsession_getplaybackvolume) | 获取播放状态的音量值。 |
+| [AVSession_ErrCode OH_AVSession_GetPlaybackPosition(OH_AVSession_AVPlaybackState* playbackState, AVSession_PlaybackPosition* position)](#oh_avsession_getplaybackposition) | 获取播放位置。 |
+| [AVSession_ErrCode OH_AVSession_GetPlaybackSpeed(OH_AVSession_AVPlaybackState* playbackState, int32_t* speed)](#oh_avsession_getplaybackspeed) | 获取播放倍速。 |
+| [AVSession_ErrCode OH_AVSession_GetPlaybackVolume(OH_AVSession_AVPlaybackState* playbackState, int32_t* volume)](#oh_avsession_getplaybackvolume) | 获取播放音量值。 |
 
 ## 函数说明
 
@@ -57,7 +57,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackState(OH_AVSession_AVPlaybackState* pl
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession_AVPlaybackState](capi-ohavsession-oh-avsession-avplaybackstate.md)* playbackState | 表示播放状态实例对象。 |
-| [AVSession_PlaybackState](capi-native-avsession-base-h.md#avsession_playbackstate)* state | 指针变量将返回播放状态值。 |
+| [AVSession_PlaybackState](capi-native-avsession-base-h.md#avsession_playbackstate)* state | 用于返回播放状态值的指针变量。 |
 
 **返回：**
 
@@ -73,7 +73,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackPosition(OH_AVSession_AVPlaybackState*
 
 **描述**
 
-获取播放状态的位置。
+获取播放位置。
 
 **起始版本：** 23
 
@@ -82,7 +82,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackPosition(OH_AVSession_AVPlaybackState*
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession_AVPlaybackState](capi-ohavsession-oh-avsession-avplaybackstate.md)* playbackState | 表示播放状态实例对象。 |
-| [AVSession_PlaybackPosition](capi-ohavsession-avsession-playbackposition.md)* position | 指针变量将返回播放位置值。 |
+| [AVSession_PlaybackPosition](capi-ohavsession-avsession-playbackposition.md)* position | 用于返回播放位置值的指针变量。 |
 
 **返回：**
 
@@ -98,7 +98,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackSpeed(OH_AVSession_AVPlaybackState* pl
 
 **描述**
 
-获取播放状态的倍速。
+获取播放倍速。
 
 **起始版本：** 23
 
@@ -107,7 +107,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackSpeed(OH_AVSession_AVPlaybackState* pl
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession_AVPlaybackState](capi-ohavsession-oh-avsession-avplaybackstate.md)* playbackState | 表示播放状态实例对象。 |
-| int32_t* speed | 指针变量将返回播放倍速值。 |
+| int32_t* speed | 用于返回播放倍速值的指针变量。 |
 
 **返回：**
 
@@ -123,7 +123,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackVolume(OH_AVSession_AVPlaybackState* p
 
 **描述**
 
-获取播放状态的音量值。
+获取播放音量值。
 
 **起始版本：** 23
 
@@ -132,7 +132,7 @@ AVSession_ErrCode OH_AVSession_GetPlaybackVolume(OH_AVSession_AVPlaybackState* p
 | 参数项 | 描述 |
 | -- | -- |
 | [OH_AVSession_AVPlaybackState](capi-ohavsession-oh-avsession-avplaybackstate.md)* playbackState | 表示播放状态实例对象。 |
-| int32_t* volume | 指针变量将返回播放音量值。 |
+| int32_t* volume | 用于返回播放音量值的指针变量。 |
 
 **返回：**
 
