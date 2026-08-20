@@ -77,7 +77,7 @@ try {
   // Obtain Bluetooth information.
   let result: bluetoothManager.BluetoothInfo = bluetoothManager.getBluetoothInfo(wantTemp);
   console.info(`Succeeded in getting bluetooth info: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get bluetooth info. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -133,12 +133,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // Define the array of Bluetooth device MAC addresses. (Replace it as required.)
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // Add Bluetooth devices to the trustlist.
-  bluetoothManager.addAllowedBluetoothDevices(wantTemp,deviceIds);
+  bluetoothManager.addAllowedBluetoothDevices(wantTemp, deviceIds);
   console.info(`Succeeded in adding allowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to add allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -188,21 +188,23 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // Define the array of Bluetooth device MAC addresses. (Replace it as required.)
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // Removes Bluetooth devices from the trustlist.
-  bluetoothManager.removeAllowedBluetoothDevices(wantTemp,deviceIds);
+  bluetoothManager.removeAllowedBluetoothDevices(wantTemp, deviceIds);
   console.info(`Succeeded in removing allowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to remove allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
 ## bluetoothManager.getAllowedBluetoothDevices
 
-getAllowedBluetoothDevices(admin: Want | null): Array\<string>
+getAllowedBluetoothDevices(admin: Want): Array\<string>
 
 Obtains allowed Bluetooth devices.
+
+This API is used to query the policy set by the corresponding enterprise device administrator application based on the passed **Want**. To query the policy that actually takes effect, use the [bluetoothManager.getAllowedBluetoothDevices](#bluetoothmanagergetallowedbluetoothdevices-1) API.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -215,7 +217,7 @@ Obtains allowed Bluetooth devices.
 
 | Name| Type                                                   | Mandatory| Description          |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policies set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policies that actually take effect.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
 
 **Return value**
 
@@ -250,11 +252,64 @@ try {
   // Obtain the Bluetooth device trustlist.
   let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(wantTemp);
   console.info(`Succeeded in getting allowed bluetooth devices. Result: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
+
+## bluetoothManager.getAllowedBluetoothDevices
+
+getAllowedBluetoothDevices(admin: Want | null): Array\<string>
+
+Obtains allowed Bluetooth devices.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description          |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>If the device has multiple MDM applications, the policy set by the corresponding enterprise device administrator application is queried when a **Want** object is passed. If null is passed, the policy that actually takes effect is queried.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Array\<string> | MAC addresses of allowed Bluetooth devices obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
+
+**Example**
+
+```ts
+import { bluetoothManager } from '@kit.MDMKit';
+
+// Create an EnterpriseAdminExtensionAbility component.
+try {
+  // Obtain the Bluetooth device trustlist.
+  // Set the parameters as required.
+  let result: Array<string> = bluetoothManager.getAllowedBluetoothDevices(null);
+  console.info(`Succeeded in getting allowed bluetooth devices. Result: ${JSON.stringify(result)}`);
+} catch(err) {
+  console.error(`Failed to get allowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## bluetoothManager.addDisallowedBluetoothDevices<sup>20+</sup>
 
 addDisallowedBluetoothDevices(admin: Want, deviceIds: Array&lt;string&gt;): void
@@ -305,12 +360,12 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // Define the array of Bluetooth device MAC addresses. (Replace it as required.)
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // Add Bluetooth devices to the blocklist.
   bluetoothManager.addDisallowedBluetoothDevices(wantTemp,deviceIds);
   console.info(`Succeeded in adding disallowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to add disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -359,21 +414,23 @@ let wantTemp: Want = {
   abilityName: 'EnterpriseAdminAbility'
 };
 // Define the array of Bluetooth device MAC addresses. (Replace it as required.)
-let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E","AA:BB:CC:DD:EE:FF"];
+let deviceIds: Array<string> = ["00:1A:2B:3C:4D:5E", "AA:BB:CC:DD:EE:FF"];
 try {
   // Remove Bluetooth devices from the blocklist.
   bluetoothManager.removeDisallowedBluetoothDevices(wantTemp,deviceIds);
   console.info(`Succeeded in removing disallowed bluetooth devices.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to remove disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
 ## bluetoothManager.getDisallowedBluetoothDevices<sup>20+</sup>
 
-getDisallowedBluetoothDevices(admin: Want | null): Array&lt;string&gt;
+getDisallowedBluetoothDevices(admin: Want): Array&lt;string&gt;
 
 Obtains disallowed Bluetooth devices.
+
+This API is used to query the policy set by the corresponding enterprise device administrator application based on the passed **Want**. To query the policy that actually takes effect, use the [bluetoothManager.getDisallowedBluetoothDevices](#bluetoothmanagergetdisallowedbluetoothdevices) API.
 
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
@@ -385,7 +442,7 @@ Obtains disallowed Bluetooth devices.
 
 | Name| Type                                                   | Mandatory| Description          |
 | ------ | ------------------------------------------------------- | ---- | -------------- |
-| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>When multiple MDM applications exist on the device, passing a **Want** parameter queries the policies set by the corresponding enterprise device administrator application for versions earlier than API version 26.0.0. Since API version 26.0.0, passing null is additionally supported to query the policies that actually take effect.|
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.|
 
 **Return value**
 
@@ -419,11 +476,63 @@ try {
   // Obtain Bluetooth device blocklist.
   let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(wantTemp);
   console.info(`Succeeded in getting disallowed bluetooth devices. Result: ${JSON.stringify(result)}`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to get disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
+
+## bluetoothManager.getDisallowedBluetoothDevices
+
+getDisallowedBluetoothDevices(admin: Want | null): Array&lt;string&gt;
+
+Obtains disallowed Bluetooth devices.
+
+**Since:** 26.0.0
+
+**Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
+
+**System capability**: SystemCapability.Customization.EnterpriseDeviceManager
+
+**Model restriction**: This API can be used only in the stage model.
+
+**Parameters**
+
+| Name| Type                                                   | Mandatory| Description          |
+| ------ | ------------------------------------------------------- | ---- | -------------- |
+| admin     | [Want](../apis-ability-kit/js-apis-app-ability-want.md) \| null | Yes  | EnterpriseAdminExtensionAbility. **Want** must contain the ability name of the EnterpriseAdminExtensionAbility and the bundle name of the application.<br>If the device has multiple MDM applications, the policy set by the corresponding enterprise device administrator application is queried when a **Want** object is passed. If null is passed, the policy that actually takes effect is queried.|
+
+**Return value**
+
+| Type          | Description                               |
+| -------------- | ----------------------------------- |
+| Array&lt;string&gt; | MAC addresses of disallowed Bluetooth devices obtained.|
+
+**Error codes**
+
+For details about the error codes, see [Enterprise Device Management Error Codes](errorcode-enterpriseDeviceManager.md) and [Universal Error Codes](../errorcode-universal.md).
+
+| ID| Error Message                                                    |
+| -------- | ------------------------------------------------------------ |
+| 9200001  | The application is not an administrator application of the device. |
+| 9200002  | The administrator application does not have permission to manage the device. |
+| 201      | Permission verification failed. The application does not have the permission required to call the API. |
+
+**Example**
+
+```ts
+import { bluetoothManager } from '@kit.MDMKit';
+
+// Create an EnterpriseAdminExtensionAbility component.
+try {
+  // Obtain Bluetooth device blocklist.
+  // Set the parameters as required.
+  let result: Array<string> = bluetoothManager.getDisallowedBluetoothDevices(null);
+  console.info(`Succeeded in getting disallowed bluetooth devices. Result: ${JSON.stringify(result)}`);
+} catch(err) {
+  console.error(`Failed to get disallowed bluetooth devices. Code: ${err.code}, message: ${err.message}`);
+}
+```
 ## bluetoothManager.turnOnBluetooth<sup>20+</sup>
 
 turnOnBluetooth(admin: Want): void
@@ -471,7 +580,7 @@ try {
   // Enable Bluetooth.
   bluetoothManager.turnOnBluetooth(wantTemp);
   console.info(`Succeeded in turning on bluetooth.`);
-} catch(err) {
+} catch (err) {
   console.error(`Failed to turn on bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -523,7 +632,7 @@ try {
   // Disable Bluetooth.
   bluetoothManager.turnOffBluetooth(wantTemp);
   console.info('Succeeded in turning off bluetooth.');
-} catch(err) {
+} catch (err) {
   console.error(`Failed to turn off bluetooth. Code: ${err.code}, message: ${err.message}`);
 }
 ```
@@ -648,6 +757,8 @@ getDisallowedBluetoothProtocols(admin: Want, accountId: number): Array&lt;Protoc
 
 Obtains the disallowed Bluetooth protocols of a specified user.
 
+This API is used to query the policy set by the corresponding enterprise device administrator application based on the passed **Want**. To query the policy that actually takes effect, use the [bluetoothManager.getDisallowedBluetoothProtocols](#bluetoothmanagergetdisallowedbluetoothprotocols) API.
+
 **Required permissions**: ohos.permission.ENTERPRISE_MANAGE_BLUETOOTH
 
 **System capability**: SystemCapability.Customization.EnterpriseDeviceManager
@@ -766,7 +877,8 @@ let protocols: Array<bluetoothManager.Protocol> = [
 
 try {
   // Add Bluetooth protocols to the blocklist and specify the transfer policy as disabling sending and receiving.
-  bluetoothManager.addDisallowedBluetoothProtocols(wantTemp, accountId, protocols, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  bluetoothManager.addDisallowedBluetoothProtocols(wantTemp, accountId, protocols,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info('Succeeded in adding disallowed bluetooth protocols.');
 } catch (err) {
   console.error(`Failed to add disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -838,7 +950,8 @@ let protocols: Array<bluetoothManager.Protocol> = [
 
 try {
   // Remove Bluetooth protocols from the blocklist and specify the transfer policy as disabling sending and receiving.
-  bluetoothManager.removeDisallowedBluetoothProtocols(wantTemp, accountId, protocols, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  bluetoothManager.removeDisallowedBluetoothProtocols(wantTemp, accountId,protocols,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info('Succeeded in removing disallowed bluetooth protocols.');
 } catch (err) {
   console.error(`Failed to remove disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -906,7 +1019,8 @@ let accountId: number = 100;
 
 try {
   // Obtain the list of disallowed Bluetooth protocols for a specified user under a specified transfer policy.
-  let result: Array<bluetoothManager.Protocol> = bluetoothManager.getDisallowedBluetoothProtocols(wantTemp, accountId, bluetoothManager.TransferPolicy.RECEIVE_SEND);
+  let result: Array<bluetoothManager.Protocol> = bluetoothManager.getDisallowedBluetoothProtocols(wantTemp, accountId,
+    bluetoothManager.TransferPolicy.RECEIVE_SEND);
   console.info(`Succeeded in getting disallowed bluetooth protocols, result : ${JSON.stringify(result)}`);
 } catch (err) {
   console.error(`Failed to get disallowed bluetooth protocols. Code is ${err.code}, message is ${err.message}`);
@@ -937,9 +1051,9 @@ Represents the Bluetooth protocol type.
 
 | Name               | Value | Description   |
 | ----------------- | ---- | ----- |
-| GATT | 0 | [Generic Attribute Profile (GATT)](../../connectivity/terminology.md#gatt)|
-| SPP | 1 | [Serial Port Profile (SPP)](../../connectivity/terminology.md#spp)|
-| OPP | 2 | [Object Push Profile (OPP)](../../connectivity/terminology.md#opp)|
+| GATT | 0 | [GATT](../../connectivity/bluetooth/terminology.md#gatt)|
+| SPP | 1 | [SPP](../../connectivity/bluetooth/terminology.md#spp)|
+| OPP | 2 | [OPP](../../connectivity/bluetooth/terminology.md#opp)|
 
 ## TransferPolicy
 
