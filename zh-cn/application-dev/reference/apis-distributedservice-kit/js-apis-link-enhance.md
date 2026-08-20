@@ -299,7 +299,7 @@ on(type: 'connectionAccepted', callback: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -355,7 +355,7 @@ off(type: 'connectionAccepted', callback?: Callback&lt;Connection&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -412,7 +412,7 @@ on(type: 'serverStopped', callback: Callback&lt;number&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
@@ -469,7 +469,7 @@ off(type: 'serverStopped', callback?: Callback&lt;number&gt;): void
 | 错误码ID | 错误信息 |
 | ------- | -------------------------------- |
 | 201      | Permission denied.|
-| 32390206 | Invalid parameter.  |
+| 32390206 | Parameter invalid.  |
 
 **示例：**
 
