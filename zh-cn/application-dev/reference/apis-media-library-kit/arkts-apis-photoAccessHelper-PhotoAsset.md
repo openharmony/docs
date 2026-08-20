@@ -381,7 +381,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     };
     let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
     let asset: photoAccessHelper.PhotoAsset = await fetchResult.getFirstObject();
-    let fd = await asset.open('rw');
+    let fd: number = await asset.getReadOnlyFd();
     console.info('file fd', fd);
     await asset.close(fd);
     console.info('asset close succeed.');
