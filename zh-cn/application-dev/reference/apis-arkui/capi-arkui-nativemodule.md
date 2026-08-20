@@ -68,3 +68,4 @@
 | [slider.h](capi-slider-h.md) | 为NativeNode API提供Slider节点类型定义。 |
 | [styled_string.h](capi-styled-string-h.md) | 提供ArkUI在Native侧的属性字符串能力。 |
 | [xcomponent.h](capi-xcomponent-h.md) | XComponent组件的枚举类型定义。 |
+| [error_code.h](capi-arkui-nativemodule-arkui-error-code-h.md) |  定义ArkUI Native API的错误码枚举值。 |
