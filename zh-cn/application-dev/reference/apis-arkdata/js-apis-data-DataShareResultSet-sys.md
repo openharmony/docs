@@ -420,9 +420,9 @@ getColumnIndex(columnName: string): number
 **示例：**
 
 ```ts
-let ColumnName = "name";
+let columnName = "name";
 if (resultSet != undefined) {
-  let getColumnIndex = (resultSet as DataShareResultSet).getColumnIndex(ColumnName);
+  let getColumnIndex = (resultSet as DataShareResultSet).getColumnIndex(columnName);
   console.info('resultSet.getColumnIndex: ' + getColumnIndex);
 }
 ```

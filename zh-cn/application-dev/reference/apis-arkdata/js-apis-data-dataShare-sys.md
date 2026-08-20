@@ -20,7 +20,7 @@
 >
 > - 本模块接口仅可在Stage模型下使用。
 >
-> - 本模块订阅RDB（RelationalStore，关系型数据库）变更的接口on('rdbDataChange')的回调支持不大于10M数据的传输。
+> - 本模块订阅RDB（RelationalStore，关系型数据库）变更的接口on('rdbDataChange')的回调支持不大于10MB数据的传输。
 
 
 ## 导入模块
@@ -105,7 +105,7 @@ createDataShareHelper(context: Context, uri: string, options: DataShareHelperOpt
 | -------- | -------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | context  | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context)        | 是   | 应用的上下文环境。                                           |
 | uri      | string                                                   | 是   | 要连接的服务端应用的路径。                               |
-| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待拉起时间。<br/>如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。<br/>如果uri以datashareproxy为开头，则必须设置options的isProxy参数，否则DataShareHelper创建失败返回错误。|
+| options | [DataShareHelperOptions](#datasharehelperoptions10)| 是   | 指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待启动时间。<br>如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待启动时间为2秒。<br>如果uri以datashareproxy为开头，则必须设置options的isProxy参数，否则DataShareHelper创建失败返回错误。|
 | callback | AsyncCallback&lt;[DataShareHelper](#datasharehelper)&gt; | 是   | 回调函数。当创建DataShareHelper实例成功，err为undefined，data为获取到的DataShareHelper实例；否则为错误对象。 |
 
 **错误码：**
@@ -164,7 +164,7 @@ createDataShareHelper(context: Context, uri: string, options?: DataShareHelperOp
 | ------- | ------------------------------------------------- | ---- | ------------------------------ |
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。             |
 | uri     | string                                            | 是   | 要连接的服务端应用的路径。 |
-| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待拉起时间。<br/>如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待拉起时间为2秒。<br/>如果uri以datashareproxy为开头，则必须设置options的isProxy参数，否则DataShareHelper创建失败返回错误。|
+| options<sup>10+</sup> | [DataShareHelperOptions](#datasharehelperoptions10) | 否 | 可选配置。指定[DataShareHelper](#datasharehelper)是否在代理模式下，指定非静默访问时的等待启动时间。<br>如果不设置，则表示[DataShareHelper](#datasharehelper)不在代理模式下，且非静默访问时的等待启动时间为2秒。<br>如果uri以datashareproxy为开头，则必须设置options的isProxy参数，否则DataShareHelper创建失败返回错误。|
 
 **返回值：**
 
@@ -227,7 +227,7 @@ enableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                               |
 | ------- | ------------------------------------------------------- | ---- |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                        |
-| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的所有uri开关状态，开启数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅开启该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
+| uri     | string                                                  | 否   | 要开启的数据提供方的数据路径。<br>1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的所有uri开关状态，开启数据提供方静默访问。<br>2、精准开关状态：uri的入参为固定的值，仅开启该uri对应的静默访问。<br>在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br>uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 
 **返回值：**
 
@@ -282,7 +282,7 @@ disableSilentProxy(context: Context, uri?: string): Promise&lt;void&gt;
 | 参数名  | 类型                                                    | 必填 | 说明                                                                                                                                                                                                                                                                             |
 | ------- | ------------------------------------------------------- | ---- |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | context | [Context](../apis-ability-kit/js-apis-inner-application-context.md#context) | 是   | 应用的上下文环境。                                                                                                                                                                                                                                                                      |
-| uri     | string                                                  | 否   | 要关闭的数据提供方的数据路径。<br />1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的uri开关状态，关闭数据提供方静默访问。<br />2、精准开关状态：uri的入参为固定的值，仅关闭该uri对应的静默访问。<br />在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br />uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
+| uri     | string                                                  | 否   | 要关闭的数据提供方的数据路径。<br>1、全局开关状态：入参不带uri、uri为undefined、uri为null，会清空掉之前设置的uri开关状态，关闭数据提供方静默访问。<br>2、精准开关状态：uri的入参为固定的值，仅关闭该uri对应的静默访问。<br>在调用datashareHelper相关接口时，优先精准匹配uri的开关状态。如果匹配不到，继续匹配全局的开关状态。<br>uri格式：datashare:///{bundleName}/{moduleName}/{storeName}/{tableName} |
 
 **返回值：**
 
@@ -322,14 +322,14 @@ export default class EntryAbility extends UIAbility {
 
 ## DataShareHelperOptions<sup>10+</sup>
 
-指定[DataShareHelper](#datasharehelper)的可选参数，包含是否在代理模式下，以及非静默访问的拉起等待时间。
+指定[DataShareHelper](#datasharehelper)的可选参数，包含是否在代理模式下，以及非静默访问的启动等待时间。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
-| isProxy | boolean | 否 | 是 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会拉起数据提供者创建数据库。 |
-| waitTime<sup>18+</sup> | number | 否 | 是 | 拉起数据提供者进程的等待时间（单位：秒），默认值为2秒。取值需大于0。 |
+| isProxy | boolean | 否 | 是 | 默认为false，如果为true，则要创建的[DataShareHelper](#datasharehelper)处于代理模式，所有操作都不会打开数据提供者APP，除非数据库不存在，当数据库不存在时，[createDataShareHelper](#datasharecreatedatasharehelper10)会启动数据提供者创建数据库。 |
+| waitTime<sup>18+</sup> | number | 否 | 是 | 启动数据提供者进程的等待时间（单位：秒），默认值为2秒。取值需大于0。 |
 
 ## TemplateId<sup>10+</sup>
 
@@ -356,7 +356,7 @@ export default class EntryAbility extends UIAbility {
 
 ## RdbDataChangeNode<sup>10+</sup>
 
-订阅/取消订阅RDB数据变更的结果，回调支持传输不大于10M的数据。
+订阅/取消订阅RDB数据变更的结果，回调支持传输不大于10MB的数据。
 
 **系统能力：** SystemCapability.DistributedDataManager.DataShare.Consumer
 
@@ -386,7 +386,7 @@ export default class EntryAbility extends UIAbility {
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | predicates | Record<string, string> | 否 | 否 | 指定模板的谓词。当调用[on](#onrdbdatachange10)的回调时，谓词用于生成数据。仅适用于rdb存储数据。 |
-| scheduler | string | 否 | 否 | 指定模板的调度程序sql。其中嵌入自定义函数处理，目前预置自定义函数remindTimer处理。remindTimer在指定场景触发一次订阅刷新。<br/>触发场景：<br/>1. 修改数据时且有订阅的情况下触发对应的调度程序sql语句。<br/>2. 添加对应库第一个订阅的情况下触发对应的调度程序sql语句。 |
+| scheduler | string | 否 | 否 | 指定模板的调度程序sql。其中嵌入自定义函数处理，目前预置自定义函数remindTimer处理。remindTimer在指定场景触发一次订阅刷新。<br>触发场景：<br>1. 修改数据时且有订阅的情况下触发对应的调度程序sql语句。<br>2. 添加对应库第一个订阅的情况下触发对应的调度程序sql语句。 |
 | update<sup>18+</sup> | string | 否 | 是 | 指定模板的update sql语句，未定义时默认值为空字符串。当调用[on](#onrdbdatachange10)的回调时，update参数用于更新数据。仅适用于rdb存储数据。 |
 
 ## OperationResult<sup>10+</sup>
@@ -1017,7 +1017,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, callback: AsyncCal
 **示例：**
 
 ```ts
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 
 let publishCallback: (err: BusinessError, result: Array<dataShare.OperationResult>) => void = (err: BusinessError, result: Array<dataShare.OperationResult>): void => {
   console.info("publishCallback " + JSON.stringify(result));
@@ -1047,7 +1047,7 @@ publish(data: Array&lt;PublishedItem&gt;, bundleName: string, version?: number):
 | -------- | ----------------------------- | ---- | ------------------------------ |
 | data      | Array&lt;[PublishedItem](#publisheditem10)&gt;    | 是   | 要发布的数据。|
 | bundleName | string                      | 是   | 表示要发布数据所属的APP，对发布的私有数据生效，仅该APP可以读取数据。  |
-| version | number                         | 否   | 要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。<br/> 如果不检查要发布的数据版本，则不填。 |
+| version | number                         | 否   | 要发布的数据版本，越大表示数据版本越新。如果发布的版本号小于数据库中的记录，则更新失败。<br> 如果不检查要发布的数据版本，则不填。 |
 
 **返回值：**
 
@@ -1178,7 +1178,7 @@ insert(uri: string, value: ValuesBucket, callback: AsyncCallback&lt;number&gt;):
 | -------- | --------------------------------------------------------- | ---- | ------------------------------------------------------------ |
 | uri      | string                                                    | 是   | 要插入的数据的路径。                                     |
 | value    | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket) | 是   | 要插入的数据的值。           |
-| callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当将单条数据插入数据库成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
+| callback | AsyncCallback&lt;number&gt;                               | 是   | 回调函数。当将单条数据插入数据库成功，err为undefined，data为获取到的插入数据记录的索引；否则为错误对象。<br>因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此callback也无法返回索引值。 |
 
 **错误码：**
 
@@ -1248,7 +1248,7 @@ insert(uri: string, value: ValuesBucket): Promise&lt;number&gt;
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象。返回插入数据记录的索引。<br />因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此Promise也无法返回索引值。 |
+| Promise&lt;number&gt; | Promise对象。返回插入数据记录的索引。<br>因部分数据库（如KVDB）的相应接口并不支持返回索引，故若服务端使用了不支持索引的数据库，则此Promise也无法返回索引值。 |
 
 **错误码：**
 
@@ -1310,8 +1310,8 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates, callbac
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要删除的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。静默场景下谓词内方法为空时，默认全表删除。非静默场景下规格由数据提供方制定。 |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当从数据库中删除一条或多条数据记录成功，err为undefined，data为获取到的已删除的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。静默场景下谓词内方法为空时，默认全表删除。非静默场景下规格由数据提供方制定。 |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当从数据库中删除一条或多条数据记录成功，err为undefined，data为获取到的已删除的数据记录数；否则为错误对象。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回删除的数据记录数。 |
 
 **错误码：**
 
@@ -1366,13 +1366,13 @@ delete(uri: string, predicates: dataSharePredicates.DataSharePredicates): Promis
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要删除的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。静默场景下谓词内方法为空时，默认全表删除。非静默场景下规格由数据提供方制定。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>delete接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB的删除目前仅支持inKeys谓词。静默场景下谓词内方法为空时，默认全表删除。非静默场景下规格由数据提供方制定。 |
 
 **返回值：**
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象。返回已删除的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回删除的数据记录数。 |
+| Promise&lt;number&gt; | Promise对象。返回已删除的数据记录数。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回删除的数据记录数。 |
 
 **错误码：**
 
@@ -1427,7 +1427,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要查询的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。静默场景下谓词内方法为空时，默认全表查询。非静默场景下规格由数据提供方制定。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。静默场景下谓词内方法为空时，默认全表查询。非静默场景下规格由数据提供方制定。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 要查询的列。如果此参数为空，则查询所有列。               |
 | callback   | AsyncCallback&lt;[DataShareResultSet](js-apis-data-DataShareResultSet-sys.md#datashareresultset)&gt; | 是   | 回调函数。当查询数据库中的数据成功，err为undefined，data为获取到的查询到的结果集；否则为错误对象。 |
 
@@ -1487,7 +1487,7 @@ query(uri: string, predicates: dataSharePredicates.DataSharePredicates, columns:
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要查询的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。静默场景下谓词内方法为空时，默认全表查询。非静默场景下规格由数据提供方制定。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>query接口所支持的谓词方法取决于服务端所选用的数据库，如KVDB目前仅支持inKeys和prefixKey。静默场景下谓词内方法为空时，默认全表查询。非静默场景下规格由数据提供方制定。 |
 | columns    | Array&lt;string&gt;                                          | 是   | 要查询的列。如果此参数为空，则查询所有列。               |
 
 **返回值：**
@@ -1548,9 +1548,9 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要更新的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />update接口所支持的谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。静默场景下谓词内方法为空时，默认全表更新。非静默场景下规格由数据提供方制定。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>update接口所支持的谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。静默场景下谓词内方法为空时，默认全表更新。非静默场景下规格由数据提供方制定。 |
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据的值。                                  |
-| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
+| callback   | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当更新数据库中的数据记录成功，err为undefined，data为获取到的更新的数据记录数；否则为错误对象。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回更新的数据记录数。 |
 
 **错误码：**
 
@@ -1616,14 +1616,14 @@ update(uri: string, predicates: dataSharePredicates.DataSharePredicates, value: 
 | 参数名       | 类型                                                         | 必填 | 说明                                                         |
 | ---------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri        | string                                                       | 是   | 要更新的数据的路径。                                     |
-| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br />update接口所支持的谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。静默场景下谓词内方法为空时，默认全表更新。非静默场景下规格由数据提供方制定。 |
+| predicates | [dataSharePredicates.DataSharePredicates](js-apis-data-dataSharePredicates.md#datasharepredicates) | 是   | 筛选条件。<br>update接口所支持的谓词筛选条件取决于服务端所选用的数据库，如KVDB目前并不支持谓词筛选条件，仅RDB支持。静默场景下谓词内方法为空时，默认全表更新。非静默场景下规格由数据提供方制定。 |
 | value      | [ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)    | 是   | 要更新的数据的值。                                   |
 
 **返回值：**
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象。返回更新的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
+| Promise&lt;number&gt; | Promise对象。返回更新的数据记录数。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
 
 **错误码：**
 
@@ -1674,7 +1674,7 @@ try {
 
 batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt;
 
-批量更新数据库中的数据记录，所有操作的总数(即operations对象的键值对)不得超过4000个，超出限制将导致更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。暂不支持静默访问。
+批量更新数据库中的数据记录，所有操作的总数（即operations对象的键值对）不得超过4000个，超出限制将导致更新失败；该接口的事务性取决于provider（数据提供方）。使用Promise异步回调。暂不支持静默访问。
 
 非静默场景下，调用此接口时，传入的operations参数的大小不能超过900KB，超出限制将导致操作失败或抛出异常。
 
@@ -1690,7 +1690,7 @@ batchUpdate(operations: Record&lt;string, Array&lt;UpdateOperation&gt;&gt;): Pro
 
 | 类型                                                  | 说明                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------ |
-| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
+| Promise&lt;Record&lt;string, Array&lt;number&gt;&gt;&gt; | Promise对象。返回更新的数据记录数集合，更新失败的UpdateOperation的数据记录数为-1。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回更新的数据记录数。 |
 
 **错误码：**
 
@@ -1741,10 +1741,10 @@ try {
   if (dataShareHelper != undefined) {
     (dataShareHelper as dataShare.DataShareHelper).batchUpdate(record).then((data: Record<string, Array<number>>) => {
       // 遍历data获取每条数据的更新结果， value为更新成功的数据记录数，若小于0，说明该次更新失败
-      let a = Object.entries(data);
-      for (let i = 0; i < a.length; i++) {
-        let key = a[i][0];
-        let values = a[i][1];
+      let entries = Object.entries(data);
+      for (let i = 0; i < entries.length; i++) {
+        let key = entries[i][0];
+        let values = entries[i][1];
         console.info(`Update uri:${key}`);
         for (const value of values) {
           console.info(`Update result:${value}`);
@@ -1777,7 +1777,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;, callback: AsyncCallb
 | -------- | ------------------------------------------------------------ | ---- | ------------------------------------------------------------ |
 | uri      | string                                                       | 是   | 要插入的数据的路径。                                     |
 | values   | Array&lt;[ValuesBucket](js-apis-data-valuesBucket.md#valuesbucket)&gt; | 是   | 要插入的数据。                                           |
-| callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当将批量数据插入数据库成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
+| callback | AsyncCallback&lt;number&gt;                                  | 是   | 回调函数。当将批量数据插入数据库成功，err为undefined，data为获取到的插入的数据记录数；否则为错误对象。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此callback也无法返回插入的数据记录数。 |
 
 **错误码：**
 
@@ -1838,7 +1838,7 @@ batchInsert(uri: string, values: Array&lt;ValuesBucket&gt;): Promise&lt;number&g
 
 | 类型             | 说明                                                         |
 | ---------------- | ------------------------------------------------------------ |
-| Promise&lt;number&gt; | Promise对象。返回插入的数据记录数。<br />因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
+| Promise&lt;number&gt; | Promise对象。返回插入的数据记录数。<br>因部分数据库（如KVDB）的相应接口并不提供相应支持，故若服务端使用此数据库，则此Promise也无法返回插入的数据记录数。 |
 
 **错误码：**
 
@@ -1892,7 +1892,7 @@ close(): Promise &lt;void&gt;
 
 **错误码：**
 
-以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)。
+以下错误码的详细介绍请参见[数据共享错误码](errorcode-datashare.md)和[通用错误码](../errorcode-universal.md)。
 
 | 错误码ID | 错误信息     |
 | -------- | ------------ |
@@ -1941,7 +1941,7 @@ let uri = "datashare:///com.samples.datasharetest.DataShare";
 if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri, (err: BusinessError, data: string) => {
     if (err !== undefined) {
-      console.info("normalizeUri failed, error message : " + err);
+      console.error(`Failed to normalize URI. Code: ${err.code}, message: ${err.message}`);
     } else {
       console.info("normalizeUri = " + data);
     }
@@ -1989,7 +1989,7 @@ if (dataShareHelper != undefined) {
   (dataShareHelper as dataShare.DataShareHelper).normalizeUri(uri).then((data: string) => {
     console.info("normalizeUri = " + data);
   }).catch((err: BusinessError) => {
-    console.info("normalizeUri failed, error message : " + err);
+    console.error(`Failed to normalize URI. Code: ${err.code}, message: ${err.message}`);
   });
 }
 ```
