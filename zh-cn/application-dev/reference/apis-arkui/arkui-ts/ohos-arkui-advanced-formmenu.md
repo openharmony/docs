@@ -221,6 +221,6 @@ struct WidgetCard {
 
 **调用高级自定义控件桌面加桌结果**
 
-左侧是formbindingdata为空加桌结果，右侧是formbindingdata为{ data: 'share' }的加桌结果。
+左侧是formBindingData为空加桌结果，右侧是formBindingData为{ data: 'share' }的加桌结果。
 
 ![zh-cn_image_0000001616959836](figures/add-form-to-desktop-result.jpeg)
