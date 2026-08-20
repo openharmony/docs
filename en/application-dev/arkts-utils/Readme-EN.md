@@ -93,6 +93,7 @@
     - [Statically Loading Native Modules](arkts-import-native-module.md)
     - [Loading Modules Using Node-API](load-module-base-nodeapi.md)
     - [Side Effects and Optimization of Module Loading](arkts-module-side-effects.md)
+    - [Modularization Debugging Tools](arkts-module-debug.md)
   - [ArkTS Runtime FAQs](arkts-runtime-faq.md)
 - ArkTS Compilation Toolchain<!--arkts-compilation-tool-chain-->
   - [Overview of the ArkTS Compilation Toolchain](compilation-tool-chain-overview.md)

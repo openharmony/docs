@@ -34,7 +34,7 @@ The following table lists the terms used in this topic.
 
 **Constraints**
 
-* All code examples provided in this topic adhere to the [ArkTS language specifications](../quick-start/introduction-to-arkts.md).
+* All code examples provided in this topic adhere to the [ArkTS language specifications].
 * This topic is applicable only to Ark bytecode of version 12.0.6.0. The version number is an internal field of the ArkCompiler and does not require your attention.
 
 ### Bytecode Composition
