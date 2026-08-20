@@ -612,7 +612,7 @@ Indicates the type of the current ExtensionAbility component. The supported valu
 |sysPicker/photoEditor|The ExtensionAbility of the image editing dialog box. The configuration does not take effect for third-party applications, and it is valid only in system applications.|
 |sys/commonUI|A non-general ExtensionAbility that provides embedded display or dialog boxes strongly related to business attributes. The configuration does not take effect for third-party applications, and it is valid only in system applications.|
 |autoFill/smart|The ExtensionAbility for the autofill service in contextual scenarios, which supports data saving and filling.|
-|modularObject|The ExtensionAbility for [modular object](../application-models/modular-object-extension-overview.md) management. This tag is supported since API version 26.0.0.|
+|modularObject|The ExtensionAbility for modular object management. This tag is supported since API version 26.0.0.|
 |uiService|The dialog box service component, which creates a Window during startup and supports bidirectional communication. The configuration does not take effect for third-party applications, and it is valid only in system applications. |
 |recentPhoto|The ExtensionAbility for recent photo recommendations.|
 |fence|The ExtensionAbility for geofencing.|
