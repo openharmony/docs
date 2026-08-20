@@ -220,7 +220,7 @@ AI菜单生效时，选中范围内需包括且仅包括一个完整的AI实体�
 
 | 参数名 | 类型    | 必填 | 说明                              |
 | ------ | ------- | ---- | --------------------------------- |
-| enable | boolean \| undefined | 是 | 是否启用选择文本识别，true表示启用，false表示不启用。<br>默认值：true。<br>设置为undefined或null时，取默认值。 |
+| enable | boolean \| undefined | 是 | 是否启用文本选择AI菜单功能，true表示启用，false表示不启用。<br>默认值：true。<br>设置为undefined或null时，取默认值。 |
 
 ### enablePreviewText<sup>12+</sup>
 
@@ -1085,8 +1085,8 @@ Span类型信息。
 | TEXT  | 0 | Span类型为文字。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
 | IMAGE | 1 | Span类型为图像。  <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。   |
 | MIXED | 2 | Span类型为图文混合。 <br/>**原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。  |
-| BUILDER<sup>12+</sup> | 3 | Span类型为BuilderSpan。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
-| DEFAULT<sup>15+</sup> | 4 | 注册此类型的菜单，但未注册TEXT、IMAGE、MIXED、BUILDER菜单时，文字类型、图像类型、图文混合类型、BuilderSpan类型都会触发并显示此类型对应的菜单。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
+| BUILDER<sup>12+</sup> | 3 | Span类型为自定义布局。 <br/>**原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。  |
+| DEFAULT<sup>15+</sup> | 4 | 注册此类型的菜单，但未注册TEXT、IMAGE、MIXED、BUILDER菜单时，文字类型、图像类型、图文混合类型、自定义布局类型都会触发并显示此类型对应的菜单。 <br/>**原子化服务API：** 从API version 15开始，该接口支持在原子化服务中使用。|
 
 ## RichEditorResponseType<sup>11+</sup>
 
@@ -2156,7 +2156,7 @@ SymbolSpan样式选项。
 
 ## RichEditorBuilderSpanOptions<sup>11+</sup>
 
-设置builder的偏移位置和样式。
+设置builder插入的偏移位置和样式。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
