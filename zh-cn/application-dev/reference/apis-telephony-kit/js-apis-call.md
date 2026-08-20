@@ -134,7 +134,7 @@ call.dial("138xxxxxxxx", dialOptions).then((data: boolean) => {
 
 makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
-跳转到拨号界面，并显示待拨出的号码。使用callback异步回调。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。
+跳转到拨号界面，并显示待拨出的号码。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。使用callback异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -144,7 +144,7 @@ makeCall\(phoneNumber: string, callback: AsyncCallback\<void\>\): void
 
 | 参数名      | 类型                      | 必填 | 说明                                       |
 | ----------- | ------------------------- | ---- | ------------------------------------------ |
-| phoneNumber | string                    | 是   | 电话号码。支持纯数字格式的号码和以URI格式编码的号码。                     |
+| phoneNumber | string                    | 是   | 电话号码。支持纯数字格式的号码和以URI格式编码的号码（如"tel:13xxxx"）。                     |
 | callback    | AsyncCallback&lt;void&gt; | 是   | 以callback形式异步返回跳转拨号界面的结果。 |
 
 **错误码：**
@@ -178,7 +178,7 @@ call.makeCall("138xxxxxxxx", (err: BusinessError) => {
 
 makeCall\(phoneNumber: string\): Promise\<void\>
 
-跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。
+跳转到拨号界面，并显示待拨出的号码。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。使用Promise异步回调。
 
 **原子化服务API**：从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -225,7 +225,7 @@ call.makeCall("138xxxxxxxx").then(() => {
 
 makeCall\(phoneNumber: string, options?: MakeCallOptions\): Promise\<void\>
 
-跳转到拨号界面，并显示待拨出的号码。使用Promise异步回调。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。
+跳转到拨号界面，并显示待拨出的号码。只支持在[UIAbility](../apis-ability-kit/js-apis-app-ability-uiAbility.md#uiability)中调用。使用Promise异步回调。
 
 **原子化服务API**：从API version 24开始，该接口支持在原子化服务中使用。
 
