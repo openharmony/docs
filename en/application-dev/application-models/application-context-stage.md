@@ -1,4 +1,4 @@
-# Context (Stage Model)
+# Context
 
 <!--Kit: Ability Kit-->
 <!--Subsystem: Ability-->
