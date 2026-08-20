@@ -7,7 +7,7 @@
 <!--Tester: @liangchengguang-->
 <!--Adviser: @HelloCrease-->
 
-本模块提供监听指定[UIAbility](js-apis-app-ability-uiAbility.md)生命周期状态变化的能力。开发者可以将AbilityMonitor作为[abilityDelegator.addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来注册监听。
+本模块提供监听指定[UIAbility](js-apis-app-ability-uiAbility.md)生命周期状态变化的能力。开发者可以将AbilityMonitor作为[abilityDelegator.addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor)的入参来注册监听。
 
 > **说明：**
 > 
@@ -21,7 +21,7 @@ import { abilityDelegatorRegistry } from '@kit.TestKit';
 
 ## 使用说明
 
-可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor9)的入参来监听指定UIAbility的生命周期变化。
+可以作为abilityDelegator中的[addAbilityMonitor](../apis-test-kit/js-apis-inner-application-abilityDelegator.md#addabilitymonitor)的入参来监听指定UIAbility的生命周期变化。
 
 ## AbilityMonitor
 
