@@ -51,7 +51,7 @@ confirm(userName: string, password: string): boolean
 
 | 类型      | 说明                    |
 | ------- | --------------------- |
-| boolean | 认证成功时返回true，失败返回false。 |
+| boolean | 返回值仅表示接口调用状态，不代表认证结果。true表示调用成功，false表示调用失败。 |
 
 ## isHttpAuthInfoSaved<sup>9+</sup>
 
