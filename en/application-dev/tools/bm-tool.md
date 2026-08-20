@@ -1284,7 +1284,7 @@ The installation fails due to SysCap inconsistency.
 
 **Possible Causes**
 
-The [SysCap](./../reference/syscap.md#syscap-usage) configured in multiple HAP/HSP files is inconsistent.
+The [SysCap](./../reference/syscap.md#purpose-of-syscap) configured in multiple HAP/HSP files is inconsistent.
 
 **Solution**
 
@@ -3113,7 +3113,7 @@ error: install parse syscap error.
 
 **Symptom**
 
-Failed to obtain the [SysCap](./../reference/syscap.md#syscap-usage) information from the installation package during the installation.
+Failed to obtain the [SysCap](./../reference/syscap.md#purpose-of-syscap) information from the installation package during the installation.
 
 **Possible Causes**
 

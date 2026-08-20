@@ -386,7 +386,7 @@ struct AttributeDemo {
 
 ### CommonModifier
 
-A class for dynamically setting component attributes. Take [Custom Modifiers](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifiers) as an example.
+A class for dynamically setting component attributes. Take [Custom Modifiers](../../reference/apis-arkui/arkui-ts/ts-universal-attributes-attribute-modifier.md#custom-modifier) as an example.
 
 V1:
 

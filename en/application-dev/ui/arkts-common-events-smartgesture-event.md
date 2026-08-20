@@ -6,7 +6,7 @@
 <!--Designer: @piggyguy-->
 <!--Tester: @songyanhong-->
 <!--Adviser: @Brilliantry_Rui-->
-<!-- md-trans-meta sourceCommit=3674363ed3360f810dd5d530a025dd3006fb0270 translatedAt=2026-07-03T06:28:27.964Z pushedAt=2026-07-03T09:20:57.274Z -->
+<!-- md-trans-meta sourceCommit=23dbfaa5a83b2e2550b041c1c20e69b04e576935 translatedAt=2026-08-19T10:03:40.691Z pushedAt=2026-08-19T10:07:45.736Z -->
 
 Starting from API version 26.0.0, smart gestures are supported. Smart gestures enable users to perform interactions such as selecting, clicking, scrolling, page turning, and returning on UI components via air gestures including "tap," "slide," and "wrist flip." The system automatically determines the target component and the execution action based on the user's operation intention. You can also receive the default action handling for the current gesture and customize it as needed.
 
@@ -28,19 +28,19 @@ Smart gesture interaction relies on the component's [id](../reference/apis-arkui
 
 * Action proposal (ActionProposal): Specific operation scheme returned via a callback, used to override the system's default action. Each execution action corresponds to an action proposal class, as follows:
 
-  - [ClickActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#clickactionproposal): Handles the click action, triggering the **onClick** event of the target component. It follows the "select first, then click" semantics. If the target component is not yet selected, a tap gesture first puts it into the selected state, and the next tap triggers the click.
+  - [ClickActionProposal](../reference/apis-arkui/arkts-apis-uicontext-clickactionproposal.md): Handles the click action, triggering the **onClick** event of the target component. It follows the "select first, then click" semantics: if the target component has not been selected yet, a knock gesture first establishes the selected state, and only the next knock gesture triggers the click.
 
-  - [SelectActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#selectactionproposal): Handles the select action, putting the target component into the selected state. This applies to selectable components such as buttons, text, and list items.
+  - [SelectActionProposal](../reference/apis-arkui/arkts-apis-uicontext-selectactionproposal.md): Handles the select action, putting the target component into the selected state. It applies to selectable components such as buttons, text, and list items.
 
-  - [ScrollActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#scrollactionproposal): Handles the scroll action, scrolling a scrollable container (such as **Scroll**, **List**, or **Grid**) forward by a specified distance. The default scroll directions include downward and rightward. The **distance** parameter in the constructor accepts values in the range [0, +∞). Values less than 0 are treated as 0. The unit is vp.
+  - [ScrollActionProposal](../reference/apis-arkui/arkts-apis-uicontext-scrollactionproposal.md): Handles the scroll action, scrolling a scrollable container (such as **Scroll**, **List**, and **Grid**) forward by a specified distance. The default directions include downward and rightward. The `distance` constructor parameter has a value range of [0, +∞); values less than 0 are treated as 0. The unit is vp.
 
-  - [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#pageswitchactionproposal): Handles the page switch action, turning a **Swiper** container forward by a specified number of pages. The default directions include rightward and downward. The **pageCount** parameter in the constructor accepts values in the range [0, +∞). Values less than 0 are treated as 0. The unit is pages.
+  - [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-pageswitchactionproposal.md): Handles the page switch action, turning a **Swiper** container forward. The default directions include rightward and downward. The `pageCount` constructor parameter has a value range of [0, +∞); values less than 0 are treated as 0. The unit is page.
 
-  - [BackPressActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#backpressactionproposal): Handles the back action, simulating the Back key to trigger page return.
+  - [BackPressActionProposal](../reference/apis-arkui/arkts-apis-uicontext-backpressactionproposal.md): Handles the back action, simulating the Back key to trigger page return.
 
-  - [NoneActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#noneactionproposal): Handles the null action, triggering no operation. This can be used to reject the current gesture.
+  - [NoneActionProposal](../reference/apis-arkui/arkts-apis-uicontext-noneactionproposal.md): Handles the null action, triggering no operation. This can be used to reject the current gesture.
 
-* Gesture handling result ([GestureHandlingResolution](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#gesturehandlingresolution)): Return value of the Monitor callback, which declares whether to consume the current gesture and which action proposal to select. When **isConsumed** is **true**, the gesture is consumed. If **selectedProposal** is also set, the custom action proposal overrides the system default action. When **isConsumed** is **false**, the gesture is not consumed and the system treats it as unhandled; in this case, the **selectedProposal** setting does not take effect.
+* Gesture handling result ([GestureHandlingResolution](../reference/apis-arkui/arkts-apis-uicontext-gesturehandlingresolution.md)): Return value of the listener callback, which declares whether to consume the current gesture and which action proposal to select. When `isConsumed` is `true`, the gesture is consumed; if `selectedProposal` is also set, the custom action proposal replaces the system default action. When `isConsumed` is `false`, the gesture is not consumed, and the system treats the gesture as unhandled, in which case the `selectedProposal` setting does not take effect.
 
 * Selected state: After a component successfully enters the selected state, a selection indicator box is displayed. The style of the selection box varies by device. You can use [requestSelected](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#requestselected) to proactively request a component to enter the selected state, and [clearSelected](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#clearselected) to clear the selected state. **requestSelected** takes effect only when the target component meets all of the following conditions. The component can respond to smart gestures (**enabled** is **true** in **smartGestureShortcut**), the component is visible on screen, and the component is bound to **onClick** or a [TapGesture](../reference/apis-arkui/arkui-ts/ts-basic-gestures-tapgesture.md).
 
@@ -115,7 +115,7 @@ For each interactive component that needs to respond to smart gestures, set the 
 
 3. Register a Monitor callback and make dynamic decisions.
 
-In the Monitor callback, convert [BaseGestureHandlingProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#basegesturehandlingproposal) to [TargetedGestureProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#targetedgestureproposal) to obtain the target node inferred by the system, construct the corresponding **ActionProposal** based on the **action** type, and return **GestureHandlingResolution**.
+   In the listener callback, cast [BaseGestureHandlingProposal](../reference/apis-arkui/arkts-apis-uicontext-basegesturehandlingproposal.md) to [TargetedGestureProposal](../reference/apis-arkui/arkts-apis-uicontext-targetedgestureproposal.md) to obtain the target node inferred by the system, construct the corresponding ActionProposal based on the action type, and return a GestureHandlingResolution.
 
 > **NOTE**
 >
@@ -722,7 +722,7 @@ struct Demo3 {
 
 ### Swiper Component Page‑Turning Scenario
 
-When a page uses the [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) component to display multi-page content, the slide gesture can flip pages to switch **Swiper** pages. In this case, you need to use [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-smartgesturecontroller.md#pageswitchactionproposal) to specify the page switching target container and the number of pages to flip.
+When a page uses the [Swiper](../reference/apis-arkui/arkui-ts/ts-container-swiper.md) component to display multiple pages, the swipe gesture can switch between Swiper pages. In this case, use [PageSwitchActionProposal](../reference/apis-arkui/arkts-apis-uicontext-pageswitchactionproposal.md) to specify the target container and the number of pages to switch.
 
 This example includes the following operations.
 
@@ -934,5 +934,3 @@ struct Demo4 {
 ```
 
 ![smartgesture-case4](figures/SmartGesture-case4.png)
-
-<!--no_check-->
