@@ -532,7 +532,7 @@ read(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&gt
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed; 4. Optional parameters passed as undefined. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
@@ -645,7 +645,7 @@ readSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed; 4. Optional parameters passed as undefined. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
@@ -749,7 +749,7 @@ write(portId: number, buffer: Uint8Array, timeout?: number): Promise&lt;number&g
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed; 4. Optional parameters passed as undefined. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
@@ -863,7 +863,7 @@ writeSync(portId: number, buffer: Uint8Array, timeout?: number): number
 
 | 错误码ID | 错误信息                                                     |
 | -------- | ------------------------------------------------------------ |
-| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed; 4. Optional parameters passed as undefined. |
+| 401      | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. |
 | 31400001 | Serial port management exception. |
 | 31400003 | PortId does not exist. |
 | 31400005 | The serial port device is not opened. Call the open API first. |
