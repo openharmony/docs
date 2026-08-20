@@ -6,7 +6,7 @@
 <!--Tester: @mahailong123456-->
 <!--Adviser: @HelloShuo-->
 
-The **formInfo** module provides types and enumerations related to widget information and status, which are used for obtaining widget configuration, status information, parameter enums and other information. This module is suitable for scenarios where you need to query widget attributes, manage widget states, or handle widget parameters, helping you quickly access and manipulate widget‑related information.
+The **formInfo** module provides types and enumerations related to widget information and status, which are used for obtaining widget configuration, status information, parameter enums and other information. This module is suitable for scenarios where you need to query widget attributes, manage widget states, or handle widget parameters, helping you quickly access and manipulate widget-related information.
 
 > **NOTE**
 >
@@ -35,7 +35,7 @@ Defines the widget information.
 | description | string               | No   | No    | Description of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | descriptionId<sup>10+</sup>      | number               | No   | No    | Widget description ID.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note:** The value is an integer greater than 0 and less than 2^32.|
 | type        | [FormType](#formtype)             | No   | No    | Type of the widget. Currently, JS and ArkTS widgets are supported.<br>**Note:** When the widget type is JS,** isDynamic** is forcibly set to **true**, **transparencyEnabled** does not take effect, and **jsComponentName** is mandatory.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
-| jsComponentName      | string               | No   | No    | Component name of the JS widget. This parameter is valid only when the widget type is JS.|
+| jsComponentName      | string               | No   | No    | Component name of the JS widget. This parameter is valid only when the widget type is JS.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | colorMode<sup>(deprecated)</sup>  | [ColorMode](#colormodedeprecated) | No   | No    | Color mode of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br> **NOTE**<br> This API is supported since API version 9 and deprecated since API version 20. No substitute API is provided.|
 | isDefault    | boolean      | No   | No    | Whether the widget is the default one.<br>- **true**: The widget is the default one.<br>- **false**: The widget is not the default one.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | updateEnabled  | boolean               | No   | No    | Whether the widget is updatable.<br>- **true**: The widget can be updated periodically.<br>- **false**: The widget cannot be updated periodically.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -43,7 +43,7 @@ Defines the widget information.
 | scheduledUpdateTime        | string               | No   | No    | Time when the widget was updated.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | formConfigAbility | string               | No   | No    | Configuration ability of the widget, that is, the ability corresponding to the option in the selection box displayed when the widget is long pressed.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | updateDuration        | number       | No   | No    | Update period of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note:** The value is an integer ranging from 0 to 336. An exception is thrown if the value is out of range.|
-| defaultDimension  | number | No   | No    | Default widget dimensions. For details, see [FormDimension](#formdimension).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note:** The value is an integer ranging from 1 to 9. The value **5** is supported since API version 9 and deprecated since API version 20. An exception is thrown if the value is out of range.|
+| defaultDimension  | number | No   | No    | Widget specifications. For details, see [FormDimension](#formdimension).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note:** The value is an integer ranging from 1 to 9. The value **5** is supported since API version 9 and deprecated since API version 20. An exception is thrown if the value is out of range.|
 | supportDimensions    | Array&lt;number&gt;      | No   | No    | Dimensions supported by the widget. For details, see [FormDimension](#formdimension).<br>**Atomic service API**: This API can be used in atomic services since API version 11.<br>**Note:** The value is an array containing a maximum of 9 integers. The value of each array element ranges from [1, 9], where the value **5** is supported since API version 9 and deprecated since API version 20. An exception is thrown if the value is out of range.|
 | customizeData    | Record&lt;string, string&gt;      | No   | No    | Custom data of the widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | isDynamic<sup>10+</sup>      | boolean               | No   | No    | Whether the widget is a dynamic widget.<br>ArkTS widgets are classified into dynamic and static widgets. JS widgets are all dynamic widgets.<br>- **true**: The widget is a dynamic widget.<br>- **false**: The widget is a static widget.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
@@ -52,7 +52,7 @@ Defines the widget information.
 
 ## FormType
 
-Enumerates the widget types. JS widgets are implemented using Web technologies and are suitable for simple display‑only widgets. ArkTS widgets are developed using the ArkTS language and support richer interactions and animations. When developing, you should choose the appropriate type based on the widget complexity and interaction requirements.
+Enumerates the widget types. JS widgets are implemented using Web technologies and are suitable for simple display-only widgets. ArkTS widgets are developed using the ArkTS language and support richer interactions and animations. When developing, you should choose the appropriate type based on the widget complexity and interaction requirements.
 
 **Atomic service API**: This API can be used in atomic services since API version 11.
 
@@ -200,14 +200,12 @@ Enumerates the visibility types of the widget. The visibility type indicates the
 
 Enumerates the reasons for creating a widget.
 
-**Atomic service API**: This API can be used in atomic services since API version 11.
-
 **System capability**: SystemCapability.Ability.Form
 
 | Name       |  Value  | Description        |
 | ----------- | ---- | ------------ |
-| FORM_DEFAULT | 1   | The widget is created by default.|
-| FORM_SHARE   | 2   | The widget is created for sharing.|
+| FORM_DEFAULT | 1   | The widget is created by default.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
+| FORM_SHARE   | 2   | The widget is created for sharing.<br>**Atomic service API**: This API can be used in atomic services since API version 11.|
 | FORM_SIZE_CHANGE<sup>20+</sup>    | 3   | The widget is created due to dimension changes.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
 
 ## FormUpdateReason<sup>24+</sup> 
@@ -249,23 +247,22 @@ Defines the common rectangular area information, including the widget coordinate
 
 | Name| Type| Read-Only| Optional | Description|
 |-----|-----|------|-----|-------|
-| left   | number | No| No  | X-coordinate of the top-left corner of the rectangle, in vp. It is used to position the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-overview.md#parameter-request).|
-| top    | number | No| No  | Y-coordinate of the top-left corner of the rectangle, in vp. It is used to position the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-overview.md#parameter-request).|
-| width  | number | No| No  | Width of the rectangle, in vp. It is used to define the dimensions of the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-overview.md#parameter-request).|
-| height | number | No| No  | Height of the rectangle, in vp. It is used to define the dimensions of the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-overview.md#parameter-request).|
+| left   | number | No| No  | X-coordinate of the top-left corner of the rectangle, in vp. It is used to position the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-development.md#parameter-request).|
+| top    | number | No| No  | Y-coordinate of the top-left corner of the rectangle, in vp. It is used to position the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-development.md#parameter-request).|
+| width  | number | No| No  | Width of the rectangle, in vp. It is used to define the dimensions of the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-development.md#parameter-request).|
+| height | number | No| No  | Height of the rectangle, in vp. It is used to define the dimensions of the widget area. For details about the value ranges, see [Parameter Request](../../form/arkts-ui-liveform-sceneanimation-development.md#parameter-request).|
+
 ## FormLocation<sup>20+</sup>
 
 Enumerates the widget locations.
-
-**Atomic service API**: This API can be used in atomic services since API version 20.
 
 **System capability**: SystemCapability.Ability.Form
 
 | Name                        | Value  | Description                            |
 | ---------------------------- | ---- | -------------------------------- |
-| DESKTOP                      | 0    | The widget is located on the home screen.              |
-| FORM_CENTER                  | 1    | The widget is located in the widget center of the home screen.    |
-| FORM_MANAGER                 | 2    | The widget is located in the Widget Manager of the home screen.  |
+| DESKTOP                      | 0    | The widget is located on the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 20.              |
+| FORM_CENTER                  | 1    | The widget is located in the widget center of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 20.    |
+| FORM_MANAGER                 | 2    | The widget is located in the Widget Manager of the home screen.<br>**Atomic service API**: This API can be used in atomic services since API version 20.  |
 <!--RP1--><!--RP1End-->
 
 ## RunningFormInfo<sup>20+</sup>

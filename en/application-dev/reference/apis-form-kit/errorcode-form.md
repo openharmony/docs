@@ -284,7 +284,7 @@ The semi-modal widget editing page is not opened.
 
 **Solution**
 
-Ensure that the [semi-modal widget editing page](../../form/arkts-ui-widget-event-formeditextensionability-overview.md#semi-modal-widget-editing) is opened.
+Ensure that the [semi-modal widget editing page](../../form/arkts-ui-widget-event-formeditextensionability.md#semi-modal-widget-editing) is opened.
 
 ## 16501015 Failed to Close Semi-Modal Widget Editing Page of Another Application
 
@@ -335,7 +335,7 @@ An internal error occurs when the system executes the current request.
 **Possible Causes**
 
 1. The system is busy.
-2. The internal data of the system is abnormal.
+2. The internal data of the system is abnormal currently.
 
 **Solution**
 
@@ -440,4 +440,3 @@ An internal service execution exception occurs.
 
 1. Restart the system and try again.
 2. If the restart still fails, submit an [online ticket](https://developer.huawei.com/consumer/en/support/feedback/#) to obtain help.
-<!--no_check-->
