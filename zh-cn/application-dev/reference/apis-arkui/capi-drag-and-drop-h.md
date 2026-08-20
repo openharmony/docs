@@ -109,11 +109,11 @@
 | [ArkUI_DragStatus OH_ArkUI_DragAndDropInfo_GetDragStatus(ArkUI_DragAndDropInfo* dragAndDropInfo)](#oh_arkui_draganddropinfo_getdragstatus) | 获取[ArkUI_DragAction](capi-arkui-nativemodule-arkui-dragaction.md)发起拖拽的状态，获取异常时返回 ArkUI_DRAG_STATUS_UNKNOWN。 |
 | [ArkUI_DragEvent* OH_ArkUI_DragAndDropInfo_GetDragEvent(ArkUI_DragAndDropInfo* dragAndDropInfo)](#oh_arkui_draganddropinfo_getdragevent) | 通过dragAndDropInfo获取到DragEvent，可通过DragEvent获取释放结果等。 |
 | [int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction)](#oh_arkui_startdrag) | 通过构造的DragAction对象发起拖拽。 |
-| [int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentity)](#oh_arkui_dragevent_requestdragendpending) | 请求延迟处理拖拽结束事件，等待应用确认操作结果。应用需通过 [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)接口将最终结果回传至系统，并在所有处理完成后调用 [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)。最大等待时间为2秒。 |
-| [int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentity, ArkUI_DragResult result)](#oh_arkui_notifydragresult) | 通知系统最终拖拽结果。系统会校验请求标识符是否与[OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)返回的一致，不一致则忽略本次调用。 |
+| [int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)](#oh_arkui_dragevent_requestdragendpending) | 请求延迟处理拖拽结束事件，等待应用确认操作结果。应用需通过 [OH_ArkUI_NotifyDragResult](#oh_arkui_notifydragresult)接口将最终结果回传至系统，并在所有处理完成后调用 [OH_ArkUI_NotifyDragEndPendingDone](#oh_arkui_notifydragendpendingdone)。最大等待时间为2秒。 |
+| [int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)](#oh_arkui_notifydragresult) | 通知系统最终拖拽结果。系统会校验请求标识符是否与[OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)返回的一致，不一致则忽略本次调用。 |
 | [int32_t OH_ArkUI_NotifySuggestedDropOperation(int32_t requestIdentity, ArkUI_DropOperation operation)](#oh_arkui_notifysuggesteddropoperation) | 通知拖拽发起方本次落入的行为类型，该函数需在落入阶段调用。拖拽发起方可以在拖拽结束的回调中调用[OH_ArkUI_DragEvent_GetDropOperation](#oh_arkui_dragevent_getdropoperation)获取本次落入的行为类型，进行自定义处理。也可以选择忽略该通知，不进行处理。拖拽失败时，本次落入的行为类型不可信，此时调用[OH_ArkUI_DragEvent_GetDropOperation](#oh_arkui_dragevent_getdropoperation)获取到的行为类型恒为ARKUI_DROP_OPERATION_COPY。系统会校验requestIdentity是否与[OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)返回的一致，不一致则本次调用不生效。 |
 | [int32_t OH_ArkUI_NotifyDisableDefaultDropAnimation(int32_t requestIdentity, bool disable)](#oh_arkui_notifydisabledefaultdropanimation) | 通知系统是否禁用默认的落入动画，该函数需在落入阶段调用。拖拽失败时，默认的落入动画为扩散动画，拖拽成功时默认的落入动画为收缩淡出动画。调用此方法可禁用默认动画，根据需要实现自定义落入动画。系统会校验requestIdentity是否与[OH_ArkUI_DragEvent_RequestDragEndPending](#oh_arkui_dragevent_requestdragendpending)返回的一致，不一致则本次调用不生效。 |
-| [int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentity)](#oh_arkui_notifydragendpendingdone) | 通知系统所有异步处理已完成，可结束拖拽结束挂起状态。 |
+| [int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)](#oh_arkui_notifydragendpendingdone) | 通知系统所有异步处理已完成，可结束拖拽结束挂起状态。 |
 | [ArkUI_ErrorCode OH_ArkUI_EnableDropDisallowedBadge(ArkUI_ContextHandle uiContext, bool enabled)](#oh_arkui_enabledropdisallowedbadge) | 设置是否可以显示禁用角标。 |
 | [float OH_ArkUI_DragEvent_GetTouchPointXToGlobalDisplay(ArkUI_DragEvent* event)](#oh_arkui_dragevent_gettouchpointxtoglobaldisplay) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的x轴坐标。 |
 | [float OH_ArkUI_DragEvent_GetTouchPointYToGlobalDisplay(ArkUI_DragEvent* event)](#oh_arkui_dragevent_gettouchpointytoglobaldisplay) | 从ArkUI_DragEvent中获取跟手点相对于全局屏幕的y轴坐标。 |
@@ -1777,7 +1777,7 @@ int32_t OH_ArkUI_StartDrag(ArkUI_DragAction* dragAction)
 ### OH_ArkUI_DragEvent_RequestDragEndPending()
 
 ```c
-int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentity)
+int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t* requestIdentify)
 ```
 
 **描述：**
@@ -1793,7 +1793,7 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
 | 参数项 | 描述 |
 | -- | -- |
 | [ArkUI_DragEvent](capi-arkui-nativemodule-arkui-dragevent.md)* event | 指向 <b>ArkUI_DragEvent</b> 对象的指针。 |
-| int32_t* requestIdentity | 系统自动生成的请求标识符，是一个输出参数，需要为一个有效的地址。 |
+| int32_t* requestIdentify | 系统自动生成的请求标识符，是一个输出参数，需要为一个有效的地址。 |
 
 **返回：**
 
@@ -1804,7 +1804,7 @@ int32_t OH_ArkUI_DragEvent_RequestDragEndPending(ArkUI_DragEvent* event, int32_t
 ### OH_ArkUI_NotifyDragResult()
 
 ```c
-int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentity, ArkUI_DragResult result)
+int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentify, ArkUI_DragResult result)
 ```
 
 **描述：**
@@ -1819,7 +1819,7 @@ int32_t OH_ArkUI_NotifyDragResult(int32_t requestIdentity, ArkUI_DragResult resu
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t requestIdentity | 由 [OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending) 返回的标识符。 |
+| int32_t requestIdentify | 由 [OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending) 返回的标识符。 |
 | [ArkUI_DragResult](capi-drag-and-drop-h.md#arkui_dragresult) result | 拖拽结果枚举值（[ArkUI_DragResult](capi-drag-and-drop-h.md#arkui_dragresult) 类型）。 |
 
 **返回：**
@@ -1885,13 +1885,13 @@ int32_t OH_ArkUI_NotifyDisableDefaultDropAnimation(int32_t requestIdentity, bool
 ### OH_ArkUI_NotifyDragEndPendingDone()
 
 ```c
-int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentity)
+int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentify)
 ```
 
 **描述：**
 
 
-通知系统所有异步处理已完成，可结束拖拽结束挂起状态。系统会校验requestIdentity是否与[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符一致，不一致或当前不在落入阶段时，则本次调用不生效。
+通知系统所有异步处理已完成，可结束拖拽结束挂起状态。系统会校验requestIdentify是否与[OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending)返回的标识符一致，不一致或当前不在落入阶段时，则本次调用不生效。
 
 **起始版本：** 19
 
@@ -1900,7 +1900,7 @@ int32_t OH_ArkUI_NotifyDragEndPendingDone(int32_t requestIdentity)
 
 | 参数项 | 描述 |
 | -- | -- |
-| int32_t requestIdentity | 由 [OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending) 返回的标识符。 |
+| int32_t requestIdentify | 由 [OH_ArkUI_DragEvent_RequestDragEndPending](capi-drag-and-drop-h.md#oh_arkui_dragevent_requestdragendpending) 返回的标识符。 |
 
 **返回：**
 
