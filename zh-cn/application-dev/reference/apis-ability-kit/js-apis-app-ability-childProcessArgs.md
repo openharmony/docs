@@ -34,7 +34,7 @@ import { ChildProcessArgs } from '@kit.AbilityKit';
 示例中的context的获取方式请参见[获取UIAbility的上下文信息](../../application-models/uiability-usage.md#获取uiability的上下文信息)。
 
 ```ts
-// 主进程中:
+// 主进程中：
 import { common, ChildProcessArgs, childProcessManager } from '@kit.AbilityKit';
 import { fileIo } from '@kit.CoreFileKit';
 
@@ -68,7 +68,7 @@ struct Index {
 ```
 
 ```ts
-// 子进程中:
+// 子进程中：
 import { ChildProcess, ChildProcessArgs } from '@kit.AbilityKit';
 
 export default class DemoProcess extends ChildProcess {

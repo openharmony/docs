@@ -20,6 +20,8 @@ import { common } from '@kit.AbilityKit';
 
 ## ConnectOptions
 
+在连接指定的后台服务时作为入参，用于接收连接过程中的状态变化，如作为[connectServiceExtensionAbility](js-apis-inner-application-uiAbilityContext.md#connectserviceextensionability)的入参，连接指定的ServiceExtensionAbility。
+
 ### onConnect
 
 onConnect(elementName: ElementName, remote: rpc.IRemoteObject): void

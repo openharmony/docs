@@ -34,7 +34,7 @@ import { ChildProcessOptions } from '@kit.AbilityKit';
 子进程部分：
 
 ```ts
-// 在entry模块的src/main/ets/process下创建DemoProcess.ets子进程类:
+// 在entry模块的src/main/ets/process下创建DemoProcess.ets子进程类：
 // entry/src/main/ets/process/DemoProcess.ets
 import { ChildProcess, ChildProcessArgs } from '@kit.AbilityKit';
 
@@ -51,7 +51,7 @@ export default class DemoProcess extends ChildProcess {
 
 <!--code_no_check-->
 ```ts
-// 使用childProcessManager.startArkChildProcess方法启动子进程:
+// 使用childProcessManager.startArkChildProcess方法启动子进程：
 // entry/src/main/ets/pages/Index.ets
 import { ChildProcessArgs, ChildProcessOptions, childProcessManager } from '@kit.AbilityKit';
 import { BusinessError } from '@kit.BasicServicesKit';
