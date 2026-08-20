@@ -36,9 +36,9 @@ Reads the corresponding environment variable information based on the input para
 
   - [SystemProperties.WINDOW_SYSTEM_DENSITY](../reference/apis-arkui/arkui-ts/ts-env-system-property.md#systemproperties): used to obtain the system display size scaling factor of the screen where the window is located. This parameter is supported since API version 26.0.0.
 
-  - [WritableEnvKey.FONT_SCALE](../reference/apis-arkui/arkui-ts/ts-env-system-property.md#properties-1): used to provide a local font scale for descendant components. This parameter is supported since API version 26.0.0.
+  - [WritableEnvKey.FONT_SCALE](../reference/apis-arkui/arkui-ts/ts-env-system-property.md#attributes-1): used to provide a local font scale for descendant components. This parameter is supported since API version 26.0.0.
 
-  - [WritableEnvKey.DIRECTION](../reference/apis-arkui/arkui-ts/ts-env-system-property.md#properties-1): used to obtain the layout direction of the screen where the window is located. This parameter is supported since API version 26.0.0.
+  - [WritableEnvKey.DIRECTION](../reference/apis-arkui/arkui-ts/ts-env-system-property.md#attributes-1): used to obtain the layout direction of the screen where the window is located. This parameter is supported since API version 26.0.0.
 
   - When a system environment variable changes, the @Env-decorated variable is notified to update, and the component associated with @Env is triggered to refresh, thereby implementing synchronous update of the UI content. When the @Env parameters are WritableEnvKey.FONT_SCALE and WritableEnvKey.DIRECTION, the parent component can pass values to @Env in child components via the [.env](../reference/apis-arkui/arkui-ts/ts-container-with-env.md#env) method in [WithEnv](../reference/apis-arkui/arkui-ts/ts-container-with-env.md).
 

@@ -17,7 +17,7 @@ For details about the related APIs, see [LazyForEach](../../reference/apis-arkui
 > **NOTE**
 >
 > In scenarios involving a large number of child components, **LazyForEach**, when combined with techniques such as cached list items, dynamic preloading, and component reuse, can significantly improve scrolling frame rates while reducing memory usage. For best practices, see [Optimizing Frame Loss for Long List Loading](https://developer.huawei.com/consumer/en/doc/best-practices/bpta-best-practices-long-list).
-> The [Repeat](./arkts-new-rendering-control-repeat.md) component also provides the iterative rendering capability. Compared with **LazyForEach**, **Repeat** listens for data source changes based on state management, which is more convenient. In addition, **Repeat** supports child component reuse, improving the UI rendering efficiency. Therefore, **Repeat** is recommended. You can migrate the existing **LazyForEach** component to the **Repeat** component by referring to [Migrating from LazyForEach to Repeat](./arkts-lazyforeach-repeat-migration-guide.md).
+> The [Repeat](./arkts-new-rendering-control-repeat.md) component also provides the iterative rendering capability. Compared with **LazyForEach**, **Repeat** listens for data source changes based on state management, which is more convenient. In addition, **Repeat** supports child component reuse, improving the UI rendering efficiency. Therefore, **Repeat** is recommended. You can migrate the existing **LazyForEach** component to the **Repeat** component by referring to [Migration for Repeated Content Rendering](../state-management/arkts-v1-v2-migration-rendering-control-repeat.md).
 
 ## Constraints
 
