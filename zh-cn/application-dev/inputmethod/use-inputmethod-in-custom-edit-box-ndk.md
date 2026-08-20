@@ -156,7 +156,7 @@ if (OH_InputMethodProxy_NotifyConfigurationChange(inputMethodProxy, InputMethod_
 
 > 说明：
 >
-> 需要在CMakeList.txt中添加libohinputmethod.so libhilog_ndk.z.so依赖。
+> 需要在CMakeLists.txt中添加libohinputmethod.so libhilog_ndk.z.so依赖。
 
    <!-- @[input_case_input_CPreview016](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/InputMethod/KikaInputMethod/entry/src/main/cpp/napi_init.cpp) -->
    
