@@ -3,16 +3,16 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T09:59:17.093Z pushedAt=2026-08-19T12:01:36.680Z -->
 
-The **a2dp** module provides Bluetooth media audio capabilities based on the Advanced Audio Distribution Profile ([A2DP](../../connectivity/terminology.md#a2dp)), such as obtaining the media playback status and connection status.
+The **a2dp** module provides Bluetooth media audio capabilities based on the Advanced Audio Distribution Profile ([A2DP](../../connectivity/bluetooth/terminology.md#a2dp)), such as obtaining the media playback status and connection status.
 
 > **NOTE**
 >
 > The initial APIs of this module are supported since API version 10. Newly added APIs will be marked with a superscript to indicate their earliest API version.
-
 
 ## Modules to Import
 
@@ -32,12 +32,11 @@ type BaseProfile = baseProfile.BaseProfile
 | ----------------------------- | ---------- |
 | [baseProfile.BaseProfile](js-apis-bluetooth-baseProfile.md#baseprofile) | **BaseProfile** API definition.|
 
-
 ## a2dp.createA2dpSrcProfile
 
 createA2dpSrcProfile(): A2dpSourceProfile
 
-Creates a [A2DP source](../../connectivity/terminology.md#a2dp-source) instance. Through this instance, you can use the local device as the A2DP source device and implement functions such as obtaining the audio playback status based on the Bluetooth protocol between the local device and the other device.
+Creates a [A2DP Source](../../connectivity/bluetooth/terminology.md#a2dp-source) instance. Through this instance, you can use the local device as the A2DP source device and implement functions such as obtaining the audio playback status based on the Bluetooth protocol between the local device and the other device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -56,7 +55,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 |401 | Invalid parameter. Possible causes: 1. Mandatory parameters are left unspecified. 2. Incorrect parameter types. 3. Parameter verification failed.                         |
 |801 | Capability not supported.                |
 
-
 **Example**
 
 ```js
@@ -69,13 +67,15 @@ try {
 }
 ```
 
-
 ## A2dpSourceProfile
 
-Represents the [A2DP source](../../connectivity/terminology.md#a2dp-source) role in A2DP.
+Represents the [A2DP Source](../../connectivity/bluetooth/terminology.md#a2dp-source) role in A2DP.
+
 - The **A2dpSourceProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.
+
 - Before using the APIs of this class, you need to construct an **A2dpSourceProfile** instance by calling [createA2dpSrcProfile](#a2dpcreatea2dpsrcprofile).
-- The counterpart of the A2DP source role is the [A2DP sink](../../connectivity/terminology.md#a2dp-sink) role.
+
+- The counterpart of the A2DP source role is the [A2DP Sink](../../connectivity/bluetooth/terminology.md#a2dp-sink) role.
 
 ### getPlayingState
 
@@ -127,7 +127,6 @@ try {
 }
 ```
 
-
 ## PlayingState
 
 Enumerates the Bluetooth media audio playback states.
@@ -138,7 +137,6 @@ Enumerates the Bluetooth media audio playback states.
 | ----------------- | ------ | ------- |
 | STATE_NOT_PLAYING | 0 | Media audio is not played. |
 | STATE_PLAYING     | 1 | Media audio is being played.|
-
 
 ## CodecInfo<sup>11+</sup>
 
@@ -185,7 +183,6 @@ Enumerates the Bluetooth media audio codec types.
 | CODEC_TYPE_L2HCST<sup>13+</sup>  | 3 | L2HCST |
 | CODEC_TYPE_LDAC<sup>13+</sup>    | 4 | LDAC |
 
-
 ## CodecChannelMode<sup>11+</sup>
 
 Enumerates the audio channel modes of Bluetooth media audio codec. A channel mode indicates the number of independent spatial signal paths during audio playback. It affects the stereo effect and spatial positioning of the audio.
@@ -197,7 +194,6 @@ Enumerates the audio channel modes of Bluetooth media audio codec. A channel mod
 | CODEC_CHANNEL_MODE_NONE   | 0 | Channel unknown.|
 | CODEC_CHANNEL_MODE_MONO   | 1 | Mono. |
 | CODEC_CHANNEL_MODE_STEREO | 2 | Stereo. |
-
 
 ## CodecBitsPerSample<sup>11+</sup>
 
@@ -211,7 +207,6 @@ Enumerates the bit depths of the Bluetooth media codec. A bit depth indicates th
 | CODEC_BITS_PER_SAMPLE_16   | 1 | 16bit |
 | CODEC_BITS_PER_SAMPLE_24   | 2 | 24bit |
 | CODEC_BITS_PER_SAMPLE_32   | 3 | 32bit |
-
 
 ## CodecSampleRate<sup>11+</sup>
 

@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:27:54.714Z pushedAt=2026-08-13T10:31:51.409Z -->
+<!-- md-trans-meta sourceCommit=4a43d865f6fb58df26898b1b598954a98775ae97 translatedAt=2026-08-17T08:48:27.796Z pushedAt=2026-08-18T11:30:31.239Z -->
 
 This module provides the coordinated devices set management (CDSM) capability for NearLink, including querying and subscribing to the coordinated devices set information of NearLink.
 
@@ -36,17 +36,17 @@ Creates a CDSM client instance.
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| address | string | Yes | Address of a member device in the paired and connected coordinated devices set. The address format is **11:22:33:AA:BB:FF**. |
+| address | string | Yes | Address of a member device in the paired and connected coordinated devices set. The address format is **11:22:33:AA:BB:FF**. The address must contain six segments, each segment is a string of two hexadecimal characters, and the segments are separated by colons (:). |
 
 **Return value** 
 
 | Type | Description |
 | -------- | -------- |
-| [CdsmClient](#cdsmclient) | CDSM client instance. |
+| [CdsmClient](#cdsmclient) | **CdsmClient** instance used to query and subscribe to the CDSM information of a remote device. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -75,9 +75,13 @@ try {
 
 ## CdsmClient
 
-Obtains the coordinated devices set information of a remote device. Before using this method, you need to call cdsm.createCdsmClient to create a CdsmClient instance.
+Defines a CDSM client class, which provides APIs for obtaining the CDSM information of a remote device.
 
-An app only needs to create one instance for a remote device.
+- Before using the methods of this class, call [cdsm.createCdsmClient](#cdsmcreatecdsmclient) to construct an instance of this class.
+
+This class is applicable to scenarios where you need to obtain the member devices and connection status changes of a group of NearLink devices (CDSM) and perform service coordination accordingly. For example, after a phone is paired with earphones, the phone can use the CDSM to query the left and right earphones and detect their connection status changes.
+
+An app only needs to create one [CdsmClient](#cdsmclient) instance for a remote device. Repeated creation will increase unnecessary resource overhead.
 
 **Since**: 26.0.0
 
@@ -107,7 +111,7 @@ Queries information about the coordinated devices set of a remote device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -125,7 +129,7 @@ let addr: string = '00:11:22:33:AA:FF'; // Address of a member device in the pai
 let client: cdsm.CdsmClient;
 try {
   client = cdsm.createCdsmClient(addr); // An app only needs to create one instance for a remote device.
-let cdsmInformation: cdsm.CdsmInfo = client.getCdsmInfo();
+  let cdsmInformation: cdsm.CdsmInfo = client.getCdsmInfo();
   console.info('cdsmInformation:' + JSON.stringify(cdsmInformation));
 } catch (err) {
   console.error('errCode: ' + (err as BusinessError).code + ', errMessage: ' + (err as BusinessError).message);
@@ -188,14 +192,13 @@ Unsubscribes from the CDSM information change event. This API uses an asynchrono
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[CdsmInfo](#cdsminfo)&gt; | No | Callback used to return the CDSM information.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks used to listen for CDSM information change events are unregistered. |
+| callback | Callback&lt;[CdsmInfo](#cdsminfo)&gt; | No | Callback used to return the CDSM information.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks used to listen for CDSM information change events are unregistered. |
 
 **Example** 
 
 ```typescript
 import { cdsm } from '@kit.ConnectivityKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-import { Callback } from '@kit.BasicServicesKit';
+import { BusinessError, Callback } from '@kit.BasicServicesKit';
 
 let callback: Callback<cdsm.CdsmInfo> = (data: cdsm.CdsmInfo) => {
   console.info('CdsmInfo:' + JSON.stringify(data));
@@ -224,7 +227,7 @@ Represents the CDSM information.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| members | [CdsmMemberInfo](#cdsmmemberinfo)[] | No | No | Information about member devices in the coordinated devices set. |
+| members | [CdsmMemberInfo](#cdsmmemberinfo)[] | No | No | Array of member device information in the coordinated devices set. Each element in the array contains the device address and connection status. |
 
 ## CdsmMemberInfo
 
@@ -243,7 +246,7 @@ Represents the information about member devices in the coordinated devices set.
 
 ## CdsmConnectionState
 
-Enumerates the connection states between the coordinated devices set and the remote device.
+Enumerates the connection states of member devices in a coordinated device set.
 
 **Since**: 26.0.0
 

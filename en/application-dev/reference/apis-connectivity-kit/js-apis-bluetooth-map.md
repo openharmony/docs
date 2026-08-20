@@ -3,11 +3,12 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T10:00:42.655Z pushedAt=2026-08-20T01:26:55.572Z -->
 
-The **map** module provides Bluetooth message access capability based on [Message Access Profile (MAP)](../../connectivity/terminology.md#map), and supports functions such as obtaining the connection status.
+The map module provides Bluetooth message access capability based on [Message Access Profile (MAP)](../../connectivity/bluetooth/terminology.md#map), and supports functions such as obtaining the connection status.
 
 > **NOTE**
 >
@@ -35,7 +36,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createMapMseProfile(): MapMseProfile
 
-Creates a [Message Server Equipment (MSE)](../../connectivity/terminology.md#mse) instance. Through this instance, you can use the local device as the MSE and implement functions such as obtaining the Bluetooth message service connection status of the local device.
+Creates a [Message Server Equipment (MSE)](../../connectivity/bluetooth/terminology.md#mse) instance. Through this instance, you can use the local device as the MSE and implement functions such as obtaining the Bluetooth message service connection status of the local device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -69,7 +70,10 @@ try {
 
 ## MapMseProfile
 
-Represents the [MSE](../../connectivity/terminology.md#mse) role in MAP.
+Represents the [MSE](../../connectivity/bluetooth/terminology.md#mse) role in MAP.
+
 - The **MapMseProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.
+
 - Before using the APIs of this class, you need to construct an MSE instance by calling [createMapMseProfile](#mapcreatemapmseprofile).
-- The counterpart of the MSE role is the [MCE](../../connectivity/terminology.md#mce) role.
+
+- The counterpart of the MSE role is the [MCE](../../connectivity/bluetooth/terminology.md#mce) role.

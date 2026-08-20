@@ -1,4 +1,4 @@
-# @ohos.nearlink.manager (NearLink Enabling Capability) (System API)
+# @ohos.nearlink.manager (Basic NearLink Management Capability) (System API)
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:49:08.929Z pushedAt=2026-08-17T12:04:36.826Z -->
+<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:49:08.929Z pushedAt=2026-08-18T12:03:22.652Z -->
 
 This module provides basic NearLink management capabilities, including enabling or disabling NearLink, obtaining the MAC address of the local device, and setting the connection mode.
 

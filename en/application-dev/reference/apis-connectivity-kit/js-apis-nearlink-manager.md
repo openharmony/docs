@@ -1,4 +1,4 @@
-# @ohos.nearlink.manager (NearLink Enabling Capability)
+# @ohos.nearlink.manager (Basic NearLink Management Capability)
 
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:29:05.583Z pushedAt=2026-08-14T02:33:45.378Z -->
+<!-- md-trans-meta sourceCommit=aa9545020692baaf11004432a3eb3c2a031071bf translatedAt=2026-08-17T08:49:12.741Z pushedAt=2026-08-18T12:03:24.668Z -->
 
-This module provides basic NearLink management capabilities, including obtaining device information and subscribing to status change events.
+This module provides basic NearLink management capabilities, including checking whether NearLink is supported, obtaining local device information, managing the NearLink status, and subscribing to status change events.
 
 **Since**: 26.0.0
 
@@ -38,7 +38,7 @@ Queries the NearLink status.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -117,7 +117,7 @@ Queries the NearLink name on the local device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -162,7 +162,7 @@ Obtains the devices paired with the current device.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -209,7 +209,7 @@ Subscribes to the NearLink status change event. This API uses an asynchronous ca
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -256,11 +256,11 @@ Unsubscribes from the NearLink status change event. This API uses an asynchronou
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[NearlinkState](#nearlinkstate)&gt; | No | Callback used to return the NearLink status.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[NearlinkState](#nearlinkstate)&gt; | No | Callback used to return the NearLink status.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |

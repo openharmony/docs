@@ -3,11 +3,12 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T10:01:29.326Z pushedAt=2026-08-20T01:48:14.763Z -->
 
-The **pbap** module implements phone book access capabilities based on the [Phone Book Access Profile (PBAP)](../../connectivity/terminology.md#pbap), such as obtaining the phone book service connection status.
+The **pbap** module implements phone book access capabilities based on the [Phone Book Access Profile (PBAP)](../../connectivity/bluetooth/terminology.md#pbap), such as obtaining the phone book service connection status.
 
 > **NOTE**
 >
@@ -35,7 +36,7 @@ type BaseProfile = baseProfile.BaseProfile
 
 createPbapServerProfile(): PbapServerProfile
 
-Creates a [PSE](../../connectivity/terminology.md#pse) instance. Through this instance, you can use the local device as the PSE and implement functions such as obtaining the phone book service connection status.
+Creates a [PSE](../../connectivity/bluetooth/terminology.md#pse) instance. Through this instance, you can use the local device as the PSE and implement functions such as obtaining the phone book service connection status.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -43,7 +44,7 @@ Creates a [PSE](../../connectivity/terminology.md#pse) instance. Through this in
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-|PbapServerProfile | PSE instance.<br>- The **PbapServerProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The counterpart of the PSE role is the [PCE](../../connectivity/terminology.md#pce) role.|
+|PbapServerProfile | PSE instance.<br>- The **PbapServerProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The counterpart of the PSE role is the [PCE](../../connectivity/bluetooth/terminology.md#pce) role. |
 
 **Error codes**
 

@@ -6,7 +6,7 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=8a03c39231c24a89e7d2329d21e5c175c46ce77e translatedAt=2026-08-12T11:28:01.435Z pushedAt=2026-08-13T07:27:58.779Z -->
+<!-- md-trans-meta sourceCommit=1f7ebf6194dca265f1a8eeefc330905f60a6cb97 translatedAt=2026-08-17T08:48:24.949Z pushedAt=2026-08-18T11:10:11.754Z -->
 
 This module provides Nearlink advertising functions, including starting and stopping advertising as well as subscribing to the advertising status.
 
@@ -61,7 +61,7 @@ Represents an advertising data packet.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuids | string[] | No | Yes | Service UUIDs. By default, this field is not used if not set. |
+| serviceUuids | string[] | No | Yes | Service UUIDs. A UUID must contain 36 characters, including 32 hexadecimal digits and four hyphens (-). By default, this field is not used if not set. |
 | manufacturerData | [ManufacturerData](#manufacturerdata)[] | No | Yes | Manufacturer data. By default, this field is not carried if it is not set. |
 | serviceData | [ServiceData](#servicedata)[] | No | Yes | Service data. By default, this field is not carried if it is not set. |
 | includeDeviceName | boolean | No | Yes | Whether the advertising data contains the local device name. **true**: **yes**. false: no. The default value is **false**. |
@@ -93,7 +93,7 @@ Represents the service data.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| serviceUuid | string | No | No | Service UUID. |
+| serviceUuid | string | No | No | Service UUID. A UUID must contain 36 characters, including 32 hexadecimal digits and four hyphens (-). |
 | serviceData | ArrayBuffer | No | No | Service data. |
 
 ## AdvertisingStateChangeInfo
@@ -146,7 +146,7 @@ Enumerates the advertising states.
 
 startAdvertising(advertisingParams: AdvertisingParams): Promise&lt;number&gt;
 
-Starts NearLink advertising. This API uses a promise to return the result.
+Starts NearLink advertising. This API uses a promise to return the result. This API is applicable to scenarios where the local device capabilities or data needs to be advertised, such as device discovery and device information advertising. You can use [advertising.onAdvertisingStateChange](#advertisingonadvertisingstatechange) to monitor the advertising status.
 
 **Since**: 26.0.0
 
@@ -166,11 +166,11 @@ Starts NearLink advertising. This API uses a promise to return the result.
 
 | Type | Description |
 | -------- | -------- |
-| Promise&lt;number&gt; | Promise used to return the advertising ID. An advertising ID is a unique ID randomly allocated. |
+| Promise&lt;number&gt; | Promise used to return the advertising ID. The advertising ID is a unique ID randomly allocated. The value range is [0, 255]. Similar to [advertising.stopAdvertising](#advertisingstopadvertising) and [AdvertisingStateChangeInfo](#advertisingstatechangeinfo).advertisingId, this ID can be used to distinguish the current advertising instance. |
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -225,7 +225,7 @@ try {
   advertising.startAdvertising(advertisingParams).then((advertisingId:number) => {
     advId = advertisingId;
     console.info('advertising id:' + JSON.stringify(advId));
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -261,7 +261,7 @@ Stops NearLink advertising. This API uses a promise to return the result.
 
 **Error codes**
 
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
+For details about the error codes, see [General Error Codes](../errorcode-universal.md) and [NearLink Error Codes](errorcode-nearlink-service.md).
 
 | ID | Error Message |
 | -------- | -------- |
@@ -281,7 +281,7 @@ try {
   let advId: number = 1; // advId is obtained when advertising is started. For details, please refer to return values of the startAdvertising API.
   advertising.stopAdvertising(advId).then(() => {
     console.info('stop advertising success');
-  }).catch ((err: BusinessError) => {
+  }).catch((err: BusinessError) => {
     console.error('errCode: ' + err.code + ', errMessage: ' + err.message);
   });
 } catch (err) {
@@ -293,7 +293,7 @@ try {
 
 onAdvertisingStateChange(callback: Callback&lt;AdvertisingStateChangeInfo&gt;): void
 
-Subscribes to the NearLink advertising state change event. This API uses an asynchronous callback to return the result.
+Subscribes to the NearLink advertising state change event. This API uses an asynchronous callback to return the result. When [advertising.startAdvertising](#advertisingstartadvertising) is called to start advertising or [advertising.stopAdvertising](#advertisingstopadvertising) is called to stop advertising, the callback is triggered to return the corresponding advertising ID and advertising status. This API must be used in pairs with [advertising.offAdvertisingStateChange](#advertisingoffadvertisingstatechange).
 
 The app must have the **ohos.permission.ACCESS_NEARLINK** permission to receive this event.
 
@@ -351,7 +351,7 @@ Unsubscribes from the NearLink advertising state change event. This API uses an 
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | No | Callback used to return the advertising state change information.<br/>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the type are unregistered. |
+| callback | Callback&lt;[AdvertisingStateChangeInfo](#advertisingstatechangeinfo)&gt; | No | Callback used to return the advertising state change information.<br>If this parameter is specified, the current callback is unregistered. If this parameter is not specified, all callbacks corresponding to the event are unregistered. |
 
 **Error codes**
 
