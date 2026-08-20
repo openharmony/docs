@@ -92,7 +92,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
+  function signMessageSync(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
     let signAlg = 'ECC|SHA1|OnlySign';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -100,7 +100,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
+  function verifyMessageSync(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
     pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'ECC|SHA1|OnlyVerify';
     let verifier = cryptoFramework.createVerify(verifyAlg);
@@ -119,8 +119,8 @@
     let keyGenAlg = 'ECC224';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey, digestBlob);
-    let verifyResult = verifyMessagePromise(digestBlob, signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey, digestBlob);
+    let verifyResult = verifyMessageSync(digestBlob, signData, keyPair.pubKey);
     if (verifyResult === true) {
       console.info('verify result: success.');
     } else {

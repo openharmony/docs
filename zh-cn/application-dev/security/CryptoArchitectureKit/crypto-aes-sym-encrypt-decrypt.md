@@ -837,7 +837,7 @@ AES（ECB模式）解密失败返回错误码17630001可参考[使用AES-ECB算�
     return symKey;
   }
   
-  function main() {
+  function aesECBSync() {
     try {
       let keyData = new Uint8Array([83, 217, 231, 76, 28, 113, 23, 219, 250, 71, 209, 210, 205, 97, 32, 159]);
       let symKey = genSymKeyByData(keyData);

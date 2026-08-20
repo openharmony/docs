@@ -219,7 +219,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
+  function signMessageSync(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
     let signAlg = 'RSA1024|PKCS1|SHA256|OnlySign';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -227,7 +227,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
+  function verifyMessageSync(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
     pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'RSA1024|PKCS1|SHA256|OnlyVerify';
     let verifier = cryptoFramework.createVerify(verifyAlg);
@@ -247,8 +247,8 @@
     let keyGenAlg = 'RSA1024';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey, digestBlob);
-    let verifyResult = verifyMessagePromise(digestBlob, signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey, digestBlob);
+    let verifyResult = verifyMessageSync(digestBlob, signData, keyPair.pubKey);
     if (verifyResult === true) {
       console.info('verify result: success.');
     } else {
@@ -331,7 +331,7 @@
   // 完整的明文被拆分为input1和input2
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from('This is Sign test plan1', 'utf-8').buffer) };
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey) {
+  function signMessageSync(priKey: cryptoFramework.PriKey) {
     let signAlg = 'RSA1024|PKCS1|NoHash|OnlySign';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -339,7 +339,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
+  function verifyMessageSync(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'RSA1024|PKCS1|NoHash|Recover';
     let verifier = cryptoFramework.createVerify(verifyAlg);
     verifier.initSync(pubKey);
@@ -351,8 +351,8 @@
     let keyGenAlg = 'RSA1024';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey);
-    let rawSignData = verifyMessagePromise(signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey);
+    let rawSignData = verifyMessageSync(signData, keyPair.pubKey);
     if (rawSignData != null) {
       console.info('recover result: ' + rawSignData.data);
     } else {
@@ -594,10 +594,10 @@
   
   async function verifyMessagePSS() {
     // 完整的明文被拆分为input1和input2
-    let plan1 = 'This is Sign test plan1';
-    let plan2 = 'This is Sign test plan2';
-    let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan1, 'utf-8').buffer) };
-    let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan2, 'utf-8').buffer) };
+    let messagePart1 = 'This is Sign test plan1';
+    let messagePart2 = 'This is Sign test plan2';
+    let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(messagePart1, 'utf-8').buffer) };
+    let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(messagePart2, 'utf-8').buffer) };
     // 获得RSA密钥对密钥参数对象
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 构造RSA密钥对生成器
@@ -689,10 +689,10 @@
   
   function verifyMessagePSSSync() {
     // 完整的明文被拆分为input1和input2
-    let plan1 = 'This is Sign test plan1';
-    let plan2 = 'This is Sign test plan2';
-    let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan1, 'utf-8').buffer) };
-    let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(plan2, 'utf-8').buffer) };
+    let messagePart1 = 'This is Sign test plan1';
+    let messagePart2 = 'This is Sign test plan2';
+    let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(messagePart1, 'utf-8').buffer) };
+    let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(messagePart2, 'utf-8').buffer) };
     // 获得RSA密钥对密钥参数对象
     let rsaKeyPairSpec = genRsa2048KeyPairSpec();
     // 构造RSA密钥对生成器
@@ -823,7 +823,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
+  function signMessageSync(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
     let signAlg = 'RSA|PSS|SHA256|MGF1_SHA256|OnlySign';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -831,7 +831,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
+  function verifyMessageSync(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
     pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'RSA|PSS|SHA256|MGF1_SHA256|OnlyVerify';
     let verifier = cryptoFramework.createVerify(verifyAlg);
@@ -851,8 +851,8 @@
     let keyGenAlg = 'RSA1024';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey, digestBlob);
-    let verifyResult = verifyMessagePromise(digestBlob, signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey, digestBlob);
+    let verifyResult = verifyMessageSync(digestBlob, signData, keyPair.pubKey);
     if (verifyResult === true) {
       console.info('verify result: success.');
     } else {

@@ -33,6 +33,7 @@
   
   ``` TypeScript
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   let priKeyPkcs1Str1024: string =
     '-----BEGIN RSA PRIVATE KEY-----\n' +
@@ -58,14 +59,19 @@
       '-----END RSA PUBLIC KEY-----\n';
   
   async function testPkcs1ToPkcs8ByPromise() {
-    let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
-    let keyPair = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
-    let priPemKey = keyPair.priKey;
-    let pubPemKey = keyPair.pubKey;
-    let priString = priPemKey.getEncodedPem('PKCS8');
-    let pubString = pubPemKey.getEncodedPem('X509');
-    console.info('[promise]TestPkcs1ToPkcs8ByPromise priString output: ' + priString);
-    console.info('[promise]TestPkcs1ToPkcs8ByPromise pubString output: ' + pubString);
+    try {
+      let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator('RSA1024');
+      let keyPair = await asyKeyGenerator.convertPemKey(publicPkcs1Str1024, priKeyPkcs1Str1024);
+      let priPemKey = keyPair.priKey;
+      let pubPemKey = keyPair.pubKey;
+      let priString = priPemKey.getEncodedPem('PKCS8');
+      let pubString = pubPemKey.getEncodedPem('X509');
+      console.info('[promise]TestPkcs1ToPkcs8ByPromise priString output: ' + priString);
+      console.info('[promise]TestPkcs1ToPkcs8ByPromise pubString output: ' + pubString);
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`testPkcs1ToPkcs8ByPromise failed: errCode: ${e.code}, errMsg: ${e.message}`);
+    }
   }
   ```
 

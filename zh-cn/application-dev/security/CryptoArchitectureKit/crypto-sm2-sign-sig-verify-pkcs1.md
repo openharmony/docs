@@ -91,7 +91,7 @@
   let input1: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from('This is Sign test plan1', 'utf-8').buffer) };
   let input2: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from('This is Sign test plan2', 'utf-8').buffer) };
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey) {
+  function signMessageSync(priKey: cryptoFramework.PriKey) {
     let signAlg = 'SM2_256|SM3';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -100,7 +100,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
+  function verifyMessageSync(signMessageBlob: cryptoFramework.DataBlob, pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'SM2_256|SM3';
     let verifier = cryptoFramework.createVerify(verifyAlg);
     verifier.initSync(pubKey);
@@ -114,8 +114,8 @@
     let keyGenAlg = 'SM2_256';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey);
-    let verifyResult = verifyMessagePromise(signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey);
+    let verifyResult = verifyMessageSync(signData, keyPair.pubKey);
     if (verifyResult === true) {
       console.info('verify result: success.');
     } else {
