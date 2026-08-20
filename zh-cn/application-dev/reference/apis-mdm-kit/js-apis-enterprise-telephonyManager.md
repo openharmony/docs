@@ -1005,10 +1005,10 @@ let wantTemp: Want = {
   bundleName: 'com.example.myapplication',
   abilityName: 'EnterpriseAdminAbility'
 };
-
+let slotId: number = 0;
 try {
   // 获取当前默认数据流量卡的卡槽ID
-  let slotId: number = telephonyManager.getDefaultData(wantTemp);
+  slotId = telephonyManager.getDefaultData(wantTemp);
   console.info(`success in getting default data SIM ID on slot ${slotId}`);
 } catch (err) {
   console.error(`Failed to get default data on slot ${slotId}. Code: ${err.code}, message: ${err.message}`);
