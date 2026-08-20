@@ -34,8 +34,8 @@ typedef struct {...} NativeDisplayManager_DisplayInfo
 | int32_t physicalWidth | 显示设备的物理宽度，单位为px，该参数为非负整数。 |
 | int32_t physicalHeight | 显示设备的物理高度，单位为px，该参数为非负整数。 |
 | uint32_t refreshRate | 显示设备的刷新率，单位为Hz，该参数为非负整数。 |
-| uint32_t availableWidth | 显示设备屏幕的可用区域宽度，单位为px，该参数为非负整数。<br> **设备行为差异：**<br>在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。<br>针对低于该版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过width属性获取当前设备屏幕的可用区域宽度。 |
-| uint32_t availableHeight | 显示设备屏幕的可用区域高度，单位为px，该参数为非负整数。<br> **设备行为差异：** <br>在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。<br>针对低于该版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过height属性获取当前设备屏幕的可用区域高度。 |
+| uint32_t availableWidth | 显示设备屏幕的可用区域宽度，单位为px，该参数为非负整数。<br> **设备行为差异：**<br>在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。<br>针对OpenHarmony 7.0.0以下版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过width属性获取当前设备屏幕的可用区域宽度。 |
+| uint32_t availableHeight | 显示设备屏幕的可用区域高度，单位为px，该参数为非负整数。<br> **设备行为差异：** <br>在搭载OpenHarmony 7.0.0及以上版本的设备上，该接口可正常调用。<br>针对OpenHarmony 7.0.0以下版本的设备，该接口在PC/2in1设备、Tablet设备中可正常调用；在其他设备中不可用，请通过height属性获取当前设备屏幕的可用区域高度。 |
 | float densityDPI | 显示设备屏幕的物理像素密度，表示每英寸上的像素点数。该参数为大于0的浮点数，一般取值160.0、480.0等，实际能取到的值取决于不同设备设置里提供的可选值。 |
 | float densityPixels | 显示设备逻辑像素的密度，代表物理像素与逻辑像素的缩放系数。该参数为大于0的浮点数，受densityDPI范围限制，取值范围为[0.5, 4.0]。一般取值1.0、3.0等，实际取值取决于不同设备提供的densityDPI。 |
 | float scaledDensity | 显示设备的字体缩放因子。该参数为大于0的浮点数，通常与densityPixels相同，取值范围为[0.5, 4.0]。 |
