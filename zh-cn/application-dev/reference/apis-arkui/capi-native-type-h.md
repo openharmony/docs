@@ -336,6 +336,7 @@
 | [void OH_ArkUI_SelectedDragPreviewStyle_Dispose(ArkUI_SelectedDragPreviewStyle* config)](#oh_arkui_selecteddragpreviewstyle_dispose) | - | 销毁选中状态下拖拽文本预览样式对象。 |
 | [void OH_ArkUI_SelectedDragPreviewStyle_SetColor(ArkUI_SelectedDragPreviewStyle* config, uint32_t color)](#oh_arkui_selecteddragpreviewstyle_setcolor) | - | 设置选中态拖拽文本预览样式的背景色。 |
 | [uint32_t OH_ArkUI_SelectedDragPreviewStyle_GetColor(ArkUI_SelectedDragPreviewStyle* config)](#oh_arkui_selecteddragpreviewstyle_getcolor) | - | 获取选中态拖拽文本预览样式的背景色。 |
+
 ## 枚举类型说明
 
 ### ArkUI_CopyOptions
