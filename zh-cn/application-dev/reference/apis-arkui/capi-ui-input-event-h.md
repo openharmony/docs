@@ -4037,7 +4037,7 @@ ArkUI_CoastingAxisEvent* OH_ArkUI_UIInputEvent_GetCoastingAxisEvent(ArkUI_UIInpu
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkUI_CoastingAxisEvent*](capi-arkui-nativemodule-arkui-coastingaxisevent.md) | 返回指向惯性滚动轴事件的指针，如果未发生任何惯性滚动轴事件或发生任何参数错误，则返回空指针。|
+| [ArkUI_CoastingAxisEvent](capi-arkui-nativemodule-arkui-coastingaxisevent.md)* | 返回指向惯性滚动轴事件的指针，如果未发生任何惯性滚动轴事件或发生任何参数错误，则返回空指针。|
 
 ### OH_ArkUI_CoastingAxisEvent_GetEventTime()
 
