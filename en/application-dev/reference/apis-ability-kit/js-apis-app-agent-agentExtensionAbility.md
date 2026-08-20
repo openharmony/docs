@@ -57,7 +57,7 @@ Called when the AgentExtensionAbility is destroyed.
 
 | Name | Type | Read-Only | Optional | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| context | [AgentExtensionContext](js-apis-inner-application-agentExtensionContext.md) | No | No | Context of AgentExtensionAbility, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md). |
+| context | AgentExtensionContext | No | No | Context of AgentExtensionAbility, inherited from [ExtensionContext](js-apis-inner-application-extensionContext.md). |
 
 ### onCreate
 
@@ -106,7 +106,7 @@ Called when a client is successfully connected to the AgentExtensionAbility.
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | want | [Want](js-apis-app-ability-want.md) | Yes | [Want](js-apis-app-ability-want.md) type information related to the current AgentExtensionAbility, including the ability name, bundle name, and so on. |
-| proxy | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) | Yes | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) object used to communicate with the client. |
+| proxy | AgentHostProxy | Yes | AgentHostProxy object used to communicate with the client. |
 
 **Example**
 
@@ -138,7 +138,7 @@ Called when the client is disconnected from the AgentExtensionAbility.
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
 | want |[Want](js-apis-app-ability-want.md)| Yes | [Want](js-apis-app-ability-want.md) type information related to the current AgentExtensionAbility, including the ability name, bundle name, and so on. |
-| proxy |[AgentHostProxy](js-apis-inner-application-agentHostProxy.md)| Yes | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) object used to communicate with the client. |
+| proxy |AgentHostProxy| Yes | AgentHostProxy object used to communicate with the client. |
 
 **Example**
 
@@ -159,7 +159,7 @@ export default class AgentExt extends AgentExtensionAbility {
 
 onData(proxy: AgentHostProxy, data: string): void
 
-Called when the AgentExtensionAbility receives data sent by the client. The server can send data to the client through [AgentHostProxy.sendData](js-apis-inner-application-agentHostProxy.md#senddata) in this callback.
+Called when the AgentExtensionAbility receives data sent by the client. The server can send data to the client through AgentHostProxy.sendData in this callback.
 
 **Atomic service API:** This API can be used in atomic services since API version 24.
 
@@ -169,7 +169,7 @@ Called when the AgentExtensionAbility receives data sent by the client. The serv
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| proxy | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) | Yes | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) object used to communicate with the client. |
+| proxy | AgentHostProxy | Yes | AgentHostProxy object used to communicate with the client. |
 | data | string | Yes | Data received. |
 
 **Example**
@@ -191,7 +191,7 @@ export default class AgentExt extends AgentExtensionAbility {
 
 onAuth(proxy: AgentHostProxy, handshakeData: string): void
 
-Called when the AgentExtensionAbility receives a security authentication request from the client. The server can process the received security authentication request in this callback and send a security authentication request to the client through [AgentHostProxy.authorize](js-apis-inner-application-agentHostProxy.md#authorize).
+Called when the AgentExtensionAbility receives a security authentication request from the client. The server can process the received security authentication request in this callback and send a security authentication request to the client through AgentHostProxy.authorize.
 
 **Atomic service API:** This API can be used in atomic services since API version 24.
 
@@ -201,7 +201,7 @@ Called when the AgentExtensionAbility receives a security authentication request
 
 | Name | Type | Mandatory | Description |
 | -------- | -------- | -------- | -------- |
-| proxy | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) | Yes | [AgentHostProxy](js-apis-inner-application-agentHostProxy.md) object, used to send security authentication requests to the client. |
+| proxy | AgentHostProxy | Yes | AgentHostProxy object, used to send security authentication requests to the client. |
 | handshakeData | string | Yes | Security authentication data received. |
 
 **Example**
