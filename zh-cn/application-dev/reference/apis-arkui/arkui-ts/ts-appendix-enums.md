@@ -397,7 +397,7 @@
 | FastOutSlowIn       | 5 | 标准曲线，CubicBezier(0.4, 0.0, 0.2, 1.0)。   |
 | LinearOutSlowIn     | 6 | 减速曲线，CubicBezier(0.0, 0.0, 0.2, 1.0)。   |
 | FastOutLinearIn     | 7 | 加速曲线，CubicBezier(0.4, 0.0, 1.0, 1.0)。   |
-| ExtremeDeceleration | 8 | 急缓曲线，CubicBezier(0.0, 0.0, 0.0, 1.0)。   |
+| ExtremeDeceleration | 8 | 极缓曲线，CubicBezier(0.0, 0.0, 0.0, 1.0)。   |
 | Sharp               | 9 | 锐利曲线，CubicBezier(0.33, 0.0, 0.67, 1.0)。 |
 | Rhythm              | 10 | 节奏曲线，CubicBezier(0.7, 0.0, 0.2, 1.0)。   |
 | Smooth              | 11 | 平滑曲线，CubicBezier(0.4, 0.0, 0.4, 1.0)。   |
