@@ -114,11 +114,11 @@ import { formInfo } from '@kit.FormKit';
 
 **系统能力：** SystemCapability.Ability.Form
 
-| 名称        | 类型   | 必填         |说明         |
-| ----------- | ---- | ------------ |------------ |
-| bundleName<sup>12+</sup>    | string    |否    | 选填，仅保留含bundleName与提供值相符的卡片信息，未填写时则不通过bundleName进行过滤。<br>**系统接口：** 此接口为系统接口。  |
-| supportedDimensions<sup>12+</sup> | Array&lt;number&gt; |否    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 最大长度为9，数值取值范围[1, 9]的整数的数组，数值5从API version 9开始支持，从API version 20开始废弃。<br>具体规格参考 [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension)。  |
-| supportedShapes<sup>12+</sup>  | Array&lt;number&gt; |否    | 选填，仅保留含supportedShapes提供值相符的卡片信息，未填写时则不通过supportedShapes进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 只有1和2两个值。1代表方形，2代表圆形。   |
+| 名称        | 类型                 | 只读    | 可选    | 说明                                                         |
+| ----------- | -------- | -------- | -------------------- | ------------------------------------------------------------ |
+| bundleName<sup>12+</sup>    | string    |否    | 是    | 选填，仅保留含bundleName与提供值相符的卡片信息，未填写时则不通过bundleName进行过滤。<br>**系统接口：** 此接口为系统接口。  |
+| supportedDimensions<sup>12+</sup> | Array&lt;number&gt; |否    | 是    | 选填，仅保留含supportedDimensions提供值相符的卡片信息，未填写时则不通过supportedDimensions进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 最大长度为9，数值取值范围[1, 9]的整数的数组，数值5从API version 9开始支持，从API version 20开始废弃。<br>具体规格参考 [formInfo.FormDimension](js-apis-app-form-formInfo.md#formdimension)。  |
+| supportedShapes<sup>12+</sup>  | Array&lt;number&gt; |否    | 是    | 选填，仅保留含supportedShapes提供值相符的卡片信息，未填写时则不通过supportedShapes进行过滤。<br>**系统接口：** 此接口为系统接口。<br>**说明：** 只有1和2两个值。1代表方形，2代表圆形。   |
 
 ## FormLocation<sup>12+</sup>
 
@@ -302,7 +302,7 @@ let getFormRectInfoCallback: formInfo.GetFormRectInfoCallback =
 | moduleName | string | 否 | 否  | 卡片所属模块的名称。 |
 | abilityName | string | 否 | 否  | 卡片所属的Ability名称。 |
 | formName | string | 否 | 否  | 卡片名称。 |
-| dimension | string | 否 | 否  | 卡片规格 |
+| dimension | FormDimension | 否 | 否  | 卡片规格 |
 | detailId | string | 否 | 否  | 卡片信息id |
 | displayName | string | 否 | 否  | 卡片展示名称 |
 | description | string | 否 | 否  | 卡片描述 |
