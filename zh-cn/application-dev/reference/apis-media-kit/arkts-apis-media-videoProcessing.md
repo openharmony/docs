@@ -143,7 +143,7 @@ function onStatusChange() {
   videoProcessor.onStatusChange((status: videoProcessing.VideoProcessorStatus) => {
     if (status !== undefined && status.aiHdr !== undefined) {
       console.info('AIHDR status changed, enabled: ' + status.aiHdr.enabled);
-	}
+    }
   });
 }
 ```
