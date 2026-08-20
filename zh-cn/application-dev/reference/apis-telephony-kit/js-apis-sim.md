@@ -1561,7 +1561,7 @@ import { sim } from '@kit.TelephonyKit';
 sim.getSimLabel(0).then((data: sim.SimLabel) => {
   console.info(`getSimLabel success, promise: data->${JSON.stringify(data)}`);
 }).catch((err: BusinessError) => {
-  console.error(`getSimState failed, promise: err->${JSON.stringify(err)}`);
+  console.error(`getSimLabel failed, promise: err->${JSON.stringify(err)}`);
 });
 ```
 
@@ -1592,7 +1592,7 @@ import { sim } from '@kit.TelephonyKit';
 
 
 let simLabel: sim.SimLabel = sim.getSimLabelSync(0);
-console.info(`The sim state is:` + simLabel);
+console.info(`The sim label is:` + simLabel);
 ```
 
 ## SimType<sup>20+</sup>
@@ -1616,7 +1616,7 @@ SIM卡标签。
 | 名称         | 类型 | 只读| 可选  | 说明                                                       |
 | ---------------------|----|---- | ----| --------------------------------------------------- |
 |  simType   |  [SimType](#simtype20)  | 否  | 否|表示SIM卡类型的枚举。                      |
-| index |  number   |  否  |否 | SIM卡的唯一标识索引值。      |
+| index |  number   |  否  |否 | SIM卡的唯一标识索引值，从1开始递增，取值范围1到2。      |
 
 ## SimState
 
@@ -1660,10 +1660,10 @@ Icc账户信息。
 
 | 名称       | 类型    | 只读|可选| 说明             |
 | ---------- | ------- | ---- |--- |---------------- |
-| simId      | number  |  否 |否 | SIM卡ID。          |
-| slotIndex  | number  |  否  |否 | 卡槽ID。           |
-| isEsim     | boolean |  否 | 否| 标记卡是否是eSim。<br/>- true:是eSim。<br/>- false：不是eSim。 |
-| isActive   | boolean |  否 | 否| 卡是否被激活。   <br/>- true:激活。<br/>- false：未激活。  |
+| simId      | number  |  否 |否 | SIM卡ID。与SIM卡绑定，从1开始递增。          |
+| slotIndex  | number  |  否  |否 | 卡槽ID。 <br/>- 0：卡槽1。<br/>- 1：卡槽2。           |
+| isEsim     | boolean |  否 | 否| 标记卡是否是eSIM。<br/>- true：是eSIM。<br/>- false：不是eSIM。 |
+| isActive   | boolean |  否 | 否| 卡是否被激活。<br/>- true：激活。<br/>- false：未激活。  |
 | iccId      | string  |  否 | 否| ICCID号码。        |
 | showName   | string  |  否 | 否| SIM卡显示名称。    |
 | showNumber | string  |  否 | 否| SIM卡显示号码。    |
