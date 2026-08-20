@@ -18,5 +18,5 @@ ArkUI native UI 的上下文实例对象，用于表示组件所在页面的 UIC
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** [drag_and_drop.h](capi-drag-and-drop-h.md)
+**所在头文件：** [native_type.h](capi-native-type-h.md)
 

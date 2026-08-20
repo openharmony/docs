@@ -71,13 +71,13 @@ PanGesture(options?: PanGestureHandlerOptions)
 | 名称 | 值 | 说明 |
 | ---- | -- | ----- |
 | None | 0 | 任何方向都不可触发滑动手势事件。 |
-| Left | 1 | 向左滑动。 |
-| Right | 2 | 向右滑动。 |
-| Horizontal | 3 | 水平方向。 |
-| Up | 4 | 向上滑动。 |
-| Down | 8 | 向下滑动。 |
-| Vertical | 12 | 竖直方向。 |
-| All | 15 | 所有方向。 |
+| Horizontal | 1 | 水平方向。 |
+| Left | 2 | 向左滑动。 |
+| Right | 3 | 向右滑动。 |
+| Vertical | 4 | 竖直方向。 |
+| Up | 5 | 向上滑动。 |
+| Down | 6 | 向下滑动。 |
+| All | 7 | 所有方向。 |
 
 
 ## PanGestureOptions

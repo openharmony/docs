@@ -92,14 +92,6 @@ type InputEventListener = (event: RawInputEventWrapper) => InputEventInterceptRe
 
 **起始版本：** 26.0.0
 
-原始输入事件包装器类。
-
-提供统一的接口来访问不同类型的输入事件，确保类型安全和向后兼容性。
-
-此类封装了原始的MouseEvent、TouchEvent或KeyEvent对象，并通过类型安全的方法访问。
-
-此类为抽象类，开发者无法自行创建实例。系统会在触发输入事件监听器时自动创建实例，并将实例传递给回调函数。
-
 > **说明：**
 >
 > 由于监听器在事件派发给具体组件之前执行，事件中的以下字段和方法将无法提供有效值：触发对象[target](ts-universal-events-click.md#eventtarget8)、相对于组件的坐标（[x](ts-universal-mouse-key.md#属性)、[y](ts-universal-mouse-key.md#属性)）、[getCurrentLocalPosition](ts-universal-events-touch.md#getcurrentlocalposition)和[stopPropagation](ts-universal-events-touch.md#touchevent对象说明)方法、TouchEvent的[preventDefault](ts-universal-events-touch.md#touchevent对象说明)和[getHistoricalPoints](ts-universal-events-touch.md#gethistoricalpoints10)方法以及KeyEvent的[metaKey](ts-universal-events-key.md#属性)属性和[getModifierKeyState](ts-universal-events-click.md#getmodifierkeystate12)方法。

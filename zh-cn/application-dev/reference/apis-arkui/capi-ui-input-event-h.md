@@ -54,6 +54,7 @@
 | [ArkUI_CoastingAxisEventPhase](#arkui_coastingaxiseventphase) | ArkUI_CoastingAxisEventPhase | 定义惯性滚动轴事件的阶段。 |
 | [ArkUI_CompetitionStrategy](#arkui_competitionstrategy) | ArkUI_CompetitionStrategy | 事件的注入方和被注入方间手势识别结果是否为竞争场景的策略。该策略决定了事件的注入方如何与被注入方的手势处理逻辑交互，非竞争场景会同时触发手势，竞争场景只触发其中一个。 |
 | [ArkUI_TouchTestStrategy](#arkui_touchteststrategy) | ArkUI_TouchTestStrategy | 定义触摸测试策略。 |
+| [ArkUI_CrownEvent_Action](#arkui_crownevent_action) | ArkUI_CrownEvent_Action | 定义表冠事件的阶段。 |
 
 ### 函数
 
@@ -203,6 +204,11 @@
 | [ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildId(const ArkUI_TouchTestInfoItem* info, char* buffer, int32_t bufferSize)](#oh_arkui_touchtestinfoitem_getchildid) | 从触摸测试信息项中获取子组件的ID。 |
 | [ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultStrategy(ArkUI_TouchTestInfo* info, ArkUI_TouchTestStrategy strategy)](#oh_arkui_touchtestinfo_settouchresultstrategy) | 设置触摸测试策略，即组件及其子组件在命中测试过程中的行为方式，适用于自定义触摸命中结果、将触摸事件分发给指定子组件或控制兄弟节点是否继续参与命中测试的场景。 |
 | [ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultId(ArkUI_TouchTestInfo* info, const char* id)](#oh_arkui_touchtestinfo_settouchresultid) | 设置命中测试过程中需要作用的子组件ID，适用于自定义触摸测试结果并希望将触摸事件分发到指定子组件的场景。 |
+| [int64_t OH_ArkUI_DigitalCrownEvent_GetEventTime(const ArkUI_UIInputEvent* event)](#oh_arkui_digitalcrownevent_geteventtime) | 获取表冠事件发生的时间。单位为ns。仅适用于入参event里存储的是表冠事件对象的场景。 |
+| [double OH_ArkUI_DigitalCrownEvent_GetAngularVelocity(const ArkUI_UIInputEvent* event)](#oh_arkui_digitalcrownevent_getangularvelocity) | 获取表冠事件发生的角速度。单位为°/s。仅适用于入参event里存储的是表冠事件对象的场景。 |
+| [double OH_ArkUI_DigitalCrownEvent_GetDegree(const ArkUI_UIInputEvent* event)](#oh_arkui_digitalcrownevent_getdegree) | 获取表冠事件发生的旋转角度。单位为°。仅适用于入参event里存储的是表冠事件对象的场景。 |
+| [ArkUI_CrownEvent_Action OH_ArkUI_DigitalCrownEvent_GetAction(const ArkUI_UIInputEvent* event)](#oh_arkui_digitalcrownevent_getaction) | 获取表冠事件发生的阶段。仅适用于入参event里存储的是表冠事件对象的场景。 |
+| [ArkUI_ErrorCode OH_ArkUI_DigitalCrownEvent_SetStopPropagation(const ArkUI_UIInputEvent* event, bool stopPropagation)](#oh_arkui_digitalcrownevent_setstoppropagation) | 设置是否阻止事件冒泡，适用于当前组件已处理表冠事件且不希望该事件继续传递给父组件或其他祖先组件的场景。仅适用于入参event里存储的是表冠事件对象的场景。 |
 
 ## 枚举类型说明
 
@@ -306,12 +312,12 @@ enum HitTestMode
 
 | 枚举项 | 描述 |
 | -- | -- |
-| HTM_DEFAULT = 0 | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。 |
-| HTM_BLOCK = 1 | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
-| HTM_TRANSPARENT = 2 | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。 |
-| HTM_NONE = 3 | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
-| HTM_BLOCK_HIERARCHY = 4 | 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。<br>**起始版本：** 20 |
-| HTM_BLOCK_DESCENDANTS = 5 | 自身不响应触摸测试，并且所有的后代（孩子、孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。<br>**起始版本：** 20 |
+| Default = 0 | 默认触摸测试效果。自身及子节点响应触摸测试，但阻塞兄弟节点的触摸测试，不影响祖先节点的触摸测试。 |
+| Block = 1 | 自身响应触摸测试，阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
+| Transparent = 2 | 自身和子节点都响应触摸测试，不会阻塞兄弟节点和祖先节点的触摸测试。 |
+| None = 3 | 自身不响应触摸测试，不会阻塞子节点、兄弟节点和祖先节点的触摸测试。 |
+| BLOCK_HIERARCHY = 4 | 自身和子节点响应触摸测试，阻止所有优先级较低的兄弟节点和父节点参与触摸测试。<br>**起始版本：** 20 |
+| BLOCK_DESCENDANTS = 5 | 自身不响应触摸测试，并且所有的后代（孩子、孙子等）也不响应触摸测试，不会影响祖先节点的触摸测试。<br>**起始版本：** 20 |
 
 ### anonymous4
 
@@ -4031,7 +4037,7 @@ ArkUI_CoastingAxisEvent* OH_ArkUI_UIInputEvent_GetCoastingAxisEvent(ArkUI_UIInpu
 
 | 类型 | 说明 |
 | -- | -- |
-| [ArkUI_CoastingAxisEvent](capi-arkui-nativemodule-arkui-coastingaxisevent.md) | 返回指向惯性滚动轴事件的指针，如果未发生任何惯性滚动轴事件或发生任何参数错误，则返回空指针。|
+| [ArkUI_CoastingAxisEvent*](capi-arkui-nativemodule-arkui-coastingaxisevent.md) | 返回指向惯性滚动轴事件的指针，如果未发生任何惯性滚动轴事件或发生任何参数错误，则返回空指针。|
 
 ### OH_ArkUI_CoastingAxisEvent_GetEventTime()
 
@@ -4079,7 +4085,7 @@ ArkUI_CoastingAxisEventPhase OH_ArkUI_CoastingAxisEvent_GetPhase(ArkUI_CoastingA
 | -- | -- |
 | [ArkUI_CoastingAxisEventPhase](#arkui_coastingaxiseventphase) | 返回事件阶段，参见[ArkUI_CoastingAxisEventPhase](#arkui_coastingaxiseventphase)。<br>    如果发生任何参数错误则返回ARKUI_COASTING_AXIS_EVENT_PHASE_NONE。|
 
-### OH_ArkUI_CoastingAxisEvent_GetDeltaY
+### OH_ArkUI_CoastingAxisEvent_GetDeltaY()
 
 ```c
 float OH_ArkUI_CoastingAxisEvent_GetDeltaY(ArkUI_CoastingAxisEvent* event)
@@ -4102,7 +4108,7 @@ float OH_ArkUI_CoastingAxisEvent_GetDeltaY(ArkUI_CoastingAxisEvent* event)
 | -- | -- |
 | float | 返回Y轴增量值，以px为单位；如果发生任何参数错误则返回0.0f。|
 
-### OH_ArkUI_CoastingAxisEvent_GetDeltaX
+### OH_ArkUI_CoastingAxisEvent_GetDeltaX()
 
 ```c
 float OH_ArkUI_CoastingAxisEvent_GetDeltaX(ArkUI_CoastingAxisEvent* event)
@@ -4149,7 +4155,7 @@ int32_t OH_ArkUI_CoastingAxisEvent_SetPropagation(ArkUI_CoastingAxisEvent* event
 | -- | -- |
 | int32_t | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>         |
 
-### OH_ArkUI_TouchTestInfo_GetTouchTestInfoList
+### OH_ArkUI_TouchTestInfo_GetTouchTestInfoList()
 
 ```c
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_GetTouchTestInfoList(ArkUI_TouchTestInfo* info,
@@ -4175,7 +4181,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_GetTouchTestInfoList(ArkUI_TouchTestInfo*
 | -- | -- |
 | ArkUI_ErrorCode | 返回结果代码。<br>         如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>         如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>         |
 
-### OH_ArkUI_TouchTestInfoItem_GetX
+### OH_ArkUI_TouchTestInfoItem_GetX()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetX(const ArkUI_TouchTestInfoItem* info);
@@ -4198,7 +4204,7 @@ float OH_ArkUI_TouchTestInfoItem_GetX(const ArkUI_TouchTestInfoItem* info);
 | -- | -- |
 | float | 相对于子组件左上角的X坐标，单位为px。若参数错误，返回0.0f。|
 
-### OH_ArkUI_TouchTestInfoItem_GetY
+### OH_ArkUI_TouchTestInfoItem_GetY()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetY(const ArkUI_TouchTestInfoItem* info);
@@ -4221,7 +4227,7 @@ float OH_ArkUI_TouchTestInfoItem_GetY(const ArkUI_TouchTestInfoItem* info);
 | -- | -- |
 | float | 相对于子组件左上角的Y坐标，单位为px。若参数错误，返回0.0f。|
 
-### OH_ArkUI_TouchTestInfoItem_GetWindowX
+### OH_ArkUI_TouchTestInfoItem_GetWindowX()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetWindowX(const ArkUI_TouchTestInfoItem* info);
@@ -4244,7 +4250,7 @@ float OH_ArkUI_TouchTestInfoItem_GetWindowX(const ArkUI_TouchTestInfoItem* info)
 | -- | -- |
 | float | 相对于当前应用窗口左上角的X坐标，单位为px。若参数错误，返回0.0f。|
 
-### OH_ArkUI_TouchTestInfoItem_GetWindowY
+### OH_ArkUI_TouchTestInfoItem_GetWindowY()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetWindowY(const ArkUI_TouchTestInfoItem* info);
@@ -4268,7 +4274,7 @@ float OH_ArkUI_TouchTestInfoItem_GetWindowY(const ArkUI_TouchTestInfoItem* info)
 | float | 相对于当前应用窗口左上角的Y坐标，单位为px。若参数错误，返回0.0f。|
 
 
-### OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent
+### OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent(const ArkUI_TouchTestInfoItem* info);
@@ -4291,7 +4297,7 @@ float OH_ArkUI_TouchTestInfoItem_GetXRelativeToParent(const ArkUI_TouchTestInfoI
 | -- | -- |
 | float | 相对于父组件左上角的X坐标，单位为px。若参数错误，返回0.0f。|
 
-### OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent
+### OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent()
 
 ```c
 float OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent(const ArkUI_TouchTestInfoItem* info);
@@ -4314,7 +4320,7 @@ float OH_ArkUI_TouchTestInfoItem_GetYRelativeToParent(const ArkUI_TouchTestInfoI
 | -- | -- |
 | float | 相对于父组件左上角的Y坐标，单位为px。若参数错误，返回0.0f。|
 
-### OH_ArkUI_TouchTestInfoItem_GetChildRect
+### OH_ArkUI_TouchTestInfoItem_GetChildRect()
 
 ```c
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildRect(const ArkUI_TouchTestInfoItem* info, ArkUI_Rect* childRect);
@@ -4338,7 +4344,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildRect(const ArkUI_TouchTestInf
 | -- | -- |
 | ArkUI_ErrorCode | 返回结果代码。<br>如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>      |
 
-### OH_ArkUI_TouchTestInfoItem_GetChildId
+### OH_ArkUI_TouchTestInfoItem_GetChildId()
 
 ```c
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildId(const ArkUI_TouchTestInfoItem* info, char* buffer,
@@ -4365,7 +4371,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfoItem_GetChildId(const ArkUI_TouchTestInfoI
 | -- | -- |
 | ArkUI_ErrorCode | 返回结果代码。<br>如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>如果缓冲区空间不足，则返回[ARKUI_ERROR_CODE_BUFFER_SIZE_NOT_ENOUGH](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。|
 
-### OH_ArkUI_TouchTestInfo_SetTouchResultStrategy
+### OH_ArkUI_TouchTestInfo_SetTouchResultStrategy()
 
 ```c
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultStrategy(ArkUI_TouchTestInfo* info, ArkUI_TouchTestStrategy strategy);
@@ -4389,7 +4395,7 @@ ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultStrategy(ArkUI_TouchTestInf
 | -- | -- |
 | ArkUI_ErrorCode | 返回结果代码。<br>如果操作成功，则返回[ARKUI_ERROR_CODE_NO_ERROR](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。<br>如果入参错误，则返回[ARKUI_ERROR_CODE_PARAM_INVALID](capi-arkui-nativemodule-arkui-error-code-h.md#arkui_errorcode)。|
 
-### OH_ArkUI_TouchTestInfo_SetTouchResultId
+### OH_ArkUI_TouchTestInfo_SetTouchResultId()
 
 ```c
 ArkUI_ErrorCode OH_ArkUI_TouchTestInfo_SetTouchResultId(ArkUI_TouchTestInfo* info, const char* id);
