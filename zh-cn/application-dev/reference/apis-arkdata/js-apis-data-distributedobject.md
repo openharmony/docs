@@ -38,7 +38,7 @@ create(context: Context, source: object): DataObject
 
 | 类型 | 说明 |
 | -------- | -------- |
-| [DataObject](#dataobject) | 创建完成的分布式数据对象。 |
+| [DataObject](#dataobject9) | 创建完成的分布式数据对象。 |
 
 **错误码：**
 
@@ -206,7 +206,7 @@ type ProgressObserver = (sessionId: string, progress: number) => void
 | sessionId | string | 是 | 标识变更对象的sessionId。长度不大于128字节，且只能包含字母、数字或下划线_。 |
 | progress    | number | 是 | 标识资产传输进度。取值范围为[-1, 100]，取值为整数，-1表示获取进度失败，100表示传输完成。 |
 
-## DataObject
+## DataObject<sup>9+</sup>
 
 表示一个分布式数据对象。在使用以下接口前，需调用[create()](#distributeddataobjectcreate9)获取DataObject对象。
 
@@ -225,7 +225,7 @@ setSessionId(sessionId: string, callback: AsyncCallback&lt;void&gt;): void
   | 参数名    | 类型                      | 必填 | 说明                                                                                                           |
   | --------- | ------------------------- | ---- | -------------------------------------------------------------------------------------------------------------- |
   | sessionId | string                    | 是   | 分布式数据对象在可信组网中的标识ID，长度不大于128字节，且只能包含字母、数字或下划线_。当传入""、null时表示退出分布式组网。 |
-  | callback  | AsyncCallback&lt;void&gt; | 是   | 加入session的异步回调。                                                                                        |
+  | callback  | AsyncCallback&lt;void&gt; | 是   | 回调函数。当加入session成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -266,7 +266,7 @@ setSessionId(callback: AsyncCallback&lt;void&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;void&gt; | 是 | 退出所有已加入session的异步回调。 |
+  | callback | AsyncCallback&lt;void&gt; | 是 | 回调函数。当退出sessionid成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -501,7 +501,7 @@ save(deviceId: string, callback: AsyncCallback&lt;SaveSuccessResponse&gt;): void
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
   | deviceId | string | 是 | 存储数据的设备号，标识需要保存对象的设备。"local"表示本地设备，否则表示其他设备的设备号。 |
-  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | 是 | 回调函数。返回SaveSuccessResponse，包含sessionId、version、deviceId等信息。 |
+  | callback | AsyncCallback&lt;[SaveSuccessResponse](#savesuccessresponse9)&gt; | 是 | 回调函数。当保存成功，err为undefined，data为SaveSuccessResponse（包含sessionId、version、deviceId等信息）；否则为错误对象。 |
 
 **错误码：**
 
@@ -595,7 +595,7 @@ revokeSave(callback: AsyncCallback&lt;RevokeSaveSuccessResponse&gt;): void
 
   | 参数名 | 类型 | 必填 | 说明 |
   | -------- | -------- | -------- | -------- |
-  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 是 | 回调函数。返回RevokeSaveSuccessResponse，包含sessionId。 |
+  | callback | AsyncCallback&lt;[RevokeSaveSuccessResponse](#revokesavesuccessresponse9)&gt; | 是 | 回调函数。当撤回保存成功，err为undefined，data为RevokeSaveSuccessResponse（包含sessionId信息）；否则为错误对象。|
 
 **错误码：**
 
@@ -696,7 +696,7 @@ bindAssetStore(assetKey: string, bindInfo: BindInfo, callback: AsyncCallback&lt;
   | -------- | ------------------------- | ---- | ---------------------------------------------------------------------------------- |
   | assetKey | string                    | 是   | 待绑定的融合资产在分布式数据对象中的键值。                                             |
   | bindInfo | [BindInfo](#bindinfo11)   | 是   | 待绑定的融合资产在数据库中的信息，包含库名、表名、主键、列名及在数据库中的资产名。 |
-  | callback | AsyncCallback&lt;void&gt; | 是   | 绑定数据库的回调。                                                                 |
+  | callback | AsyncCallback&lt;void&gt; | 是   | 回调函数。当绑定数据库成功，err为undefined，否则为错误对象。 |
 
 **错误码：**
 
@@ -867,6 +867,8 @@ on(type: 'change', callback: DataObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const changeCallback1: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info('change callback1 ' + sessionId);
   if (fields != null && fields != undefined) {
@@ -878,7 +880,8 @@ const changeCallback1: distributedDataObject.DataObserver = (sessionId: string, 
 try {
   g_object.on('change', changeCallback1);
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -900,6 +903,8 @@ off(type: 'change', callback?: DataObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const changeCallback1: distributedDataObject.DataObserver = (sessionId: string, fields: Array<string>) => {
   console.info('change callback1 ' + sessionId);
   if (fields != null && fields != undefined) {
@@ -928,7 +933,8 @@ try {
   g_object.on('change', changeCallback2);
   g_object.off('change');
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -950,13 +956,16 @@ on(type: 'status', callback: StatusObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const statusCallback1: distributedDataObject.StatusObserver = (sessionId: string, networkId: string, status: string) => {
   console.info('status callback ' + sessionId);
 }
 try {
   g_object.on('status', statusCallback1);
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -978,6 +987,8 @@ off(type: 'status', callback?: StatusObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const statusCallback1: distributedDataObject.StatusObserver = (sessionId: string, networkId: string, status: string) => {
   console.info('status callback1' + sessionId);
 }
@@ -995,7 +1006,8 @@ try {
   g_object.on('status', statusCallback2);
   g_object.off('status');
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -1017,6 +1029,8 @@ on(type: 'progressChanged', callback: ProgressObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const progressChangedCallback: distributedDataObject.ProgressObserver = (sessionId: string, progress: number) => {
   console.info('progressChanged callback' + sessionId);
   console.info('progressChanged callback' + progress);
@@ -1024,7 +1038,8 @@ const progressChangedCallback: distributedDataObject.ProgressObserver = (session
 try {
   g_object.on('progressChanged', progressChangedCallback);
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 
@@ -1046,6 +1061,8 @@ off(type: 'progressChanged', callback?: ProgressObserver): void
 **示例：**
 
 ```ts
+import { BusinessError } from '@kit.BasicServicesKit';
+
 const progressChangedCallback1: distributedDataObject.ProgressObserver = (sessionId: string, progress: number) => {
   console.info('progressChanged callback1' + sessionId);
   console.info('progressChanged callback1' + progress);
@@ -1065,7 +1082,8 @@ try {
   // 取消对资产传输进度的所有监听
   g_object.off('progressChanged');
 } catch (error) {
-  console.error(`Failed to execute. Code: ${error.code}, message: ${error.message}`);
+  let err = error as BusinessError;
+  console.error(`Failed to execute. Code: ${err.code}, message: ${err.message}`);
 }
 ```
 ### setAsset<sup>20+</sup>
@@ -1325,7 +1343,7 @@ setSessionId(sessionId?: string): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true：标识设置sessionId成功。 <br>false：标识设置sessionId失败。 |
+  | boolean | true：表示设置sessionId成功。 <br>false：表示设置sessionId失败。 |
 
 **示例：**
 
@@ -1354,7 +1372,7 @@ g_object.setSessionId('');
 
 on(type: 'change', callback: (sessionId: string, fields: Array&lt;string&gt;) => void): void
 
-监听分布式数据对象的变更。
+监听分布式数据对象的数据变更。
 
 > **说明：**
 >
