@@ -1869,7 +1869,7 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.info(`code:` + code + `name:` + name + `message:` + message);
+        console.error(`code:` + code + `name:` + name + `message:` + message);
       },
       onResult: (abilityResult: common.AbilityResult) => {
         console.info(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
@@ -1938,7 +1938,7 @@ export default class EntryAbility extends UIAbility {
     };
     let abilityStartCallback: common.AbilityStartCallback = {
       onError: (code: number, name: string, message: string) => {
-        console.info(`code:` + code + `name:` + name + `message:` + message);
+        console.error(`code:` + code + `name:` + name + `message:` + message);
       },
       onResult: (abilityResult: common.AbilityResult) => {
         console.info(`resultCode:` + abilityResult.resultCode + `bundleName:` + abilityResult.want?.bundleName);
@@ -2454,7 +2454,7 @@ backToCallerAbilityWithResult(abilityResult: AbilityResult, requestCode: string)
 | 16000075 | BackToCaller is not supported. |
 
 **示例：**
-调用方通过startAbilityForResult接口拉起目标方, 目标方再调用backToCallerAbilityWithResult接口返回到调用方。
+调用方通过startAbilityForResult接口拉起目标方，目标方再调用backToCallerAbilityWithResult接口返回到调用方。
 
 ```ts
 // 调用方
@@ -2689,10 +2689,10 @@ struct Index {
               context.startUIServiceExtensionAbility(startWant).then(() => {
                 console.info('startUIServiceExtensionAbility success');
               }).catch((error: BusinessError) => {
-                console.info('startUIServiceExtensionAbility error', JSON.stringify(error));
+                console.error('startUIServiceExtensionAbility error', JSON.stringify(error));
               })
             } catch (err) {
-              console.info('startUIServiceExtensionAbility failed', JSON.stringify(err));
+              console.error('startUIServiceExtensionAbility failed', JSON.stringify(err));
             }
           })
       }
@@ -3079,7 +3079,7 @@ setColorMode(colorMode: ConfigurationConstant.ColorMode): void
 
 | 参数名 | 类型          | 必填 | 说明                 |
 | ------ | ------------- | ---- | -------------------- |
-| colorMode | [ConfigurationConstant](js-apis-app-ability-configurationConstant.md).ColorMode | 是   | 设置颜色模式，包括: <br> - COLOR_MODE_DARK：深色模式 <br> - COLOR_MODE_LIGHT：浅色模式 <br> - COLOR_MODE_NOT_SET：不设置（跟随系统或应用）|
+| colorMode | [ConfigurationConstant](js-apis-app-ability-configurationConstant.md).ColorMode | 是   | 设置颜色模式，包括：<br> - COLOR_MODE_DARK：深色模式 <br> - COLOR_MODE_LIGHT：浅色模式 <br> - COLOR_MODE_NOT_SET：不设置（跟随系统或应用）|
 
 **错误码**：
 
