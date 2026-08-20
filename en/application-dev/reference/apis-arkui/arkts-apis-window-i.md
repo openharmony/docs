@@ -424,7 +424,7 @@ Describes the configuration for window animation.
 
 ## WindowSnapshotAnimationConfig
 
-Window screenshot animation configuration. This parameter can be configured only when the [maximizeWithOptions()](arkts-apis-window-Window.md#maximizewithoptions) or [recover()](arkts-apis-window-Window.md#recover) API is called.
+Window screenshot animation configuration. This parameter can be configured only when the maximizeWithOptions() or recover() API is called.
 
 **Since**: 26.0.0
 
@@ -450,7 +450,7 @@ Maximum configuration options.
 | Name  | Type  | Read-Only| Optional| Description                                      |
 | ------ | ------ | ---- | ---- |------------------------------------------ |
 | maximizePresentation | [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12)  |  No |  Yes | Layout mode when the window is maximized. The default value is [MaximizePresentation](arkts-apis-window-e.md#maximizepresentation12).ENTER_IMMERSIVE.|
-| acrossDisplayPresentation | [AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation)  |  No |  Yes | Cross-screen policy for foldable devices. The default value is [AcrossDisplayPresentation](arkts-apis-window-e.md#acrossdisplaypresentation).FOLLOW_ACROSS_DISPLAY_SETTING. This parameter can be set only for the main window. Using it for non-main windows results in error code 1300004. **Device behavior differences**: This API is supported on 2-in-1 devices with folding capabilities. On other device types, this API does not take effect.|
+| acrossDisplayPresentation | AcrossDisplayPresentation  |  No |  Yes | Cross-screen policy for foldable devices. The default value is AcrossDisplayPresentation.FOLLOW_ACROSS_DISPLAY_SETTING. This parameter can be set only for the main window. Using it for non-main windows results in error code 1300004. **Device behavior differences**: This API is supported on 2-in-1 devices with folding capabilities. On other device types, this API does not take effect.|
 | snapshotAnimationConfig | [WindowSnapshotAnimationConfig](#windowsnapshotanimationconfig)  |  No |  Yes | Screenshot animation configuration. When a window is maximized or restored to a [freeform window](../../windowmanager/window-terminology.md#freeform-window), the system uses a screenshot animation to mask the transition of application layout changes. You can use this property to specify the delay and duration of the screenshot fade-out animation. This setting can only be applied to the main window. If not specified for the main window, the system default animation is used. Child windows have no screenshot animation by default, meaning both duration and delay are **0**. Passing other animation parameters to child windows will return error code 1300004. When duration is set to **0**, the screenshot animation is disabled.|
 
 ## WindowInfo<sup>18+</sup>
