@@ -24,8 +24,8 @@
 <!-- @[quick_start](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/ArkUISample/ArkUIWindowSamples/DeviceDifferentiationSample/entry/src/main/ets/pages/Index.ets) --> 
 
 ``` TypeScript
-import { window } from '@kit.ArkUI'
-import common from '@ohos.app.ability.common';
+import { window } from '@kit.ArkUI';
+import { common } from '@kit.AbilityKit';
 import { Callback } from '@kit.BasicServicesKit';
 import { display } from '@kit.ArkUI';
 
