@@ -1,7 +1,7 @@
 # @ohos.resourceschedule.systemload (性能功耗热融合档位)
 <!--Kit: Basic Services Kit-->
 <!--Subsystem: Resourceschedule-->
-<!--Owner: @baiheng-->
+<!--Owner: @xupeng_-->
 <!--Designer: @zhouben25-->
 <!--Tester: @leetestnady-->
 <!--Adviser: @fang-jinxu-->
@@ -92,7 +92,7 @@ function onSystemLoadChange(res: systemLoad.SystemLoadLevel) {
 
 try {
     systemLoad.off('systemLoadChange', onSystemLoadChange);
-    console.info(`unregister systemload callback succeeded:. `);
+    console.info(`unregister systemload callback succeeded. `);
 } catch (err) {
     console.error(`unregister systemload callback failed: ` + JSON.stringify(err));
 }
@@ -100,9 +100,9 @@ try {
 
 ## systemLoad.getLevel
 
-getLevel(): Promise&lt;[SystemLoadLevel](#systemloadlevel)&gt;
+getLevel(): Promise&lt;SystemLoadLevel&gt;
 
-获取系统负载融合档位，使用promise异步回调。
+获取系统负载融合档位，使用Promise异步回调。
 
 **系统能力:** SystemCapability.ResourceSchedule.SystemLoad
 

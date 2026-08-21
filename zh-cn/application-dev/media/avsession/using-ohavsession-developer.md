@@ -31,7 +31,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 ## 开发步骤及注意事项
 
 开发者可以通过以下几个步骤在NDK接入本地会话。
-1. 创建并激活会话，需要传入会话类型`AVSession_Type`，自定义的TAG，以及应用的包名、ability名字。
+1. 创建并激活会话，需要传入会话类型`AVSession_Type`，自定义的TAG，以及应用的包名、Ability名称。
 
    <!-- @[create](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
    
@@ -91,7 +91,7 @@ target_link_libraries(entry PUBLIC libohavsession.so)
    OH_AVSession_SetAVMetadata(avsession, ohMetadata);
    ```
    
-   如果不使用AVMetadata，开发者应该执行OH_AVMetadata_Destroy接口销毁元数据对象，同时执行OH_AVMetadataBuilder_Destroy接口销毁构造器，且不能继续使用。
+   使用完AVMetadata后，开发者应该执行OH_AVMetadata_Destroy接口销毁元数据对象，同时执行OH_AVMetadataBuilder_Destroy接口销毁构造器，且不能继续使用。
    
    <!-- @[destroy_metadata](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProviderNative/entry/src/main/cpp/napi_init.cpp) -->
    
@@ -126,8 +126,9 @@ target_link_libraries(entry PUBLIC libohavsession.so)
 
    > **说明：**
    >
-   > 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方认为该方法有效，因此在需要时会触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
-   > 调用注册接口后，在业务结束时需要调用取消注册接口，避免出现异常。
+   > - 媒体会话提供方在注册相关固定播控命令事件监听时，监听的事件会在媒体会话控制方的getValidCommands()方法中体现，即媒体会话控制方认为该方法有效，因此在需要时会触发相应的事件。为了保证媒体会话控制方下发的播控命令可以被正常执行，媒体会话提供方请勿进行无逻辑的空实现监听。
+   >
+   > - 调用注册接口后，在业务结束时需要调用取消注册接口，避免出现异常。
  
    Session侧目前支持的播控命令包括：
    - 播放

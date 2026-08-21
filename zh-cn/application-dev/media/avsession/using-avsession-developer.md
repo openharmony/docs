@@ -10,9 +10,9 @@
 
 ## 基本概念
 
-- 媒体会话元数据（AVMetadata）：用于描述媒体数据相关属性，包含标识当前媒体的ID（assetId），上一首媒体的ID（previousAssetId），下一首媒体的ID（nextAssetId），标题（title），专辑作者（author），专辑名称（album），词作者（writer），媒体时长（duration）等属性。
+- 媒体会话元数据（AVMetadata）：用于描述媒体数据相关属性，包含标识当前媒体的ID（assetId）、上一首媒体的ID（previousAssetId）、下一首媒体的ID（nextAssetId）、标题（title）、艺术家（artist）、专辑作者（author）、专辑名称（album）、词作者（writer）和媒体时长（duration）等属性。
 
-- 媒体播放状态（AVPlaybackState）：用于描述媒体播放状态的相关属性，包含当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体ID（activeItemId）、自定义媒体数据（extras）等属性。
+- 媒体播放状态（AVPlaybackState）：用于描述媒体播放状态的相关属性，包含当前媒体的播放状态（state）、播放位置（position）、播放倍速（speed）、缓冲时间（bufferedTime）、循环模式（loopMode）、是否收藏（isFavorite）、正在播放的媒体ID（activeItemId）和自定义媒体数据（extras）等属性。
 
 ## 接口说明
 
@@ -27,7 +27,7 @@
 | setAVPlaybackState(state: AVPlaybackState, callback: AsyncCallback&lt;void&gt;): void<sup>10+</sup> | 设置媒体会话播放状态。 | 
 | setLaunchAbility(ability: WantAgent, callback: AsyncCallback&lt;void&gt;): void<sup>10+</sup> | 设置启动UIAbility。 | 
 | getController(callback: AsyncCallback&lt;AVSessionController&gt;): void<sup>10+</sup> | 获取当前会话自身控制器。 | 
-| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+</sup> | 获取播放设备相关信息。 |
+| getOutputDevice(callback: AsyncCallback&lt;OutputDeviceInfo&gt;): void<sup>10+</sup> | 获取输出设备相关信息。 |
 | activate(callback: AsyncCallback&lt;void&gt;): void<sup>10+</sup> | 激活媒体会话。 | 
 | deactivate(callback: AsyncCallback&lt;void&gt;): void<sup>10+</sup> | 禁用当前会话。 |
 | destroy(callback: AsyncCallback&lt;void&gt;): void<sup>10+</sup> | 销毁媒体会话。 | 
@@ -245,10 +245,10 @@
    }
    ```
     
-4. 设置一个即时的自定义会话事件，以供媒体控制方接收到事件后进行相应的操作。
+4. 发送一个即时的自定义会话事件，以供媒体控制方接收到事件后进行相应的操作。
 
    > **说明：**<br>
-   > 通过dispatchSessionEvent方法设置的数据不会保存在会话对象或AVSession服务中。
+   > 通过dispatchSessionEvent方法发送的数据不会保存在会话对象或AVSession服务中。
 
    <!-- @[dispatchSessionEvent](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProvider/entry/src/main/ets/pages/DispatchSessionEvent.ets) -->
    
@@ -449,7 +449,7 @@
 
    - skipToQueueItem: 播放列表其中某项被选中的事件。
    - handleKeyEvent: 按键事件。
-   - outputDeviceChange: 播放设备变化的事件。
+   - outputDeviceChange: 输出设备变化的事件。
    - commonCommand: 自定义控制命令变化的事件。
 
    <!-- @[advancedPlayback](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/AVSession/LocalAVSession/AVSessionProvider/entry/src/main/ets/pages/AdvancedPlaybackControlEvents.ets) -->

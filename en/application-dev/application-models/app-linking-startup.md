@@ -119,9 +119,9 @@ Perform the following operations on the developer website to associate the appli
    }
    ```
 
-   **app-identifier** is the unique identifier allocated to an application during application signing. It is also the value of the **app-identifier** field declared in the [HarmonyAppProvision configuration file](../security/app-provision-structure.md).
+   **app-identifier** is the unique identifier allocated to an application during application signing. It is also the value of the **app-identifier** field declared in the [HarmonyAppProvision configuration file].
 
-1. Place the domain name configuration file in a fixed directory on the DNS.
+2. Place the domain name configuration file in a fixed directory on the DNS.
 
    The fixed directory is as follows:
    > https://*your.domain.name*/.well-known/applinking.json

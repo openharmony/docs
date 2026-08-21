@@ -6,9 +6,9 @@
 <!--Designer: @lilong32; @CCCZKing-->
 <!--Tester: @zhangjiaji111-->
 <!--Adviser: @zhang_yixin13-->
-<!-- md-trans-meta sourceCommit=6610f64dcfdc39e7239dc52b313502bf3f4a9b0b translatedAt=2026-08-12T11:28:06.147Z pushedAt=2026-08-13T11:30:21.872Z -->
+<!-- md-trans-meta sourceCommit=02fce05de566ce8f56f53550eea84cf8ca0dfad8 translatedAt=2026-08-17T08:48:18.244Z pushedAt=2026-08-18T11:34:23.168Z -->
 
-This module provides definitions of common constants.
+This module provides definitions of common constants for NearLink communication, including the device pairing status, device connection status, and device type.
 
 **Since**: 26.0.0
 
@@ -70,7 +70,7 @@ Enumerates the device types.
 | DEVICE_COMPUTER | 0x000300 | Computer. |
 | DEVICE_LAPTOP | 0x000301 | Laptop. |
 | DEVICE_TABLET | 0x000302 | Tablet. |
-| DEVICE_ALL_IN_ONE_COMPUTER | 0x000303 | 2-in-1 device. |
+| DEVICE_ALL_IN_ONE_COMPUTER | 0x000303 | All-in-one computer. |
 | DEVICE_MINI_PC | 0x000304 | Mini PC. |
 | DEVICE_WATCH | 0x000400 | Watch. |
 | DEVICE_SMART_WATCH | 0x000401 | Smartwatch. |
@@ -95,7 +95,7 @@ Enumerates the device types.
 | DEVICE_INTELLIGENT_TOOTHBRUSH | 0x000901 | Smart toothbrush. |
 | DEVICE_SMART_CUP | 0x000902 | Smart cup. |
 | DEVICE_INTELLIGENT_SHAVER | 0x000903 | Smart shaver. |
-| DEVICE_HVAC | 0x000A00 | HVAC (heating, ventilation, and air conditioning). |
+| DEVICE_HVAC | 0x000A00 | HVAC. |
 | DEVICE_AIR_PURIFIER | 0x000A01 | Air purifier. |
 | DEVICE_HUMIDIFIER | 0x000A02 | Humidifier. |
 | DEVICE_AIR_CIRCULATION_FAN | 0x000A03 | Air circulation fan. |

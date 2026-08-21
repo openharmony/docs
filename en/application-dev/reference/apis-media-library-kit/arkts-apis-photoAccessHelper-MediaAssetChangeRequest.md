@@ -6,7 +6,7 @@
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=b4558baf2653dbc4e06627859cd656768663a602 translatedAt=2026-06-23T07:32:36.264Z pushedAt=2026-06-23T09:25:46.746Z -->
+<!-- md-trans-meta sourceCommit=4a795b21f57b573005021f11eccd17e669448809 translatedAt=2026-08-19T10:04:40.778Z pushedAt=2026-08-20T02:56:23.211Z -->
 
 MediaAssetChangeRequest implements [MediaChangeRequest](arkts-apis-photoAccessHelper-i.md#mediachangerequest11).
 
@@ -500,7 +500,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | -------- | ---------------------------------------- |
 | 201   | Permission denied.        |
 | 401    | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types. |
-| 14000011 |  System inner fail.        |
+| 14000011 |  System inner fail.<br>Possible causes: 1. The database is corrupted; 2. The file system is abnormal; 3. The IPC request timed out.        |
 | 14000016 |  Operation Not Support.     |
 
 **Example**
@@ -639,6 +639,11 @@ saveCameraPhoto(): void
 
 Saves the photo taken by the camera.
 
+> **NOTE**
+>
+> - In non-YUV shooting mode, the encoding format of the saved photo is the same as that of [CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).
+> - In YUV shooting mode, the encoding format cannot be specified using this API, and the image is saved in JPG format by default.
+
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
 **Error codes**
@@ -672,7 +677,13 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asse
 
 saveCameraPhoto(imageFileType: ImageFileType): void
 
-Saves a captured photo. The type to save must be specified.
+Saves the photo taken by the camera.
+
+> **NOTE**
+> 
+> - In non-YUV shooting mode, the encoding format of the saved photo is the same as that of [CameraFormat](../apis-camera-kit/arkts-apis-camera-e.md#cameraformat).
+> - In YUV shooting mode, this API encodes the YUV object into a specified format based on [ImageFileType](arkts-apis-photoAccessHelper-e.md#imagefiletype13).
+> - When this API is used together with [addResource](#addresource11-1), the encoding format of the photo resource to be saved must be the same as that of the resource added using [addResource](#addresource11-1).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -752,7 +763,12 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, asse
 
 setOrientation(orientation: number): void
 
-Sets the orientation of this image.
+Sets the image rotation angle. This API adjusts the image rotation angle by modifying the Exif metadata.
+
+> **NOTE**
+> 
+> - BMP, GIF, ICO, and SVG images do not contain Exif metadata. Therefore, the rotation angle of these images cannot be adjusted using this API.
+> - The Exif metadata of DNG images cannot be edited. Therefore, the rotation angle of these images cannot be adjusted using this API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
@@ -773,7 +789,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 
 **Example**
 
-For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
+For details about how to create a **phAccessHelper** instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
 import { dataSharePredicates } from '@kit.ArkData';
@@ -794,6 +810,57 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
     console.info('apply setOrientation successfully');
   }).catch((err: BusinessError) => {
     console.error(`apply setOrientation failed with error: ${err.code}, ${err.message}`);
+  });
+}
+```
+
+## setFavorite
+
+setFavorite(favoriteState: boolean): void
+
+Favorites or unfavorites this file asset.
+
+**Since**: 26.0.0
+
+**System capability:** SystemCapability.FileManagement.PhotoAccessHelper.Core
+
+**Parameters**
+
+| Name        | Type      | Mandatory   | Description                                 |
+| ---------- | ------- | ---- | ---------------------------------- |
+| favoriteState | boolean | Yes    | Whether to favorite the file asset. **true** to favorite, and **false** otherwise. |
+
+**Error codes**
+
+For details about the error codes thrown by the API, see [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
+
+| ID | Error Message |
+| -------- | ---------------------------------------- |
+| 14000011       | System inner fail.         |
+
+**Example**
+
+For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
+
+```ts
+import { dataSharePredicates } from '@kit.ArkData';
+import { BusinessError } from '@kit.BasicServicesKit';
+
+async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
+  console.info('setFavoriteDemo');
+  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
+  let fetchOption: photoAccessHelper.FetchOptions = {
+    fetchColumns: [],
+    predicates: predicates
+  };
+  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
+  let asset = await fetchResult.getFirstObject();
+  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
+  assetChangeRequest.setFavorite(true);
+  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
+    console.info('apply setFavorite successfully');
+  }).catch((err: BusinessError) => {
+    console.error(`apply setFavorite failed with error: ${err.code}, ${err.message}`);
   });
 }
 ```

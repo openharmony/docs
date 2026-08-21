@@ -208,7 +208,7 @@ unregisterSource(id: number): Promise&lt;void&gt;
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。 |
+| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。<br>从API版本20开始支持registerSourceFromFd。 |
 
 **返回值：**
 
@@ -250,7 +250,7 @@ setAudioLatencyMode(id:number, latencyMode: AudioLatencyMode): void
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| id          | number                                | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。 |
+| id          | number                                | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。<br>从API版本20开始支持registerSourceFromFd。 |
 | latencyMode | [AudioLatencyMode](#audiolatencymode) | 是   | 音频时延模式。             |
 
 **错误码：**
@@ -286,7 +286,7 @@ setStreamUsage(id: number, usage: audio.StreamUsage): void
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。 |
+| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。<br>从API版本20开始支持registerSourceFromFd。 |
 | usage    | [audio.StreamUsage](arkts-apis-audio-e.md#streamusage) | 是   | 音频流类型。    |
 
 **错误码：**
@@ -327,7 +327,7 @@ createPlayer(id: number, options?: AudioHapticPlayerOptions): Promise&lt;AudioHa
 
 | 参数名   | 类型                                      | 必填 | 说明                     |
 | -------- | ---------------------------------------- | ---- | ------------------------ |
-| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。 |
+| id       | number                                   | 是   | 通过[registerSource](#registersource)或[registerSourceFromFd](#registersourcefromfd20)方法注册后返回的资源标识符，用于标识具体的音振资源。<br>从API版本20开始支持registerSourceFromFd。 |
 | options  | [AudioHapticPlayerOptions](#audiohapticplayeroptions) | 否   | 音振播放器选项，用于配置播放时的音频和振动行为（如是否静音音频、是否禁止振动）。当需要自定义播放行为时传入此参数，不传入时使用默认播放配置（正常播放声音和振动）。 |
 
 **返回值：**

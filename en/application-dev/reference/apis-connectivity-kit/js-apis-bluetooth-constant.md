@@ -3,11 +3,12 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T10:00:04.009Z pushedAt=2026-08-19T12:08:52.260Z -->
 
-The **constant** module provides constant definitions related to Bluetooth [profiles](../../connectivity/terminology.md#profile) and device types.
+The **constant** module provides constant definitions related to Bluetooth [profiles](../../connectivity/bluetooth/terminology.md#profile) and device types.
 
 > **NOTE**
 >
@@ -21,16 +22,16 @@ import { constant } from '@kit.ConnectivityKit';
 
 ## ProfileId
 
-Enumerates the Bluetooth [profile](../../connectivity/terminology.md#profile) IDs.
+Enumerates the Bluetooth [profile](../../connectivity/bluetooth/terminology.md#profile) IDs.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
 | Name                              | Value   | Description             |
 | -------------------------------- | ------ | --------------- |
-| PROFILE_A2DP_SOURCE              | 1 | [A2DP source](../../connectivity/terminology.md#a2dp-source) profile, which is used to send audio data.|
-| PROFILE_HANDSFREE_AUDIO_GATEWAY | 4 | [HFP AG](../../connectivity/terminology.md#hfp-ag) profile, which is used to send call audio data. |
-| PROFILE_HID_HOST | 6 | [HID host](../../connectivity/terminology.md#hid-host) profile, which is used to establish communication with the [HID device](../../connectivity/terminology.md#hid-device) and exchange data. |
-| PROFILE_PAN_NETWORK | 7 | [NAP](../../connectivity/terminology.md#nap) profile, which is used to implement network sharing. |
+| PROFILE_A2DP_SOURCE              | 1 | [A2DP Source](../../connectivity/bluetooth/terminology.md#a2dp-source) profile, which is used to send audio data. |
+| PROFILE_HANDSFREE_AUDIO_GATEWAY | 4 | [HFP AG](../../connectivity/bluetooth/terminology.md#hfp-ag) profile, which is used to send call audio data.  |
+| PROFILE_HID_HOST | 6 | [HID host](../../connectivity/bluetooth/terminology.md#hid-host) profile, which is used to establish communication with the [HID device](../../connectivity/bluetooth/terminology.md#hid-device) and exchange data.  |
+| PROFILE_PAN_NETWORK | 7 | [NAP](../../connectivity/bluetooth/terminology.md#nap) profile, which is used to implement network sharing.  |
 
 ## ProfileConnectionState
 
@@ -69,7 +70,7 @@ Enumerates the types of Bluetooth devices. This is a standard field in the Bluet
 
 ## MajorMinorClass
 
-Enumerates the Bluetooth device subclasses, which are further subdivided based on [MajorClass](#majorclass). This is a standard field in the Bluetooth protocol.
+Enumerates the Bluetooth device child classes, which are further subdivided based on [MajorClass](#majorclass). This is a standard field in the Bluetooth protocol.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -162,10 +163,9 @@ Enumerates the Bluetooth device subclasses, which are further subdivided based o
 | HEALTH_GENERIC_HEALTH_MANAGER            | 0x0938 | Generic health management device.    |
 | HEALTH_PERSONAL_MOBILITY_DEVICE          | 0x093C | Personal mobility device.    |
 
-
 ## ProfileUuids<sup>12+</sup>
 
-Enumerates the [Universally Unique Identifiers (UUIDs)](../../connectivity/terminology.md#uuid) of Bluetooth profiles, which are defined by [Bluetooth Special Interest Group](../../connectivity//terminology.md#bluetooth-sig).
+Enumerates the [Universally Unique Identifiers (UUIDs)](../../connectivity/bluetooth/terminology.md#uuid) of Bluetooth profiles, which are defined by [Bluetooth Special Interest Group](../../connectivity/bluetooth/terminology.md#bluetooth-sig).
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 

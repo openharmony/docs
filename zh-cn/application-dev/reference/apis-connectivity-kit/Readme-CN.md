@@ -77,7 +77,7 @@
     - [oh_wifi.h](capi-oh-wifi-h.md)
 - 错误码<!--connectivity-arkts-errcode-->
   - [蓝牙服务子系统错误码](errorcode-bluetoothManager.md)
-  - [WIFI错误码](errorcode-wifi.md)
+  - [Wi-Fi错误码](errorcode-wifi.md)
   - [NFC错误码](errorcode-nfc.md)
   - [SE(secureElement)错误码](errorcode-se.md)
   - [融合短距服务子系统错误码](errorcode-fusionConnectivity.md)

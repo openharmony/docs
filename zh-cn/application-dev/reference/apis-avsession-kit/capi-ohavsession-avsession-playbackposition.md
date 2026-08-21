@@ -26,7 +26,7 @@ typedef struct AVSession_PlaybackPosition {...} AVSession_PlaybackPosition
 
 | 名称 | 描述 |
 | -- | -- |
-| int64_t elapsedTime | 已用时间，单位毫秒（ms）。 |
-| int64_t updateTime | 更新时间，单位毫秒（ms）。 |
+| int64_t elapsedTime | 已用时间，单位为毫秒（ms）。 |
+| int64_t updateTime | 更新时间，单位为毫秒（ms）。 |
 
 

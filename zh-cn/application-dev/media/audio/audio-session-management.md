@@ -10,15 +10,24 @@
 
 当系统提供的默认焦点策略不能满足应用需求时，应用可利用音频会话管理提供的接口，管理应用内音频流的焦点，自定义音频流的焦点策略，调整音频流释放焦点的时机，以满足特定需求。本文档的示例代码均为ArkTS，如果需要使用OHAudio开发请参考[使用OHAudio开发音频会话功能(C/C++)](using-ohaudio-for-session.md)。
 
+音频会话管理提供了两种焦点管理方式：[音频流独立持有焦点](#音频流独立持有焦点)和[音频会话统一持有焦点](#音频会话统一持有焦点)，应用可根据自身业务需求选择合适的焦点管理方式。
+
+两种方式设置的[音频会话策略](#音频会话策略)对所有流均生效，激活与释放时机相同，即音频流播放前激活，停止后释放。
+
+| 对比项 | 音频流独立持有焦点 | 音频会话统一持有焦点 |
+|:---|:---|:---|
+| 焦点管理方式 | AudioSession不持有焦点，各音频流独立申请和释放焦点。 | AudioSession统一持有焦点，管理音频流的焦点申请与释放。 |
+| 适用音频流类型 | 播放流和录音流均适用。 | 适用于播放流（STREAM_USAGE_ALARM、STREAM_USAGE_NOTIFICATION、STREAM_USAGE_ACCESSIBILITY等除外），录音流不适用。 |
+
 使用音频会话相关接口，可以实现以下功能：
 
-- 系统默认焦点策略不能满足应用当前需求，应用可[使用音频会话修改焦点策略](#使用音频会话修改焦点策略)来适配适合自己的焦点策略。
+- [音频流独立持有焦点](#音频流独立持有焦点)：系统默认焦点策略不能满足应用当前需求，仅需调整音频流的焦点策略。
 
-  典型场景：应用播放短视频时，会打断后台音乐，应用希望自身的音频流停止后，后台的音乐可以自动恢复（该场景需要应用在音频流启动前激活音频会话，音频流停止后停用音频会话）。
+  **典型场景：** 应用播放短视频时，会打断后台音乐，应用希望自身的音频流停止后，后台的音乐可以自动恢复。该场景需要应用在音频流启动前激活音频会话，音频流停止后停用音频会话。
 
-- 当应用在某个业务流程中需要启动多个音频流，且要保证整个流程的完整性时，应用可[使用音频会话申请焦点策略](#使用音频会话申请焦点策略)来适配适合自己业务场景的焦点策略。
+- [音频会话统一持有焦点](#音频会话统一持有焦点)：需要启动多个音频流并保证播放流程的连续性，避免音频流切换时因焦点释放导致其他应用音频恢复。
 
-  典型场景：应用连续播放多个音频时，在多个音频衔接的间隙，不希望后台被影响的其他音频自动恢复，希望整个播放过程保持音频焦点的连贯性（该场景需要应用在整个播放过程开始前激活音频会话，整个播放过程结束后停用音频会话）。
+  **典型场景：** 应用连续播放多个音频时，在多个音频衔接的间隙，不希望后台被影响的其他音频自动恢复，希望整个播放过程保持音频焦点的连贯性。该场景需要应用在整个播放过程开始前激活音频会话，整个播放过程结束后停用音频会话。
 
 > **注意：**
 >
@@ -40,26 +49,6 @@ import { audio } from '@kit.AudioKit';
 let audioManager = audio.getAudioManager();
 // 创建音频会话管理器。
 let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionManager();
-```
-
-## 设置会话级录音流静音提示
-
-从API version 24开始，当应用已在业务侧将当前音频会话内的录音流静音时，可以调用[setCapturerMuteHint](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setcapturermutehint24)接口将该状态上报给系统音频模块，系统音频模块会基于上报的状态调整策略以降低功耗。注意，此功能当前仅在部分PC/2in1设备上生效。该接口不会实际触发静音，也不会对录音数据做静音处理。它只是告知系统音频模块，应用已将当前音频会话内的录音流静音。应用仍需自行处理录音数据，例如不发送采集数据或发送静音数据。
-
-该接口仅允许在当前音频会话存在运行中的录音流时调用，否则会返回错误码`6800103`。若某条录音流同时调用了流级静音提示接口[AudioCapturer.setMuteHint](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#setmutehint24)和会话级静音提示接口，流级设置优先级更高，以流级设置值为准。因此，当应用内多条录音流的静音状态一致时，可以使用会话级接口统一上报；当不同录音流静音状态不一致时，建议对具体录音流使用流级接口。若为了调用会话级接口而创建Mic音频源录音流，需要申请麦克风权限`ohos.permission.MICROPHONE`。当前未提供系统查询接口，如需在界面展示静音提示状态，应用需要自行维护最近一次设置成功的状态。以下示例中，`muteHint`为`true`表示上报静音提示，`false`表示解除静音提示。
-
-<!-- @[set_capturer_mute_hint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSessionSampleJS/entry/src/main/ets/pages/Index.ets) -->
-
-``` TypeScript
-try {
-  await audioSessionManager.setCapturerMuteHint(muteHint);
-  console.info(`setCapturerMuteHint ${muteHint} success.`);
-  // ...
-} catch (err) {
-  let error = err as BusinessError;
-  console.error(`setCapturerMuteHint ${muteHint} failed. Code: ${error.code}, message: ${error.message}`);
-  // ...
-}
 ```
 
 ## 音频会话策略
@@ -92,13 +81,11 @@ try {
 > - 当应用通过AudioSession使用上述各种模式时，系统将尽量满足其焦点策略，但可能无法保证在所有场景下完全满足。
 > - 并发模式（CONCURRENCY_MIX_WITH_OTHERS）在本应用申请焦点和后续其他应用申请焦点时均会生效；降低音量模式（CONCURRENCY_DUCK_OTHERS）和暂停模式（CONCURRENCY_PAUSE_OTHERS）仅在本应用申请焦点时生效，后续其他应用申请焦点时，优先遵循其他应用的并发模式。
 
-## 使用音频会话修改焦点策略
+## 音频流独立持有焦点
 
 系统默认焦点策略不能满足应用当前需求时，应用可通过指定[音频会话策略](#音频会话策略)后激活AudioSession来完成焦点策略修改。
 
 AudioSession激活成功后，应用新起的音频流将会按照修改后的焦点策略起流。
-
-使用AudioSession修改焦点策略时，AudioSession不会持有焦点，焦点仍由各个音频流持有。
 
 使用OHAudio开发请参考：[使用OHAudio开发音频会话功能(C/C++)](using-ohaudio-for-session.md)。
 
@@ -207,7 +194,7 @@ AudioSession激活成功后，应用新起的音频流将会按照修改后的�
 
 ### 完整示例
 
-下面展示了使用AudioSession修改焦点策略的示例代码。
+下面展示了音频流独立持有焦点的示例代码。
 
 <!-- @[audio_session_v1](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSessionSampleJS/entry/src/main/ets/pages/Index.ets) -->
 
@@ -263,7 +250,7 @@ let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionMana
   });
 ```
 
-## 使用音频会话申请焦点策略
+## 音频会话统一持有焦点
 
 当应用需要启动多个音频流并保证流程连续性时，可通过AudioSession申请焦点，确保多音频流播放的连续性。
 
@@ -285,7 +272,7 @@ let audioSessionManager: audio.AudioSessionManager = audioManager.getSessionMana
 
 ### 音频会话场景
 
-使用AudioSession申请焦点策略时，系统提供了三种音频会话场景。激活AudioSession前需要先通过[setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setaudiosessionscene20)设置对应的音频会话场景，后续AudioSession激活时系统会根据应用选择的音频会话场景申请对应的音频焦点。
+音频会话统一持有焦点时，系统提供了三种音频会话场景。激活AudioSession前需要先通过[setAudioSessionScene](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setaudiosessionscene20)设置对应的音频会话场景，后续激活时系统会根据应用选择的音频会话场景申请对应的音频焦点。
 
 | 名称                   | 值 | 说明      |
 | :--------------------- |:--|:--------|
@@ -299,7 +286,7 @@ AudioSession申请的焦点和AudioRenderer申请的焦点是同等地位。
 
 应用可以通过[on('audioSessionStateChanged')](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#onaudiosessionstatechanged20)来监听AudioSession的焦点和状态变化。为了维持应用和系统的状态一致性，确保良好的用户体验，应用应监听AudioSession焦点状态事件，并在焦点变化时做出必要响应。
 
-[on('audioSessionStateChanged')](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#onaudiosessionstatechanged20)包含了[AudioSession停用事件](#audiosession停用事件)的信息，当[使用音频会话申请焦点策略](#使用音频会话申请焦点策略)时无需再额外监听音频会话停用事件（AudioSessionDeactivatedEvent）。
+[on('audioSessionStateChanged')](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#onaudiosessionstatechanged20)包含了[AudioSession停用事件](#audiosession停用事件)的信息，当使用[音频会话统一持有焦点](#音频会话统一持有焦点)的方式时无需再额外监听音频会话停用事件（AudioSessionDeactivatedEvent）。
 
 > **说明：**
 >
@@ -441,7 +428,7 @@ AudioSession申请的焦点和AudioRenderer申请的焦点是同等地位。
 
 ### 完整示例
 
-下面展示了使用AudioSession申请焦点策略的示例代码。
+下面展示了音频会话统一持有焦点的示例代码。
 
 <!-- @[audio_session_v2](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSessionSampleJS/entry/src/main/ets/pages/Index.ets) -->
 
@@ -535,6 +522,26 @@ import { BusinessError } from '@kit.BasicServicesKit';
     console.error(`Failed to deactivate audio session. Code: ${err.code}, message: ${err.message}`);
     // ...
   });
+```
+
+## 设置会话级录音流静音提示
+
+从API version 24开始，当应用已在业务侧将当前音频会话内的录音流静音时，可以调用[setCapturerMuteHint](../../reference/apis-audio-kit/arkts-apis-audio-AudioSessionManager.md#setcapturermutehint24)接口将该状态上报给系统音频模块，系统音频模块会基于上报的状态调整策略以降低功耗。注意，此功能当前仅在部分PC/2in1设备上生效。该接口不会实际触发静音，也不会对录音数据做静音处理。它只是告知系统音频模块，应用已将当前音频会话内的录音流静音。应用仍需自行处理录音数据，例如不发送采集数据或发送静音数据。
+
+该接口仅允许在当前音频会话存在运行中的录音流时调用，否则会返回错误码`6800103`。若某条录音流同时调用了流级静音提示接口[AudioCapturer.setMuteHint](../../reference/apis-audio-kit/arkts-apis-audio-AudioCapturer.md#setmutehint24)和会话级静音提示接口，流级设置优先级更高，以流级设置值为准。因此，当应用内多条录音流的静音状态一致时，可以使用会话级接口统一上报；当不同录音流静音状态不一致时，建议对具体录音流使用流级接口。若为了调用会话级接口而创建Mic音频源录音流，需要申请麦克风权限`ohos.permission.MICROPHONE`。当前未提供系统查询接口，如需在界面展示静音提示状态，应用需要自行维护最近一次设置成功的状态。以下示例中，`muteHint`为`true`表示上报静音提示，`false`表示解除静音提示。
+
+<!-- @[set_capturer_mute_hint](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Media/Audio/AudioSessionSampleJS/entry/src/main/ets/pages/Index.ets) -->
+
+``` TypeScript
+try {
+  await audioSessionManager.setCapturerMuteHint(muteHint);
+  console.info(`setCapturerMuteHint ${muteHint} success.`);
+  // ...
+} catch (err) {
+  let error = err as BusinessError;
+  console.error(`setCapturerMuteHint ${muteHint} failed. Code: ${error.code}, message: ${error.message}`);
+  // ...
+}
 ```
 
 ## 启用混音播放下静音建议通知

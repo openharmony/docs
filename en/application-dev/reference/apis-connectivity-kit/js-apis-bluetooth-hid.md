@@ -3,11 +3,12 @@
 <!--Kit: Connectivity Kit-->
 <!--Subsystem: Communication-->
 <!--Owner: @enjoy_sunshine-->
-<!--Designer: @chengguohong; @tangjia15-->
+<!--Designer: @tangjia15-->
 <!--Tester: @wangfeng517-->
 <!--Adviser: @zhang_yixin13-->
+<!-- md-trans-meta sourceCommit=14ca614ebb030bf413b2d8393352ad7521a1d1b9 translatedAt=2026-08-19T10:01:26.528Z pushedAt=2026-08-20T01:23:05.649Z -->
 
-The **hid** module provides Bluetooth capabilities based on Bluetooth Classic's [Human Interface Device Profile (HID)](../../connectivity/terminology.md#hid), such as obtaining the Bluetooth connection status.
+The **hid** module provides Bluetooth capabilities based on Bluetooth Classic's [Human Interface Device Profile (HID)](../../connectivity/bluetooth/terminology.md#hid), such as obtaining the Bluetooth connection status.
 
 When the local device is registered as an HID device, you can use the APIs provided by [HidDeviceProfile](#hiddeviceprofile23). The local device can connect to and interact with only classic Bluetooth devices.
 
@@ -41,7 +42,7 @@ Defines the address information of a Bluetooth device, including the address and
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | Type                 | Description                 |
 | ------------------- | ------------------- |
@@ -51,7 +52,7 @@ Defines the address information of a Bluetooth device, including the address and
 
 createHidHostProfile(): HidHostProfile
 
-Creates a Bluetooth [HID host](../../connectivity/terminology.md#hid-host) instance. Through this instance, you can use the local device as the HID host and implement functions such as obtaining the Bluetooth HID connection status.
+Creates a Bluetooth [HID host](../../connectivity/bluetooth/terminology.md#hid-host) instance. Through this instance, you can use the local device as the HID host and implement functions such as obtaining the Bluetooth HID connection status.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
@@ -59,7 +60,7 @@ Creates a Bluetooth [HID host](../../connectivity/terminology.md#hid-host) insta
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| HidHostProfile | HID host instance.<br>- The **HidHostProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The counterpart of the HID host role is the [HID device](../../connectivity/terminology.md#hid-device) role.|
+| HidHostProfile | HID host instance.<br>- The **HidHostProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The counterpart of the HID host role is the [HID device](../../connectivity/bluetooth/terminology.md#hid-device) role. |
 
 **Error codes**
 
@@ -85,17 +86,17 @@ try {
 
 createHidDeviceProfile(): HidDeviceProfile
 
-Creates a Bluetooth [HID device](../../connectivity/terminology.md#hid-device) instance. Through this instance, you can use the local device as the HID device and implement functions such as obtaining the Bluetooth HID connection status.
+Creates a Bluetooth [HID device](../../connectivity/bluetooth/terminology.md#hid-device) instance. Through this instance, you can use the local device as the HID device and implement functions such as obtaining the Bluetooth HID connection status.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Return value**
 
 | Type                           | Description        |
 | ----------------------------- | ---------- |
-| [HidDeviceProfile](#hiddeviceprofile23) | Returns the HID device instance.<br>- The **HidHostProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The role corresponding to this instance role is [HID host](../../connectivity/terminology.md#hid-host).|
+| [HidDeviceProfile](#hiddeviceprofile23) | HID device instance.<br>- The **HidHostProfile** class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.<br>- The role corresponding to this instance role is [HID host](../../connectivity/bluetooth/terminology.md#hid-host). |
 
 **Error codes**
 
@@ -118,29 +119,37 @@ try {
 
 ## HidDeviceProfile<sup>23+</sup>
 
-Represents the [HID device](../../connectivity/terminology.md#hid-device) role in Bluetooth HID communication.
-- This class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.
-- Before using the APIs of this class, you need to construct an instance of the class by calling [createHidDeviceProfile](#hidcreatehiddeviceprofile23).
-- You can use this instance to operate the device, for example, call [registerHidDevice](#registerhiddevice23) to register an HID device and call [sendReport](#sendreport23) to send a report.
-- The role corresponding to this instance role is [HID host](../../connectivity/terminology.md#hid-host).
+Represents the [HID Device](../../connectivity/bluetooth/terminology.md#hid-device) role in Bluetooth HID communication.
 
+- This class is inherited from [BaseProfile](#baseprofile). Therefore, you can use the APIs in its parent class.
+
+- Before using the APIs of this class, you need to construct an instance of the class by calling [createHidDeviceProfile](#hidcreatehiddeviceprofile23).
+
+- You can use this instance to operate the device, for example, call [registerHidDevice](#registerhiddevice23) to register an HID device and call [sendReport](#sendreport23) to send a report.
+
+- The role corresponding to this instance role is [HID host](../../connectivity/bluetooth/terminology.md#hid-host).
 
 ### registerHidDevice<sup>23+</sup>
 
 registerHidDevice(sdp: HidDeviceSdp, inQos: HidDeviceQos, outQos: HidDeviceQos, callback: Callback&lt;boolean&gt;): void
 
 Registers an HID device so that the application can communicate with an HID host (such as a computer or mobile phone). This API uses an asynchronous callback to return the result.
+
 - After calling this API to register the HID device successfully, the application can call the [connect](#connect23) API to connect to the HID host.
+
 - Only one application can successfully register an HID device at a time. If the same application registers the HID device repeatedly, the registration will fail. After the registration is successful, other applications will also fail to register the HID device.
+
 - When the application no longer needs the HID device, it needs to call the [unregisterHidDevice](#unregisterhiddevice23) API to unregister the HID device.
+
 - When this API is called, the application must be in the foreground. Otherwise, the registration will fail.
+
 - After the registration is successful, if the application transitions to the background, the HID device will be automatically unregistered. The registration status change is reported to the upper-layer application through a callback.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -220,13 +229,14 @@ try {
 unregisterHidDevice(): void
 
 Unregisters an HID device and releases all related resources.
+
 - If the local end has established a connection with the HID host by calling [connect](#connect23) before this API is called, the connection will be disconnected after this API is called.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Error codes**
 
@@ -257,14 +267,16 @@ connect(deviceId: BluetoothAddress): void
 Initiates a connection to a specified HID host.
 
 - Before calling this API, call [registerHidDevice](#registerhiddevice23) to register the HID device.
+
 - You can call [on('connectionStateChange')](js-apis-bluetooth-baseProfile.md#baseprofileonconnectionstatechange) to subscribe to connection status change events.
+
 - If the connection is no longer needed, call [disconnect](#disconnect23) for disconnection.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -301,18 +313,20 @@ try {
     console.error(`errCode: ${err.code}, errMessage: ${err.message}`);
 }
 ```
+
 ### disconnect<sup>23+</sup>
 
 disconnect(): void
 
 Disconnects from the HID host and releases related resources.
+
 - After the call is successful, the capability registration status of the current HID device is not affected. The application is still in the registration status and can call [connect](#connect23) again to connect to a new HID host.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Error codes**
 
@@ -342,14 +356,16 @@ try {
 sendReport(id: number, reportData: Uint8Array): void
 
 Sends report data to a connected HID host.
+
 - Before calling this API, ensure that [registerHidDevice](#registerhiddevice23) has been called to complete the registration and [connect](#connect23) has been called to establish a connection with the HID host.
+
 - The length and content of the report data must be the same as those defined by [HidDeviceSdp](#hiddevicesdp23) during HID device registration. Otherwise, the HID host cannot correctly parse the report data.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -383,19 +399,22 @@ try {
     console.error(`errCode: ${err.code}, errMessage: ${err.message}`);
 }
 ```
+
 ### replyReport<sup>23+</sup>
 
 replyReport(type: ReportType, id: number, reportData: Uint8Array): void
 
 Replies to a specific request from a connected HID host.
+
 - Before calling this API, ensure that [registerHidDevice](#registerhiddevice23) has been called to complete the registration and [connect](#connect23) has been called to establish a connection with the HID host.
+
 - You can call [onGetReport](#ongetreport23) to subscribe to events for receiving requests from hosts.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -444,7 +463,7 @@ Reports errors of a specific type to a connected HID host.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -481,13 +500,13 @@ try {
 
 onGetReport(callback: Callback&lt;GetReportData&gt;): void
 
-Subscribes to the events for sending [GET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result. After receiving the callback, you can call the [replyReport](#replyreport23) API to reply. When the received data does not meet the expectation, you can call the [reportError](#reporterror23) API to reply.
+Subscribes to the events for sending [GET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result. After receiving the callback, you can call the [replyReport](#replyreport23) API to reply. When the received data does not meet the expectation, you can call the [reportError](#reporterror23) API to reply.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -522,13 +541,13 @@ try {
 
 offGetReport(callback?: Callback&lt;GetReportData&gt;): void
 
-Unsubscribes from the events for sending [GET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
+Unsubscribes from the events for sending [GET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -564,13 +583,13 @@ try {
 
 onSetReport(callback: Callback&lt;SetReportData&gt;): void
 
-Subscribes to the events for sending [SET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result. When the received data does not meet the expectation, you can call the [reportError](#reporterror23) API to reply.
+Subscribes to the events for sending [SET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result. When the received data does not meet the expectation, you can call the [reportError](#reporterror23) API to reply.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -605,13 +624,13 @@ try {
 
 offSetReport(callback?: Callback&lt;SetReportData&gt;): void
 
-Unsubscribes from the events for sending [SET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
+Unsubscribes from the events for sending [SET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -653,7 +672,7 @@ Subscribes to the events where an HID host sends data through the interrupt tran
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -683,6 +702,7 @@ try {
     console.error(`errCode: ${err.code}, errMessage: ${err.message}`);
 }
 ```
+
 ### offInterruptDataReceived<sup>23+</sup>
 
 offInterruptDataReceived(callback?: Callback&lt;InterruptData&gt;): void
@@ -693,7 +713,7 @@ Unsubscribes from the events where an HID host sends data through the interrupt 
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -729,13 +749,13 @@ try {
 
 onSetProtocol(callback: Callback&lt;ProtocolData&gt;): void
 
-Subscribes to the events for sending [SET_PROTOCOL](../../connectivity/terminology.md#hid) requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
+Subscribes to the events for sending [SET_PROTOCOL](../../connectivity/bluetooth/terminology.md#hid) requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -770,13 +790,13 @@ try {
 
 offSetProtocol(callback?: Callback&lt;ProtocolData&gt;): void
 
-Unsubscribes from the events for sending [SET_PROTOCOL](../../connectivity/terminology.md#hid) requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
+Unsubscribes from the events for sending [SET_PROTOCOL](../../connectivity/bluetooth/terminology.md#hid) requests by an HID host to an HID device. This API uses an asynchronous callback to return the result.
 
 **Required permissions**: ohos.permission.ACCESS_BLUETOOTH
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -818,7 +838,7 @@ Subscribes to the events where an HID host disconnects the virtual link from an 
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -859,7 +879,7 @@ Unsubscribes from the events where an HID host disconnects the virtual link from
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 **Parameters**
 
@@ -870,6 +890,7 @@ Unsubscribes from the events where an HID host disconnects the virtual link from
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md).
+
 | ID| Error Message|
 | -------- | ---------------------------- |
 |201     | Permission denied.             |
@@ -892,11 +913,11 @@ try {
 
 ## HidDeviceSdp<sup>23+</sup>
 
-Describes the service registration configuration of an HID device in the service discovery protocol ([SDP](../../connectivity/terminology.md#sdp)). This API defines the identity, capability description, and protocol characteristics of an HID device, which are key parameters for an HID host to discover, identify, and connect an HID device.
+Describes the service registration configuration of an HID device in the service discovery protocol ([SDP](../../connectivity/bluetooth/terminology.md#sdp)). This API defines the identity, capability description, and protocol characteristics of an HID device, which are key parameters for an HID host to discover, identify, and connect an HID device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**     | Type                 |**Read-Only**  |**Optional**  | Description                                    |
 | --------- | ----------------------- | ---- | ---- | ------------------------------ |
@@ -912,7 +933,7 @@ Describes the QoS parameters of an HID device. This API defines the traffic cont
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**     | Type                 |**Read-Only**  |**Optional**  | Description                                    |
 | --------- | ----------------------- | ---- | ---- | ------------------------------ |
@@ -925,11 +946,11 @@ Describes the QoS parameters of an HID device. This API defines the traffic cont
 
 ## GetReportData<sup>23+</sup>
 
-Describes the events for sending [GET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device.
+Describes the events for sending [GET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**      | Type | **Read-Only**| **Optional**  | Description     |
 | -------- | ------ |---- |---- | ----------- |
@@ -939,11 +960,11 @@ Describes the events for sending [GET_REPORT](../../connectivity/terminology.md#
 
 ## SetReportData<sup>23+</sup>
 
-Describes the events for sending [SET_REPORT](../../connectivity/terminology.md#hid) transmission requests by an HID host to an HID device.
+Describes the events for sending [SET_REPORT](../../connectivity/bluetooth/terminology.md#hid) transmission requests by an HID host to an HID device.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**      | Type | **Read-Only**| **Optional**  | Description         |
 | -------- | ------ |---- |---- | ----------- |
@@ -957,7 +978,7 @@ Describes the interrupt data received from an HID host.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**      | Type | **Read-Only**| **Optional**  | Description         |
 | -------- | ------ |---- |---- | ----------- |
@@ -970,7 +991,7 @@ Describes the communication protocol data received from an HID host.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**      | Type | **Read-Only**| **Optional**  | Description         |
 | -------- | ------ |---- |---- | ----------- |
@@ -982,7 +1003,7 @@ Enumerates HID device types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**                     | **Value**  | Description         |
 | --------------------------| ----| --------------|
@@ -1003,7 +1024,7 @@ Enumerates report types.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**               | **Value**| Description                   |
 | --------------------| --| -----------------------|
@@ -1017,7 +1038,7 @@ Enumerates the service types of the connection between an HID host and an HID de
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**                | **Value**| Description             |
 | --------------------| --| ----------------- |
@@ -1025,14 +1046,13 @@ Enumerates the service types of the connection between an HID host and an HID de
 | SERVICE_BEST_EFFORT | 1 | High-speed mode. The transmission rate is the fastest, but data packets may be lost or out of order. This mode is applicable to scenarios that are sensitive to latency but insensitive to packet loss.  |
 | SERVICE_GUARANTEED  | 2 | Reliable mode. The transmission speed is slow, but data is correctly delivered. This mode is applicable to scenarios such as file transfer.  |
 
-
 ## ErrorReason<sup>23+</sup>
 
 Enumerates error causes.
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**                  | **Value**| Description                 |
 | -----------------------| --| --------------------- |
@@ -1049,7 +1069,7 @@ Enumerates the protocol types for communication between an HID device and an HID
 
 **System capability**: SystemCapability.Communication.Bluetooth.Core
 
-**Model constraint**: This API can be used only in the stage model.
+**Model restriction**: This API can be used only in the stage model.
 
 | **Name**                               | **Value**   | Description             |
 | ------------------------------------| ------| ---------------- |

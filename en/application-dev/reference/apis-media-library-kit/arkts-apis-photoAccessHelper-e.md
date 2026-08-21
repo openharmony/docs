@@ -6,7 +6,7 @@
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
-<!-- md-trans-meta sourceCommit=b4558baf2653dbc4e06627859cd656768663a602 translatedAt=2026-06-23T07:32:21.808Z pushedAt=2026-06-24T07:54:49.979Z -->
+<!-- md-trans-meta sourceCommit=425e79ed59a841b19860caacc0b050f68405d43e translatedAt=2026-08-17T10:26:56.813Z pushedAt=2026-08-19T07:40:10.523Z -->
 
 > **NOTE**
 >
@@ -81,7 +81,7 @@ Enumerate the album subtypes.
 | VIDEO  | 1026       | Video album.|
 | IMAGE<sup>12+</sup>               | 1031       | Photo album.|
 | SOURCE\_GENERIC<sup>23+</sup>     | 2049       | Source album.|
-| SOURCE_GENERIC_FROM_FILE_MANAGER     | 2050       | Source album from file management.<br>**Since:** 26.0.0 |
+| SOURCE_GENERIC_FROM_FILE_MANAGER     | 2050       | Source album from the file manager.<br>**Model restriction:** This API can be used only in the stage model.<br>**Since:** 26.0.0 |
 | ANY    | 2147483647 | Any album.|
 
 ## PositionType<sup>16+</sup>
@@ -110,7 +110,7 @@ Enumerates the keys available for image or video files.
 | SIZE          | 'size'                | File size, in bytes. The size of a moving photo includes the total size of the image and video.<br>**Atomic service API**: This API can be used in atomic services since API version 20.   |
 | DATE_ADDED    | 'date_added'          | Unix timestamp when the file was created, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 20.        |
 | DATE_MODIFIED | 'date_modified'       | Unix timestamp when the file content (not the file name) was last modified, in seconds. This value is updated when the file content is modified, but not when the file name is modified.<br>**Atomic service API**: This API can be used in atomic services since API version 20.|
-| DURATION      | 'duration'            | Duration, in ms.<br>**Atomic service API**: This API can be used in atomic services since API version 20.           |
+| DURATION      | 'duration'            | Duration, in milliseconds. In versions earlier than API version 23, the value of **duration** is **0** for moving photos. In API version 23 and later versions, the value of **duration** is the duration of the video clip attached to moving photos. If an exception occurs, **-1** is returned.<br>**Atomic service API:** This API can be used in atomic services since API version 20.            |
 | WIDTH         | 'width'               | Image width, in pixels.<br>**Atomic service API**: This API can be used in atomic services since API version 20.                                   |
 | HEIGHT        | 'height'              | Image height, in pixels.<br>**Atomic service API**: This API can be used in atomic services since API version 20.              |
 | DATE_TAKEN    | 'date_taken'          | Unix timestamp when the photo was taken, in seconds.<br>**Atomic service API**: This API can be used in atomic services since API version 20.          |
@@ -131,8 +131,8 @@ Enumerates the keys available for image or video files.
 | MEDIA_SUFFIX<sup>18+</sup>  | 'media_suffix'            | File name extension.                              |
 | OWNER_ALBUM_ID<sup>22+</sup>  | 'owner_album_id' | ID of the album to which the photo belongs.|
 | ASPECT_RATIO<sup>22+</sup>  | 'aspect_ratio'            | Aspect ratio of the image or video.<br> **Model restriction**: This API can be used only in the stage model.|
-| CHANGE_TIME<sup>23+</sup>  | 'change_time' | Change time of the photo (in seconds). |
-| LOCAL_ASSET_SIZE | 'local_asset_size' | Actual size of the local file (in bytes).<br>- This property only indicates the local file size. The default value **0** indicates a cloud-only file or a local file whose size has not been identified yet.<br>- When the local file is a moving photo and its mode changes, this property changes accordingly. For example, when the moving photo in the gallery is in the "motion off" state, this property only indicates the cover frame size.<br>**Since:** 26.0.0<br> **Model restriction:** This API can be used only in the stage model. |
+| CHANGE_TIME<sup>23+</sup>  | 'change_time' | Time when the photo is changed, in seconds. |
+| LOCAL_ASSET_SIZE | 'local_asset_size' | Actual size of the local file, in bytes.<br>- This property only indicates the local file size. The default value **0** indicates a cloud-only file or a local file whose size has not been identified yet.<br>- When the local file is a moving photo and its mode changes, this property changes accordingly. For example, when the moving photo in the gallery is in the "motion off" state, this property only indicates the cover frame size.<br>**Since:** 26.0.0<br> **Model restriction:** This API can be used only in the stage model. |
 
 ## AlbumKeys
 
@@ -145,7 +145,7 @@ Enumerates the album keys.
 | URI           | 'uri'                 | URI of the album.                                                  |
 | ALBUM_NAME    | 'album_name'          | Name of the album.                                                  |
 | ALBUM_LPATH<sup>23+</sup>          | 'lpath'                 | Virtual path of the album.<br>Albums and their virtual path values:<br>- Camera application album: '/DCIM/Camera'<br>- Screenshot application album: '/Pictures/Screenshots'<br>- Screen recording application album: '/Pictures/Screenrecords'<br>- User-created album: '/Pictures/Users/{Custom album name}'                    |
-| CHANGE_TIME<sup>23+</sup>          | 'change_time'                 | Change time of the album, in seconds.                                                   |
+| CHANGE_TIME<sup>23+</sup>          | 'change_time'                 | Time when the album is changed, in seconds.                                                   |
 
 ## ResourceType<sup>11+</sup>
 
@@ -333,9 +333,9 @@ Enumerates the types of changes that trigger the media asset or album change eve
 
 | Name                     | Value  | Description                            |
 | ------------------------- | ---- | -------------------------------- |
-| NOTIFY_CHANGE_ADD         | 0    | A media asset (image/video) or album is created.     |
-| NOTIFY_CHANGE_UPDATE      | 1    | A media asset (image/video) or album is changed.     |
-| NOTIFY_CHANGE_REMOVE      | 2    | A media asset (image/video) or album is deleted.     |
+| NOTIFY_CHANGE_ADD         | 0    | Notification for the creation of a media asset (image/video) or album.     |
+| NOTIFY_CHANGE_UPDATE      | 1    | Notification for the update of a media asset (image/video) or album.     |
+| NOTIFY_CHANGE_REMOVE      | 2    | Notification for the removal of a media asset (image/video) or album.    |
 
 ## PhotoSource<sup>20+</sup>
 
@@ -445,7 +445,7 @@ Enumerates the levels of grid columns after Picker is started.
 | ----- |  ---- |  ---- |
 | SPACIOUS |  0 |  Spacious grid level. This level is the number of standard grid columns minus 1.|
 | STANDARD |  1 |  Standard grid level. The number of standard grid columns varies with the device size. If no number of standard grid columns is configured, the system uses the default number of columns.|
-| COMPACT |  2 |  Compact grid level. This level is the number of standard grid columns plus 1.|
+| COMPACT |  2 |  Compact grid level. This level is the number of standard grid columns plus 1. |
 
 ## GridPinchModeType<sup>23+</sup>
 
@@ -509,5 +509,4 @@ Enumerates the transcoding modes based on the configured asset compatibility.
 | ----- |  ---- |  ---- |
 | DEFAULT |  0 |  Transcoding is performed based on the configured asset compatibility function.|
 | CURRENT |  1 |  No transcoding is performed. Assets are returned in their original format.|
-| COMPATIBLE |  2 |  All assets are transcoded into the most widely compatible format (such as JPEG).|
-<!--no_check-->
+| COMPATIBLE |  2 |  All assets are transcoded to the most widely compatible format (for example, JPEG). |

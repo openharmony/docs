@@ -1,4 +1,4 @@
-# Document Description
+# Development Description
 
 <!--Kit: Common-->
 <!--Subsystem: Common-->
@@ -24,8 +24,8 @@ The following description is provided for each API in the reference document to 
 
 <!--Del-->
 - You can use the [SystemCapability List](phone-syscap-list.md) to query the devices supported by a specific capability set.<!--DelEnd-->
-- You can call the **canIUse** API to [check whether an API is available](syscap.md#checking-whether-an-api-is-available).
-- The performance of a SysCap may vary by device type. You can [check the differences between devices with a specific SysCap](syscap.md#checking-the-differences-between-devices-with-a-specific-syscap).
+- You can call the **canIUse** API to [check whether an API is available](syscap.md).
+- The performance of a SysCap may vary by device type. You can [check the differences between devices with a specific SysCap](syscap.md).
 <!--RP2--><!--RP2End-->
 
 <!--RP1--><!--RP1End-->

@@ -2739,7 +2739,7 @@ request.agent提供基于任务的后台上传下载代理能力。开发者通�
 
 ### on('progress')<sup>10+</sup>
 
-on(event: 'progress', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'progress', callback: (progress: Progress) =&gt; void): void
 
 订阅任务进度的事件，使用callback异步回调。
 
@@ -2818,7 +2818,7 @@ on(event: 'progress', callback: (progress: [Progress](#requestagentprogress10)) 
 
 ### on('completed')<sup>10+</sup>
 
-on(event: 'completed', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'completed', callback: (progress: Progress) =&gt; void): void
 
 订阅任务完成事件，使用callback异步回调。
 
@@ -2897,7 +2897,7 @@ on(event: 'completed', callback: (progress: [Progress](#requestagentprogress10))
 
 ### on('failed')<sup>10+</sup>
 
-on(event: 'failed', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'failed', callback: (progress: Progress) =&gt; void): void
 
 订阅任务失败事件，使用callback异步回调。可通过调用[request.agent.show](#requestagentshow10-1)查看错误原因。
 
@@ -2976,7 +2976,7 @@ on(event: 'failed', callback: (progress: [Progress](#requestagentprogress10)) =&
 
 ### on('pause')<sup>11+</sup>
 
-on(event: 'pause', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'pause', callback: (progress: Progress) =&gt; void): void
 
 订阅任务暂停事件，使用callback异步回调。
 
@@ -3057,7 +3057,7 @@ on(event: 'pause', callback: (progress: [Progress](#requestagentprogress10)) =&g
 
 ### on('resume')<sup>11+</sup>
 
-on(event: 'resume', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'resume', callback: (progress: Progress) =&gt; void): void
 
 订阅任务恢复事件，使用callback异步回调。
 
@@ -3143,7 +3143,7 @@ on(event: 'resume', callback: (progress: [Progress](#requestagentprogress10)) =&
 
 ### on('remove')<sup>11+</sup>
 
-on(event: 'remove', callback: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+on(event: 'remove', callback: (progress: Progress) =&gt; void): void
 
 订阅任务移除事件，使用callback异步回调。
 
@@ -3454,7 +3454,7 @@ on(event: 'wait', callback: Callback&lt;WaitingReason&gt;): void
 
 ### off('progress')<sup>10+</sup>
 
-off(event: 'progress', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'progress', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务进度事件。
 
@@ -3542,7 +3542,7 @@ off(event: 'progress', callback?: (progress: [Progress](#requestagentprogress10)
 
 ### off('completed')<sup>10+</sup>
 
-off(event: 'completed', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'completed', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务完成事件。
 
@@ -3630,7 +3630,7 @@ off(event: 'completed', callback?: (progress: [Progress](#requestagentprogress10
 
 ### off('failed')<sup>10+</sup>
 
-off(event: 'failed', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'failed', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务失败事件。
 
@@ -3717,7 +3717,7 @@ off(event: 'failed', callback?: (progress: [Progress](#requestagentprogress10)) 
 
 ### off('pause')<sup>11+</sup>
 
-off(event: 'pause', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'pause', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务暂停事件。
 
@@ -3801,7 +3801,7 @@ off(event: 'pause', callback?: (progress: [Progress](#requestagentprogress10)) =
 
 ### off('resume')<sup>11+</sup>
 
-off(event: 'resume', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'resume', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务恢复事件。
 
@@ -3885,7 +3885,7 @@ off(event: 'resume', callback?: (progress: [Progress](#requestagentprogress10)) 
 
 ### off('remove')<sup>11+</sup>
 
-off(event: 'remove', callback?: (progress: [Progress](#requestagentprogress10)) =&gt; void): void
+off(event: 'remove', callback?: (progress: Progress) =&gt; void): void
 
 取消订阅任务移除事件。
 

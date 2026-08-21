@@ -12,7 +12,7 @@ typedef struct AVSession_DeviceInfo AVSession_DeviceInfo
 
 ## 概述
 
-设备信息的结构体声明。该结构体用于存储设备信息及详细属性。
+设备信息的结构体声明。该结构体用于存储设备的详细属性。
 
 **起始版本：** 23
 

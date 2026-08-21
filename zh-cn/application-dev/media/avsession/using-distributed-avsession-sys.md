@@ -33,7 +33,7 @@
    import { audio } from '@kit.AudioKit';
    ```
 
-2. 通过AVSessionManager的castAudio接口将当前设备所有会话投播到其他设备。
+2. 通过AVSessionManager的castAudio接口将当前设备所有会话投播到获取的设备列表。
      
    ```ts
    import { avSession as AVSessionManager } from '@kit.AVSessionKit';

@@ -398,7 +398,7 @@ systemTonePlayer.getSupportedHapticsFeatures().then((features: Array<systemSound
   console.info('Succeeded in doing getSupportedHapticsFeatures.');
   if (features.length > 0) {
     let feature: systemSoundManager.ToneHapticsFeature = features[0];
-    systemTonePlayer.setHapticsFeature(feature);
+    systemTonePlayer?.setHapticsFeature(feature);
     console.info('Succeeded in doing setHapticsFeature.');
   }
 }).catch((err: BusinessError) => {

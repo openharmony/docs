@@ -6,12 +6,12 @@
 <!--Tester: @furryfurry123-->
 <!--Adviser: @zhang_yixin13-->
 
-该模块主要提供WLAN基础功能、P2P（peer-to-peer）功能和WLAN消息通知的相应服务，让应用可以通过WLAN和其他设备互联互通。
+该模块主要提供WLAN基础功能（如WLAN扫描、连接管理、连接信息查询、信号强度获取等）、P2P（peer-to-peer）功能（如设备发现、群组创建与管理、P2P连接等）和WLAN消息通知服务，适用于应用通过WLAN接入网络或与其他设备进行点对点数据传输和互联互通的场景。
 
 > **说明：**
 >
 > 本模块首批接口从API version 6开始支持。后续版本的新增接口，采用上角标单独标记接口的起始版本。
-> 从API Version 9 开始，该接口不再维护，推荐使用[@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)等相关接口。
+> 从API version 9开始，该接口不再维护，推荐使用[@ohos.wifiManager (WLAN)](js-apis-wifiManager.md)等相关接口。
 
 
 ## 导入模块
@@ -49,7 +49,7 @@ import wifi from '@ohos.wifi';
 try {
   let isWifiActive = wifi.isWifiActive();
   console.info("isWifiActive:" + isWifiActive);
-}catch(error){
+} catch (error) {
   console.error("failed:" + JSON.stringify(error));
 }
 ```
@@ -168,8 +168,8 @@ WLAN热点信息。
 | capabilities | string | 否 | 否 | 热点能力。 |
 | securityType | [WifiSecurityType](#wifisecuritytypedeprecated) | 否 | 否 | WLAN加密类型。 |
 | rssi | number | 否 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 否 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
-| frequency | number | 否 | 否 | WLAN接入点的频率。 |
+| band | number | 否 | 否 | WLAN接入点的频段。1表示2.4GHz；2表示5GHz。|
+| frequency | number | 否 | 否 | WLAN接入点的频率，单位：MHz。 |
 | channelWidth | number | 否 | 否 | WLAN接入点的带宽。 |
 | timestamp | number | 否 | 否 | 时间戳。 |
 
@@ -316,7 +316,7 @@ try {
       domains: []
     }
   }
-  wifi.addUntrustedConfig(config,(error,result) => {
+  wifi.addUntrustedConfig(config, (error, result) => {
     console.info("result:" + JSON.stringify(result));
   });  
 }catch(error){
@@ -429,7 +429,7 @@ try {
       domains: []
     }
   }
-  wifi.removeUntrustedConfig(config,(error,result) => {
+  wifi.removeUntrustedConfig(config, (error, result) => {
   console.info("result:" + JSON.stringify(result));
   });  
 }catch(error){
@@ -471,7 +471,7 @@ import wifi from '@ohos.wifi';
 try {
   let rssi = 0;
   let band = 0;
-  let level = wifi.getSignalLevel(rssi,band);
+  let level = wifi.getSignalLevel(rssi, band);
   console.info("level:" + JSON.stringify(level));
 }catch(error){
   console.error("failed:" + JSON.stringify(error));
@@ -555,9 +555,9 @@ wifi.getLinkedInfo().then(data => {
 | ssid | string | 否 | 否 | 热点的SSID，最大长度为32字节，编码格式为UTF-8。 |
 | bssid | string | 否 | 否 | 热点的BSSID，例如：00:11:22:33:44:55。 |
 | rssi | number | 否 | 否 | 热点的信号强度(dBm)。 |
-| band | number | 否 | 否 | WLAN接入点的频段。1表示2.4GHZ；2表示5GHZ。|
+| band | number | 否 | 否 | WLAN接入点的频段。1表示2.4GHz；2表示5GHz。|
 | linkSpeed | number | 否 | 否 | WLAN接入点的速度，单位Mbps。 |
-| frequency | number | 否 | 否 | WLAN接入点的频率。 |
+| frequency | number | 否 | 否 | WLAN接入点的频率，单位：MHz。 |
 | isHidden | boolean | 否 | 否 | WLAN接入点是否是隐藏网络。true:是隐藏网络，false:不是隐藏网络。 |
 | isRestricted | boolean | 否 | 否 | WLAN接入点是否限制数据量。true: 限制，false:不限制。 |
 | macAddress | string | 否 | 否 | 设备的MAC地址。 |
@@ -612,7 +612,7 @@ isConnected(): boolean
 
 isFeatureSupported(featureId: number): boolean
 
-判断设备是否支持相关WLAN特性。
+判断设备是否支持指定featureId对应的WLAN特性。
 
 > **说明：**
 >
@@ -690,7 +690,7 @@ IP信息。
 >
 > 从API version 7开始支持，从API version 9开始废弃。建议使用[wifiManager.getIpInfo](js-apis-wifiManager.md#wifimanagergetipinfo)替代。
 
-**系统能力：** SystemCapability.Communication.WiFi.AP.Core
+**系统能力：** SystemCapability.Communication.WiFi.STA
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
@@ -700,7 +700,7 @@ IP信息。
 | primaryDns | number | 否 | 否 | 主DNS服务器IP地址。 |
 | secondDns | number | 否 | 否 | 备DNS服务器IP地址。 |
 | serverIp | number | 否 | 否 | DHCP服务端IP地址。 |
-| leaseDuration | number | 否 | 否 | IP地址租用时长。 |
+| leaseDuration | number | 否 | 否 | IP地址租用时长，单位：秒(s)。 |
 
 
 ## wifi.getCountryCode<sup>(deprecated)</sup>
@@ -760,7 +760,7 @@ getP2pLinkedInfo(): Promise&lt;WifiP2pLinkedInfo&gt;
 
 ## WifiP2pLinkedInfo<sup>(deprecated)</sup>
 
-提供WLAN连接的相关信息。
+提供P2P连接的相关信息。
 
 > **说明：**
 >
@@ -960,7 +960,7 @@ wifi.getP2pPeerDevices().then(data => {
 | deviceAddress | string | 否 | 否 | 设备MAC地址。 |
 | primaryDeviceType | string | 否 | 否 | 主设备类型。 |
 | deviceStatus | [P2pDeviceStatus](#p2pdevicestatusdeprecated) | 否 | 否 | 设备状态。 |
-| groupCapabilitys | number | 否 | 否 | 群组能力。 |
+| groupCapabilitys | number | 否 | 否 | 群组能力，以位掩码形式表示群组支持的特性。 |
 
 
 ## P2pDeviceStatus<sup>(deprecated)</sup>
@@ -1059,8 +1059,8 @@ try {
 | 名称 | 值 | 说明 |
 | -------- | -------- | -------- |
 | GO_BAND_AUTO | 0 | 自动模式。 |
-| GO_BAND_2GHZ | 1 | 2GHZ。 |
-| GO_BAND_5GHZ | 2 | 5GHZ。 |
+| GO_BAND_2GHZ | 1 | 2GHz。 |
+| GO_BAND_5GHZ | 2 | 5GHz。 |
 
 
 ## wifi.removeGroup<sup>(deprecated)</sup>
@@ -1130,7 +1130,7 @@ let recvP2pConnectionChangeFunc = (result:wifi.WifiP2pLinkedInfo) => {
     console.info("p2p connection change receive event: " + JSON.stringify(result));
     wifi.getP2pLinkedInfo((err, data:wifi.WifiP2pLinkedInfo) => {
         if (err) {
-            console.error('failed to get getP2pLinkedInfo: ' + JSON.stringify(err));
+            console.error("failed to get getP2pLinkedInfo: " + JSON.stringify(err));
             return;
         }
         console.info("get getP2pLinkedInfo: " + JSON.stringify(data));
@@ -1269,7 +1269,7 @@ stopDiscoverDevices(): boolean
 
   | 类型 | 说明 |
   | -------- | -------- |
-  | boolean | true:操作执行成功 false:操作执行失败。 |
+  | boolean | 停止发现设备是否成功。true:操作执行成功，false:操作执行失败。 |
 
 **示例：**
 ```ts
@@ -1300,7 +1300,7 @@ try {
 | interface | string | 否 | 否 | 接口名称。 |
 | groupName | string | 否 | 否 | 群组名称。 |
 | networkId | number | 否 | 否 | 网络ID。 |
-| frequency | number | 否 | 否 | 群组的频率。 |
+| frequency | number | 否 | 否 | 群组的频率，单位：MHz。 |
 | clientDevices | [WifiP2pDevice](#wifip2pdevicedeprecated)[] | 否 | 否 | 接入的设备列表信息。 |
 | goIpAddress | string | 否 | 否 | 群组IP地址。 |
 

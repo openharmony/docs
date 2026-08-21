@@ -60,7 +60,7 @@ You can define intent entities by inheriting this class. The child class must be
 
 ## IntentResult\<T><sup>20+</sup>
 
-Defines the return result of intent execution. The [generic type](../../quick-start/introduction-to-arkts.md#generic-class-and-interface) is supported.
+Defines the return result of intent execution. The [generic type] is supported.
 
 **System capability**: SystemCapability.Ability.AbilityRuntime.Core
 

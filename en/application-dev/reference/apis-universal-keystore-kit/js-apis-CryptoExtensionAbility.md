@@ -886,8 +886,8 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 
 | Kit | Module |
 | ------ | ------ |
-| Ability Kit | [@ohos.distributedBundle (Distributed Bundle Management) (System API)](../../reference/apis-ability-kit/js-apis-Bundle-distributedBundle-sys.md) |
-| Ability Kit | [@ohos.distributedMissionManager (Distributed Mission Management) (System API)](../../reference/apis-ability-kit/js-apis-distributedMissionManager-sys.md) |
+| Ability Kit | @ohos.distributedBundle (Distributed Bundle Management) (System API) |
+| Ability Kit | @ohos.distributedMissionManager (Distributed Mission Management) (System API) |
 | Ability Kit | [@ohos.wantAgent (WantAgent Module)](../../reference/apis-ability-kit/js-apis-wantAgent.md) |
 | Ads Kit | [@ohos.advertising.AdComponent (Ad Component)](../../reference/apis-ads-kit/js-apis-adcomponent.md) |
 | Ads Kit | [@ohos.advertising.AdsServiceExtensionAbility (ExtensionAbility for Ads)](../../reference/apis-ads-kit/js-apis-adsserviceextensionability.md) |
@@ -908,23 +908,23 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 | ArkWeb | [@ohos.web.WebNativeMessagingExtensionContext (Web Native Messaging Extension Context)](../../reference/apis-arkweb/arkts-apis-web-webNativeMessagingExtensionContext.md) |
 | ArkWeb | [@ohos.web.webNativeMessagingExtensionManager (Web Native Messaging Extension Manager)](../../reference/apis-arkweb/arkts-apis-web-webNativeMessagingExtensionManager.md) |
 | ArkWeb | [@ohos.web.webview](../../reference/apis-arkweb/arkts-apis-webview.md) |
-| Audio Kit | [@ohos.multimedia.audio (Audio Management) (System API)](../../reference/apis-audio-kit/js-apis-audio-sys.md) |
+| Audio Kit | @ohos.multimedia.audio (Audio Management) (System API) |
 | Audio Kit | [@ohos.multimedia.audioHaptic (Audio-Haptic)](../../reference/apis-audio-kit/js-apis-audioHaptic.md) |
 | Audio Kit | [@ohos.multimedia.avVolumePanel (Volume Panel)](../../reference/apis-audio-kit/ohos-multimedia-avvolumepanel.md) |
 | Audio Kit | [@ohos.multimedia.systemSoundManager (System Sound Management)](../../reference/apis-audio-kit/js-apis-systemSoundManager.md) |
 | AVSession Kit | [@ohos.multimedia.avCastPicker (AVCastPicker)](../../reference/apis-avsession-kit/ohos-multimedia-avcastpicker.md) |
 | AVSession Kit | [@ohos.multimedia.avCastPickerParam (AVCastPicker Parameters)](../../reference/apis-avsession-kit/js-apis-avCastPickerParam.md) |
 | AVSession Kit | [@ohos.multimedia.avInputCastPicker (AVInputCastPicker)](../../reference/apis-avsession-kit/ohos-multimedia-avinputcastpicker.md) |
-| AVSession Kit | [@ohos.multimedia.avsession (AVSession Management) (System API)](../../reference/apis-avsession-kit/js-apis-avsession-sys.md) |
-| Basic Service Kit | [@ohos.ai.intelligentVoice (Intelligent Voice) (System API)](../../reference/apis-basic-services-kit/js-apis-intelligentVoice-sys.md) |
+| AVSession Kit | @ohos.multimedia.avsession (AVSession Management) (System API) |
+| Basic Service Kit | @ohos.ai.intelligentVoice (Intelligent Voice) (System API) |
 | Basic Service Kit | [@ohos.pasteboard (Pasteboard)](../../reference/apis-basic-services-kit/js-apis-pasteboard.md) |
 | Basic Service Kit | [@ohos.scan (Scan)](../../reference/apis-basic-services-kit/js-apis-scan.md) |
 | Basic Service Kit | [@ohos.screenLock (Screen Lock)](../../reference/apis-basic-services-kit/js-apis-screen-lock.md) |
 | Basic Service Kit | [@ohos.settings (Data Item Settings)](../../reference/apis-basic-services-kit/js-apis-settings.md) |
 | Basic Service Kit | [@ohos.wallpaper (Wallpaper)](../../reference/apis-basic-services-kit/js-apis-wallpaper.md) |
-| Basic Service Kit | [@ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API)](../../reference/apis-basic-services-kit/js-apis-WallpaperExtensionAbility-sys.md) |
+| Basic Service Kit | @ohos.WallpaperExtensionAbility (WallpaperExtensionAbility) (System API) |
 | Calendar Kit | [@ohos.calendarManager (Calendar Manager)](../../reference/apis-calendar-kit/js-apis-calendarManager.md) |
-| Camera Kit | [@ohos.multimedia.camera (Camera Management) (System API)](../../reference/apis-camera-kit/js-apis-camera-sys.md) |
+| Camera Kit | @ohos.multimedia.camera (Camera Management) (System API) |
 | Camera Kit | [@ohos.multimedia.cameraPicker (Camera Picker)](../../reference/apis-camera-kit/js-apis-cameraPicker.md) |
 | Connectivity Kit | [@ohos.bluetooth.a2dp (Bluetooth A2DP Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-a2dp.md) |
 | Connectivity Kit | [@ohos.bluetooth.access (Bluetooth Access Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-access.md) |
@@ -938,11 +938,11 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 | Connectivity Kit | [@ohos.bluetooth.hid (Bluetooth HID Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-hid.md) |
 | Connectivity Kit | [@ohos.bluetoothManager (Bluetooth)](../../reference/apis-connectivity-kit/js-apis-bluetoothManager.md) |
 | Connectivity Kit | [@ohos.bluetooth.map (Bluetooth MAP Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-map.md) |
-| Connectivity Kit | [@ohos.bluetooth.opp (Bluetooth OPP Module) (System API)](../../reference/apis-connectivity-kit/js-apis-bluetooth-opp-sys.md) |
+| Connectivity Kit | @ohos.bluetooth.opp (Bluetooth OPP Module) (System API) |
 | Connectivity Kit | [@ohos.bluetooth.pan (Bluetooth PAN Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-pan.md) |
 | Connectivity Kit | [@ohos.bluetooth.pbap (Bluetooth PBAP Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-pbap.md) |
 | Connectivity Kit | [@ohos.bluetooth.socket (Bluetooth Socket Module)](../../reference/apis-connectivity-kit/js-apis-bluetooth-socket.md) |
-| Connectivity Kit | [@ohos.bluetooth.wearDetection(Bluetooth Wear Detection Module) (System API)](../../reference/apis-connectivity-kit/js-apis-bluetooth-wearDetection-sys.md) |
+| Connectivity Kit | @ohos.bluetooth.wearDetection(Bluetooth Wear Detection Module) (System API) |
 | Connectivity Kit | [@ohos.connectedTag (Active Tags)](../../reference/apis-connectivity-kit/js-apis-connectedTag.md) |
 | Connectivity Kit | [@ohos.nfc.cardEmulation (Standard NFC Card Emulation)](../../reference/apis-connectivity-kit/js-apis-cardEmulation.md) |
 | Connectivity Kit | [@ohos.nfc.controller (standard NFC)](../../reference/apis-connectivity-kit/js-apis-nfcController.md) |
@@ -954,22 +954,22 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 | Contacts Kit | [@ohos.contact (Contact)](../../reference/apis-contacts-kit/js-apis-contact.md) |
 | Data Protection Kit | [@ohos.dlpPermission (DLP)](../../reference/apis-data-protection-kit/js-apis-dlppermission.md) |
 | Distributed Service Kit | [@ohos.distributedDeviceManager (Device Management)](../../reference/apis-distributedservice-kit/js-apis-distributedDeviceManager.md) |
-| Distributed Service Kit | [@ohos.distributedHardware.deviceManager (Device Management) (System API)](../../reference/apis-distributedservice-kit/js-apis-device-manager-sys.md) |
-| Distributed Service Kit | [@ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API)](../../reference/apis-distributedservice-kit/js-apis-distributedHardwareManager-sys.md) |
+| Distributed Service Kit | @ohos.distributedHardware.deviceManager (Device Management) (System API) |
+| Distributed Service Kit | @ohos.distributedHardware.hardwareManager (Distributed Hardware Management) (System API) |
 | Distributed Service Kit | [@ohos.distributedsched.abilityConnectionManager (Cross-Device Connection Management)](../../reference/apis-distributedservice-kit/js-apis-distributed-abilityConnectionManager.md) |
 | Distributed Service Kit | [@ohos.distributedsched.linkEnhance (Enhanced Connection)](../../reference/apis-distributedservice-kit/js-apis-link-enhance.md) |
 | Distributed Service Kit | [@ohos.distributedsched.proxyChannelManager (Proxy Channel Management)](../../reference/apis-distributedservice-kit/js-apis-proxyChannelManager.md) |
 | DRM Kit | [@ohos.multimedia.drm](../../reference/apis-drm-kit/arkts-apis-drm.md) |
-| Form Kit | [@ohos.app.form.formAgent (FormAgent) (System API)](../../reference/apis-form-kit/js-apis-app-form-formAgent-sys.md) |
+| Form Kit | @ohos.app.form.formAgent (FormAgent) (System API) |
 | Form Kit | [@ohos.app.form.formBindingData (formBindingData)](../../reference/apis-form-kit/js-apis-app-form-formBindingData.md) |
 | Form Kit | [@ohos.app.form.FormEditExtensionAbility (FormEditExtensionAbility)](../../reference/apis-form-kit/js-apis-app-form-formEditExtensionAbility.md) |
 | Form Kit | [@ohos.app.form.FormExtensionAbility (FormExtensionAbility)](../../reference/apis-form-kit/js-apis-app-form-formExtensionAbility.md) |
-| Form Kit | [@ohos.app.form.formHost (formHost) (System API)](../../reference/apis-form-kit/js-apis-app-form-formHost-sys.md) |
+| Form Kit | @ohos.app.form.formHost (formHost) (System API) |
 | Form Kit | [@ohos.app.form.formInfo (formInfo)](../../reference/apis-form-kit/js-apis-app-form-formInfo.md) |
-| Form Kit | [@ohos.app.form.formObserver (formObserver) (System API)](../../reference/apis-form-kit/js-apis-app-form-formObserver-sys.md) |
+| Form Kit | @ohos.app.form.formObserver (formObserver) (System API) |
 | Form Kit | [@ohos.app.form.formProvider (formProvider)](../../reference/apis-form-kit/js-apis-app-form-formProvider.md) |
 | Form Kit | [@ohos.app.form.LiveFormExtensionAbility (LiveFormExtensionAbility)](../../reference/apis-form-kit/js-apis-app-form-LiveFormExtensionAbility.md) |
-| Image Kit | [@ohos.multimedia.image (Image Processing) (System API)](../../reference/apis-image-kit/js-apis-image-sys.md) |
+| Image Kit | @ohos.multimedia.image (Image Processing) (System API) |
 | Image Kit | [@ohos.multimedia.sendableImage (Image Processing Based on Sendable Objects)](../../reference/apis-image-kit/js-apis-sendableImage.md) |
 | Image Kit | [@ohos.multimedia.videoProcessingEngine (Video Processing Engine)](../../reference/apis-image-kit/js-apis-videoProcessingEngine.md) |
 | Location Kit | [@ohos.geolocation (Geolocation)](../../reference/apis-location-kit/js-apis-geolocation.md) |
@@ -981,7 +981,7 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 | MDM Kit | [@ohos.enterprise.browser (Browser Management)](../../reference/apis-mdm-kit/js-apis-enterprise-browser.md) |
 | MDM Kit | [@ohos.enterprise.bundleManager (Bundle Management)](../../reference/apis-mdm-kit/js-apis-enterprise-bundleManager.md) |
 | MDM Kit | [@ohos.enterprise.common (Common Module)](../../reference/apis-mdm-kit/js-apis-enterprise-common.md) |
-| MDM Kit | [@ohos.enterprise.dateTimeManager (System Time Management) (System API)](../../reference/apis-mdm-kit/js-apis-enterprise-dateTimeManager-sys.md) |
+| MDM Kit | @ohos.enterprise.dateTimeManager (System Time Management) (System API) |
 | MDM Kit | [@ohos.enterprise.deviceControl (Device Control Management)](../../reference/apis-mdm-kit/js-apis-enterprise-deviceControl.md) |
 | MDM Kit | [@ohos.enterprise.deviceInfo (Device Information Management)](../../reference/apis-mdm-kit/js-apis-enterprise-deviceInfo.md) |
 | MDM Kit | [@ohos.enterprise.deviceSettings (Device Settings Management)](../../reference/apis-mdm-kit/js-apis-enterprise-deviceSettings.md) |
@@ -995,7 +995,7 @@ export default class CryptoExtension extends CryptoExtensionAbility {
 | MDM Kit | [@ohos.enterprise.usbManager (USB Management)](../../reference/apis-mdm-kit/js-apis-enterprise-usbManager.md) |
 | MDM Kit | [@ohos.enterprise.wifiManager (Wi-Fi Management)](../../reference/apis-mdm-kit/js-apis-enterprise-wifiManager.md) |
 | Mechanic Kit | [@ohos.distributedHardware.mechanicManager (Mechanic Manager)](../../reference/apis-mechanic-kit/js-apis-mechanicManager.md) |
-| Media Kit | [@ohos.multimedia.media (Media) (System API)](../../reference/apis-media-kit/js-apis-media-sys.md) |
+| Media Kit | @ohos.multimedia.media (Media) (System API) |
 | Media Library Kit | [@ohos.multimedia.movingphotoview (MovingPhotoView)](../../reference/apis-media-library-kit/ohos-multimedia-movingphotoview.md) |
 | MindSpore Lite Kit | [@ohos.ai.mindSporeLite (On-device AI Framework)](../../reference/apis-mindspore-lite-kit/js-apis-mindSporeLite.md) |
 | Network Kit | [@ohos.net.connection (Network Connection Management)](../../reference/apis-network-kit/js-apis-net-connection.md) |

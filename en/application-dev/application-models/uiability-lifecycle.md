@@ -9,7 +9,7 @@
 
 ## Overview
 
-Whenever a user launches, pauses, resumes, or exits an application, the system fires a set of lifecycle callbacks. For a UIAbility—the component that provides UI—the key callbacks are [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy). The UIAbility lifecycle is closely linked to the [WindowStage](../../application-dev/windowmanager/application-window-stage.md) lifecycle.
+Whenever a user launches, pauses, resumes, or exits an application, the system fires a set of lifecycle callbacks. For a UIAbility—the component that provides UI—the key callbacks are [onCreate](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#oncreate), [onForeground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onforeground), [onBackground](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onbackground) and [onDestroy](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#ondestroy). The UIAbility lifecycle is closely linked to the [WindowStage] lifecycle.
 
 The following figure illustrates the UIAbility lifecycle.
 
@@ -62,13 +62,13 @@ export default class EntryAbility extends UIAbility {
 
 ### onWindowStageCreate()
 
-After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it becomes visible, the system creates a [WindowStage](../../application-dev/windowmanager/application-window-stage.md) instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback. Within this callback, you can load UI content and subscribe to WindowStage events.
+After the [UIAbility](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md) instance is created but before it becomes visible, the system creates a [WindowStage] instance and triggers the [onWindowStageCreate()](../reference/apis-ability-kit/js-apis-app-ability-uiAbility.md#onwindowstagecreate) callback. Within this callback, you can load UI content and subscribe to WindowStage events.
 
 In the **onWindowStageCreate()** callback, use [loadContent()](../reference/apis-arkui/arkts-apis-window-Window.md#loadcontent9) to set the page to be loaded, and call [on('windowStageEvent')](../reference/apis-arkui/arkts-apis-window-WindowStage.md#onwindowstageevent9) to subscribe to [WindowStage events](../reference/apis-arkui/arkts-apis-window-e.md#windowstageeventtype9), for example, gaining or losing focus, switching to the foreground or background, or becoming interactive or non-interactive in the foreground.
 
 > **NOTE**
 > 
-> - The timing of the [WindowStage events](../reference/apis-arkui/arkts-apis-window-e.md#windowstageeventtype9) may vary according to the development scenario. For details about how to use WindowStage, see [Window Development](../windowmanager/application-window-stage.md).
+> - The timing of the [WindowStage events](../reference/apis-arkui/arkts-apis-window-e.md#windowstageeventtype9) may vary according to the development scenario. For details about how to use WindowStage, see [Window Development].
 > - The UIAbility lifecycle varies with the product type when the main window of an application is switched from the foreground to the background. For details, see [Differentiated Behavior of UIAbility Lifecycle on Different Devices](../windowmanager/window-lifecycle.md#differentiated-behavior-of-uiability-lifecycle-on-different-devices).
 
   <!-- @[onWindowStageCreate](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Ability/UIAbilityLifecycle/entry/src/main/ets/entryability/EntryAbility.ets) -->  

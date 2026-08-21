@@ -1,10 +1,12 @@
 # @ohos.file.photoAccessHelper (Album Management) (System API)
+
 <!--Kit: Media Library Kit-->
 <!--Subsystem: Multimedia-->
 <!--Owner: @yixiaoff-->
 <!--Designer: @liweilu1-->
 <!--Tester: @xchaosioda-->
 <!--Adviser: @w_Machine_cc-->
+<!-- md-trans-meta sourceCommit=064bb08ccf99717a1b68e90ff57938ff22079494 translatedAt=2026-08-17T10:28:44.070Z pushedAt=2026-08-19T05:51:59.876Z -->
 
 The module provides APIs for album management, including creating an album and accessing and modifying media data in an album.
 
@@ -18,6 +20,7 @@ The module provides APIs for album management, including creating an album and a
 ```ts
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 ```
+
 ## photoAccessHelper.getPhotoAccessHelper<sup>19+</sup>
 
 getPhotoAccessHelper(context: Context, userId: number): PhotoAccessHelper
@@ -75,7 +78,9 @@ struct Index {
   }
 }
 ```
+
 ​
+
 ## PhotoAccessHelper
 
 ### createAsset
@@ -85,8 +90,11 @@ createAsset(displayName: string, callback: AsyncCallback&lt;PhotoAsset&gt;): voi
 Creates an image or video asset with the specified file name. This API uses an asynchronous callback to return the result.
 
 The file name must meet the following requirements:
+
 - A valid file name must include a base name and a supported image or video extension.
+
 - The total length of the file name must be between 1 and 255 characters.
+
 - The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
@@ -145,8 +153,11 @@ createAsset(displayName: string): Promise&lt;PhotoAsset&gt;
 Creates an image or video asset with the specified file name. This API uses a promise to return the result.
 
 The file name must meet the following requirements:
+
 - A valid file name must include a base name and a supported image or video extension.
+
 - The total length of the file name must be between 1 and 255 characters.
+
 - The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
@@ -209,8 +220,11 @@ createAsset(displayName: string, options: PhotoCreateOptions, callback: AsyncCal
 Creates an image or video asset with the specified file name and options. This API uses an asynchronous callback to return the result.
 
 The file name must meet the following requirements:
+
 - A valid file name must include a base name and a supported image or video extension.
+
 - The total length of the file name must be between 1 and 255 characters.
+
 - The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
@@ -273,8 +287,11 @@ createAsset(displayName: string, options: PhotoCreateOptions): Promise&lt;PhotoA
 Creates an image or video asset with the specified file name and options. This API uses a promise to return the result.
 
 The file name must meet the following requirements:
+
 - A valid file name must include a base name and a supported image or video extension.
+
 - The total length of the file name must be between 1 and 255 characters.
+
 - The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
@@ -341,8 +358,11 @@ createAlbum(name: string, callback: AsyncCallback&lt;Album&gt;): void
 Creates an album. This API uses an asynchronous callback to return the result.
 
 The album name must meet the following requirements:
+
 - The total length of the album name must be between 1 and 255 characters.
+
 - It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 - Duplicate album names are not allowed.
 
 > **NOTE**
@@ -402,8 +422,11 @@ createAlbum(name: string): Promise&lt;Album&gt;
 Creates an album. This API uses a promise to return the result.
 
 The album name must meet the following requirements:
+
 - The total length of the album name must be between 1 and 255 characters.
+
 - It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 - Duplicate album names are not allowed.
 
 > **NOTE**
@@ -1181,7 +1204,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
 | 14000011       | System inner fail.         |
 
-
 **Example**
 
 For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
@@ -1826,7 +1848,6 @@ Obtains the index construction progress. This API uses a promise to return the r
 
 **Required permissions**: ohos.permission.READ_IMAGEVIDEO
 
-
 **Return value**
 
 | Type                       | Description          |
@@ -1836,7 +1857,6 @@ Obtains the index construction progress. This API uses a promise to return the r
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
 
 | ID| Error Message|
 | -------- | ---------------------------------------- |
@@ -2424,7 +2444,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-
 ### getAlbumsByIds<sup>18+</sup>
 
 getAlbumsByIds(albumIds: Array&lt;number&gt;): Promise&lt;Map&lt;number, Album&gt;&gt;
@@ -2552,7 +2571,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### on('hiddenPhotoChange')<sup>20+</sup> 
+### on('hiddenPhotoChange')<sup>20+</sup>
 
 on(type: 'hiddenPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2612,7 +2631,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 }
 ```
 
-### off('hiddenPhotoChange')<sup>20+</sup> 
+### off('hiddenPhotoChange')<sup>20+</sup>
 
 off(type: 'hiddenPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2675,7 +2694,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 }
 ```
 
-### on('trashedPhotoChange')<sup>20+</sup> 
+### on('trashedPhotoChange')<sup>20+</sup>
 
 on(type: 'trashedPhotoChange', callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2735,7 +2754,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### off('trashedPhotoChange')<sup>20+</sup> 
+### off('trashedPhotoChange')<sup>20+</sup>
 
 off(type: 'trashedPhotoChange', callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2798,7 +2817,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### onAnalysisPhotoChange<sup>23+</sup> 
+### onAnalysisPhotoChange<sup>23+</sup>
 
 onAnalysisPhotoChange(callback: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2857,7 +2876,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### offAnalysisPhotoChange<sup>23+</sup> 
+### offAnalysisPhotoChange<sup>23+</sup>
 
 offAnalysisPhotoChange(callback?: Callback&lt;PhotoAssetChangeInfos&gt;): void
 
@@ -2919,7 +2938,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### on('hiddenAlbumChange')<sup>20+</sup> 
+### on('hiddenAlbumChange')<sup>20+</sup>
 
 on(type: 'hiddenAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -2979,7 +2998,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 }
 ```
 
-### off('hiddenAlbumChange')<sup>20+</sup> 
+### off('hiddenAlbumChange')<sup>20+</sup>
 
 off(type: 'hiddenAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -3042,7 +3061,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 }
 ```
 
-### on('trashedAlbumChange')<sup>20+</sup> 
+### on('trashedAlbumChange')<sup>20+</sup>
 
 on(type: 'trashedAlbumChange', callback: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -3102,7 +3121,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### off('trashedAlbumChange')<sup>20+</sup> 
+### off('trashedAlbumChange')<sup>20+</sup>
 
 off(type: 'trashedAlbumChange', callback?: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -3165,7 +3184,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 }
 ```
 
-### onAnalysisAlbumChange<sup>23+</sup> 
+### onAnalysisAlbumChange<sup>23+</sup>
 
 onAnalysisAlbumChange(callback: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -3224,7 +3243,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper){
 }
 ```
 
-### offAnalysisAlbumChange<sup>23+</sup> 
+### offAnalysisAlbumChange<sup>23+</sup>
 
 offAnalysisAlbumChange(callback?: Callback&lt;AlbumChangeInfos&gt;): void
 
@@ -3336,7 +3355,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### getPhotoAlbums<sup>20+</sup> 
+### getPhotoAlbums<sup>20+</sup>
 
 getPhotoAlbums(options?: FetchOptions): Promise&lt;FetchResult&lt;Album&gt;&gt;
 
@@ -3372,7 +3391,6 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 202      | Called by non-system application.                            |
 | 23800301 | Internal system error. It is recommended to retry and check the logs.<br>Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
 
-
 **Example**
 
 For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
@@ -3402,7 +3420,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### getPhotoAlbumOrder<sup>20+</sup> 
+### getPhotoAlbumOrder<sup>20+</sup>
 
 getPhotoAlbumOrder(orderStyle: number, options?: FetchOptions): Promise&lt;FetchResult&lt;AlbumOrder&gt;&gt;
 
@@ -3468,7 +3486,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### setPhotoAlbumOrder<sup>20+</sup> 
+### setPhotoAlbumOrder<sup>20+</sup>
 
 setPhotoAlbumOrder(orderStyle: number, albumOrders: Array&lt;AlbumOrder&gt;): Promise&lt;void&gt;
 
@@ -3598,7 +3616,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```
 
 ### getClonedAssetUris<sup>22+</sup>
- 
+
 getClonedAssetUris(oldUris: Array&lt;string&gt;): Promise&lt;Map&lt;string, string&gt;&gt;
 
 Obtains the current URIs of cloned assets. This API uses a promise to return the result.
@@ -3635,7 +3653,7 @@ For details about the error codes, see [Universal Error Codes](../errorcode-univ
 | 23800301 | Internal system error. It is recommended to retry and check the logs.Possible causes: 1. Database corrupted; 2. The file system is abnormal; 3. The IPC request timed out. |
 
 **Example**
- 
+
 For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
 
 ```ts
@@ -3657,7 +3675,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 ```
 
 ### getClonedAlbumUris<sup>22+</sup>
- 
+
 getClonedAlbumUris(oldUris: Array&lt;string&gt;): Promise&lt;Map&lt;string, string&gt;&gt;
 
 Obtains the current URIs of cloned albums. This API uses a promise to return the result.
@@ -3807,6 +3825,7 @@ async function example(context: Context) {
 ```
 
 ### addResourceForPicker<sup>22+</sup>
+
 addResourceForPicker(type: ResourceType, fileUri: string): void
 
 Adds a resource using [fileUri](../apis-core-file-kit/js-apis-file-fileuri.md).
@@ -3863,6 +3882,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
 ```
 
 ### isMediaDataReady<sup>24+</sup>
+
 isMediaDataReady(mediaDataKey: string): Promise&lt;boolean&gt;
 
 Checks whether the specified media data is ready.
@@ -4103,6 +4123,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 ### convertToAsset
 
 convertToAsset(path: string): Promise&lt;PhotoAsset&gt;
@@ -5077,7 +5098,6 @@ Obtains the album ID in the media library based on the bundle name. This API use
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-
 **Parameters**
 
 | Name | Type   | Mandatory| Description                      |
@@ -5259,7 +5279,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setFavorite](#setfavorite11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [MediaAssetChangeRequest.setFavorite](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#setfavorite) instead.
 
 **System API**: This is a system API.
 
@@ -5271,7 +5291,7 @@ Favorites or unfavorites this file asset. This API uses an asynchronous callback
 
 | Name       | Type                       | Mandatory  | Description                                |
 | ---------- | ------------------------- | ---- | ---------------------------------- |
-| favoriteState | boolean                   | Yes   | Whether to favorite the file asset. **true** to favorite, **false** otherwise.|
+| favoriteState | boolean                   | Yes    | Whether to set the file as a favorite. The value **true** means to set it as a favorite, and **false** means to cancel the favorite. |
 | callback   | AsyncCallback&lt;void&gt; | Yes   | Callback that returns no value.                             |
 
 **Error codes**
@@ -5322,7 +5342,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 > **NOTE**
 >
-> This API is supported since API version 10 and deprecated since API version 11. Use [MediaAssetChangeRequest.setFavorite](#setfavorite11) instead.
+> This API is supported since API version 10 and deprecated since API version 11. You are advised to use [MediaAssetChangeRequest.setFavorite](arkts-apis-photoAccessHelper-MediaAssetChangeRequest.md#setfavorite) instead.
 
 **System API**: This is a system API.
 
@@ -5334,7 +5354,7 @@ Favorites or unfavorites this file asset. This API uses a promise to return the 
 
 | Name       | Type     | Mandatory  | Description                                |
 | ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Whether to favorite the file asset. **true** to favorite, **false** otherwise.|
+| favoriteState | boolean | Yes | Whether to set the file as a favorite. The value **true** indicates to set the file as a favorite, and **false** indicates to cancel the favorite. |
 
 **Return value**
 
@@ -6002,7 +6022,6 @@ Checks whether this image or video asset is edited. This API uses a promise to r
 | --------------------------------------- | ----------------- |
 |Promise&lt;boolean&gt; | Promise used to return the result indicating whether the image or video asset is edited. **true** if edited, **false** otherwise. The default value is **false**.|
 
-
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
@@ -6123,7 +6142,6 @@ If the asset has never been edited, an empty string is returned.
 | Type                                   | Description             |
 | --------------------------------------- | ----------------- |
 |Promise&lt;string&gt; | Promise used to return the edit data obtained.|
-
 
 **Error codes**
 
@@ -7069,7 +7087,6 @@ Duplicates an image within the same album (either user-created or application-sp
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Library Error Codes](errorcode-medialibrary.md).
 
-
 | ID| Error Message|
 | -------- | ---------------------------------------- |
 | 201 | Permission denied.  | 
@@ -7562,6 +7579,7 @@ If error code 13900012 is returned, follow the instructions provided in [Before 
 | 13900012     | Permission denied.         |
 | 13900020     | Invalid argument.         |
 | 14000011       | System inner fail.         |
+
 **Example**
 
 For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
@@ -7661,6 +7679,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 ### getSelectedAssets<sup>22+</sup>
 
 getSelectedAssets(optionCheck: FetchOptions, filter?: string): Promise\<FetchResult\<PhotoAsset>>
@@ -7754,6 +7773,7 @@ async function example1(phAccessHelper: photoAccessHelper.PhotoAccessHelper) : P
   }
 }
 ```
+
 ### getAttribute
 
 getAttribute(attrs: AlbumAttribute[]): Promise<Record<AlbumAttribute, AlbumAttributeInfo>>
@@ -7832,6 +7852,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 ## MediaAssetEditData<sup>11+</sup>
 
 Represents the edited media asset data.
@@ -7894,8 +7915,11 @@ static createAssetRequest(context: Context, displayName: string, options?: Photo
 Creates an asset change request with the specified file name.
 
 The file name must meet the following requirements:
+
 - A valid file name must include a base name and a supported image or video extension.
+
 - The total length of the file name must be between 1 and 255 characters.
+
 - The base name must not contain any invalid characters.<br>Starting from API version 18, the following characters are considered invalid: \ / : * ? " < > | <br>For API versions 10 to 17, the following characters are considered invalid: . .. \ / : * ? " ' ` < > | { } [ ]
 
 **System API**: This is a system API.
@@ -7947,59 +7971,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper, cont
   } catch (err) {
     console.error(`createAssetRequestDemo failed with error: ${err.code}, ${err.message}`);
   }
-}
-```
-
-### setFavorite<sup>11+</sup>
-
-setFavorite(favoriteState: boolean): void
-
-Favorites or unfavorites this file asset.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name       | Type     | Mandatory  | Description                                |
-| ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Whether to favorite the file. **true** to favorite, **false** otherwise.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.         |
-
-**Example**
-
-For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
-  console.info('setFavoriteDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let asset = await fetchResult.getFirstObject();
-  let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = new photoAccessHelper.MediaAssetChangeRequest(asset);
-  assetChangeRequest.setFavorite(true);
-  phAccessHelper.applyChanges(assetChangeRequest).then(() => {
-    console.info('apply setFavorite successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`apply setFavorite failed with error: ${err.code}, ${err.message}`);
-  });
 }
 ```
 
@@ -8494,7 +8465,6 @@ setHasAppLink(hasAppLink: int): void
 
 Sets the status of the app link association.
 
-
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -8595,7 +8565,6 @@ setAppLinkInfo(appLink: string): void
 
 Sets the information about the app link association.
 
-
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -8642,7 +8611,6 @@ async function example(asset: photoAccessHelper.PhotoAsset, appLinkInfo: string,
 setCompositeDisplayMode(compositeDisplayMode: CompositeDisplayMode): Promise\<void\>
 
 Sets the display mode of the composite image. This API uses a promise to return the result.
-
 
 **System API**: This is a system API.
 
@@ -9116,105 +9084,6 @@ Represents a request for changing multiple assets.
 | ------------ | ------ | ---- | ---- | ------- |
 | comment<sup>23+</sup>    | string | Yes   | No  | Used to verify the [MediaChangeRequest](arkts-apis-photoAccessHelper-i.md#mediachangerequest11) type.<br>If a class (such as **MediaAssetsChangeRequest**) object can be accessed, it is an implementation class of **MediaChangeRequest**.|
 
-### constructor<sup>11+</sup>
-
-constructor(assets: Array&lt;PhotoAsset&gt;)
-
-Constructor.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name  | Type                     | Mandatory| Description      |
-| -------- | ------------------------- | ---- | ---------- |
-| assets | Array&lt;[PhotoAsset](#photoasset)&gt; | Yes  | Assets to change.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.   |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.          |
-
-**Example**
-
-For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
-  console.info('MediaAssetsChangeRequest constructorDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
-}
-```
-
-### setFavorite<sup>11+</sup>
-
-setFavorite(favoriteState: boolean): void
-
-Favorites or unfavorites this file asset.
-
-**System API**: This is a system API.
-
-**System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
-
-**Parameters**
-
-| Name       | Type     | Mandatory  | Description                                |
-| ---------- | ------- | ---- | ---------------------------------- |
-| favoriteState | boolean | Yes   | Whether to favorite the file. **true** to favorite, **false** otherwise.|
-
-**Error codes**
-
-For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [File Management Error Codes](../apis-core-file-kit/errorcode-filemanagement.md).
-
-| ID| Error Message|
-| -------- | ---------------------------------------- |
-| 202        |  Called by non-system application.         |
-| 401 | Parameter error. Possible causes: 1. Mandatory parameters are left unspecified; 2. Incorrect parameter types; 3. Parameter verification failed. | 
-| 14000011       | System inner fail.         |
-
-**Example**
-
-For details about how to create a phAccessHelper instance, see the example provided in [photoAccessHelper.getPhotoAccessHelper](arkts-apis-photoAccessHelper-f.md#photoaccesshelpergetphotoaccesshelper).
-
-```ts
-import { dataSharePredicates } from '@kit.ArkData';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
-  console.info('setFavoriteDemo');
-  let predicates: dataSharePredicates.DataSharePredicates = new dataSharePredicates.DataSharePredicates();
-  let fetchOption: photoAccessHelper.FetchOptions = {
-    fetchColumns: [],
-    predicates: predicates
-  };
-  let fetchResult: photoAccessHelper.FetchResult<photoAccessHelper.PhotoAsset> = await phAccessHelper.getAssets(fetchOption);
-  let photoAssetList: Array<photoAccessHelper.PhotoAsset> = await fetchResult.getAllObjects();
-  let assetsChangeRequest: photoAccessHelper.MediaAssetsChangeRequest = new photoAccessHelper.MediaAssetsChangeRequest(photoAssetList);
-  assetsChangeRequest.setFavorite(true);
-  phAccessHelper.applyChanges(assetsChangeRequest).then(() => {
-    console.info('apply setFavorite successfully');
-  }).catch((err: BusinessError) => {
-    console.error(`apply setFavorite failed with error: ${err.code}, ${err.message}`);
-  });
-}
-```
-
 ### setHidden<sup>11+</sup>
 
 setHidden(hiddenState: boolean): void
@@ -9387,9 +9256,13 @@ static createAlbumRequest(context: Context, name: string): MediaAlbumChangeReque
 Creates a MediaAlbumChangeRequest instance.
 
 The album name must meet the following requirements:
+
 - The total length of the album name must be between 1 and 255 characters.
+
 - It must not contain any invalid characters, which are:<br> . .. \ / : * ? " ' ` < > | { } [ ]
+
 - The characters are case insensitive.
+
 - Duplicate album names are not allowed.
 
 **System API**: This is a system API.
@@ -9960,6 +9833,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
+
 ### moveAssetsWithUri<sup>19+</sup>
 
 moveAssetsWithUri(assetUris: Array&lt;String&gt;, targetAlbum: Album): void
@@ -10025,7 +9899,6 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
   }
 }
 ```
-
 
 ### recoverAssets<sup>11+</sup>
 
@@ -10661,7 +10534,6 @@ Obtains specific information about the **Highlights** album.
 | ---------- | ------- | ---- | ---------------------------------- |
 | type       | [HighlightAlbumInfoType](#highlightalbuminfotype12) | Yes   | Type of the album information to obtain.|
 
-
 **Return value**
 
 | Type                       | Description          |
@@ -10832,7 +10704,7 @@ async function example(phAccessHelper: photoAccessHelper.PhotoAccessHelper) {
 }
 ```
 
-### setSubTitle<sup>18+</sup> 
+### setSubTitle<sup>18+</sup>
 
 setSubTitle(title: string): void
 
@@ -10841,7 +10713,9 @@ Sets the subtitle for this **Highlights** album instance.
 The subtitle must meet the following requirements:
 
 - The total length of the subtitle must be between 0 and 255 characters.
+
 - It must not contain any invalid characters, which are:<br> . \ / : * ? " ' ` < > | { } [ ]
+
 - The characters are case insensitive.
 
 **System API**: This is a system API.
@@ -10962,13 +10836,13 @@ async function example(context: Context) {
 }
 ```
 
-## MediaAnalysisAlbumChangeRequest<sup>18+</sup> 
+## MediaAnalysisAlbumChangeRequest<sup>18+</sup>
 
 Provides APIs for managing the analysis album change request.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### constructor<sup>18+</sup> 
+### constructor<sup>18+</sup>
 
 constructor(album: Album)
 
@@ -11018,7 +10892,7 @@ async function example(context: Context) {
 }
 ```
 
-### setOrderPosition<sup>18+</sup> 
+### setOrderPosition<sup>18+</sup>
 
 setOrderPosition(assets: Array&lt;PhotoAsset&gt;, position: Array&lt;number&gt;): void
 
@@ -11092,7 +10966,7 @@ async function example(context: Context) {
 }
 ```
 
-### setRelationship<sup>21+</sup> 
+### setRelationship<sup>21+</sup>
 
 setRelationship(relationship: string): Promise&lt;void&gt;
 
@@ -11139,7 +11013,6 @@ The supported relationship names include:
 | relative | Relative|
 | other | Other|
 
-
 **Return value**
 
 | Type                       | Description          |
@@ -11149,7 +11022,6 @@ The supported relationship names include:
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Library Error Codes](errorcode-medialibrary.md).
-
 
 | ID   | Error Message                             |
 | :------- | :-------------------------------- |
@@ -11326,13 +11198,13 @@ async function example(context: Context) {
 }
 ```
 
-## MediaHighlightAlbumChangeRequest<sup>21+</sup> 
+## MediaHighlightAlbumChangeRequest<sup>21+</sup>
 
 Provides APIs for managing the media album change request. It inherits from [MediaAnalysisAlbumChangeRequest](#mediaanalysisalbumchangerequest18).
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### constructor<sup>21+</sup> 
+### constructor<sup>21+</sup>
 
 constructor(album: Album)
 
@@ -11382,7 +11254,7 @@ async function example(context: Context) {
 }
 ```
 
-### setHighlightAttribute<sup>21+</sup> 
+### setHighlightAttribute<sup>21+</sup>
 
 setHighlightAttribute(attribute: HighlightAlbumChangeAttribute, value: string): void
 
@@ -11447,13 +11319,13 @@ async function example(context: Context) {
 }
 ```
 
-## AnalysisAlbum<sup>18+</sup> 
+## AnalysisAlbum<sup>18+</sup>
 
 Implements an **Analysis** album.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
 
-### constructor<sup>18+</sup> 
+### constructor<sup>18+</sup>
 
 constructor(album: Album)
 
@@ -11502,7 +11374,7 @@ async function example(context: Context) {
 }
 ```
 
-### getOrderPosition<sup>18+</sup> 
+### getOrderPosition<sup>18+</sup>
 
 getOrderPosition(assets: Array&lt;PhotoAsset&gt;): Promise&lt;Array&lt;number&gt;&gt;
 
@@ -11575,7 +11447,7 @@ async function example(context: Context) {
 }
 ```
 
-### getRelationship<sup>21+</sup> 
+### getRelationship<sup>21+</sup>
 
 getRelationship(): Promise&lt;string&gt;
 
@@ -12880,7 +12752,6 @@ Registers a callback to monitor changes in the progress of a batch download for 
 | -------- | ------------------------- | ---- | ---------- |
 | callback | Callback\<[CloudAssetDownloadProgressInfo](#cloudassetdownloadprogressinfo21)\> | Yes  | Callback to register. The callback returns progress information of the batch download.|
 
-
 **Error codes**
 
 For details about the error codes, see [Universal Error Codes](../errorcode-universal.md) and [Media Library Error Codes](errorcode-medialibrary.md).
@@ -12916,7 +12787,6 @@ offDownloadProgressChange(callback?: Callback\<CloudAssetDownloadProgressInfo\>)
 
 Unregisters a callback to monitor changes in the progress of a batch download for cloud media assets.
 
-
 **System API**: This is a system API.
 
 **System capability**: SystemCapability.FileManagement.PhotoAccessHelper.Core
@@ -12928,7 +12798,6 @@ Unregisters a callback to monitor changes in the progress of a batch download fo
 | Name  | Type                     | Mandatory| Description      |
 | -------- | ------------------------- | ---- | ---------- |
 | callback | Callback\<[CloudAssetDownloadProgressInfo](#cloudassetdownloadprogressinfo21)\> | No  | Callback to unregister, which is registered by [onDownloadProgressChange](#ondownloadprogresschange21). If this parameter is left empty, all progress-related callbacks are unregistered.|
-
 
 **Error codes**
 
@@ -13529,7 +13398,6 @@ Defines the key information about an image or video file.
 | FILE_HIDDEN | 'file_hidden' | Whether the file is hidden.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | ATTACHMENT_SIZE | 'attachment_size' | Size of the attachment file. The unit is bytes.<br>The default value is **0**, indicating that the attachment file size is not identified or the attachment file size is 0.<br>**Since**: 26.0.0<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
-
 ## AlbumKeys
 
 Enumerates the album keys.
@@ -13894,6 +13762,7 @@ Enumerates the types of the file to read.
 | ----- |  ---- |  ---- |
 | ORIGINAL_MODE |  0 |  Original file.|
 | EDITED_MODE |  1 |  Edited file.|
+
 ## AuthorizationMode<sup>12+</sup>
 
 Enumerates the authorization modes.
@@ -14285,7 +14154,6 @@ Defines the image recommendation options. The image recommendation feature depen
 | recommendationTypeList<sup>23+</sup> | Array\<[RecommendationType](arkts-apis-photoAccessHelper-e.md#recommendationtype11)>   | No  | Yes| List of recommendation types. If images of multiple categories need to be recommended based on the enumerated value, set this parameter.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 | defaultRecommendationType<sup>24+</sup> | [RecommendationType](arkts-apis-photoAccessHelper-e.md#recommendationtype11)   | No  | Yes| Recommended tag displayed when the picker is opened. This configuration takes effect only after **recommendationTypeList** is set.<br>If the tag exists, the tag page is displayed by default.<br>If the tag does not exist, the All tag page is displayed by default.<br>**Model restriction**: This API can be used only in the stage model.<br>**System API**: This is a system API.|
 
-
 ## ThumbnailChangeStatus<sup>20+</sup>
 
 Enumerates the change statuses of thumbnails (including images and videos).
@@ -14337,7 +14205,6 @@ Describes the information about a media asset.
 | ---- | ------- | ---- |  ---- | ----- |
 | fileId | number  | No| No| ID of the media asset.<br>**System API**: This is a system API. |
 | dateDay | string  | No| No| Date when the media asset was created.<br>**System API**: This is a system API. |
-| isFavorite | boolean  | No| No| Whether the media asset is marked as a favorite. **true** if marked, **false** otherwise.<br>**System API**: This is a system API. |
 | isHidden | boolean  | No| No| Whether the media asset is hidden. **true** if hidden, **false** otherwise.<br>**System API**: This is a system API. |
 | strongAssociation | [StrongAssociationType](#strongassociationtype20)  | No| No| Strong association type of the media asset.<br>**System API**: This is a system API. |
 | thumbnailVisible | [ThumbnailVisibility](#thumbnailvisibility14)  | No| No| Accessibility status of the thumbnail.<br>**System API**: This is a system API. |
