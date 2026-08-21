@@ -482,7 +482,7 @@ requestPermissionsFromUser(context: Context, permissionList: Array&lt;Permission
 | -------- | -------- |
 | 401 | Parameter error. Possible causes: 1.Mandatory parameters are left unspecified; 2.Incorrect parameter types. |
 | 12100001 | (Deprecated in 12) Invalid parameter. The context is invalid when it does not belong to the application itself. |
-| 12100009 | Common inner error. An error occurs when creating the pop-up window or obtaining the user operation result. [since 11] |
+| 12100009 | Common inner error. An error occurs when creating the pop-up window or obtaining the user operation result. <br>适用版本：11+ |
 
 **示例：**
 
@@ -551,10 +551,10 @@ requestPermissionOnSetting(context: Context, permissionList: Array&lt;Permission
 | -------- | -------- |
 | 12100001 | Invalid parameter. Possible causes:<br>1. The context is invalid because it does not belong to the application itself;<br>2. The permission list contains the permission that is not declared in the module.json file;<br>3. The permission list is invalid because the permissions in it do not belong to the same permission group;<br>4. The permission list contains one or more system_grant permissions. |
 | 12100009 | Common inner error. An error occurs when creating the pop-up window or obtaining the user operation result. |
-| 12100010 | The request already exists. [since 12 - 20]. |
+| 12100010 | The request already exists. <br>适用版本：12-20 |
 | 12100011 | All permissions in the permission list have been granted. |
 | 12100012 | The permission list contains the permission that has not been revoked by the user. |
-| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. [since 21]. |
+| 12100014 | Unexpected permission. You cannot request this type of permission from users via a pop-up window. <br>适用版本：21+ |
 
 **示例：**
 
