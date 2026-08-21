@@ -43,7 +43,7 @@ createVideoProcessor(): VideoProcessor
 
 |  类型 | 说明  |
 | ------------ | ------------ |
-|  [VideoProcessor](#videoprocessor) | 视频处理实例。如果操作成功，返回VideoProcessor实例，否则返回null |
+|  [VideoProcessor](#videoprocessor) | 视频处理实例。如果操作成功，返回VideoProcessor实例，否则返回null。 |
 
 **错误码：**
 
