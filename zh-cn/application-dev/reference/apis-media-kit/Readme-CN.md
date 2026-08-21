@@ -26,6 +26,7 @@
     - [废弃的Interface (AudioPlayer, deprecated)](arkts-apis-media-AudioPlayer.md)
     - [废弃的Interface (AudioRecorder, deprecated)](arkts-apis-media-AudioRecorder.md)
     - [废弃的Interface (VideoPlayer, deprecated)](arkts-apis-media-VideoPlayer.md)
+  - [@ohos.multimedia.videoProcessing (视频处理)](arkts-apis-media-videoProcessing.md)
   <!--Del-->
   - [@ohos.multimedia.media (媒体服务)(系统接口)](js-apis-media-sys.md)
   <!--DelEnd-->
