@@ -89,7 +89,7 @@ type CustomValueType = number | string | boolean
 
 | 名称   |类型    |只读    |可选    |说明    |
 |---------|----------|----------|--------|--------|
-| customSettings |Record&lt;string, [CustomValueType](#customvaluetype22)&gt;    | 否   | 否    |输入法扩展信息，用于储存自定义的键值对。这些键值对可以是任何与输入法相关的配置信息。例如用户的输入习惯、快捷键设置、主题颜色等。这些设置信息将在输入法应用绑定时加载，以提供个性化的用户体验。不设置时，输入法应用将使用默认配置。|
+| customSettings |Record&lt;string, [CustomValueType](#customvaluetype22)&gt;    | 否   | 否    |输入法扩展信息，用于存储自定义的键值对。这些键值对可以是任何与输入法相关的配置信息。例如用户的输入习惯、快捷键设置、主题颜色等。这些设置信息将在输入法应用绑定时加载，以提供个性化的用户体验。不设置时，输入法应用将使用默认配置。|
 
 customSettings参数使用建议：
 

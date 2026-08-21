@@ -52,6 +52,6 @@ InputMethod_InputMethodProxy是应用端与输入法服务交互的核心代理�
 | [OH_InputMethodProxy_NotifyCursorUpdate](capi-inputmethod-inputmethod-proxy-capi-h.md#oh_inputmethodproxy_notifycursorupdate) | 通知光标位置变化。 |
 | [OH_InputMethodProxy_SendPrivateCommand](capi-inputmethod-inputmethod-proxy-capi-h.md#oh_inputmethodproxy_sendprivatecommand) | 发送私有数据命令。 |
 
-关联关系:
+关联关系：
 - 与TextEditorProxy的关系：[InputMethod_TextEditorProxy](capi-inputmethod-inputmethod-texteditorproxy.md)负责接收输入法应用的请求和通知，InputMethod_InputMethodProxy负责向输入法服务发送请求和通知。两者在Attach时同时建立关联，构成双向通信通道。
 - 与AttachOptions的关系：[InputMethod_AttachOptions](capi-inputmethod-inputmethod-attachoptions.md)在Attach时传入，用于配置绑定选项（如是否显示键盘、请求键盘原因等），Attach成功后生成InputMethod_InputMethodProxy实例。
