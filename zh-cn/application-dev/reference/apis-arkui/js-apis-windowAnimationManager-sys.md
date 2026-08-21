@@ -260,7 +260,7 @@ onStartAppFromLauncher(startingWindowTarget: WindowAnimationTarget,finishCallbac
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | 是   | 动画目标窗口。     |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -281,7 +281,7 @@ onStartAppFromRecent(startingWindowTarget: WindowAnimationTarget,finishCallback:
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | 是   | 动画目标窗口。     |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -302,7 +302,7 @@ onStartAppFromOther(startingWindowTarget: WindowAnimationTarget,finishCallback: 
 | 参数名               | 类型                                                         | 必填 | 说明               |
 | -------------------- | ------------------------------------------------------------ | ---- | ------------------ |
 | startingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)              | 是   | 动画目标窗口。     |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -324,7 +324,7 @@ onAppTransition(fromWindowTarget: WindowAnimationTarget, toWindowTarget: WindowA
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | fromWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | 是   | 转场前的动画窗口。 |
 | toWindowTarget       | [WindowAnimationTarget](#windowanimationtarget) | 是   | 转场后的动画窗口。 |
-| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -345,7 +345,7 @@ onMinimizeWindow(minimizingWindowTarget: WindowAnimationTarget,finishCallback: W
 | 参数名               | 类型                            | 必填 | 说明             |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | minimizingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | 是   | 动画目标窗口。    |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -366,7 +366,7 @@ onCloseWindow(closingWindowTarget: WindowAnimationTarget,finishCallback: WindowA
 | 参数名               | 类型                            | 必填 | 说明             |
 | -------------------- | ------------------------------- | ---- | ---------------- |
 | closingWindowTarget | [WindowAnimationTarget](#windowanimationtarget)           | 是   | 动画目标窗口。    |
-| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback       | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -386,7 +386,7 @@ onScreenUnlock(finishCallback: [WindowAnimationFinishedCallback](#windowanimatio
 
 | 参数名         | 类型                                                         | 必填 | 说明               |
 | -------------- | ------------------------------------------------------------ | ---- | ------------------ |
-| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 动画完成后的回调。 |
+| finishCallback | [WindowAnimationFinishedCallback](#windowanimationfinishedcallback) | 是   | 窗口动画完成后的回调。 |
 
 **示例：**
 
@@ -414,7 +414,7 @@ onWindowAnimationTargetsUpdate(fullScreenWindowTarget: WindowAnimationTarget, fl
 请参考[windowAnimationManager.setController](#windowanimationmanagersetcontroller)的示例代码。
 
 ## WindowAnimationFinishedCallback
-动画完成后的回调。
+窗口动画完成后的回调。
 
 ### onAnimationFinish
 
@@ -442,7 +442,7 @@ onAnimationFinish():void
 | bundleName   | string          | 是 | 否 | 动画目标窗口所对应的包名。 |
 | abilityName  | string          | 是 | 否 | 动画目标窗口所对应的Ability名称。 |
 | windowBounds | [RRect](#rrect) | 是 | 否 | 动画目标窗口的边界信息，包括左上角坐标、宽高和圆角半径。 |
-| missionId    | number          | 是 | 否 | 任务ID，多任务中用于与ability进行匹配。|
+| missionId    | number          | 是 | 否 | 任务ID，多任务中用于与Ability进行匹配。|
 
 ## RRect
 圆角矩形。
