@@ -13,7 +13,7 @@
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)、[AsyKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-3)生成密钥算法为ECC、密钥长度为256位的非对称密钥（KeyPair）。
 
-   如何生成ECC非对称密钥，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解。参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成ECC非对称密钥，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：ECC](crypto-key-generation-conversion.md#ecc)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解。参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createKeyAgreement](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatekeyagreement)，指定字符串参数'ECC256'，创建密钥算法为ECC、密钥长度为256位的密钥协商生成器（KeyAgreement）。
 
@@ -64,6 +64,7 @@
   ``` TypeScript
   
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   function ecdhSync() {
     // 假设此公私钥对数据为外部传入
@@ -75,22 +76,27 @@
     let priKeyArray =
       new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171,
         57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-    let eccGen = cryptoFramework.createAsyKeyGenerator('ECC256');
-    // 外部传入的公私钥对A
-    let keyPairA = eccGen.convertKeySync({ data: pubKeyArray }, { data: priKeyArray });
-    // 内部生成的公私钥对B
-    let keyPairB = eccGen.generateKeyPairSync();
-    let eccKeyAgreement = cryptoFramework.createKeyAgreement('ECC256');
-    // 使用A的公钥和B的私钥进行密钥协商
-    let secret1 = eccKeyAgreement.generateSecretSync(keyPairB.priKey, keyPairA.pubKey);
-    // 使用A的私钥和B的公钥进行密钥协商
-    let secret2 = eccKeyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
-    // 两种协商的结果应当一致
-    if (secret1.data.toString() === secret2.data.toString()) {
-      console.info('ecdh result: success.');
-      console.info('ecdh output: ' + secret1.data);
-    } else {
-      console.error('ecdh result is not equal.');
+    try {
+      let eccGen = cryptoFramework.createAsyKeyGenerator('ECC256');
+      // 外部传入的公私钥对A
+      let keyPairA = eccGen.convertKeySync({ data: pubKeyArray }, { data: priKeyArray });
+      // 内部生成的公私钥对B
+      let keyPairB = eccGen.generateKeyPairSync();
+      let eccKeyAgreement = cryptoFramework.createKeyAgreement('ECC256');
+      // 使用A的公钥和B的私钥进行密钥协商
+      let secret1 = eccKeyAgreement.generateSecretSync(keyPairB.priKey, keyPairA.pubKey);
+      // 使用A的私钥和B的公钥进行密钥协商
+      let secret2 = eccKeyAgreement.generateSecretSync(keyPairA.priKey, keyPairB.pubKey);
+      // 两种协商的结果应当一致
+      if (secret1.data.toString() === secret2.data.toString()) {
+        console.info('ecdh result: success.');
+        console.info('ecdh output: ' + secret1.data);
+      } else {
+        console.error('ecdh result is not equal.');
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`call failed: errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
   ```

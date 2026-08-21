@@ -7,7 +7,7 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-sym-encrypt-decrypt-spec.md#3des)。
+对应的算法规格请查看[对称密钥加解密算法规格：3DES](crypto-encryption-decryption.md#3des)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -20,7 +20,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create)、[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为3DES、密钥长度为192位的对称密钥（OH_CryptoSymKey）。
    
-   如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请注意区分。
+   如何生成3DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：3DES](crypto-key-generation-conversion.md#3des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key-ndk.md)理解，参考文档与当前示例可能存在入参差异，请注意区分。
 
 **加密**
 

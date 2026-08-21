@@ -13,7 +13,7 @@
 
 ## 指定密钥参数生成RSA公钥
 
-对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
+对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-key-generation-conversion.md#rsa)。
 
 1. 构造[RSACommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#rsacommonparamsspec10)对象，用于指定RSA算法中公私钥包含的公共参数（n）。
    
@@ -186,7 +186,7 @@
 
 ## 指定密钥参数生成ECC密钥对
 
-对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)。
+对应的算法规格请查看[非对称密钥生成和转换规格：ECC](crypto-key-generation-conversion.md#ecc)。
 
 1. 构造[ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定ECC算法中公私钥包含的公共参数。
 
@@ -412,7 +412,7 @@
 
 ## 根据椭圆曲线名生成SM2密钥对
 
-对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)。
+对应的算法规格请查看[非对称密钥生成和转换规格：SM2](crypto-key-generation-conversion.md#sm2)。
 
 1. 构造[ECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#ecccommonparamsspec10)对象，用于指定非对称公共密钥参数。根据[genECCCommonParamsSpec](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#genecccommonparamsspec11)接口传入相应的NID字符串名称生成相应的非对称公共密钥参数。
 

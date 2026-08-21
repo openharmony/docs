@@ -11,7 +11,7 @@
 
 ## 指定二进制数据转换3DES密钥
 
-对应的算法规格请查看[对称密钥生成和转换规格：3DES](crypto-sym-key-generation-conversion-spec.md#3des)。
+对应的算法规格请查看[对称密钥生成和转换规格：3DES](crypto-key-generation-conversion.md#3des)。
 
 1. 获取3DES二进制密钥数据，封装成[DataBlob](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#datablob)对象。
 
@@ -101,7 +101,7 @@
 
 ## 指定二进制数据转换HMAC密钥
 
-请查看[对称密钥生成和转换规格：HMAC](crypto-sym-key-generation-conversion-spec.md#hmac)。
+请查看[对称密钥生成和转换规格：HMAC](crypto-key-generation-conversion.md#hmac)。
 
 1. 获取HMAC二进制密钥并封装成[DataBlob](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#datablob)对象。
 

@@ -7,13 +7,13 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-对应的算法规格请查看[非对称密钥加解密算法规格：SM2](crypto-asym-encrypt-decrypt-spec.md#sm2)。
+对应的算法规格请查看[非对称密钥加解密算法规格：SM2](crypto-encryption-decryption.md#sm2)。
 
 **加密**
 
 1. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成SM2密钥类型为SM2_256的非对称密钥对（KeyPair）。KeyPair对象中包括公钥PubKey、私钥PriKey。
 
-   如何生成SM2非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：SM2](crypto-asym-key-generation-conversion-spec.md#sm2)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成SM2非对称密钥对，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：SM2](crypto-key-generation-conversion.md#sm2)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'SM2_256|SM3'，创建非对称密钥类型为SM2_256、摘要算法为SM3的Cipher实例，用于完成加解密操作。
 
@@ -104,6 +104,7 @@
   ``` TypeScript
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   // 加密消息
   function encryptMessage(publicKey: cryptoFramework.PubKey, plainText: cryptoFramework.DataBlob) {
@@ -141,21 +142,26 @@
       new Uint8Array([48, 49, 2, 1, 1, 4, 32, 54, 41, 239, 240, 63, 188, 134, 113, 31, 102, 149, 203, 245, 89, 15, 15, 47,
         202, 170, 60, 38, 154, 28, 169, 189, 100, 251, 76, 112, 223, 156, 159, 160, 10, 6, 8, 42, 129, 28, 207, 85, 1,
         130, 45]);
-    let keyPair = genKeyPairByData(pkData, skData);
-    let pubKey = keyPair.pubKey;
-    let priKey = keyPair.priKey;
-    let message = 'This is a test';
-    // 把字符串按utf-8解码为Uint8Array
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-    let encryptText = encryptMessage(pubKey, plainText);
-    let decryptText = decryptMessage(priKey, encryptText);
-    if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok.');
-      // 把Uint8Array按utf-8编码为字符串
-      let messageDecrypted = buffer.from(decryptText.data).toString('utf-8');
-      console.info('decrypted result string:' + messageDecrypted);
-    } else {
-      console.error('decrypt failed.');
+    try {
+      let keyPair = genKeyPairByData(pkData, skData);
+      let pubKey = keyPair.pubKey;
+      let priKey = keyPair.priKey;
+      let message = 'This is a test';
+      // 把字符串按utf-8解码为Uint8Array
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      let encryptText = encryptMessage(pubKey, plainText);
+      let decryptText = decryptMessage(priKey, encryptText);
+      if (plainText.data.toString() === decryptText.data.toString()) {
+        console.info('decrypt ok.');
+        // 把Uint8Array按utf-8编码为字符串
+        let messageDecrypted = buffer.from(decryptText.data).toString('utf-8');
+        console.info('decrypted result string:' + messageDecrypted);
+      } else {
+        console.error('decrypt failed.');
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`call failed: errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
   ```

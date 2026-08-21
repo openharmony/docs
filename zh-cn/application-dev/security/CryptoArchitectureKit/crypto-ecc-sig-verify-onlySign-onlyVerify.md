@@ -1,4 +1,4 @@
-# 使用ECC密钥对签名验签（OnlySign和OnlyVerify模式）(ArkTS)
+# 使用ECC密钥对签名验签(ArkTS)
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
@@ -6,6 +6,8 @@
 <!--Designer: @lanming-->
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
+
+## 使用ECC密钥对签名验签（OnlySign和OnlyVerify模式）
 
 从API版本26.0.0开始，签名验签支持OnlySign/OnlyVerify模式。对应的算法规格请查看[签名验签算法规格：ECDSA](crypto-sign-sig-verify-overview.md#ecdsa)。
 
@@ -19,7 +21,7 @@
 
 4. 调用[cryptoFramework.createAsyKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreateasykeygenerator)、[AsyKeyGenerator.generateKeyPair](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatekeypair-1)，生成密钥算法为ECC、曲线类型为ECC224的非对称密钥对象（KeyPair），包括公钥（PubKey）和私钥（PriKey）。
 
-   如何生成ECC非对称密钥，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：ECC](crypto-asym-key-generation-conversion-spec.md#ecc)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成ECC非对称密钥，开发者可参考下文示例，并结合[非对称密钥生成和转换规格：ECC](crypto-key-generation-conversion.md#ecc)和[随机生成非对称密钥对](crypto-generate-asym-key-pair-randomly.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 5. 调用[cryptoFramework.createSign](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesign)，指定字符串参数'ECC|SHA1|OnlySign'，创建非对称密钥类型为ECC、摘要算法为SHA1、签名模式为OnlySign的Sign实例，用于完成签名操作。
 
@@ -90,7 +92,7 @@
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
   
-  function signMessagePromise(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
+  function signMessageSync(priKey: cryptoFramework.PriKey, digestBlob: cryptoFramework.DataBlob) {
     let signAlg = 'ECC|SHA1|OnlySign';
     let signer = cryptoFramework.createSign(signAlg);
     signer.initSync(priKey);
@@ -98,7 +100,7 @@
     return signData;
   }
   
-  function verifyMessagePromise(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
+  function verifyMessageSync(digestBlob: cryptoFramework.DataBlob, signMessageBlob: cryptoFramework.DataBlob,
     pubKey: cryptoFramework.PubKey) {
     let verifyAlg = 'ECC|SHA1|OnlyVerify';
     let verifier = cryptoFramework.createVerify(verifyAlg);
@@ -117,8 +119,8 @@
     let keyGenAlg = 'ECC224';
     let generator = cryptoFramework.createAsyKeyGenerator(keyGenAlg);
     let keyPair = generator.generateKeyPairSync();
-    let signData = signMessagePromise(keyPair.priKey, digestBlob);
-    let verifyResult = verifyMessagePromise(digestBlob, signData, keyPair.pubKey);
+    let signData = signMessageSync(keyPair.priKey, digestBlob);
+    let verifyResult = verifyMessageSync(digestBlob, signData, keyPair.pubKey);
     if (verifyResult === true) {
       console.info('verify result: success.');
     } else {

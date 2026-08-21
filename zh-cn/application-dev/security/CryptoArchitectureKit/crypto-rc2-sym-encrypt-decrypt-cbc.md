@@ -9,13 +9,13 @@
 
 从API版本26.0.0开始，算法库支持RC2对称密钥加解密。
 
-对应的算法规格请参见[对称密钥加解密算法规格：RC2](crypto-sym-encrypt-decrypt-spec.md#rc2)。
+对应的算法规格请参见[对称密钥加解密算法规格：RC2](crypto-encryption-decryption.md#rc2)。
 
 **加密**
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.generateSymKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#generatesymkey-1)或[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为RC2、密钥长度在8位～1024位范围内（如RC2_128）的对称密钥（SymKey）。
    
-   如何生成RC2对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：RC2](crypto-sym-key-generation-conversion-spec.md#rc2)和[随机生成对称密钥](crypto-generate-sym-key-randomly.md)/[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成RC2对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：RC2](crypto-key-generation-conversion.md#rc2)和[随机生成对称密钥](crypto-generate-sym-key-randomly.md)/[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数（如'RC2|CBC|PKCS7'），创建对称密钥类型为RC2、分组模式为CBC、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 

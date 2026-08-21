@@ -7,7 +7,7 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 22开始，算法库支持使用该算法进行摘要计算操作。
+从API版本22开始，算法库支持使用该算法进行摘要计算操作。
 
 对应的算法规格请查看[消息摘要计算算法规格](crypto-generate-message-digest-overview.md#支持的算法与规格)。
 
@@ -109,7 +109,7 @@ OH_Crypto_ErrCode doLoopSha3Md()
     }
     Crypto_DataBlob out = {.data = nullptr, .len = 0};
     int mdLen = 0;
-    int isBlockSize = 20;
+    int blockSize = 20;
     int offset = 0;
 
     ret = OH_CryptoDigest_Create("SHA3-256", &ctx);
@@ -118,15 +118,15 @@ OH_Crypto_ErrCode doLoopSha3Md()
         return ret;
     }
     do {
-        for (int i = 0; i < INT_640 / isBlockSize; i++) {
+        for (int i = 0; i < INT_640 / blockSize; i++) {
             Crypto_DataBlob in = {
                 .data = reinterpret_cast<uint8_t *>(testData + offset),
-                .len = static_cast<size_t>(isBlockSize)};
+                .len = static_cast<size_t>(blockSize)};
             ret = OH_CryptoDigest_Update(ctx, &in);
             if (ret != CRYPTO_SUCCESS) {
                 break;
             }
-            offset += isBlockSize;
+            offset += blockSize;
         }
         ret = OH_CryptoDigest_Final(ctx, &out);
         if (ret != CRYPTO_SUCCESS) {

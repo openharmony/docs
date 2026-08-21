@@ -7,9 +7,9 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 22开始，算法库支持使用该算法进行加密和解密操作。
+从API版本22开始，算法库支持使用该算法进行加密和解密操作。
 
-请查看[AES-WRAP加解密算法规格](crypto-sym-encrypt-decrypt-spec.md#aes-wrap)。
+请查看[AES-WRAP加解密算法规格](crypto-encryption-decryption.md#aes-wrap)。
 
 ## 在CMake脚本中链接相关动态库
 ```txt
@@ -22,7 +22,7 @@ target_link_libraries(entry PUBLIC libohcrypto.so)
 
 调用[OH_CryptoSymKeyGenerator_Create](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_create)和[OH_CryptoSymKeyGenerator_Generate](../../reference/apis-crypto-architecture-kit/capi-crypto-sym-key-h.md#oh_cryptosymkeygenerator_generate)，生成密钥算法为AES、密钥长度为128位的对称密钥（OH_CryptoSymKey）。
    
-   如何生成AES对称密钥，请参考以下示例，并结合[对称密钥生成和转换规格：AES](crypto-sym-key-generation-conversion-spec.md#aes)和[随机生成对称密钥](crypto-generate-sym-key-randomly-ndk.md)理解，参考文档与当前示例可能存在入参差异，请注意区分。
+   如何生成AES对称密钥，请参考以下示例，并结合[对称密钥生成和转换规格：AES](crypto-key-generation-conversion.md#aes)和[随机生成对称密钥](crypto-generate-sym-key-randomly-ndk.md)理解，参考文档与当前示例可能存在入参差异，请注意区分。
 
 **加密**
 

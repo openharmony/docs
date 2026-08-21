@@ -7,7 +7,7 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-从API version 23开始，算法库支持从私钥对象中获取公钥对象的操作。
+从API版本23开始，算法库支持从私钥对象中获取公钥对象的操作。
 
 以RSA为例，根据私钥对象获取公钥对象。
 
@@ -16,7 +16,7 @@
 target_link_libraries(entry PUBLIC libohcrypto.so)
 ```
 
-对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-asym-key-generation-conversion-spec.md#rsa)。
+对应的算法规格请查看[非对称密钥生成和转换规格：RSA](crypto-key-generation-conversion.md#rsa)。
 
 ## 开发步骤
 

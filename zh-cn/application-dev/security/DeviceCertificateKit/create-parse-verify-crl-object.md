@@ -119,9 +119,9 @@ function crlSample(): void {
     let revokedFlag = true;
     let serial: bigint = BigInt('0');
     cert.createX509Cert(certBlob, (err, x509Cert) => {
-      serial = x509Cert.getCertSerialNumber();
       if (err == null) {
         try {
+          serial = x509Cert.getCertSerialNumber();
           // 检查证书是否被吊销。
           revokedFlag = x509Crl.isRevoked(x509Cert);
           console.info(`revokedFlag is: ${revokedFlag}`);

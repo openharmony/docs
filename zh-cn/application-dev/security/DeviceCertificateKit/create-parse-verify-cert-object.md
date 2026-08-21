@@ -89,7 +89,7 @@ function certSample(): void {
     try {
       let pubKey = x509Cert.getPublicKey();
       // 验证证书签名。
-      x509Cert.verify(pubKey, (err, data) => {
+      x509Cert.verify(pubKey, (err, _result) => {
         if (err == null) {
           // 签名验证成功。
           console.info('verify result: success.');

@@ -1,4 +1,4 @@
-# 使用DES对称密钥（ECB模式）加解密(ArkTS)
+# 使用DES对称密钥加解密(ArkTS)
 
 <!--Kit: Crypto Architecture Kit-->
 <!--Subsystem: Security-->
@@ -7,13 +7,15 @@
 <!--Tester: @PAFT-->
 <!--Adviser: @zengyawen-->
 
-对应的算法规格请查看[对称密钥加解密算法规格：DES](crypto-sym-encrypt-decrypt-spec.md#des)。
+对应的算法规格请查看[对称密钥加解密算法规格：DES](crypto-encryption-decryption.md#des)。
+
+## 使用DES对称密钥（ECB模式）加解密
 
 **加密**
 
 1. 调用[cryptoFramework.createSymKeyGenerator](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatesymkeygenerator)、[SymKeyGenerator.convertKey](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#convertkey-1)，生成密钥算法为DES、密钥长度为64位的对称密钥（SymKey）。
    
-   如何生成DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：DES](crypto-sym-key-generation-conversion-spec.md#des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
+   如何生成DES对称密钥，开发者可参考下文示例，并结合[对称密钥生成和转换规格：DES](crypto-key-generation-conversion.md#des)和[指定二进制数据转换对称密钥](crypto-convert-binary-data-to-sym-key.md)理解，参考文档与当前示例可能存在入参差异，请在阅读时注意区分。
 
 2. 调用[cryptoFramework.createCipher](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#cryptoframeworkcreatecipher)，指定字符串参数'DES64|ECB|PKCS7'，创建对称密钥类型为DES64、分组模式为ECB、填充模式为PKCS7的Cipher实例，用于完成加密操作。
 
@@ -42,6 +44,8 @@
 
 4. 调用[Cipher.doFinal](../../reference/apis-crypto-architecture-kit/js-apis-cryptoFramework.md#dofinal-1)，获取解密后的数据。
 
+DES解密失败返回错误码17630001可参考[使用DES/3DES算法解密时调用doFinal失败](../../reference/apis-crypto-architecture-kit/errorcode-crypto-framework.md#使用des3des算法解密时调用dofinal失败)
+
 - 异步方法示例：
 
   <!-- @[async_symmetry_encrypt_decrypt](https://gitcode.com/openharmony/applications_app_samples/blob/master/code/DocsSample/Security/CryptoArchitectureKit/EncryptionDecryption/EncryptionDecryptionGuidanceDES/entry/src/main/ets/pages/des/des_ecb_encryption_decryption_asynchronous.ets) -->
@@ -49,6 +53,7 @@
   ``` TypeScript
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   // 加密消息。
   async function encryptMessagePromise(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
@@ -75,21 +80,26 @@
   }
   
   async function main() {
-    let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224]);
-    let symKey = await genSymKeyByData(keyData);
-    let message = 'This is a test';
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-    let encryptText = await encryptMessagePromise(symKey, plainText);
-    let decryptText = await decryptMessagePromise(symKey, encryptText);
-    if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok.');
-      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
-    } else {
-      console.error('decrypt failed.');
+    try {
+      let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224]);
+      let symKey = await genSymKeyByData(keyData);
+      let message = 'This is a test';
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      let encryptText = await encryptMessagePromise(symKey, plainText);
+      let decryptText = await decryptMessagePromise(symKey, encryptText);
+      if (plainText.data.toString() === decryptText.data.toString()) {
+        console.info('decrypt ok.');
+        console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+      } else {
+        console.error('decrypt failed.');
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`call failed: errCode: ${e.code}, errMsg: ${e.message}`);
     }
+  
   }
   ```
-
 
 - 同步方法示例：
 
@@ -98,6 +108,7 @@
   ``` TypeScript
   import { cryptoFramework } from '@kit.CryptoArchitectureKit';
   import { buffer } from '@kit.ArkTS';
+  import { BusinessError } from '@kit.BasicServicesKit';
   
   // 加密消息。
   function encryptMessage(symKey: cryptoFramework.SymKey, plainText: cryptoFramework.DataBlob) {
@@ -124,17 +135,22 @@
   }
   
   function main() {
-    let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224]);
-    let symKey = genSymKeyByData(keyData);
-    let message = 'This is a test';
-    let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
-    let encryptText = encryptMessage(symKey, plainText);
-    let decryptText = decryptMessage(symKey, encryptText);
-    if (plainText.data.toString() === decryptText.data.toString()) {
-      console.info('decrypt ok.');
-      console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
-    } else {
-      console.error('decrypt failed.');
+    try {
+      let keyData = new Uint8Array([238, 249, 61, 55, 128, 220, 183, 224]);
+      let symKey = genSymKeyByData(keyData);
+      let message = 'This is a test';
+      let plainText: cryptoFramework.DataBlob = { data: new Uint8Array(buffer.from(message, 'utf-8').buffer) };
+      let encryptText = encryptMessage(symKey, plainText);
+      let decryptText = decryptMessage(symKey, encryptText);
+      if (plainText.data.toString() === decryptText.data.toString()) {
+        console.info('decrypt ok.');
+        console.info('decrypt plainText: ' + buffer.from(decryptText.data).toString('utf-8'));
+      } else {
+        console.error('decrypt failed.');
+      }
+    } catch (err) {
+      let e: BusinessError = err as BusinessError;
+      console.error(`call failed: errCode: ${e.code}, errMsg: ${e.message}`);
     }
   }
   ```
