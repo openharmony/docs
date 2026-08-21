@@ -127,9 +127,11 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 | 参数名    | 类型                                                         | 必填 | 说明                                            |
 | --------- | ------------------------------------------------------------ | ---- | ----------------------------------------------- |
-| callback  | [PluginErrorCallback](#pluginerrorcallback18类型说明)          | 是   | 组件加载错误时触发事件回调。 |
+| callback  | [PluginErrorCallback](#pluginerrorcallback18)          | 是   | 组件加载错误时触发事件回调。 |
 
-## PluginErrorCallback<sup>18+</sup>类型说明
+## PluginErrorCallback<sup>18+</sup>
+
+type PluginErrorCallback = (info: PluginErrorData) => void
 
 发生错误时触发事件回调。
 
@@ -139,9 +141,9 @@ onError(callback:&nbsp;PluginErrorCallback)
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-| 参数名     | 类型               | 说明                        |
-| -------- | ------------------ | --------------------------- |
-| info     | [PluginErrorData](#pluginerrordata18类型说明)  | 发生错误时提供的数据。 |
+| 参数名     | 类型               | 必填 | 说明                        |
+| -------- | ------------------ | ---- | --------------------------- |
+| info     | [PluginErrorData](#pluginerrordata18类型说明)  | 是  | 发生错误时提供的数据。 |
 
 ## PluginErrorData<sup>18+</sup>类型说明
 
@@ -307,7 +309,7 @@ Plugin组件工具，用于使用方与提供方之间进行通信。根据模�
 ### FA模型
 ```js
 // 当前示例代码仅适用于FA模型
-import pluginComponentManager from '@ohos.pluginComponent';
+import { pluginComponentManager } from '@kit.ArkUI';
 
 const providerBundleName = 'com.example.provider';
 const providerAbilityName = 'com.example.provider.EntryAbility';
@@ -389,7 +391,7 @@ export default {
 ### Stage模型
 ```js
 // 当前示例代码仅适用于Stage模型
-import pluginComponentManager from '@ohos.pluginComponent';
+import { pluginComponentManager } from '@kit.ArkUI';
 
 let userBundleName: string = 'com.example.user';
 let userAbilityName: string = 'com.example.user.EntryAbility';

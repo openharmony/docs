@@ -29,7 +29,7 @@ NODE_EMBEDDED_COMPONENT_WANT = MAX_NODE_SCOPE_NUM * ARKUI_NODE_EMBEDDED_COMPONEN
 定义用于启动嵌入式Ability的want参数。支持属性设置。使用场景：当应用需要在当前页面嵌入指定Ability（如嵌入系统设置页面、嵌入地图组件等）时，通过该属性指定目标Ability。<br>
 作为属性设置方法参数时，[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
-**起始版本：** 12
+**起始版本：** 20
 
 **参数：**
 
@@ -46,7 +46,7 @@ NODE_EMBEDDED_COMPONENT_OPTION = 1016001
 定义EmbeddedComponent的运行选项，用于控制EmbeddedAbility的UI显示行为。支持属性设置。<br>
 作为属性设置方法参数时，[ArkUI_AttributeItem](capi-arkui-nativemodule-arkui-attributeitem.md)格式如下。<br>
 
-**起始版本：** 12
+**起始版本：** 20
 
 **参数：**
 

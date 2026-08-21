@@ -81,14 +81,13 @@ type ErrorCallback = ErrorCallback
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
-**参数：**
-
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | -------- | -------- | -------- | -------- | -------- |
 | entryPoint | string | 否 | 否 | 要加载的Abc页面入口，取值格式为'bundleName/moduleName/pagePath'，例如'com.example.myapplication/entry/ets/pages/DynamicPage'。 |
 | worker | [Worker](#worker) | 否 | 否 | 用于运行Abc的Worker线程对象，需通过worker.ThreadWorker创建。Worker在独立线程中执行Abc的UI逻辑，与主线程通信。 |
 | backgroundTransparent | boolean | 否 | 是 | 是否启用组件背景透明。<br>true：启用背景透明；false：不启用背景透明。<br>默认值：false |
 | allowCrossProcessNesting | boolean | 否 | 是 | 是否允许跨进程[UIExtensionComponent](./ts-container-ui-extension-component-sys.md)嵌套。<br>true：允许跨进程嵌套；false：不允许跨进程嵌套。<br>默认值：false |
+| allowOccupied | boolean | 否 | 是 | 是否允许DynamicComponent内部避让键盘。<br>true：允许避让键盘；false：不允许避让键盘。<br>默认值：false |
 
 ## 属性
 
