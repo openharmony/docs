@@ -9,9 +9,11 @@
 
 本模块为开发者提供视频质量处理能力，目前支持视频AI-HDR增强相关的功能。
 
+视频AI-HDR（Artificial Intelligence High Dynamic Range，人工智能高动态范围）是一种通过人工智能算法提升视频画质的技术，可对视频画面的亮度、对比度和色彩进行智能增强，扩展视频的动态范围，使高光与暗部细节更加丰富、画面更具层次感和视觉冲击力。
+
 通过本模块，开发者可创建[VideoProcessor](#videoprocessor)实例，查询AI-HDR增强功能的当前状态，并可注册状态变更监听，以便在AI-HDR增强功能状态发生变化时及时感知并做出相应处理。
 
-当需要在应用中开启或使用AI-HDR增强能力，并随时掌握该功能的开启/关闭状态时，可使用本模块的接口。
+当需要在应用中随时掌握该功能的开启/关闭状态时，可使用本模块的接口。
 
 本模块接口在使用前，需先通过[videoProcessing.createVideoProcessor](#videoprocessingcreatevideoprocessor)获取[VideoProcessor](#videoprocessor)实例，并在应用退出或不再需要视频处理能力时释放相关资源，以避免资源占用。
 
