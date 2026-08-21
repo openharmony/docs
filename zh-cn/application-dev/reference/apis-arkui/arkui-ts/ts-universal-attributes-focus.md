@@ -244,7 +244,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 | -------- | -------- |
 | T | 返回当前组件。 |
 
-### FocusPriority<sup>12+</sup>
+## FocusPriority<sup>12+</sup>
 
 设置组件获焦优先级。
 
@@ -260,7 +260,7 @@ focusScopePriority(scopeId: string, priority?: FocusPriority): T
 | PRIOR | 2000|容器内优先获焦的优先级。优先级高于AUTO。 |
 | PREVIOUS | 3000|上一次容器整体失焦时获焦节点的优先级。优先级高于PRIOR。 |
 
-### KeyProcessingMode<sup>15+</sup>
+## KeyProcessingMode<sup>15+</sup>
 
 设置按键事件处理的模式。
 

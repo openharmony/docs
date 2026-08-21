@@ -18,5 +18,5 @@ struct ArkUI_Node
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** [drawable_descriptor.h](capi-drawable-descriptor-h.md)
+**所在头文件：** [native_type.h](capi-native-type-h.md)
  

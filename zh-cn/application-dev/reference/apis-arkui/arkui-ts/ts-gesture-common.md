@@ -350,7 +350,7 @@ getEventTargetInfo(): EventTargetInfo
 
 ### isValid<sup>12+</sup>
 
-isValid(): boolean;
+isValid(): boolean
 
 返回当前手势识别器是否有效。
 
@@ -755,8 +755,6 @@ getDistanceMap(): Map\<SourceTool, number\>
 ## GestureType<sup>11+</sup>
 
 定义手势类型。
-
-**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 

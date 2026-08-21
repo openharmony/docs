@@ -76,6 +76,8 @@ type LengthMetricsUnit = import('../api/arkui/Graphics').LengthMetricsUnit
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
@@ -92,6 +94,8 @@ type LengthMetrics = import('../api/arkui/Graphics').LengthMetrics
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
+**模型约束：** 此接口仅可在Stage模型下使用。
+
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
 | 类型                    | 说明                                     |
@@ -107,6 +111,8 @@ declare type ColorMetrics = import('../api/arkui/Graphics').ColorMetrics
 **卡片能力：** 从API version 12开始，该接口支持在ArkTS卡片中使用。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 **系统能力：** SystemCapability.ArkUI.ArkUI.Full
 
@@ -693,6 +699,8 @@ type CustomBuilderT\<T> = (t: T) => void
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
 **卡片能力：** 从API version 11开始，该接口支持在ArkTS卡片中使用。
+
+**模型约束：** 此接口仅可在Stage模型下使用。
 
 | 名称     | 类型                         | 只读 | 可选   | 说明      |
 | ------ | ---------------------------- | -- | -- | ------- |

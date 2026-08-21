@@ -85,7 +85,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | rotate         | [RotateResult](#rotateresult) | 否       | 否     | 组件旋转信息。                |
 | transform      | [Matrix4Result](#matrix4result) | 否       | 否     | 仿射矩阵信息，根据入参创建的四阶矩阵对象。  |
 
-### Size
+## Size
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -96,7 +96,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | width    | number | 否       | 否     | 组件宽度。<br>单位：px                      |
 | height   | number | 否       | 否     | 组件高度。<br>单位：px                      |
 
-### Offset
+## Offset
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -107,7 +107,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | x       | number| 否       | 否     | x点坐标。<br>单位：px                           |
 | y       | number| 否       | 否     | y点坐标。<br>单位：px                           |
 
-### TranslateResult
+## TranslateResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -119,7 +119,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | y       | number | 否       | 否    | y轴平移距离。<br>单位：vp                       |
 | z       | number | 否       | 否     | z轴平移距离。<br>单位：vp                       |
 
-### ScaleResult
+## ScaleResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -133,7 +133,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | centerX | number | 否       | 否 | 变换中心点x轴坐标。<br>单位：vp                  |
 | centerY | number | 否       | 否  | 变换中心点y轴坐标。<br>单位：vp                |
 
-### RotateResult
+## RotateResult
 
 **原子化服务API：** 从API version 11开始，该接口支持在原子化服务中使用。
 
@@ -148,7 +148,7 @@ let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById(
 | centerX | number | 否       | 否  | 变换中心点x轴坐标。<br>单位：vp                 |
 | centerY | number | 否       | 否  | 变换中心点y轴坐标。<br>单位：vp                 |
 
-### Matrix4Result
+## Matrix4Result
 
 type Matrix4Result = [number,number,number,number,number,number,number,number,number,number,number,number,number,number,number,number]
 

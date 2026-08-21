@@ -18,5 +18,5 @@ typedef struct ArkUI_NodeEvent ArkUI_NodeEvent
 
 **相关模块：** [ArkUI_NativeModule](capi-arkui-nativemodule.md)
 
-**所在头文件：** [native_node.h](capi-native-node-h.md)
+**所在头文件：** [drag_and_drop.h](capi-drag-and-drop-h.md)
 
