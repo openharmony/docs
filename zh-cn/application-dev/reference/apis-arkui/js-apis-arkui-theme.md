@@ -147,7 +147,7 @@ ThemeControl将自定义Theme应用于App组件内，实现App组件风格跟随
 
 ### setDefaultTheme
 
-setDefaultTheme(theme: [CustomTheme](#customtheme)): void
+setDefaultTheme(theme: CustomTheme): void
 
 将用户自定义Theme设置应用级默认主题，以实现应用风格跟随Theme切换。若在页面中使用此接口设置应用级默认主题，需确保该接口在页面build前执行。若在UIAbility中使用此接口设置应用级默认主题，需确保该接口在onWindowStageCreate阶段里windowStage.[loadContent](./arkts-apis-window-WindowStage.md#loadcontent9)接口调用完成的回调函数中执行。详细代码可参考[设置应用内组件自定义主题色](../../ui/theme_skinning.md#设置应用内组件自定义主题色)。
 

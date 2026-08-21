@@ -217,7 +217,7 @@ showPrevious(): void
 
 changeIndex(index: number, useAnimation?: boolean): void
 
-翻至指定导航点。
+翻至指定导航点。使用该方法前须确保该控制器已绑定至Indicator组件。适用于需要跳转到指定导航点的场景。
 
 **卡片能力：** 从API version 15开始，该接口支持在ArkTS卡片中使用。
 

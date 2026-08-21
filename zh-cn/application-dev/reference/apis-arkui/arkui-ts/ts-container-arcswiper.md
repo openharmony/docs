@@ -575,7 +575,7 @@ ArcSwiper自定义切换动画相关信息。
 
 | 名称 | 类型 | 只读 | 可选 | 说明 |
 | ------ | ---- | ---- | ---- | ---- |
-| timeout | number | 否 | 是 | ArcSwiper自定义切换动画超时时间。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy)的[finishTransition](#finishtransition)接口通知ArcSwiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即在该页面节点下渲染树。单位ms，默认值为0。 |
+| timeout | number | 否 | 是 | ArcSwiper自定义切换动画超时时间，取值范围[0, +∞)。从页面执行默认动画（页面滑动）至移出视窗外的第一帧开始计时，如果到达该时间后，开发者仍未调用[SwiperContentTransitionProxy](#swipercontenttransitionproxy)的[finishTransition](#finishtransition)接口通知ArcSwiper组件此页面的自定义动画已结束，那么组件就会认为此页面的自定义动画已结束，立即在该页面节点下渲染树。单位ms，默认值为0。 |
 | transition | Callback\<[SwiperContentTransitionProxy](#swipercontenttransitionproxy)> | 否 | 否 | 自定义切换动画具体内容。 |
 
 ## SwiperContentTransitionProxy
