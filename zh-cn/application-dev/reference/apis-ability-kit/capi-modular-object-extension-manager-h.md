@@ -193,7 +193,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModularObjectExtensionInfoElementN
 
 **描述**
 
-从指定的ModularObjectExtensionAbility信息中获取组件名称（[AbilityBase_Element](capi-abilitybase-element.md)）。
+从指定的ModularObjectExtensionAbility信息中获取组件名称（[AbilityBase_Element](capi-abilitybase-element.md)）。element中的bundleName、moduleName、abilityName为非拥有型指针，指向extensionInfo内部数据，请勿单独释放，仅在extensionInfo有效期间可用。
 
 **起始版本：** 26.0.0
 
@@ -243,7 +243,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_AcquireSelfModularObjectExtensionInfo
 
 **描述**
 
-获取当前应用所有已注册的ModularObjectExtensionAbility信息，返回ModularObjectExtensionAbility信息集合句柄。通过[OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getcountfromallmodobjextensioninfos)获取集合元素数量，使用[OH_AbilityRuntime_GetModObjExtensionInfoByIndex](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getmodobjextensioninfobyindex)按索引遍历各个ModularObjectExtensionAbility信息，获取启动模式、进程模式、线程模式等属性。
+获取当前应用所有已注册的ModularObjectExtensionAbility信息，返回ModularObjectExtensionAbility信息集合句柄。通过[OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getcountfromallmodobjextensioninfos)获取集合元素数量，使用[OH_AbilityRuntime_GetModObjExtensionInfoByIndex](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getmodobjextensioninfobyindex)按索引遍历各个ModularObjectExtensionAbility信息，获取启动模式、进程模式、线程模式等属性。使用完毕后需调用[OH_AbilityRuntime_ReleaseAllExtensionInfos](capi-modular-object-extension-manager-h.md#oh_abilityruntime_releaseallextensioninfos)释放以避免内存泄漏。
 
 **起始版本：** 26.0.0
 
@@ -323,7 +323,7 @@ AbilityRuntime_ErrorCode OH_AbilityRuntime_GetModObjExtensionInfoByIndex(OH_Abil
 
 **描述**
 
-根据索引从ModularObjectExtensionAbility信息集合中获取指定的ModularObjectExtensionAbility信息。索引的有效范围为[0, count)，其中count可通过[OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getcountfromallmodobjextensioninfos)获取。获取到的ModularObjectExtensionAbility信息句柄可用于查询该ModularObjectExtensionAbility的启动模式、进程模式、线程模式等属性。
+根据索引从ModularObjectExtensionAbility信息集合中获取指定的ModularObjectExtensionAbility信息。索引的有效范围为[0, count)，其中count可通过[OH_AbilityRuntime_GetCountFromAllModObjExtensionInfos](capi-modular-object-extension-manager-h.md#oh_abilityruntime_getcountfromallmodobjextensioninfos)获取。获取到的ModularObjectExtensionAbility信息句柄可用于查询该ModularObjectExtensionAbility的启动模式、进程模式、线程模式等属性。返回的extensionInfo为非拥有型句柄，指向allExtensionInfos集合内部存储，请勿单独释放，仅在allExtensionInfos有效期间可用。
 
 **起始版本：** 26.0.0
 
