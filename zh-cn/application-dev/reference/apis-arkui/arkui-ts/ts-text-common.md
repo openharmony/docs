@@ -336,7 +336,7 @@ getLineMetrics(lineNumber: number): LineMetrics
 
 | 类型                                       | 说明       |
 | ---------------------------------------- | -------- |
-| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。<br>当行号小于0或超出实际行，返回无效值。当[LayoutManager](#layoutmanager12)没有和组件绑定时，返回无效值。 |
+| [LineMetrics](#linemetrics12) | 行信息、文本样式信息、以及字体属性信息。<br>当行号小于0或超出实际行数，返回无效值。当[LayoutManager](#layoutmanager12)没有和组件绑定时，返回无效值。 |
 
 ### getRectsForRange<sup>14+</sup>
 
@@ -763,7 +763,7 @@ type EditableTextOnChangeCallback = (value: string, previewText?: PreviewText, o
 
 type OnDidChangeCallback = (rangeBefore: TextRange, rangeAfter: TextRange) => void
 
-文本变换后回调。
+文本变化后回调。
 
 **原子化服务API：** 从API version 12开始，该接口支持在原子化服务中使用。
 
