@@ -1704,7 +1704,9 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean): Promise&lt;void&gt;
 
 在OpenHarmony 5.0.2之前，该接口在所有设备中可正常调用。
 
-从OpenHarmony 5.0.2开始，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错，切换到非[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态时生效；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备及不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用。
+从OpenHarmony 5.0.2开始至OpenHarmony 5.1.1之前，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错；在支持但不处于自由窗口状态的设备及不支持自由窗口状态的设备上可正常调用。
+
+从OpenHarmony 5.1.1开始，该接口在PC/2in1设备、其他设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)调用不生效也不报错；在其他设备和其他模式中可正常调用。
 
 **参数：**
 
@@ -1778,7 +1780,9 @@ setImmersiveModeEnabledState(enabled: boolean): void
 
 在OpenHarmony 5.0.2之前，该接口在所有设备中可正常调用。
 
-从OpenHarmony 5.0.2开始，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备及不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用。
+从OpenHarmony 5.0.2开始至OpenHarmony 5.1.1之前，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错；在支持但不处于自由窗口状态的设备及不支持自由窗口状态的设备上可正常调用。
+
+从OpenHarmony 5.1.1开始，该接口在PC/2in1设备、其他设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)调用不生效也不报错；在其他设备和其他模式中可正常调用。
 
 **参数：**
 
@@ -11898,7 +11902,9 @@ setWindowLayoutFullScreen(isLayoutFullScreen: boolean, callback: AsyncCallback&l
 
 在OpenHarmony 5.0.2之前，该接口在所有设备中可正常调用。
 
-从OpenHarmony 5.0.2开始，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错；在支持但不处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备及不支持[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上可正常调用。
+从OpenHarmony 5.0.2开始至OpenHarmony 5.1.1之前，该接口在支持并处于[自由窗口](../../windowmanager/window-terminology.md#freeform-window自由窗口)状态的设备上调用不生效也不报错；在支持但不处于自由窗口状态的设备及不支持自由窗口状态的设备上可正常调用。
+
+从OpenHarmony 5.1.1开始，该接口在PC/2in1设备、其他设备的[电脑模式](../../windowmanager/window-terminology.md#pc-mode电脑模式)调用不生效也不报错；在其他设备和其他模式中可正常调用。
 
 **参数：**
 
