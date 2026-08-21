@@ -10,9 +10,9 @@ ConsoleMessage是Web组件中封装JavaScript控制台输出信息的对象。�
 
 > **说明：**
 >
-> - 该组件首批接口从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
+> - 该组件从API version 8开始支持。后续版本如有新增内容，则采用上角标单独标记该内容的起始版本。
 >
-> - 本Class首批接口从API version 8开始支持。
+> - 本Class从API version 8开始支持。
 >
 > - 示例效果请以真机运行为准。
 
