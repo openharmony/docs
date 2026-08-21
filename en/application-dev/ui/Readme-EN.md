@@ -93,7 +93,7 @@
         - [Migration for Component Reuse](state-management/arkts-v1-v2-migration-reusable.md)
         - [Migration for Repeated Content Rendering](state-management/arkts-v1-v2-migration-rendering-control-repeat.md)
         - [Migration for Built-in Objects](state-management/arkts-v1-v2-migration-inner-object.md)
-        - [Widget State Variable Migration](state-management/arkts-v1-v2-migration-application.md)
+        - [Widget State Variable Migration](state-management/arkts-v1-v2-migration-card.md)
         - [Migration for AnimateTo Usage](state-management/arkts-v1-v2-migration-animateTo.md)
       - Mixed Use of State Management V1 and V2<!--v1v2-mixing-->
         - [Mixed Use of State Management V1 and V2 (Before API Version 19)](state-management/arkts-v1-v2-mixusage-before-api-version.md)
